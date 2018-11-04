@@ -31,8 +31,10 @@ public class Mission {
 	private String snooze;
 	private String dueDate;
 
+	private boolean recurring;
+
 	public Mission(String missionName, String missionDescription, String period, String snooze, String dueDate,
-			String completionDate, User...users) {
+			String completionDate, boolean recurring, User...users) {
 		this.missionName = missionName;
 		this.missionDescription = missionDescription;
 		this.users = new HashSet<>(Arrays.asList(users));
@@ -40,6 +42,7 @@ public class Mission {
 		this.snooze = snooze;
 		this.dueDate = dueDate;
 		this.completionDate = completionDate;
+		this.recurring = recurring;
 
 	}
 
@@ -81,6 +84,10 @@ public class Mission {
 
 	public Sector getSector() {
 		return sector;
+	}
+
+	public boolean isRecurring() {
+		return recurring;
 	}
 
 	@Override

@@ -35,10 +35,10 @@ public class JPAMappingTest {
 
 	User user = new User("Name", "contact");
 	User user2 = new User("Name2", "contact2");
-	Mission mission = new Mission("MissionName", "description", "period", "snooze", "dueDate", "completionDate", user);
-	Mission mission2 = new Mission("MissionName2", "description2", "period2", "snooze2", "dueDate2", "completionDate2",
+	Mission mission = new Mission("MissionName", "description", "period", "snooze", "dueDate", "completionDate",true, user);
+	Mission mission2 = new Mission("MissionName2", "description2", "period2", "snooze2", "dueDate2", "completionDate2", true,
 			user);
-	Mission mission3 = new Mission("MissionName3", "description3", "period3", "snooze3", "dueDate3", "completionDate3",
+	Mission mission3 = new Mission("MissionName3", "description3", "period3", "snooze3", "dueDate3", "completionDate3", false,
 			user, user2);
 
 	@Test
@@ -68,7 +68,7 @@ public class JPAMappingTest {
 
 		Optional<User> result = userRepo.findById(userId);
 		User userResult = result.get();
-		assertThat(user.getUserName(), is("Name"));
+		assertThat(userResult.getUserName(), is("Name"));
 	}
 
 	@Test
@@ -107,7 +107,7 @@ public class JPAMappingTest {
 		userRepo.save(user);
 		userRepo.save(user2);
 		Mission mission3 = new Mission("MissionName3", "description3", "period3", "snooze3", "dueDate3",
-				"completionDate3", user, user2);
+				"completionDate3", true, user, user2);
 		missionRepo.save(mission3);
 
 		entityManager.flush();
