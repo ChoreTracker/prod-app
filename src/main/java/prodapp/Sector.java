@@ -1,47 +1,44 @@
 package prodapp;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
-public class User {
+public class Sector {
 	@Id
 	@GeneratedValue
 	private long id;
-	private String userName;
 
-	@ManyToMany
-	Collection<Mission> missions;
+	@OneToMany
+	private Collection<Mission> missions;
 
-	public User() {
-
+	public Sector(){
+		
 	}
+	
+	private String sectorName;
 
-	public long getId() {
-		return id;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public String getContact() {
-		return contact;
+	public Sector(String sectorName, Mission...missions) {
+		this.sectorName = sectorName;
+		this.missions = new HashSet<>(Arrays.asList(missions));;
 	}
 
 	public Collection<Mission> getMissions() {
 		return missions;
 	}
 
-	private String contact;
+	public String getSectorName() {
+		return sectorName;
+	}
 
-	public User(String userName, String contact) {
-		this.userName = userName;
-		this.contact = contact;
+	public long getId() {
+		return id;
 	}
 
 	@Override
@@ -60,10 +57,9 @@ public class User {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Sector other = (Sector) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
-
 }

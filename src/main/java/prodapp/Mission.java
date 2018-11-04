@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Mission {
@@ -22,6 +23,9 @@ public class Mission {
 	@ManyToMany
 	private Collection<User> users;
 	
+	@ManyToOne
+	private Sector sector;
+
 	private String completionDate;
 	private String period;
 	private String snooze;
@@ -36,6 +40,7 @@ public class Mission {
 		this.snooze = snooze;
 		this.dueDate = dueDate;
 		this.completionDate = completionDate;
+
 	}
 
 	public Mission() {
@@ -72,6 +77,11 @@ public class Mission {
 
 	public String getCompletionDate() {
 		return completionDate;
+	}
+	
+
+	public Sector getSector() {
+		return sector;
 	}
 
 	@Override
