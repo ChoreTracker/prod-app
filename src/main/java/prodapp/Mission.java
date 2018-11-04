@@ -19,10 +19,10 @@ public class Mission {
 
 	private String missionName;
 	private String missionDescription;
-	
+
 	@ManyToMany
 	private Collection<User> users;
-	
+
 	@ManyToOne
 	private Sector sector;
 
@@ -31,8 +31,8 @@ public class Mission {
 	private String snooze;
 	private String dueDate;
 
-	public Mission(String missionName, String missionDescription, String period, String snooze,
-			String dueDate, String completionDate, User...users) {
+	public Mission(String missionName, String missionDescription, String period, String snooze, String dueDate,
+			String completionDate, User...users) {
 		this.missionName = missionName;
 		this.missionDescription = missionDescription;
 		this.users = new HashSet<>(Arrays.asList(users));
@@ -78,7 +78,6 @@ public class Mission {
 	public String getCompletionDate() {
 		return completionDate;
 	}
-	
 
 	public Sector getSector() {
 		return sector;

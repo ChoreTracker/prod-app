@@ -2,8 +2,10 @@ package prodapp;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertThat;
 
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -32,11 +34,12 @@ public class JPAMappingTest {
 	private SectorRepository sectorRepo;
 
 	User user = new User("Name", "contact");
+	User user2 = new User("Name2", "contact2");
 	Mission mission = new Mission("MissionName", "description", "period", "snooze", "dueDate", "completionDate", user);
 	Mission mission2 = new Mission("MissionName2", "description2", "period2", "snooze2", "dueDate2", "completionDate2",
 			user);
 	Mission mission3 = new Mission("MissionName3", "description3", "period3", "snooze3", "dueDate3", "completionDate3",
-			user);
+			user, user2);
 
 	@Test
 	public void shouldSaveAndLoadNewMission() {
@@ -85,21 +88,51 @@ public class JPAMappingTest {
 		assertThat(mission.getMissionName(), is("MissionName"));
 	}
 
-//	@Test
-//	public void shouldFindMissionsByUser() {
-//		userRepo.save(user);
-//		missionRepo.save(mission);
-//		missionRepo.save(mission3);
-//
-//		entityManager.flush();
-//		entityManager.clear();
-//
-//		Collection<Mission> result = userRepo.findByUser(user);
-//
-//		assertThat(result, containsInAnyOrder(mission, mission3));
-//
-//	}
+	@Test
+	public void shouldFindMissionsByUser() {
+		userRepo.save(user);
+		missionRepo.save(mission);
+		missionRepo.save(mission3);
 
-	// pull the 2 missions, check their userIds, get id of user & see if they match
+		entityManager.flush();
+		entityManager.clear();
+
+		Collection<Mission> result = missionRepo.findByUsersContains(user);
+
+		assertThat(result, containsInAnyOrder(mission, mission3));
+	}
+
+	@Test
+	public void shouldFindUsersByMission() {
+		userRepo.save(user);
+		userRepo.save(user2);
+		Mission mission3 = new Mission("MissionName3", "description3", "period3", "snooze3", "dueDate3",
+				"completionDate3", user, user2);
+		missionRepo.save(mission3);
+
+		entityManager.flush();
+		entityManager.clear();
+
+		Collection<User> result = userRepo.findByMissionsContains(mission3);
+
+		assertThat(result.size(), is(2));
+		assertThat(result, containsInAnyOrder(user, user2));
+	}
+
+	@Test
+	public void shouldFindMissionsBySector() {
+		userRepo.save(user);
+		missionRepo.save(mission);
+		missionRepo.save(mission2);
+		Sector sector = new Sector("sectorName", mission, mission2);
+		sectorRepo.save(sector);
+
+		entityManager.flush();
+		entityManager.clear();
+
+		Collection<Mission> result = sector.getMissions();
+
+		assertThat(result, containsInAnyOrder(mission, mission2));
+	}
 
 }

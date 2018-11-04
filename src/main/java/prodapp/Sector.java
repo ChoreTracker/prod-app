@@ -18,15 +18,15 @@ public class Sector {
 	@OneToMany
 	private Collection<Mission> missions;
 
-	public Sector(){
-		
+	public Sector() {
+
 	}
-	
+
 	private String sectorName;
 
 	public Sector(String sectorName, Mission...missions) {
 		this.sectorName = sectorName;
-		this.missions = new HashSet<>(Arrays.asList(missions));;
+		this.missions = new HashSet<>(Arrays.asList(missions));
 	}
 
 	public Collection<Mission> getMissions() {

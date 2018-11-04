@@ -14,8 +14,8 @@ public class User {
 	private long id;
 	private String userName;
 
-	@ManyToMany
-	Collection<Mission> missions;
+	@ManyToMany(mappedBy = "users")
+	private Collection<Mission> missions;
 
 	public User() {
 
