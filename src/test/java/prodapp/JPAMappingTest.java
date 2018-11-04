@@ -35,6 +35,8 @@ public class JPAMappingTest {
 	Mission mission = new Mission("MissionName", "description", "period", "snooze", "dueDate", "completionDate", user);
 	Mission mission2 = new Mission("MissionName2", "description2", "period2", "snooze2", "dueDate2", "completionDate2",
 			user);
+	Mission mission3 = new Mission("MissionName3", "description3", "period3", "snooze3", "dueDate3", "completionDate3",
+			user);
 
 	@Test
 	public void shouldSaveAndLoadNewMission() {
@@ -53,6 +55,20 @@ public class JPAMappingTest {
 	}
 
 	@Test
+	public void shouldBeAbleToAddAUser() {
+		userRepo.save(user);
+		missionRepo.save(mission);
+		long userId = user.getId();
+
+		entityManager.flush();
+		entityManager.clear();
+
+		Optional<User> result = userRepo.findById(userId);
+		User userResult = result.get();
+		assertThat(user.getUserName(), is("Name"));
+	}
+
+	@Test
 	public void shouldAddMissionToSector() {
 		userRepo.save(user);
 		missionRepo.save(mission);
@@ -67,7 +83,23 @@ public class JPAMappingTest {
 		Sector sectorResult = result.get();
 		assertThat(sectorResult.getMissions(), contains(mission));
 		assertThat(mission.getMissionName(), is("MissionName"));
-
 	}
+
+//	@Test
+//	public void shouldFindMissionsByUser() {
+//		userRepo.save(user);
+//		missionRepo.save(mission);
+//		missionRepo.save(mission3);
+//
+//		entityManager.flush();
+//		entityManager.clear();
+//
+//		Collection<Mission> result = userRepo.findByUser(user);
+//
+//		assertThat(result, containsInAnyOrder(mission, mission3));
+//
+//	}
+
+	// pull the 2 missions, check their userIds, get id of user & see if they match
 
 }
