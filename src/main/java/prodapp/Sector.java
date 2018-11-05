@@ -11,34 +11,34 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Sector {
+	
 	@Id
 	@GeneratedValue
 	private long id;
 
+	private String sectorName;
+	
 	@OneToMany
 	private Collection<Mission> missions;
-
-	public Sector() {
-
-	}
-
-	private String sectorName;
-
-	public Sector(String sectorName, Mission...missions) {
-		this.sectorName = sectorName;
-		this.missions = new HashSet<>(Arrays.asList(missions));
-	}
-
+	
 	public Collection<Mission> getMissions() {
 		return missions;
 	}
-
+	
 	public String getSectorName() {
 		return sectorName;
 	}
-
+	
 	public long getId() {
 		return id;
+	}
+
+	public Sector() {
+		
+	}
+	public Sector(String sectorName, Mission...missions) {
+		this.sectorName = sectorName;
+		this.missions = new HashSet<>(Arrays.asList(missions));
 	}
 
 	@Override

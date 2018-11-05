@@ -3,6 +3,7 @@ package prodapp;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,8 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Mission {
 
+	
+	
 	@Id
 	@GeneratedValue
 	private long id;
@@ -33,23 +36,10 @@ public class Mission {
 
 	private boolean recurring;
 
-	public Mission(String missionName, String missionDescription, String period, String snooze, String dueDate,
-			String completionDate, boolean recurring, User...users) {
-		this.missionName = missionName;
-		this.missionDescription = missionDescription;
-		this.users = new HashSet<>(Arrays.asList(users));
-		this.period = period;
-		this.snooze = snooze;
-		this.dueDate = dueDate;
-		this.completionDate = completionDate;
-		this.recurring = recurring;
 
+	public boolean isRecurring() {
+		return recurring;
 	}
-
-	public Mission() {
-
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -86,10 +76,27 @@ public class Mission {
 		return sector;
 	}
 
-	public boolean isRecurring() {
-		return recurring;
-	}
 
+	public void assignUsers(User...users) {
+		this.users = new HashSet<>(Arrays.asList(users));
+	}
+	public Mission(String missionName, String missionDescription, String period, String snooze, String dueDate,
+			String completionDate, boolean recurring, User...users) {
+		this.missionName = missionName;
+		this.missionDescription = missionDescription;
+		this.users = new HashSet<>(Arrays.asList(users));
+		this.period = period;
+		this.snooze = snooze;
+		this.dueDate = dueDate;
+		this.completionDate = completionDate;
+		this.recurring = recurring;
+		
+	}
+	
+	public Mission() {
+		
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -111,5 +118,11 @@ public class Mission {
 			return false;
 		return true;
 	}
+
+
+
+	
+
+
 
 }
