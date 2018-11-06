@@ -1,5 +1,6 @@
 package prodapp;
 
+
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -15,6 +16,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
 
 public class MissionControllerTest {
+	
 	@InjectMocks
 	private MissionController underTest;
 
@@ -23,12 +25,16 @@ public class MissionControllerTest {
 
 	@Mock
 	private Mission mission;
+	
 	@Mock
 	private Mission mission2;
+	
+	@Mock
+	private SectorRepository sectorRepo;
 
 	@Mock
 	private Model model;
-
+	
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
@@ -50,4 +56,5 @@ public class MissionControllerTest {
 		underTest.findAllMissions(model);
 		verify(model).addAttribute("missions", allMissions);
 	}
+	
 }

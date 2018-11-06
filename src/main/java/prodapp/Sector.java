@@ -62,4 +62,9 @@ public class Sector {
 			return false;
 		return true;
 	}
+
+	public void addMission(Mission mission) {
+		this.missions.add(mission);
+		
+	}
 }

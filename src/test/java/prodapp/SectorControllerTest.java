@@ -1,8 +1,7 @@
 package prodapp;
 
+
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
@@ -89,27 +88,24 @@ public class SectorControllerTest {
 		sectorId = 1;
 		underTest.deleteSectorById(sectorId);
 		verify(sectorRepo).deleteById(sectorId);
-	}	
-	
+	}		
+
 	@Test
-	public void shouldAssignAllMissionsInSectorToUser() {
-		missionRepo.save(mission);
-		missionRepo.save(anotherMission);
-		userRepo.save(user1);
-		long sectorId = 1;
-		long userId = 2;
-		when(userRepo.findById(userId)).thenReturn(Optional.of(user1));
-		Sector sector = new Sector("sector name", mission, anotherMission);
-		sectorRepo.save(sector);
-		when(sectorRepo.findById(sectorId)).thenReturn(Optional.of(sector));
-		underTest.assignAllMissionsInSectorToUserById(sectorId, userId);
-		Collection<User> userResult = mission.getUsers();
-		assertThat(userResult.size(), is(1));
-		assertThat(userResult, contains(user1));
+	public void shouldAddMissionToSector() {
 		
+		Mission mission3 = new Mission("MissionName", "description", "period", "snooze", "dueDate", "completionDate", true);
+		missionRepo.save(mission3);
+		long missionId = mission3.getId();
+
+		Sector sector = new Sector("sector name");
+		sector = sectorRepo.save(sector);
+		long sectorId = sector.getId();
+		
+		underTest.addMissionToSector(sectorId, missionId);
+		Collection<Mission> sectorMissions = sector.getMissions();
+		assertThat(sectorMissions.size(), is(1));
+
 	}
-	
-	//put the mission in the sector
 	
 	
 	

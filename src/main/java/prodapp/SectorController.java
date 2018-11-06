@@ -1,6 +1,6 @@
 package prodapp;
 
-import java.util.Collection;
+
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -52,6 +52,7 @@ public class SectorController {
 	public String deleteSectorById(Long sectorId) {
 		if (sectorRepo.findById(sectorId) != null) {
 			sectorRepo.deleteById(sectorId);
+			missionRepo.deleteBySector(sectorId);
 		}
 		return "redirect:/show-sectors";
 	}
@@ -77,6 +78,17 @@ public class SectorController {
 		return "redirect:/sector";
 		
 	}
+	
+	@RequestMapping("add-mission-to-sector")
+	public String addMissionToSector(long sectorId, long missionId) {
+		Optional<Sector> result = sectorRepo.findById(sectorId);
+		Sector sector = result.get();
+		Optional<Mission> missionToAdd = missionRepo.findById(missionId);
+		Mission mission = missionToAdd.get();
+		sector.addMission(mission);
+		return "redirect:/sector";
+	}
+	
 	
 
 }
