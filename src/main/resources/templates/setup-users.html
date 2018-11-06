@@ -1,9 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
 <head>
-	<title></title>
+	<title>Additional Users Setup Screen</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="./css/layout.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
+	<main>
+		<header>
+			<h1>Prod/header placeholder</h1>
+		</header>
+		
+		<div class="grid-container">
+			<h2>Let's setup any additional members of your household.</h2>
+		<form action="/action_page.php">
 
+		<label for="username"><b>Username</b></label>
+			<input type="text" placeholder="Enter Username" name="username" required>
+			
+			<label for="email"><b>Email</b></label>
+			<input type="text" placeholder="Enter Email" name="email" required>
+
+			<button type="submit" class="registerbtn">Add another user</button>	
+			<button type="submit" class="registerbtn">Done adding users</button>
+		</div>
+</main>
 </body>
 </html>
