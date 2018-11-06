@@ -1,9 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
 <head>
-	<title></title>
+	<title>Sectors in the Home</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="./css/layout.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
+	<main id="container"> 
+		<header>
+			<h1>Prod/header placeholder</h1>
+		</header>
+	<div class="grid-container">
+		<h2>Here are the current sectors for your home.</h2>
+		<ul id="sector-list">
+			<li th:each="sector: ${sectors}">
+					<a th:href="@{/sector(id=${sector.id})}" th:text="${sector.name}"></a>
+			</li>
+		</ul>
+		<img id="sectorPic" src ="./images/sector1.jpg">
+	</div>
+	</main>
 
 </body>
 </html>

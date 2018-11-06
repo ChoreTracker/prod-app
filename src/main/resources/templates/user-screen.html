@@ -1,9 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org">
 <head>
-	<title></title>
+	<title>User Screen</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="./css/layout.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
+	<main>
+		<header>
+			<h1>Prod/header placeholder</h1>
+		</header>
+		<div class="grid-container">
+			<h2 th:each="${users.name}"></h2>
+				<h3>Here are your current missions.</h3>
+				<ul>
+					<li th:each="  "  ></li>
+				</ul>
 
+
+</main>
 </body>
 </html>
