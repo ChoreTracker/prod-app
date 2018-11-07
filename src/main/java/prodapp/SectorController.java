@@ -82,11 +82,17 @@ public class SectorController {
 	@RequestMapping("add-mission-to-sector")
 	public String addMissionToSector(long sectorId, long missionId) {
 		Optional<Sector> result = sectorRepo.findById(sectorId);
-		Sector sector = result.get();
-		Optional<Mission> missionToAdd = missionRepo.findById(missionId);
-		Mission mission = missionToAdd.get();
-		sector.addMission(mission);
-		return "redirect:/sector";
+		if (result.isPresent()) {
+			Sector sector = result.get();
+			Optional<Mission> missionToAdd = missionRepo.findById(missionId);
+			if (missionToAdd.isPresent()) {
+				Mission mission = missionToAdd.get();
+				sector.addMission(mission);
+				return "redirect:/sector";
+			}
+			
+		}
+		return null;
 	}
 	
 	

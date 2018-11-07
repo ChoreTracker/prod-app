@@ -2,6 +2,7 @@ package prodapp;
 
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
@@ -9,6 +10,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Optional;
 
 import org.junit.Before;
@@ -37,6 +39,9 @@ public class SectorControllerTest {
 	
 	@Mock 
 	private Mission anotherMission;
+	
+	@Mock
+	private Mission mission3;
 	
 	@Mock
 	private User user1;
@@ -92,24 +97,45 @@ public class SectorControllerTest {
 
 	@Test
 	public void shouldAddMissionToSector() {
-		
-		Mission mission3 = new Mission("MissionName", "description", "period", "snooze", "dueDate", "completionDate", true);
-		missionRepo.save(mission3);
-		long missionId = mission3.getId();
-
-		Sector sector = new Sector("sector name");
-		sector = sectorRepo.save(sector);
-		long sectorId = sector.getId();
-		
+		long missionId = 1;
+		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission3));
+		sectorId= 1;
+		when(sectorRepo.findById(sectorId)).thenReturn(Optional.of(sector));
+		Collection<Mission> missions = new HashSet<>();
+		missions.add(mission3);
+		when(sector.getMissions()).thenReturn(missions);
 		underTest.addMissionToSector(sectorId, missionId);
 		Collection<Mission> sectorMissions = sector.getMissions();
 		assertThat(sectorMissions.size(), is(1));
 
 	}
 	
-	
-	
-	
+	@Test
+	public void shouldAssignAllMissionsInSectorToUser() {
+		long missionId2 = 2;
+		when(missionRepo.findById(missionId2)).thenReturn(Optional.of(mission));
+		long missionId = 1;
+		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission3));
+		sectorId= 1;
+		when(sectorRepo.findById(sectorId)).thenReturn(Optional.of(sector));
+		Collection<Mission> missions = new HashSet<>();
+		missions.add(mission3);
+		missions.add(mission);
+		when(sector.getMissions()).thenReturn(missions);
+		underTest.addMissionToSector(sectorId, missionId);
+		underTest.addMissionToSector(sectorId, missionId2);
+		Collection<User> users = new HashSet<>();
+		when(mission.getUsers()).thenReturn(users);
+		Collection<User> users2 = new HashSet<>();
+		when(mission3.getUsers()).thenReturn(users2);
+		userId = 3;
+		users.add(user1);
+		users2.add(user1);
+		when(userRepo.findById(userId)).thenReturn(Optional.of(user1));
+		underTest.assignAllMissionsInSectorToUserById(sectorId, userId);
+		assertThat(mission.getUsers(), contains(user1));
+		assertThat(mission3.getUsers(), contains(user1));
+	}
 	
 	
 	
