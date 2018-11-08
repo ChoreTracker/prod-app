@@ -93,6 +93,7 @@ public class SectorControllerTest {
 		sectorId = 1;
 		underTest.deleteSectorById(sectorId);
 		verify(sectorRepo).deleteById(sectorId);
+		
 	}		
 
 	@Test
