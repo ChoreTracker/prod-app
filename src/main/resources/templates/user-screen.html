@@ -12,7 +12,7 @@
 			<h1>Prod/header placeholder</h1>
 		</header>
 		<div class="grid-container">
-			<h2 th:each="${users.name}"></h2>
+			<h2 th:text="'Hello ' + ${user.name}"></h2>
 				<h3>Here are your current missions.</h3>
 				<ul>
 					<li th:each="  "  ></li>
@@ -20,5 +20,11 @@
 
 
 </main>
+<footer>
+		<ul>
+			<li> <a href="http://localhost:8080/show-sectors">Show All Sectors</a></li>
+			<li> <a href="http://localhost:8080/show-all-missions">Show All Missions by Due Date</a></li>
+		</ul>
+</footer>		
 </body>
 </html>
