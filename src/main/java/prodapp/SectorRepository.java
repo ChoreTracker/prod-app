@@ -6,5 +6,7 @@ public interface SectorRepository extends CrudRepository<Sector, Long> {
 
 	Sector findByMissionsContains(Mission...missions);
 
+	Sector findBySectorName(String sectorName);
+
 
 }

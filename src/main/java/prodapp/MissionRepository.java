@@ -8,6 +8,8 @@ public interface MissionRepository extends CrudRepository<Mission, Long> {
 
 	Collection<Mission> findByUsersContains(User user);
 
+	void deleteBySector(Long sectorId);
+
 
 
 }
