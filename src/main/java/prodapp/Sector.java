@@ -32,7 +32,11 @@ public class Sector {
 	public long getId() {
 		return id;
 	}
-
+	
+	public void addMission(Mission mission) {
+		this.missions.add(mission);
+	}
+	
 	public Sector() {
 		
 	}
@@ -61,10 +65,5 @@ public class Sector {
 		if (id != other.id)
 			return false;
 		return true;
-	}
-
-	public void addMission(Mission mission) {
-		this.missions.add(mission);
-		
 	}
 }

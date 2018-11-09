@@ -110,18 +110,36 @@ public class MissionControllerTest {
 		missionId = 1;
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission));
 		Collection<User> users = new HashSet<>();
-		
 		users.add(user);
 		userId = 2;
 		when(mission.getUsers()).thenReturn(users);
 		when(userRepo.findById(userId)).thenReturn(Optional.of(user));
 		underTest.assignMissionToUserById(missionId, userId);
 		underTest.removeUserFromMission(missionId, userId);
+		users.remove(user);
 		verify(mission).removeUser(user);
-		assertThat(mission.getUsers().size(), is(0));
-		
+		assertThat(mission.getUsers().size(), is(0));	
 	}
 	
+	@Test
+	public void shouldShowAllUnassignedMissions() {
+		userRepo.save(user);
+		userRepo.save(user2);
+		Mission mission1 = new Mission("MissionName", "description", "period", "snooze", "dueDate", "completionDate", true);
+		Mission mission2 = new Mission("MissionName2", "description2", "period2", "snooze2", "dueDate2", "completionDate2", true,
+				user);
+		Mission mission3 = new Mission("MissionName3", "description3", "period3", "snooze3", "dueDate3", "completionDate3", false,
+				user, user2);
+		missionRepo.save(mission1);
+		missionRepo.save(mission2);
+		missionRepo.save(mission3);
+		Collection<Mission> allMissions = Arrays.asList(mission1, mission2, mission3);
+		when(missionRepo.findAll()).thenReturn(allMissions);
+		underTest.findUnassignedMissions(model);
+		Collection<Mission> expected = new HashSet<>();
+		expected.add(mission1);
+		verify(model).addAttribute("missions", expected);
+	}
 	
 	
 }

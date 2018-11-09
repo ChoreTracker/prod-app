@@ -1,9 +1,10 @@
 package prodapp;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Optional;
 
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,6 @@ public class MissionController {
 	@RequestMapping("/mission")
 	public String findOneMission(long missionId, Model model) throws missionNotFoundException {
 		Optional<Mission> mission = missionRepo.findById(missionId);
-		
 		if (mission.isPresent()) {
 			model.addAttribute("mission", mission.get());
 			return "mission";
@@ -75,4 +75,17 @@ public class MissionController {
 		return "redirect:/mission?id=" + missionId;		
 	}
 
+	@RequestMapping("/show-unassigned-missions")
+	public String findUnassignedMissions(Model model) {
+		Collection<Mission> unassignedMissions = new HashSet<>();
+		for (Mission mission : missionRepo.findAll()) {
+			if(mission.getUsers().size() == 0 || mission.getUsers() == null) {
+				unassignedMissions.add(mission);
+			}
+		}
+		model.addAttribute("missions", unassignedMissions);
+		return "missions";
+	}
+	
+	
 }
