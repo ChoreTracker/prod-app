@@ -48,6 +48,7 @@ public class SectorController {
 		return "redirect:/show-sectors";
 		
 	}
+	//deletes a sector and also all the missions in the sector
 	@RequestMapping("/remove-sector")
 	public String deleteSectorById(Long sectorId) {
 		if (sectorRepo.findById(sectorId) != null) {
@@ -66,7 +67,8 @@ public class SectorController {
 		return "sector";
 	}
 	
-	@RequestMapping("/assign-all-missions")
+	//button that assigns all the missions in a sector to one user, using the ids of both
+	@RequestMapping("/assign-all-missions-button")
 	public String assignAllMissionsInSectorToUserById(long sectorId, long userId) {
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
 		Sector sectorResult = sector.get();
@@ -74,12 +76,13 @@ public class SectorController {
 		User userResult = user.get();
 		for (Mission mission : sectorResult.getMissions()) {
 			mission.assignUsers(userResult);
+			missionRepo.save(mission);
 		}
-		return "redirect:/sector";
+		return "redirect:/sector?id=" + sectorId;
 		
 	}
-	
-	@RequestMapping("add-mission-to-sector")
+	//button to add a mission to a sector, using the ids of both, say from a view of the sector
+	@RequestMapping("/add-mission-to-sector-button")
 	public String addMissionToSector(long sectorId, long missionId) {
 		Optional<Sector> result = sectorRepo.findById(sectorId);
 		if (result.isPresent()) {
@@ -88,7 +91,8 @@ public class SectorController {
 			if (missionToAdd.isPresent()) {
 				Mission mission = missionToAdd.get();
 				sector.addMission(mission);
-				return "redirect:/sector";
+				sectorRepo.save(sector);
+				return "redirect:/sector?id=" + sectorId;
 			}
 			
 		}

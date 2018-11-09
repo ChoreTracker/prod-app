@@ -3,7 +3,7 @@ package prodapp;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Optional;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +33,6 @@ public class Mission {
 	private String period;
 	private String snooze;
 	private String dueDate;
-
 	private boolean recurring;
 
 
@@ -76,10 +75,19 @@ public class Mission {
 		return sector;
 	}
 
-
+	//this method assigns all the users at once, removing any pre-assigned users, if any
 	public void assignUsers(User...users) {
 		this.users = new HashSet<>(Arrays.asList(users));
 	}
+	
+	public void removeUser(User user) {
+		this.users.remove(user);
+	}
+	
+	public void addUser(User user) {
+		this.users.add(user);
+	}
+	
 	public Mission(String missionName, String missionDescription, String period, String snooze, String dueDate,
 			String completionDate, boolean recurring, User...users) {
 		this.missionName = missionName;
@@ -118,10 +126,6 @@ public class Mission {
 			return false;
 		return true;
 	}
-
-
-
-	
 
 
 
