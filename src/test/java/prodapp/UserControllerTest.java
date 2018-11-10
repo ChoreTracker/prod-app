@@ -9,12 +9,20 @@ import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.ui.Model;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.test.context.junit4.SpringRunner;
 
-
+@SpringBootTest(classes = User.class)
+@RunWith(SpringRunner.class)
+@WebAppConfiguration
 public class UserControllerTest {
 	
 	@InjectMocks
@@ -31,11 +39,16 @@ public class UserControllerTest {
 
 	@Mock
 	private Model model;
+	
+	@Autowired
+	private WebApplicationContext webApplicationContext;
 
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 	}
+	
+	
 	
 	@Test
 	public void shouldAddSingleUserToModel() throws userNotFoundException {
@@ -53,4 +66,9 @@ public class UserControllerTest {
 		verify(model).addAttribute("users", allUsers);
 	}
 
+	@Test
+	public void shouldChangeUserPassword() {
+		
+	}
+	
 }
