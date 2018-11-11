@@ -13,7 +13,7 @@
 		</header>
 <div class="grid-container" th:each= "mission: ${missions}">
 	<h2 id="MissionName" th:text="${mission.missionName}"></h2>
-	<p th:utext = "${mission.missionDescription}"></p>
+	<p th:text = "${mission.missionDescription}"></p>
 	<p th:text = "${mission.users}"></p>	
 	<p th:text = "${mission.period}"></p>	
 	<p th:text = "${mission.snooze}"></p>	
@@ -27,7 +27,7 @@
 <footer>
 		<ul>
 			<li> <a href="http://localhost:8080/show-sectors">Show All Sectors</a></li>
-			<li> <a href="http://localhost:8080/show-missions">Show All Missions by Due Date</a></li>
+			<li> <a href="http://localhost:8080/show-missions">Show All Missions</a></li>
 		</ul>
 </footer>		
 </body>
