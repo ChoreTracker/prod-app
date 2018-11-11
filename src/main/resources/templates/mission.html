@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head>
-<title>All Tasks Ajax</title>
-<meta charset="utf-8">
+	<title>Mission</title>
+	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="./css/layout.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
-	<main id="container"> 
+	<main>
 		<header>
 			<h1>Prod/header placeholder</h1>
 		</header>
-		
-		<h2>All Household Tasks</h2>
+<div class="grid-container" th:each= "mission: ${missions}">
+	<h2 id="MissionName" th:text="${mission.missionName}"></h2>
+	<p th:utext = "${mission.missionDescription}"></p>
+	<p th:text = "${mission.users}"></p>	
+	<p th:text = "${mission.period}"></p>	
+	<p th:text = "${mission.snooze}"></p>	
+	<p th:text = "${mission.dueDate}"></p>
+	<p th:text = "${mission.completionDate}"></p>	
+	<p th:text = "${mission.recurring}"></p>		
 
+
+</div>
 </main>
 <footer>
 		<ul>
