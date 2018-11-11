@@ -12,15 +12,15 @@
 				<h1>Prod/header placeholder</h1>
 			</header>
 		<div class="grid-container">
-			<h2 th:text="${sectors.name}"></h2>
+			<h2 th:text="${sector.sectorName}"></h2>
 		
 			<ul id="sector-list">		
-				<li th:each="mission: ${sectors.missions}">
-					<a th:href="@{/mission(id=${mission.id})}" th:text="${mission.name}"></a>
+				<li th:each="mission: ${sector.missions}">
+					<a th:href="@{/mission(id=${mission.id})}" th:text="${mission.missionName}"></a>
 				</li>
 			</ul>
 				
-				<img th:src ="${sectors.image}">
+				<img th:src ="${sector.image}">
 			</div> 
 
 	</main>

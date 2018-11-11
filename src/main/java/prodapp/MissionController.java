@@ -6,7 +6,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MissionController {
@@ -15,25 +17,20 @@ public class MissionController {
 	MissionRepository missionRepo;
 
 	@RequestMapping("/mission")
-	public String findOneMission(long missionId, Model model) throws missionNotFoundException {
+	public String findOneMission(@RequestParam(value="id") long missionId, Model model) throws missionNotFoundException {
 		Optional<Mission> mission = missionRepo.findById(missionId);
 		
 		if (mission.isPresent()) {
-			model.addAttribute("missions", mission.get());
+			model.addAttribute("mission", mission.get());
 			return "mission";
 		}
-		
-		throw new missionNotFoundException();
-		
-		
+		throw new missionNotFoundException();	
 	}
 
 	@RequestMapping("/show-missions")
 	public String findAllMissions(Model model) {
 		model.addAttribute("missions", missionRepo.findAll());
-		return "missions";
-		
-		
+		return "missions";	
 	}
 
 }

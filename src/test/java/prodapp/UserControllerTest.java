@@ -42,7 +42,7 @@ public class UserControllerTest {
 		long arbitraryUserId = 1;
 		when(userRepo.findById(arbitraryUserId)).thenReturn(Optional.of(user));
 		underTest.findOneUser(arbitraryUserId, model);
-		verify(model).addAttribute("users", user);
+		verify(model).addAttribute("user", user);
 	}
 	
 	@Test

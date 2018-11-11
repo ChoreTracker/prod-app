@@ -15,7 +15,7 @@
 		<h2>Here are the current sectors for your home.</h2>
 		<ul id="sector-list">
 			<li th:each="sector: ${sectors}">
-					<a th:href="@{/sector(id=${sector.id})}" th:text="${sector.name}"></a>
+					<a th:href="@{/sector(id=${sector.id})}" th:text="${sector.sectorName}"></a>
 			</li>
 		</ul>
 		<img id="sectorPic" src ="./images/sector1.jpg">

@@ -9,6 +9,7 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class User {
+	
 	@Id
 	@GeneratedValue
 	private long id;

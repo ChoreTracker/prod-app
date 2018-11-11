@@ -39,7 +39,7 @@ public class MissionControllerTest {
 		long arbitraryMissionId = 1;
 		when(missionRepo.findById(arbitraryMissionId)).thenReturn(Optional.of(mission));
 		underTest.findOneMission(arbitraryMissionId, model);
-		verify(model).addAttribute("missions", mission);
+		verify(model).addAttribute("mission", mission);
 
 	}
 	

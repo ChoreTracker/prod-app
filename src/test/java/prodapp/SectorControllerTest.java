@@ -41,7 +41,7 @@ public class SectorControllerTest {
 		long arbitrarySectorId = 1;
 		when(sectorRepo.findById(arbitrarySectorId)).thenReturn(Optional.of(sector));
 		underTest.findOneSector(arbitrarySectorId, model);
-		verify(model).addAttribute("sectors", sector);
+		verify(model).addAttribute("sector", sector);
 	}
 	
 	@Test

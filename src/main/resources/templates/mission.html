@@ -11,7 +11,7 @@
 		<header>
 			<h1>Prod/header placeholder</h1>
 		</header>
-<div class="grid-container" th:each= "mission: ${missions}">
+<div class="grid-container" >
 	<h2 id="MissionName" th:text="${mission.missionName}"></h2>
 	<p th:text = "${mission.missionDescription}"></p>
 	<p th:text = "${mission.users}"></p>	

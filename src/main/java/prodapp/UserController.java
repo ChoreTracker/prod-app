@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -14,11 +15,11 @@ public class UserController {
 	UserRepository userRepo;
 	
 	@RequestMapping("/user")
-	public String findOneUser(long userId, Model model) throws userNotFoundException {
+	public String findOneUser(@RequestParam(value="id") long userId, Model model) throws userNotFoundException {
 		Optional<User> user = userRepo.findById(userId);
 		
 		if(user.isPresent()) {
-			model.addAttribute("users", user.get());
+			model.addAttribute("user", user.get());
 			return "user";
 		}
 		throw new userNotFoundException();
