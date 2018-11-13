@@ -51,6 +51,4 @@ public class SectorControllerTest {
 		underTest.findAllSectors(model);
 		verify(model).addAttribute("sectors", allSectors);
 	}
-	
-	
 }
