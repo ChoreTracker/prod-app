@@ -79,6 +79,7 @@ public class SectorControllerTest {
 		underTest.findAllSectors(model);
 		verify(model).addAttribute("sectors", allSectors);
 	}
+
 	
 	@Test
 	public void shouldAddNewSector() {
@@ -137,9 +138,6 @@ public class SectorControllerTest {
 		assertThat(mission.getUsers(), contains(user1));
 		assertThat(mission3.getUsers(), contains(user1));
 	}
-	
-	
-	
-	
+
 }
 

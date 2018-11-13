@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<title>Users Screen</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="./css/layout.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+	<main>
+		<header>
+			<h1>Prod/header placeholder</h1>
+        </header>
+        <div class="grid-container">
+            <h2>Here are all users.</h2>  
+            
+            <ul id="user-list">
+                <li th:each="user: ${users}">
+                        <a th:href="@{/user(id=${user.id})}" th:text="${user.userName}"></a>
+                </li>
+            </ul>
