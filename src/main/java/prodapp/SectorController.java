@@ -36,6 +36,7 @@ public class SectorController {
 			return "sector";
 		} //this will also show all the missions in the sector through the sector.getMissions();
 		throw new sectorNotFoundException();
+<<<<<<< HEAD
 		
 	}
 	
@@ -83,6 +84,8 @@ public class SectorController {
 		}
 		return "redirect:/sector?id=" + sectorId;
 		
+=======
+>>>>>>> d5083bc7b4dbdc2b53c5645400c9b05e6224ee40
 	}
 	//button to add a mission to a sector, using the ids of both, say from a view of the sector
 	@RequestMapping("/add-mission-to-sector-button")

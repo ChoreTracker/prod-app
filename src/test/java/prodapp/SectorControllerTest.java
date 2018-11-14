@@ -139,5 +139,6 @@ public class SectorControllerTest {
 		assertThat(mission3.getUsers(), contains(user1));
 	}
 
+
 }
 

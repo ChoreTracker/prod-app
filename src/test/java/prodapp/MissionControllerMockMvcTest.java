@@ -103,7 +103,6 @@ public class MissionControllerMockMvcTest {
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(firstMission));
 		mvc.perform(get("/mission?id=1")).andExpect(view().name(is("mission")));
 	}
-	
 	@WithMockUser (username="spring", password="password", roles="USER")
 	@Test
 	public void shouldPutASingleMissionIntoModel() throws Exception {
