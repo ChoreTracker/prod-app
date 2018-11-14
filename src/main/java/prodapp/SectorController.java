@@ -32,18 +32,14 @@ public class SectorController {
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
 		
 		if(sector.isPresent()) {
-			model.addAttribute("sectors", sector.get());
+			model.addAttribute("sector", sector.get());
 			return "sector";
 		} //this will also show all the missions in the sector through the sector.getMissions();
 		throw new sectorNotFoundException();
 		
 	}
-	@RequestMapping("/show-sectors")
-	public String findAllSectors(Model model) {
-		model.addAttribute("sectors", sectorRepo.findAll());
-		return "sectors";	
+	
 		
-	}
 	@RequestMapping("/add-sector")
 	public String addSector(String sectorName, Mission...missions) {
 		Sector sector = sectorRepo.findBySectorName(sectorName);

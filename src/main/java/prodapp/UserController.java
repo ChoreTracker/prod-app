@@ -26,7 +26,7 @@ public class UserController {
 		Optional<User> user = userRepo.findById(userId);
 		
 		if(user.isPresent()) {
-			model.addAttribute("users", user.get());
+			model.addAttribute("user", user.get());
 			return "user";
 		}
 		throw new userNotFoundException();

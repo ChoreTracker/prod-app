@@ -75,11 +75,13 @@ public class MissionControllerMockMvcTest {
 		mvc.perform(get("/show-missions")).andExpect(status().isOk());
 	}
 
+	@WithMockUser (username="spring", password="password", roles="USER")
 	@Test
 	public void shouldRouteToAllMissionsView() throws Exception {
 		mvc.perform(get("/show-missions")).andExpect(view().name(is("missions")));
 	}
 	
+	@WithMockUser (username="spring", password="password", roles="USER")
 	@Test
 	public void shouldPutAllMissionsIntoModel() throws Exception {
 		Collection<Mission> allMissions = Arrays.asList(firstMission, secondMission);
@@ -87,13 +89,14 @@ public class MissionControllerMockMvcTest {
 		mvc.perform(get("/show-missions")).andExpect(model().attribute("missions", is(allMissions)));
 	}
 	
-	
+	@WithMockUser (username="spring", password="password", roles="USER")
 	@Test
 	public void shouldBeOkForSingleMission() throws Exception {
 		when(missionRepo.findById(1L)).thenReturn(Optional.of(firstMission));
 		mvc.perform(get("/mission?id=1")).andExpect(status().isOk());
 	}
 	
+	@WithMockUser (username="spring", password="password", roles="USER")
 	@Test
 	public void shouldRouteToSingleMissionView() throws Exception {
 		long missionId = 1;
@@ -101,6 +104,7 @@ public class MissionControllerMockMvcTest {
 		mvc.perform(get("/mission?id=1")).andExpect(view().name(is("mission")));
 	}
 	
+	@WithMockUser (username="spring", password="password", roles="USER")
 	@Test
 	public void shouldPutASingleMissionIntoModel() throws Exception {
 		when(missionRepo.findById(1L)).thenReturn(Optional.of(firstMission));
