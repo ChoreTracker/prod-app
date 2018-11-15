@@ -12,10 +12,10 @@
 			<h1>Prod/header placeholder</h1>
 		</header>
 		<div class="grid-container">
-			<h2 th:text="'Hello ' + ${user.name}"></h2>
+			<h2 th:text="'Hello ' + ${user.userName}"></h2>
 				<h3>Here are your current missions.</h3>
-				<ul>
-					<li th:each="  "  ></li>
+				<ul	th:each="mission:${user.missions}">
+					<li th:text= ${mission.missionName}></li>
 				</ul>
 
 

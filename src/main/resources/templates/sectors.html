@@ -20,6 +20,25 @@
 		</ul>
 		<img id="sectorPic" src ="./images/sector1.jpg">
 	</div>
+	<section class="add-sector">
+		<input type="text"/>
+		<button>Add Sector</button>
+	</section>
+
+	<section class="remove-sector">
+		<input type="text"/>
+		<button>Remove Sector</button>
+	</section>
+
+	<section class="sectors-list">
+		<h2>Here is a list of your current sectors:</h2>
+		<ul>
+			<li th:if="${sectors.size() ==0}">Currently no sectors...please add one!</li>
+			<li th:if="${sectors.size() !=0}" th:each="sector: ${sectors}">
+			  <a th:href="@{/sector(id=${sector.id})}" th:text="${sector.sectorName}"></a>
+		</ul>
+	</section>
+
 	</main>
 	<footer>
 			<ul>
@@ -28,5 +47,6 @@
 			</ul>
 	</footer>		
 
+	<script src = "./js/server-requests.js"></script>
 </body>
 </html>

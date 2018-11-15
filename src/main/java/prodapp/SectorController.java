@@ -7,7 +7,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SectorController {
@@ -28,7 +31,7 @@ public class SectorController {
 	}
 	
 	@RequestMapping("/sector")
-	public String findOneSector(long sectorId, Model model) throws sectorNotFoundException{
+	public String findOneSector (@RequestParam(value="id") long sectorId, Model model) throws sectorNotFoundException{
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
 		
 		if(sector.isPresent()) {
@@ -36,22 +39,36 @@ public class SectorController {
 			return "sector";
 		} //this will also show all the missions in the sector through the sector.getMissions();
 		throw new sectorNotFoundException();
-<<<<<<< HEAD
 		
 	}
 	
 		
-	@RequestMapping("/add-sector")
-	public String addSector(String sectorName, Mission...missions) {
+	@RequestMapping(path = "/sectors/add/{sectorName}", method = RequestMethod.POST)
+	public String addSector(@PathVariable String sectorName, Model model) {
 		Sector sector = sectorRepo.findBySectorName(sectorName);
 		if (sector == null) {
 			sector = new Sector(sectorName);
 			sectorRepo.save(sector);
 		}
+		model.addAttribute("sectors", sectorRepo.findAll());
 		return "redirect:/show-sectors";
 		
 
 	}
+	//Mission...missions after sectorName
+	@RequestMapping(path = "/sectors/remove/{sectorName}", method = RequestMethod.POST)
+	public String removeSector(@PathVariable String sectorName, Model model) {
+		Sector sector = sectorRepo.findBySectorName(sectorName);
+		if (sector != null) {
+			
+			sectorRepo.delete(sector);
+		}
+		model.addAttribute("sectors", sectorRepo.findAll());
+		return "redirect:/show-sectors";
+		
+
+	}
+	
 	//deletes a sector and also all the missions in the sector
 	@RequestMapping("/remove-sector")
 	public String deleteSectorById(Long sectorId) {
@@ -84,8 +101,6 @@ public class SectorController {
 		}
 		return "redirect:/sector?id=" + sectorId;
 		
-=======
->>>>>>> d5083bc7b4dbdc2b53c5645400c9b05e6224ee40
 	}
 	//button to add a mission to a sector, using the ids of both, say from a view of the sector
 	@RequestMapping("/add-mission-to-sector-button")
@@ -108,10 +123,10 @@ public class SectorController {
 	
 
 	
-	@RequestMapping("/setup-sectors")
-	public String addNewSector (Model model) {
-	
-		return "setup-sectors";
-	}
+//	@RequestMapping("/setup-sectors")
+//	public String showAllSectors (Model model) {
+//	
+//		return "setup-sectors";
+//	}
 }
 
