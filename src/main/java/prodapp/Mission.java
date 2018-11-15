@@ -1,7 +1,10 @@
 package prodapp;
 
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 
 
@@ -80,13 +83,22 @@ public class Mission {
 		this.users = new HashSet<>(Arrays.asList(users));
 	}
 	
+	//removes a user from the list of users
 	public void removeUser(User user) {
 		this.users.remove(user);
 	}
 	
+	// adds a user to the list of users
 	public void addUser(User user) {
 		this.users.add(user);
 	}
+	
+	//sets the completion date to today
+	public void markComplete() {
+		LocalDate today = LocalDate.now();
+		completionDate = today.toString();
+	}
+	
 	
 	public Mission(String missionName, String missionDescription, String period, String snooze, String dueDate,
 			String completionDate, boolean recurring, User...users) {
@@ -98,11 +110,9 @@ public class Mission {
 		this.dueDate = dueDate;
 		this.completionDate = completionDate;
 		this.recurring = recurring;
-		
 	}
 	
-	public Mission() {
-		
+	public Mission() {	
 	}
 	
 	@Override

@@ -1,5 +1,6 @@
 package prodapp;
 
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -85,6 +86,15 @@ public class MissionController {
 		}
 		model.addAttribute("missions", unassignedMissions);
 		return "missions";
+	}
+
+	//pass in the mission id, sets the completion date to current date
+	@RequestMapping("/mission-complete-button")
+	public void setAsComplete(long missionId) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.markComplete();
+//		missionRepo.save(mission);
 	}
 	
 	

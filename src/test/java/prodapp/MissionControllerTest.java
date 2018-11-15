@@ -1,6 +1,5 @@
 package prodapp;
 
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertEquals;
@@ -8,7 +7,9 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -22,7 +23,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.ui.Model;
 
 public class MissionControllerTest {
-	
+
 	@InjectMocks
 	private MissionController underTest;
 
@@ -32,31 +33,31 @@ public class MissionControllerTest {
 	@Mock
 	private Mission mission;
 	long missionId;
-	
+
 	@Mock
 	private Mission mission2;
-	
+
 	@Mock
 	private User user;
 	long userId;
-	
-	@Mock 
+
+	@Mock
 	private User user2;
-	
+
 	@Mock
 	private SectorRepository sectorRepo;
-	
+
 	@Mock
 	private UserRepository userRepo;
 
 	@Mock
 	private Model model;
-	
+
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 	}
-	
+
 	@Test
 	public void shouldAddSingleMissionToModel() throws missionNotFoundException {
 		long arbitraryMissionId = 1;
@@ -65,7 +66,7 @@ public class MissionControllerTest {
 		verify(model).addAttribute("mission", mission);
 
 	}
-	
+
 	@Test
 	public void shouldAddAllMissionsToModel() {
 		Collection<Mission> allMissions = Arrays.asList(mission, mission2);
@@ -73,15 +74,16 @@ public class MissionControllerTest {
 		underTest.findAllMissions(model);
 		verify(model).addAttribute("missions", allMissions);
 	}
-	
+
 	@Test
 	public void shouldCreateNewMission() {
-		underTest.createMission("MissionName3", "description3", "period3", "snooze3", "dueDate3", "completionDate3", false, user, user2);
+		underTest.createMission("MissionName3", "description3", "period3", "snooze3", "dueDate3", null, false, user,
+				user2);
 		ArgumentCaptor<Mission> missionArgument = ArgumentCaptor.forClass(Mission.class);
 		verify(missionRepo).save(missionArgument.capture());
 		assertEquals("MissionName3", missionArgument.getValue().getMissionName());
 	}
-	
+
 	@Test
 	public void shouldDeleteAMission() {
 		missionId = 1;
@@ -89,7 +91,7 @@ public class MissionControllerTest {
 		underTest.deleteMissionById(missionId);
 		verify(missionRepo).deleteById(missionId);
 	}
-	
+
 	@Test
 	public void shouldAssignAMissionToAUser() {
 		missionId = 1;
@@ -102,9 +104,9 @@ public class MissionControllerTest {
 		underTest.assignMissionToUserById(missionId, userId);
 		verify(mission).addUser(user);
 		assertThat(mission.getUsers(), contains(user));
-		
+
 	}
-	
+
 	@Test
 	public void shouldRemoveAUserFromAMission() {
 		missionId = 1;
@@ -118,17 +120,17 @@ public class MissionControllerTest {
 		underTest.removeUserFromMission(missionId, userId);
 		users.remove(user);
 		verify(mission).removeUser(user);
-		assertThat(mission.getUsers().size(), is(0));	
+		assertThat(mission.getUsers().size(), is(0));
 	}
-	
+
 	@Test
 	public void shouldShowAllUnassignedMissions() {
 		userRepo.save(user);
 		userRepo.save(user2);
-		Mission mission1 = new Mission("MissionName", "description", "period", "snooze", "dueDate", "completionDate", true);
-		Mission mission2 = new Mission("MissionName2", "description2", "period2", "snooze2", "dueDate2", "completionDate2", true,
+		Mission mission1 = new Mission("MissionName", "description", "period", "snooze", "dueDate", null, true);
+		Mission mission2 = new Mission("MissionName2", "description2", "period2", "snooze2", "dueDate2", null, true,
 				user);
-		Mission mission3 = new Mission("MissionName3", "description3", "period3", "snooze3", "dueDate3", "completionDate3", false,
+		Mission mission3 = new Mission("MissionName3", "description3", "period3", "snooze3", "dueDate3", null, false,
 				user, user2);
 		missionRepo.save(mission1);
 		missionRepo.save(mission2);
@@ -140,6 +142,29 @@ public class MissionControllerTest {
 		expected.add(mission1);
 		verify(model).addAttribute("missions", expected);
 	}
-	
-	
+
+	@Test
+	public void shouldSetCompletionDateAsToday() {
+		Mission mission1 = new Mission("MissionName", "description", "period", "snooze", "dueDate", null, true);
+		missionRepo.save(mission1);
+		missionId = 1;
+		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
+		underTest.setAsComplete(missionId);
+		assertThat(mission1.getCompletionDate(), is("2018-11-15"));
+		
+//		System.out.println(mission.getCompletionDate());
+//
+//		LocalDate today = LocalDate.now();
+//		System.out.println(today);
+//		String today2 = today.toString();
+//		System.out.println(today2);
+//		LocalDate yesterday = LocalDate.parse("2018-11-14");
+//		System.out.println(yesterday);
+		
+		
+		
+		
+		
+	}
+
 }
