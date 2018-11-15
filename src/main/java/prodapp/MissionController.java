@@ -94,7 +94,14 @@ public class MissionController {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.markComplete();
-//		missionRepo.save(mission);
+		missionRepo.save(mission);
+	}
+
+	public void createDueDate(long missionId, String date) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.setDueDate(date);
+		missionRepo.save(mission);
 	}
 	
 	

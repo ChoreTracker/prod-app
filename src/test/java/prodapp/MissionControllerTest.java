@@ -160,11 +160,17 @@ public class MissionControllerTest {
 //		System.out.println(today2);
 //		LocalDate yesterday = LocalDate.parse("2018-11-14");
 //		System.out.println(yesterday);
-		
-		
-		
-		
-		
+	
+	}
+	
+	@Test
+	public void shouldSetDueDateFromString() {
+		Mission mission1 = new Mission("MissionName", "description", "period", "snooze", "dueDate", null, true);
+		missionRepo.save(mission1);
+		missionId = 1;
+		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
+		underTest.createDueDate(missionId,"2018-11-28");
+		assertThat(mission1.getDueDate(), is("2018-11-28"));
 	}
 
 }

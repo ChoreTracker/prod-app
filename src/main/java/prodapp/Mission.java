@@ -2,9 +2,9 @@ package prodapp;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Calendar;
+
 import java.util.Collection;
-import java.util.Date;
+
 import java.util.HashSet;
 
 
@@ -135,6 +135,10 @@ public class Mission {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+	public void setDueDate(String date) {
+		this.dueDate = date;
+		
 	}
 
 
