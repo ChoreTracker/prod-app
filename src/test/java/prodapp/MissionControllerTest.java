@@ -263,5 +263,29 @@ public class MissionControllerTest {
 		verify(model).addAttribute("missions", expected);
 	}
 	
+	@Test
+	public void shouldFindUsersMissionsDueInNextWeek() {
+		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-18", null, true, user);
+		missionRepo.save(mission1);
+		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
+		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "2018-11-21", null, true,
+				user2);
+		missionRepo.save(mission2);
+		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "2018-11-20", null, false,
+				user, user2);
+		missionRepo.save(mission3);
+		Mission mission4 = new Mission("MissionName3", "description3", 3, 0, "2018-12-20", null, false,
+				user, user2);
+		missionRepo.save(mission4);
+		userId = 2;
+		when(userRepo.findById(userId)).thenReturn(Optional.of(user));
+		Collection<Mission> allMissions = Arrays.asList(mission1, mission2, mission3, mission4);
+		when(missionRepo.findAll()).thenReturn(allMissions);
+		underTest.findMissionsDueThisWeekForUser(model, userId);
+		Collection<Mission> expected = new HashSet<>();
+		expected.add(mission1);
+		expected.add(mission2);
+		verify(model).addAttribute("missions", expected);
+	}
 	
 }
