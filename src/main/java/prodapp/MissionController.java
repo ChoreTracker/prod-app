@@ -1,6 +1,7 @@
 package prodapp;
 
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -134,6 +135,18 @@ public class MissionController {
 		}
 		model.addAttribute("missions", missionsDue);
 		return "missions";
+	}
+
+	public String findMissionsDueToday(Model model) {
+		LocalDate today = LocalDate.now();
+		Collection<Mission> missionsDue = new HashSet<>();
+		for (Mission mission : missionRepo.findAll()) {
+			if(mission.getDueDate().equals(today.toString())) {
+				missionsDue.add(mission);
+			}
+		}
+		model.addAttribute("missions", missionsDue);
+		return "missions";		
 	}
 	
 	

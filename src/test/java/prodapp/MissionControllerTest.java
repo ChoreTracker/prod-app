@@ -203,9 +203,9 @@ public class MissionControllerTest {
 	}
 	
 	@Test
-	public void shouldFindMissionsWithDueDateOfNov162018() {
-		String dateString = "2018-11-16";
-		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-16", null, true);
+	public void shouldFindMissionsWithDueDateOfNov132018() {
+		String dateString = "2018-11-13";
+		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-13", null, true);
 		missionRepo.save(mission1);
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
 		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "dueDate2", null, true,
@@ -220,8 +220,26 @@ public class MissionControllerTest {
 		Collection<Mission> expected = new HashSet<>();
 		expected.add(mission1);
 		verify(model).addAttribute("missions", expected);
-		
 		}
+	
+	@Test
+	public void shouldFindMissionsWithDueDateOfToday() {
+		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-16", null, true);
+		missionRepo.save(mission1);
+		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
+		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "2018-11-13", null, true,
+				user);
+		missionRepo.save(mission2);
+		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "2018-12-5", null, false,
+				user, user2);
+		missionRepo.save(mission3);
+		Collection<Mission> allMissions = Arrays.asList(mission1, mission2, mission3);
+		when(missionRepo.findAll()).thenReturn(allMissions);
+		underTest.findMissionsDueToday(model);
+		Collection<Mission> expected = new HashSet<>();
+		expected.add(mission1);
+		verify(model).addAttribute("missions", expected);
+	}
 	
 	
 	
