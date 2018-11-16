@@ -124,6 +124,17 @@ public class MissionController {
 		mission.setPeriod(periodDays);
 		
 	}
+
+	public String findMissionsByDueDate(Model model, String dateString) {
+		Collection<Mission> missionsDue = new HashSet<>();
+		for (Mission mission : missionRepo.findAll()) {
+			if(mission.getDueDate().equals(dateString)) {
+				missionsDue.add(mission);
+			}
+		}
+		model.addAttribute("missions", missionsDue);
+		return "missions";
+	}
 	
 	
 }
