@@ -15,15 +15,18 @@
 			<h2 th:text="'Hello ' + ${user.userName}"></h2>
 				<h3>Here are your current missions.</h3>
 				<ul	th:each="mission:${user.missions}">
-					<li th:text= ${mission.missionName}></li>
+					<li>
+						<a th:href="@{/mission(id=${mission.id})}" th:text="${mission.missionName}"></a>
+					</li>
 				</ul>
 
 
 </main>
 <footer>
 		<ul>
-			<li> <a href="http://localhost:8080/show-sectors">Show All Sectors</a></li>
-			<li> <a href="http://localhost:8080/show-missions">Show All Missions</a></li>
+			<li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
+			<li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
+			<li> <a href="http://localhost:8080/show-users">All Users</a></li>
 		</ul>
 </footer>		
 </body>

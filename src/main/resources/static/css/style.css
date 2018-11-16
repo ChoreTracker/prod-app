@@ -1,0 +1,12 @@
+li{
+    list-style-type: none;
+}
+
+li a{
+    text-decoration: none;
+    color: black;
+}
+
+li a:hover{
+    color:rgba(233, 0, 31, 0.918);
+}

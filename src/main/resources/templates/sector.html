@@ -19,6 +19,33 @@
 					<a th:href="@{/mission(id=${mission.id})}" th:text="${mission.missionName}"></a>
 				</li>
 			</ul>
+			<!--need to be able to add a new mission here-->
+			<h4>Add new mission</h4>
+			<form action="/action_page.php">
+	
+				<label for="newMissionName"><b>Mission Name</b></label>
+				<input type="text" placeholder="Enter Mission Name" name="newMissionName" required>
+				
+				<label for="description"><b>Description</b></label>
+				<input type="text" placeholder="Enter Description" name="description" required>
+
+				<label for="period"><b>Period</b></label>
+				<input type="text" placeholder="Enter Period" name="period" required>
+
+				<label for="snooze"><b>Snoozable?</b></label>
+				<input type="text" placeholder="Yes or No" name="snooze" required>
+
+				<label for="dueDate"><b>Due Date</b></label>
+				<input type="text" placeholder="Enter Due Date" name="dueDate" required>
+
+				<label for="completionDate"><b>Completion Date</b></label>
+				<input type="text" placeholder="Enter Completion Date" name="completionDate" required>
+
+				<label for="recurring"><b>Recurring?</b></label>
+				<input type="text" placeholder="Yes or No" name="recurring" required>
+	
+				<button type="submit" class="registerbtn">Add mission</button>	
+
 				
 				<!-- <img th:src ="${sector.image}"> -->
 			</div> 
@@ -26,8 +53,9 @@
 	</main>
 	<footer>
 			<ul>
-				<li> <a href="http://localhost:8080/show-sectors">Show All Sectors</a></li>
-				<li> <a href="http://localhost:8080/show-missions">Show All Missions</a></li>
+				<li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
+				<li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
+				<li> <a href="http://localhost:8080/show-users">All Users</a></li>
 			</ul>
 	</footer>		
 

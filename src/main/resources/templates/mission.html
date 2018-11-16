@@ -19,15 +19,21 @@
 	<p th:text = "${mission.snooze}"></p>	
 	<p th:text = "${mission.dueDate}"></p>
 	<p th:text = "${mission.completionDate}"></p>	
-	<p th:text = "${mission.recurring}"></p>		
+	<p th:text = "${mission.recurring}"></p>	
+	
+	<!-- <ul	th:each="mission:${user.missions}">
+		<li> -->
+	<!-- <a th:href="@{/mission(id=${mission.id})}" th:text="${mission.missionName}"></a> -->
+		<!-- </li> -->
 
 
 </div>
 </main>
 <footer>
 		<ul>
-			<li> <a href="http://localhost:8080/show-sectors">Show All Sectors</a></li>
-			<li> <a href="http://localhost:8080/show-missions">Show All Missions</a></li>
+			<li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
+			<li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
+			<li> <a href="http://localhost:8080/show-users">All Users</a></li>
 		</ul>
 </footer>		
 </body>

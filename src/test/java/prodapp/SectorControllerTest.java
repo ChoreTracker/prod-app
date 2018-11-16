@@ -83,7 +83,7 @@ public class SectorControllerTest {
 	
 	@Test
 	public void shouldAddNewSector() {
-		underTest.addSector("sectorName");
+		underTest.addSector("sectorName", model);
 		ArgumentCaptor<Sector> sectorArgument = ArgumentCaptor.forClass(Sector.class);
 		verify(sectorRepo).save(sectorArgument.capture());
 		assertEquals("sectorName", sectorArgument.getValue().getSectorName());
