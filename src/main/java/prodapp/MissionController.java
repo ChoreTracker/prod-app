@@ -182,6 +182,25 @@ public class MissionController {
 		model.addAttribute("missions", missionsDue);
 		return "missions";			
 	}
+
+	public String findIncompleteMissionsDueThisWeekForUser(Model model, long userId) {
+		LocalDate today = LocalDate.now();
+		LocalDate yesterday = today.minusDays(1);
+		LocalDate todayPlusEightDays = today.plusDays(8);
+		Optional<User> userResult = userRepo.findById(userId);
+		User user = userResult.get();
+		Collection<Mission> missionsDue = new HashSet<>();
+		for (Mission mission : missionRepo.findAll()) {
+			if(mission.getUsers().contains(user) && 
+					mission.getCompletionDate().isEmpty() &&
+					LocalDate.parse(mission.getDueDate()).isBefore(todayPlusEightDays) && 
+					LocalDate.parse(mission.getDueDate()).isAfter(yesterday)) {
+				missionsDue.add(mission);
+			}
+		}
+		model.addAttribute("missions", missionsDue);
+		return "missions";			
+	}
 	
 	
 }

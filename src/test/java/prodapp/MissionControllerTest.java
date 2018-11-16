@@ -284,8 +284,36 @@ public class MissionControllerTest {
 		underTest.findMissionsDueThisWeekForUser(model, userId);
 		Collection<Mission> expected = new HashSet<>();
 		expected.add(mission1);
-		expected.add(mission2);
+		expected.add(mission3);
 		verify(model).addAttribute("missions", expected);
 	}
+	
+	@Test
+	public void shouldFindUsersIncompleteMissionsDueInNextWeek() {
+		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-18", "", true, user);
+		missionRepo.save(mission1);
+		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
+		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "2018-11-21", "", true,
+				user2);
+		missionRepo.save(mission2);
+		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "2018-11-20", "2018-11-1", false,
+				user, user2);
+		missionRepo.save(mission3);
+		Mission mission4 = new Mission("MissionName3", "description3", 3, 0, "2018-12-20", "", false,
+				user, user2);
+		missionRepo.save(mission4);
+		userId = 2;
+		when(userRepo.findById(userId)).thenReturn(Optional.of(user));
+		Collection<Mission> allMissions = Arrays.asList(mission1, mission2, mission3, mission4);
+		when(missionRepo.findAll()).thenReturn(allMissions);
+		underTest.findIncompleteMissionsDueThisWeekForUser(model, userId);
+		Collection<Mission> expected = new HashSet<>();
+		expected.add(mission1);
+		verify(model).addAttribute("missions", expected);
+		
+		//empty dates should have a ""
+	}
+	
+	
 	
 }
