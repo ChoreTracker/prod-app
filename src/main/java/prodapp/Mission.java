@@ -34,7 +34,7 @@ public class Mission {
 
 	private String completionDate;
 	private String period;
-	private String snooze;
+	private int snooze;
 	private String dueDate;
 	private boolean recurring;
 
@@ -58,7 +58,7 @@ public class Mission {
 		return period;
 	}
 
-	public String getSnooze() {
+	public int getSnooze() {
 		return snooze;
 	}
 
@@ -100,7 +100,7 @@ public class Mission {
 	}
 	
 	
-	public Mission(String missionName, String missionDescription, String period, String snooze, String dueDate,
+	public Mission(String missionName, String missionDescription, String period, int snooze, String dueDate,
 			String completionDate, boolean recurring, User...users) {
 		this.missionName = missionName;
 		this.missionDescription = missionDescription;
@@ -139,6 +139,9 @@ public class Mission {
 	public void setDueDate(String date) {
 		this.dueDate = date;
 		
+	}
+	public void setSnoozePeriod(int days) {
+		this.snooze = days;
 	}
 
 

@@ -40,7 +40,7 @@ public class MissionController {
 	
 	//button to create a mission, doesn't add it to a sector--("/add-mission-to-sector-button") does that; returns the all missions page
 	@RequestMapping("/create-mission-button")
-	public String createMission(String missionName, String missionDescription, String period, String snooze, String dueDate,
+	public String createMission(String missionName, String missionDescription, String period, int snooze, String dueDate,
 			String completionDate, boolean recurring, User...users) {
 		missionRepo.save(new Mission(missionName, missionDescription, period, snooze, dueDate, completionDate, recurring, users));
 		return "missions";
@@ -102,6 +102,14 @@ public class MissionController {
 		Mission mission = result.get();
 		mission.setDueDate(date);
 		missionRepo.save(mission);
+	}
+
+	public void setSnooze(long missionId, int days) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.setSnoozePeriod(1);
+		missionRepo.save(mission);
+		
 	}
 	
 	
