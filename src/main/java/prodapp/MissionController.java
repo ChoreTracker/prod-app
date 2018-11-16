@@ -148,6 +148,22 @@ public class MissionController {
 		model.addAttribute("missions", missionsDue);
 		return "missions";		
 	}
+
+	public String findMissionsDueTodayForUser(Model model, long userId) {
+		LocalDate today = LocalDate.now();
+		Optional<User> userResult = userRepo.findById(userId);
+		User user = userResult.get();
+		Collection<Mission> missionsDue = new HashSet<>();
+		for (Mission mission : missionRepo.findAll()) {
+			if(mission.getDueDate().equals(today.toString()) && mission.getUsers().contains(user)) {
+				missionsDue.add(mission);
+			}
+		}
+		model.addAttribute("missions", missionsDue);
+		return "missions";	
+
+		
+	}
 	
 	
 }
