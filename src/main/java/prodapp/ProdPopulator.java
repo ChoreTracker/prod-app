@@ -24,10 +24,10 @@ public class ProdPopulator implements CommandLineRunner {
 	userRepo.save(user);
 	userRepo.save(user2);
 	
-	Mission mission = new Mission("MissionName", "description", "period", 0, "dueDate", "completionDate", true, user);
-	Mission mission2 = new Mission("MissionName2", "description2", "period2", 0, "dueDate2", "completionDate2", true,
+	Mission mission = new Mission("MissionName", "description", 3, 0, "dueDate", "completionDate", true, user);
+	Mission mission2 = new Mission("MissionName2", "description2", 4, 0, "dueDate2", "completionDate2", true,
 			user);
-	Mission mission3 = new Mission("MissionName3", "description3", "period3", 0, "dueDate3", "completionDate3", false,
+	Mission mission3 = new Mission("MissionName3", "description3", 0, 0, "dueDate3", "completionDate3", false,
 			user, user2);
 	missionRepo.save(mission);
 	missionRepo.save(mission2);

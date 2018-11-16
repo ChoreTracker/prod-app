@@ -77,7 +77,7 @@ public class MissionControllerTest {
 
 	@Test
 	public void shouldCreateNewMission() {
-		underTest.createMission("MissionName3", "description3", "period3", 0, "dueDate3", null, false, user,
+		underTest.createMission("MissionName3", "description3", 4, 0, "dueDate3", null, false, user,
 				user2);
 		ArgumentCaptor<Mission> missionArgument = ArgumentCaptor.forClass(Mission.class);
 		verify(missionRepo).save(missionArgument.capture());
@@ -127,10 +127,10 @@ public class MissionControllerTest {
 	public void shouldShowAllUnassignedMissions() {
 		userRepo.save(user);
 		userRepo.save(user2);
-		Mission mission1 = new Mission("MissionName", "description", "period", 0, "dueDate", null, true);
-		Mission mission2 = new Mission("MissionName2", "description2", "period2", 0, "dueDate2", null, true,
+		Mission mission1 = new Mission("MissionName", "description", 3, 0, "dueDate", null, true);
+		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "dueDate2", null, true,
 				user);
-		Mission mission3 = new Mission("MissionName3", "description3", "period3", 0, "dueDate3", null, false,
+		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "dueDate3", null, false,
 				user, user2);
 		missionRepo.save(mission1);
 		missionRepo.save(mission2);
@@ -145,12 +145,12 @@ public class MissionControllerTest {
 
 	@Test
 	public void shouldSetCompletionDateAsToday() {
-		Mission mission1 = new Mission("MissionName", "description", "period", 0, "dueDate", null, true);
+		Mission mission1 = new Mission("MissionName", "description", 3, 0, "dueDate", null, true);
 		missionRepo.save(mission1);
 		missionId = 1;
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
 		underTest.setAsComplete(missionId);
-		assertThat(mission1.getCompletionDate(), is("2018-11-15"));
+		assertThat(mission1.getCompletionDate(), is("2018-11-16"));
 		
 //		System.out.println(mission.getCompletionDate());
 //
@@ -165,7 +165,7 @@ public class MissionControllerTest {
 	
 	@Test
 	public void shouldSetDueDateFromString() {
-		Mission mission1 = new Mission("MissionName", "description", "period", 1, "dueDate", null, true);
+		Mission mission1 = new Mission("MissionName", "description", 4, 1, "dueDate", null, true);
 		missionRepo.save(mission1);
 		missionId = 1;
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
@@ -174,13 +174,33 @@ public class MissionControllerTest {
 	}
 
 	@Test
-	public void shouldSetSnoozePeriodToOne_Day() {
-		Mission mission1 = new Mission("MissionName", "description", "period", 0, "2018-11-28", null, true);
+	public void shouldSetSnoozeDelayToOne_Day() {
+		Mission mission1 = new Mission("MissionName", "description", 3, 0, "2018-11-28", null, true);
 		missionRepo.save(mission1);
 		missionId = 1;
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
 		underTest.setSnooze(missionId, 1);
 		assertThat(mission1.getSnooze(), is(1));
+	}
+	
+	@Test
+	public void snoozeShouldAddOneDayToDueDate() {
+		Mission mission1 = new Mission("MissionName", "description", 3, 1, "2018-11-15", null, true);
+		missionRepo.save(mission1);
+		missionId = 1;
+		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
+		underTest.snoozeMission(missionId);
+		assertThat(mission1.getDueDate(), is("2018-11-16"));
+	}
+
+	@Test
+	public void shouldSetPeriodTo7Days() {
+		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-15", null, true);
+		missionRepo.save(mission1);
+		missionId = 1;
+		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
+		underTest.setMissionPeriod(missionId, 7);
+		assertThat(mission1.getPeriod(), is(7));	
 	}
 	
 	

@@ -33,7 +33,7 @@ public class Mission {
 	private Sector sector;
 
 	private String completionDate;
-	private String period;
+	private int period;
 	private int snooze;
 	private String dueDate;
 	private boolean recurring;
@@ -54,7 +54,7 @@ public class Mission {
 		return missionDescription;
 	}
 
-	public String getPeriod() {
+	public int getPeriod() {
 		return period;
 	}
 
@@ -99,8 +99,28 @@ public class Mission {
 		completionDate = today.toString();
 	}
 	
+	public void setDueDate(String date) {
+		this.dueDate = date;	
+	}
 	
-	public Mission(String missionName, String missionDescription, String period, int snooze, String dueDate,
+	// sets the snooze period for a number of days--int
+	public void setSnoozePeriod(int days) {
+		this.snooze = days;
+	}
+	
+	//adds the snooze period to the due date
+	public void hitSnooze() {
+		LocalDate dateDue = LocalDate.parse(dueDate);
+		dateDue = dateDue.plusDays(snooze);
+		this.dueDate = dateDue.toString();
+	}
+	
+	public void setPeriod(int periodDays) {
+		this.period = periodDays;
+		
+	}
+	
+	public Mission(String missionName, String missionDescription, int period, int snooze, String dueDate,
 			String completionDate, boolean recurring, User...users) {
 		this.missionName = missionName;
 		this.missionDescription = missionDescription;
@@ -135,13 +155,6 @@ public class Mission {
 		if (id != other.id)
 			return false;
 		return true;
-	}
-	public void setDueDate(String date) {
-		this.dueDate = date;
-		
-	}
-	public void setSnoozePeriod(int days) {
-		this.snooze = days;
 	}
 
 
