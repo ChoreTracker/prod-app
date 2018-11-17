@@ -19,8 +19,8 @@ public class ProdPopulator implements CommandLineRunner {
 	@Override
 	public void run(String...args) throws Exception {
 		
-	User user = new User("Name", "contact");
-	User user2 = new User("Name2", "contact2");
+	User user = new User("admin", "admin", "contact", "ADMIN", "USER");
+	User user2 = new User("user", "user", "contact2", "USER");
 	userRepo.save(user);
 	userRepo.save(user2);
 	

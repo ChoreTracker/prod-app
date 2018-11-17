@@ -8,10 +8,10 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.ui.Model;
+//import org.springframework.ui.Model;
 
 
 @Configuration
@@ -32,14 +32,14 @@ public class SecurityConfig {
 				.and().withUser("user").password(passwordEncoder().encode("user")).roles("USER");
 			}
 	
-	private String getLoggedInUser(Model model) {
-		Object principal = SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-		if (principal instanceof User)
-			return ((User) principal).getUserName();
-		return principal.toString();
-		
-	}
+//	private String getLoggedInUser(Model model) {
+//		Object principal = SecurityContextHolder.getContext()
+//				.getAuthentication().getPrincipal();
+//		if (principal instanceof User)
+//			return ((User) principal).getUserName();
+//		return principal.toString();
+//		
+//	}
 	
 	protected void configure(HttpSecurity http) throws Exception {
 		http
