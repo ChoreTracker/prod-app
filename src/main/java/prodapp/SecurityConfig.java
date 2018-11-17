@@ -43,19 +43,21 @@ public class SecurityConfig {
 	
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-			.authorizeRequests()
-				.antMatchers("/admin/**").hasRole("ADMIN")
-				.anyRequest().authenticated()
-				.and()
-			.formLogin()
-				.loginPage("/login")
-				.permitAll()
-				.and()
-			.logout()
-				.logoutSuccessUrl("/login?logout")
-				.permitAll()
-				.and()
-			.csrf().disable()
-			.headers().frameOptions().disable();
-	}
+		.authorizeRequests()
+		.antMatchers("/setup/**", "/h2-console/**").hasRole("ADMIN")
+		.antMatchers("/setup/mission", "/h2-console/**").hasRole("USER")
+		.antMatchers("/css/**", "/js/**").permitAll()
+		.anyRequest().authenticated()
+		.and()
+	.formLogin()
+		.loginPage("/login")
+		.permitAll()
+		.and()
+	.logout()
+		.logoutSuccessUrl("/login?logout")
+		.permitAll()
+		.and()
+//	.csrf().disable()
+	.headers().frameOptions().disable();
+}
 }
