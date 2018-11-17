@@ -2,12 +2,15 @@ package prodapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 
 
@@ -15,12 +18,18 @@ import org.springframework.ui.Model;
 @EnableGlobalMethodSecurity( securedEnabled = true )
 @Order(SecurityProperties.DEFAULT_FILTER_ORDER)
 public class SecurityConfig {
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
 	@Autowired
 	protected void configureAuth(AuthenticationManagerBuilder auth) 
 			throws Exception {
-				auth.inMemoryAuthentication().withUser("admin").password("{noop}admin")
+				auth.inMemoryAuthentication().withUser("admin").password(passwordEncoder().encode("admin"))
 				.roles("USER", "ADMIN")
-				.and().withUser("user").password("{noop}user").roles("USER");
+				.and().withUser("user").password(passwordEncoder().encode("user")).roles("USER");
 			}
 	
 	private String getLoggedInUser(Model model) {

@@ -65,10 +65,5 @@ public class UserControllerTest {
 		underTest.findAllUsers(model);
 		verify(model).addAttribute("users", allUsers);
 	}
-
-	@Test
-	public void shouldChangeUserPassword() {
-		
-	}
 	
 }
