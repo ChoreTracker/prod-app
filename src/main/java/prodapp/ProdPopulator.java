@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
 @Component
 public class ProdPopulator implements CommandLineRunner {
 
@@ -15,8 +16,9 @@ public class ProdPopulator implements CommandLineRunner {
 
 	@Resource
 	private SectorRepository sectorRepo;
-	
+
 	@Override
+
 	public void run(String...args) throws Exception {
 		
 	User user = new User("Name", "contact");
@@ -37,5 +39,6 @@ public class ProdPopulator implements CommandLineRunner {
 	Sector sector2 = new Sector("sectorName2", mission3);
 	sectorRepo.save(sector2);
 	sectorRepo.save(sector);
+
 	}
 }

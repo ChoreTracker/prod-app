@@ -79,10 +79,11 @@ public class SectorControllerTest {
 		underTest.findAllSectors(model);
 		verify(model).addAttribute("sectors", allSectors);
 	}
+
 	
 	@Test
 	public void shouldAddNewSector() {
-		underTest.addSector("sectorName");
+		underTest.addSector("sectorName", model);
 		ArgumentCaptor<Sector> sectorArgument = ArgumentCaptor.forClass(Sector.class);
 		verify(sectorRepo).save(sectorArgument.capture());
 		assertEquals("sectorName", sectorArgument.getValue().getSectorName());
@@ -137,9 +138,7 @@ public class SectorControllerTest {
 		assertThat(mission.getUsers(), contains(user1));
 		assertThat(mission3.getUsers(), contains(user1));
 	}
-	
-	
-	
-	
+
+
 }
 

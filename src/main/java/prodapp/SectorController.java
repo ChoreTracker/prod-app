@@ -7,7 +7,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class SectorController {
@@ -21,8 +24,14 @@ public class SectorController {
 	@Resource
 	UserRepository userRepo;
 
+	@RequestMapping("/show-sectors")
+	public String findAllSectors(Model model) {
+		model.addAttribute("sectors", sectorRepo.findAll());
+		return "sectors";	
+	}
+	
 	@RequestMapping("/sector")
-	public String findOneSector(long sectorId, Model model) throws sectorNotFoundException{
+	public String findOneSector (@RequestParam(value="id") long sectorId, Model model) throws sectorNotFoundException{
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
 		
 		if(sector.isPresent()) {
@@ -32,24 +41,36 @@ public class SectorController {
 		throw new sectorNotFoundException();
 		
 	}
-	@RequestMapping("/show-sectors")
-	public String findAllSectors(Model model) {
-		model.addAttribute("sectors", sectorRepo.findAll());
-		return "sectors";	
+	
 		
-	}
-	@RequestMapping("/add-sector")
-	public String addSector(String sectorName, Mission...missions) {
+	@RequestMapping(path = "/admin/sectors/add/{sectorName}", method = RequestMethod.POST)
+	public String addSector(@PathVariable String sectorName, Model model) {
 		Sector sector = sectorRepo.findBySectorName(sectorName);
 		if (sector == null) {
 			sector = new Sector(sectorName);
 			sectorRepo.save(sector);
 		}
+		model.addAttribute("sectors", sectorRepo.findAll());
 		return "redirect:/show-sectors";
 		
+
 	}
+	//Mission...missions after sectorName
+//	@RequestMapping(path = "/sectors/remove/{sectorName}", method = RequestMethod.POST)
+//	public String removeSector(@PathVariable String sectorName, Model model) {
+//		Sector sector = sectorRepo.findBySectorName(sectorName);
+//		if (sector != null) {
+//			
+//			sectorRepo.delete(sector);
+//		}
+//		model.addAttribute("sectors", sectorRepo.findAll());
+//		return "redirect:/show-sectors";
+//		
+//
+//	}
+	
 	//deletes a sector and also all the missions in the sector
-	@RequestMapping("/remove-sector")
+	@RequestMapping("/admin/remove-sector")
 	public String deleteSectorById(Long sectorId) {
 		if (sectorRepo.findById(sectorId) != null) {
 			sectorRepo.deleteById(sectorId);
@@ -68,7 +89,7 @@ public class SectorController {
 	}
 	
 	//button that assigns all the missions in a sector to one user, using the ids of both
-	@RequestMapping("/assign-all-missions-button")
+	@RequestMapping("/admin/assign-all-missions-button")
 	public String assignAllMissionsInSectorToUserById(long sectorId, long userId) {
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
 		Sector sectorResult = sector.get();
@@ -101,4 +122,11 @@ public class SectorController {
 	
 	
 
+	
+	@RequestMapping("/setup-sectors")
+	public String showAllSectors (Model model) {
+	
+		return "setup-sectors";
+	}
 }
+

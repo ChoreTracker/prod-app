@@ -7,9 +7,11 @@ import java.util.HashSet;
 import java.util.Optional;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MissionController {
@@ -23,7 +25,7 @@ public class MissionController {
 	
 	//all info on one mission is available; returns the single mission page
 	@RequestMapping("/mission")
-	public String findOneMission(long missionId, Model model) throws missionNotFoundException {
+	public String findOneMission(@RequestParam(value="id") long missionId, Model model) throws missionNotFoundException {
 		Optional<Mission> mission = missionRepo.findById(missionId);
 		if (mission.isPresent()) {
 			model.addAttribute("mission", mission.get());
@@ -37,6 +39,7 @@ public class MissionController {
 	public String findAllMissions(Model model) {
 		model.addAttribute("missions", missionRepo.findAll());
 		return "missions";	
+
 	}
 	
 	//button to create a mission, doesn't add it to a sector--("/add-mission-to-sector-button") does that; returns the all missions page
@@ -48,14 +51,14 @@ public class MissionController {
 	}
 	
 	//button to delete a mission, using the id; returns the user to the mi
-	@RequestMapping("/delete-mission-button")
+	@RequestMapping("/admin/delete-mission-button")
 	public String deleteMissionById(long missionId) {
 		missionRepo.deleteById(missionId);
 		return "missions";
 	}
 	
 	//assigns a mission to a user OR adds a user to mission, works the same; returns the user to the mission page
-	@RequestMapping("/assign-mission-button")
+	@RequestMapping("/admin/assign-mission-button")
 	public String assignMissionToUserById(long missionId, long userId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
@@ -66,7 +69,7 @@ public class MissionController {
 		return "redirect:/mission?id=" + missionId;
 	}
 
-	@RequestMapping("/remove-user-from-mission")
+	@RequestMapping("/admin/remove-user-from-mission")
 	public String removeUserFromMission(long missionId, long userId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
@@ -75,7 +78,9 @@ public class MissionController {
 		mission.removeUser(user);
 		missionRepo.save(mission);
 		return "redirect:/mission?id=" + missionId;		
+
 	}
+	
 
 	@RequestMapping("/show-unassigned-missions")
 	public String findUnassignedMissions(Model model) {
