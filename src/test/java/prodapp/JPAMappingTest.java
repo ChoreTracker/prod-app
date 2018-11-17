@@ -33,8 +33,8 @@ public class JPAMappingTest {
 	@Resource
 	private SectorRepository sectorRepo;
 
-	User user = new User("Name", "contact");
-	User user2 = new User("Name2", "contact2");
+	User user = new User("Name", "password", "contact", "ADMIN");
+	User user2 = new User("Name2", "password2", "contact2", "USER");
 	Mission mission = new Mission("MissionName", "description", 5, 0, "dueDate", "completionDate",true, user);
 	Mission mission2 = new Mission("MissionName2", "description2", 6, 0, "dueDate2", "completionDate2", true,
 			user);
