@@ -10,7 +10,11 @@
 	<main id="container"> 
 		<header>
 			<h1>Prod/header placeholder</h1>
+
+<!-- Need to enter top Nav -->
+
 		</header>
+
 	<div class="grid-container">
 		<h2>Here are the current sectors for your home.</h2>
 		<ul id="sector-list">
@@ -18,9 +22,10 @@
 					<a th:href="@{/sector(id=${sector.id})}" th:text="${sector.sectorName}"></a>
 			</li>
 		</ul>
-		<img id="sectorPic" src ="./images/sector1.jpg">
 	</div>
-	<section class="add-sector">
+	
+	<!-- still showing for user -->
+	<section sec:authorize="hasRole('ROLE_ADMIN')" class="add-sector">
 		<input type="text"/>
 		<button>Add Sector</button>
 	</section>
@@ -30,14 +35,14 @@
 		<button>Remove Sector</button>
 	</section> -->
 
-	<section class="sectors-list">
+	<!-- <section class="sectors-list">
 		<h2>Here is a list of your current sectors:</h2>
 		<ul>
 			<li th:if="${sectors.size() ==0}">Currently no sectors...please add one!</li>
 			<li th:if="${sectors.size() !=0}" th:each="sector: ${sectors}">
 			  <a th:href="@{/sector(id=${sector.id})}" th:text="${sector.sectorName}"></a>
 		</ul>
-	</section>
+	</section> -->
 
 	</main>
 	<footer>
