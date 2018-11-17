@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 
 @Entity
 public class User {
@@ -14,10 +16,25 @@ public class User {
 	@GeneratedValue
 	private long id;
 	private String userName;
+	private String contact;
+	private String password;
+	private String[] roles;
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String[] getRoles() {
+		return roles;
+	}
 
 	@ManyToMany(mappedBy = "users")
 	private Collection<Mission> missions;
-
+	
 	public User() {
 
 	}
@@ -38,12 +55,14 @@ public class User {
 		return missions;
 	}
 
-	private String contact;
-
-	public User(String userName, String contact) {
+	public User(String userName, String password, String contact, String...roles) {
 		this.userName = userName;
+		this.password = new BCryptPasswordEncoder().encode(password);
 		this.contact = contact;
+		this.roles = roles;
+		
 	}
+
 
 	@Override
 	public int hashCode() {

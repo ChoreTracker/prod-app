@@ -1,0 +1,63 @@
+package prodapp;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+//import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.ui.Model;
+
+
+@Configuration
+@EnableGlobalMethodSecurity( securedEnabled = true )
+@Order(SecurityProperties.DEFAULT_FILTER_ORDER)
+public class SecurityConfig {
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+	
+	@Autowired
+	protected void configureAuth(AuthenticationManagerBuilder auth) 
+			throws Exception {
+				auth.inMemoryAuthentication().withUser("admin").password(passwordEncoder().encode("admin"))
+				.roles("USER", "ADMIN")
+				.and().withUser("user").password(passwordEncoder().encode("user")).roles("USER");
+			}
+	
+//	private String getLoggedInUser(Model model) {
+//		Object principal = SecurityContextHolder.getContext()
+//				.getAuthentication().getPrincipal();
+//		if (principal instanceof User)
+//			return ((User) principal).getUserName();
+//		return principal.toString();
+//		
+//	}
+	
+	protected void configure(HttpSecurity http) throws Exception {
+		http
+		.authorizeRequests()
+		.antMatchers("/setup/**", "/h2-console/**").hasRole("ADMIN")
+		.antMatchers("/setup/mission", "/h2-console/**").hasRole("USER")
+		.antMatchers("/css/**", "/js/**").permitAll()
+		.anyRequest().authenticated()
+		.and()
+	.formLogin()
+		.loginPage("/login")
+		.permitAll()
+		.and()
+	.logout()
+		.logoutSuccessUrl("/login?logout")
+		.permitAll()
+		.and()
+//	.csrf().disable()
+	.headers().frameOptions().disable();
+}
+}
