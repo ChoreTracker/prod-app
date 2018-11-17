@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+	<title>Sectors in the Home</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="./css/layout.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
+</head>
+<body>
+	<main id="container"> 
+		<header>
+			<h1>Prod/header placeholder</h1>
+		</header>
+	<div class="grid-container">
+		<h2>Here are the current sectors for your home.</h2>
+		<ul id="sector-list">
+			<li th:each="sector: ${sectors}">
+					<a th:href="@{/sector(id=${sector.id})}" th:text="${sector.sectorName}"></a>
+			</li>
+		</ul>
+		<img id="sectorPic" src ="./images/sector1.jpg">
+	</div>
+	<section class="add-sector">
+		<input type="text"/>
+		<button>Add Sector</button>
+	</section>
+
+	<!-- <section class="remove-sector">
+		<input type="text"/>
+		<button>Remove Sector</button>
+	</section> -->
+
+	<section class="sectors-list">
+		<h2>Here is a list of your current sectors:</h2>
+		<ul>
+			<li th:if="${sectors.size() ==0}">Currently no sectors...please add one!</li>
+			<li th:if="${sectors.size() !=0}" th:each="sector: ${sectors}">
+			  <a th:href="@{/sector(id=${sector.id})}" th:text="${sector.sectorName}"></a>
+		</ul>
+	</section>
+
+	</main>
+	<footer>
+			<ul>
+				<li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
+				<li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
+				<li> <a href="http://localhost:8080/show-users">All Users</a></li>
+			</ul>
+	</footer>		
+
+	<script src = "./js/sector-requests.js"></script>
+</body>
+</html>
