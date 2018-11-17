@@ -1,5 +1,7 @@
 package prodapp;
 
+
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -42,7 +44,7 @@ public class MissionController {
 	
 	//button to create a mission, doesn't add it to a sector--("/add-mission-to-sector-button") does that; returns the all missions page
 	@RequestMapping("/create-mission-button")
-	public String createMission(String missionName, String missionDescription, String period, String snooze, String dueDate,
+	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate,
 			String completionDate, boolean recurring, User...users) {
 		missionRepo.save(new Mission(missionName, missionDescription, period, snooze, dueDate, completionDate, recurring, users));
 		return "missions";
@@ -90,6 +92,119 @@ public class MissionController {
 		}
 		model.addAttribute("missions", unassignedMissions);
 		return "missions";
+	}
+
+	//pass in the mission id, sets the completion date to current date
+	@RequestMapping("/mission-complete-button")
+	public void setAsComplete(long missionId) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.markComplete();
+		missionRepo.save(mission);
+	}
+
+	public void createDueDate(long missionId, String date) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.setDueDate(date);
+		missionRepo.save(mission);
+	}
+
+	public void setSnooze(long missionId, int days) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.setSnoozePeriod(1);
+		missionRepo.save(mission);
+		
+	}
+
+	public void snoozeMission(long missionId) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.hitSnooze();
+	}
+
+	public void setMissionPeriod(long missionId, int periodDays) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.setPeriod(periodDays);
+		
+	}
+
+	public String findMissionsByDueDate(Model model, String dateString) {
+		Collection<Mission> missionsDue = new HashSet<>();
+		for (Mission mission : missionRepo.findAll()) {
+			if(mission.getDueDate().equals(dateString)) {
+				missionsDue.add(mission);
+			}
+		}
+		model.addAttribute("missions", missionsDue);
+		return "missions";
+	}
+
+	public String findMissionsDueToday(Model model) {
+		LocalDate today = LocalDate.now();
+		Collection<Mission> missionsDue = new HashSet<>();
+		for (Mission mission : missionRepo.findAll()) {
+			if(mission.getDueDate().equals(today.toString())) {
+				missionsDue.add(mission);
+			}
+		}
+		model.addAttribute("missions", missionsDue);
+		return "missions";		
+	}
+
+	public String findMissionsDueTodayForUser(Model model, long userId) {
+		LocalDate today = LocalDate.now();
+		Optional<User> userResult = userRepo.findById(userId);
+		User user = userResult.get();
+		Collection<Mission> missionsDue = new HashSet<>();
+		for (Mission mission : missionRepo.findAll()) {
+			if(mission.getDueDate().equals(today.toString()) && mission.getUsers().contains(user)) {
+				missionsDue.add(mission);
+			}
+		}
+		model.addAttribute("missions", missionsDue);
+		return "missions";	
+
+		
+	}
+
+	public String findMissionsDueThisWeekForUser(Model model, long userId) {
+		LocalDate today = LocalDate.now();
+		LocalDate yesterday = today.minusDays(1);
+		LocalDate todayPlusEightDays = today.plusDays(8);
+		Optional<User> userResult = userRepo.findById(userId);
+		User user = userResult.get();
+		Collection<Mission> missionsDue = new HashSet<>();
+		for (Mission mission : missionRepo.findAll()) {
+			if(mission.getUsers().contains(user) && 
+					LocalDate.parse(mission.getDueDate()).isBefore(todayPlusEightDays) && 
+					LocalDate.parse(mission.getDueDate()).isAfter(yesterday)) {
+				missionsDue.add(mission);
+			}
+		}
+		model.addAttribute("missions", missionsDue);
+		return "missions";			
+	}
+
+	public String findIncompleteMissionsDueThisWeekForUser(Model model, long userId) {
+		LocalDate today = LocalDate.now();
+		LocalDate yesterday = today.minusDays(1);
+		LocalDate todayPlusEightDays = today.plusDays(8);
+		Optional<User> userResult = userRepo.findById(userId);
+		User user = userResult.get();
+		Collection<Mission> missionsDue = new HashSet<>();
+		for (Mission mission : missionRepo.findAll()) {
+			if(mission.getUsers().contains(user) && 
+					mission.getCompletionDate().isEmpty() &&
+					LocalDate.parse(mission.getDueDate()).isBefore(todayPlusEightDays) && 
+					LocalDate.parse(mission.getDueDate()).isAfter(yesterday)) {
+				missionsDue.add(mission);
+			}
+		}
+		model.addAttribute("missions", missionsDue);
+		return "missions";			
 	}
 	
 	
