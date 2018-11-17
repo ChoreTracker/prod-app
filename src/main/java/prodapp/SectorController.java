@@ -43,7 +43,7 @@ public class SectorController {
 	}
 	
 		
-	@RequestMapping(path = "/sectors/add/{sectorName}", method = RequestMethod.POST)
+	@RequestMapping(path = "/admin/sectors/add/{sectorName}", method = RequestMethod.POST)
 	public String addSector(@PathVariable String sectorName, Model model) {
 		Sector sector = sectorRepo.findBySectorName(sectorName);
 		if (sector == null) {
@@ -56,21 +56,21 @@ public class SectorController {
 
 	}
 	//Mission...missions after sectorName
-	@RequestMapping(path = "/sectors/remove/{sectorName}", method = RequestMethod.POST)
-	public String removeSector(@PathVariable String sectorName, Model model) {
-		Sector sector = sectorRepo.findBySectorName(sectorName);
-		if (sector != null) {
-			
-			sectorRepo.delete(sector);
-		}
-		model.addAttribute("sectors", sectorRepo.findAll());
-		return "redirect:/show-sectors";
-		
-
-	}
+//	@RequestMapping(path = "/sectors/remove/{sectorName}", method = RequestMethod.POST)
+//	public String removeSector(@PathVariable String sectorName, Model model) {
+//		Sector sector = sectorRepo.findBySectorName(sectorName);
+//		if (sector != null) {
+//			
+//			sectorRepo.delete(sector);
+//		}
+//		model.addAttribute("sectors", sectorRepo.findAll());
+//		return "redirect:/show-sectors";
+//		
+//
+//	}
 	
 	//deletes a sector and also all the missions in the sector
-	@RequestMapping("/remove-sector")
+	@RequestMapping("/admin/remove-sector")
 	public String deleteSectorById(Long sectorId) {
 		if (sectorRepo.findById(sectorId) != null) {
 			sectorRepo.deleteById(sectorId);
@@ -89,7 +89,7 @@ public class SectorController {
 	}
 	
 	//button that assigns all the missions in a sector to one user, using the ids of both
-	@RequestMapping("/assign-all-missions-button")
+	@RequestMapping("/admin/assign-all-missions-button")
 	public String assignAllMissionsInSectorToUserById(long sectorId, long userId) {
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
 		Sector sectorResult = sector.get();
@@ -123,10 +123,10 @@ public class SectorController {
 	
 
 	
-//	@RequestMapping("/setup-sectors")
-//	public String showAllSectors (Model model) {
-//	
-//		return "setup-sectors";
-//	}
+	@RequestMapping("/setup-sectors")
+	public String showAllSectors (Model model) {
+	
+		return "setup-sectors";
+	}
 }
 

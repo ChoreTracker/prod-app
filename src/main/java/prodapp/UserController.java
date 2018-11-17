@@ -33,7 +33,7 @@ public class UserController {
 	}
 
 	
-	@RequestMapping("/setup-users")
+	@RequestMapping("/setup/users")
 	public String addNewUser (Model model) {
 	
 		return "setup-users";
