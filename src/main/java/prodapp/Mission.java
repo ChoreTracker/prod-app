@@ -118,10 +118,6 @@ public class Mission {
 
 	}
 
-	public void setUser(User...users) {
-		this.users = new HashSet<>(Arrays.asList(users));
-	}
-
 	public Mission(String missionName, String missionDescription, int period, int snooze, String dueDate,
 			String completionDate, boolean recurring, User...users) {
 		this.missionName = missionName;

@@ -229,7 +229,7 @@ public class MissionController {
 		User activeUser = findLoggedInUser();
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
-		mission.setUser(activeUser);
+		mission.addUser(activeUser);
 		missionRepo.save(mission);
 	}
 

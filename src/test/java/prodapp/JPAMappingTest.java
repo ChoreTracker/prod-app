@@ -188,7 +188,7 @@ public class JPAMappingTest {
 		
 		Collection<Mission> unassignedMissions = missionRepo.findAllByUsersIsNullAndRecurringIsFalse();
 		assertThat(unassignedMissions, containsInAnyOrder(mission));
-		mission.setUser(user);
+		mission.addUser(user);
 		missionRepo.save(mission);
 		
 		Collection<Mission> unassignedMissions2 = missionRepo.findAllByUsersIsNullAndRecurringIsFalse();
