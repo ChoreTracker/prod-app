@@ -2,7 +2,7 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
 	<title>User Screen</title>
-	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="./css/layout.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
@@ -11,15 +11,67 @@
 		<header>
 			<h1>Prod/header placeholder</h1>
 		</header>
-		<div class="grid-container">
+		<!-- <div class="grid-container"> -->
 			<h2 th:text="'Hello ' + ${user.userName}"></h2>
-				<h3>Here are your current missions.</h3>
-				<ul	th:each="mission:${user.missions}">
+				<!-- <h3>Here are your current missions.</h3> -->
+
+		
+	<div class="tab">
+		<button class="tablinks" onclick="openCity(event, 'myMissions')">My Missions</button>
+		<button class="tablinks" onclick="openCity(event, 'unassignedMissions')">Unassigned Missions</button>
+		<button class="tablinks" onclick="openCity(event, 'allMissions')">All Missions</button>
+	</div>
+
+<div id="myMissions" class="tabcontent">
+		<button id="myBtn">
+		<article class="missionLists" th:each="mission: ${user.missions}">
+			<img src="./images/sector1.jpg">
+			<div class="mission-intro">
+				<h4 th:text="${mission.missionName}"></h4>
+				<p th:text="${mission.dueDate}"></p>
+				<p th:text="${mission.users}"></p>	
+</div>
+</article>
+</button>
+</div>
+
+<div id="unassignedMissions" class="tabcontent">
+		<button id="myBtn">
+		<article class="missionLists" th:each="mission: ${user.missions}">
+			<img src="./images/sector1.jpg">
+			<div class="mission-intro">
+				<h4 th:text="${mission.missionName}"></h4>
+				<p th:text="${mission.dueDate}"></p>
+				<p th:text="${mission.users}"></p>	
+</div>
+</article>
+</button>
+</div>
+
+<div id="allMissions" class="tabcontent">
+		<button id="myBtn">
+		<article class="missionLists" th:each="mission: ${missions}">
+			<img src="./images/sector1.jpg">
+			<div class="mission-intro">
+				<h4 th:text="${mission.missionName}"></h4>
+				<p th:text="${mission.dueDate}"></p>
+				<p th:text="${mission.users}"></p>	
+</div>
+</article>
+</button>
+</div>
+
+
+
+
+				<!-- <ul	th:each="mission:${user.missions}">
 					<li>
 						<a th:href="@{/mission(id=${mission.id})}" th:text="${mission.missionName}"></a>
 					</li>
-				</ul>
+				</ul> -->
 
+
+<!-- </div> -->
 
 </main>
 <footer>
@@ -28,6 +80,7 @@
 			<li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
 			<li> <a href="http://localhost:8080/show-users">All Users</a></li>
 		</ul>
-</footer>		
+</footer>	
+<script src = "./js/user.js"></script>	
 </body>
 </html>

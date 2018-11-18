@@ -31,9 +31,11 @@ public class ProdPopulator implements CommandLineRunner {
 			user);
 	Mission mission3 = new Mission("MissionName3", "description3", 0, 0, "dueDate3", "completionDate3", false, 0,
 			user, user2);
+	Mission mission4 = new Mission("MissionName4", "description4", 0, 0, "dueDate4", "completionDate4", false);
 	missionRepo.save(mission);
 	missionRepo.save(mission2);
 	missionRepo.save(mission3);
+	missionRepo.save(mission4);
 	
 	Sector sector = new Sector("sectorName", mission, mission2);
 	Sector sector2 = new Sector("sectorName2", mission3);
