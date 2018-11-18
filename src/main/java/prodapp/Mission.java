@@ -87,6 +87,12 @@ public class Mission {
 	public void removeUser(User user) {
 		this.users.remove(user);
 	}
+	
+
+	public void removeUsers(Collection<User> users) {
+		this.users.remove(users);
+		
+	}
 
 	// adds a user to the list of users
 	public void addUser(User user) {

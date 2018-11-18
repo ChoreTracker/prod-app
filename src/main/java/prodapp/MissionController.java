@@ -81,6 +81,13 @@ public class MissionController {
 		return "redirect:/mission?id=" + missionId;
 
 	}
+	
+	public String findAllCompletedMissionsByUser(Model model,long id) {
+		Collection<Mission> foundMissions = missionRepo.findCompletionDateNotNullByUsersIdOrderByDueDate(id);
+		model.addAttribute("missions", foundMissions);
+		return "missions";
+		
+	}
 
 //	@RequestMapping("/show-unassigned-missions")
 //	public String findUnassignedMissions(Model model) {
@@ -221,6 +228,14 @@ public class MissionController {
 		model.addAttribute("missions", foundMissions);
 		return "missions";
 	}
+	
+	public String sortUserMissionsByDueDate(Model model) {
+		User loggedInUser = findLoggedInUser();
+
+		Collection<Mission> foundMissions = missionRepo.findAllByUsersAndRecurringIsFalseOrderByDueDate(loggedInUser, "");
+		model.addAttribute("missions", foundMissions);
+		return "missions";
+	}
 
 	private User findLoggedInUser() {
 		Object activeUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -235,5 +250,23 @@ public class MissionController {
 		mission.addUser(activeUser);
 		missionRepo.save(mission);
 	}
+	@RequestMapping("/claim-mission-assigned-button")
+	public void claimAssignedMission(long missionId, User user) {
+		User activeUser = findLoggedInUser();
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.removeUsers(mission.getUsers());
+		mission.addUser(activeUser);
+		missionRepo.save(mission);
+	}
 
+	@RequestMapping("/make-recurring")
+	public void makeMissionRecurring(long missionId) {
+		Optional<Mission> missionChosen = missionRepo.findById(missionId);
+		Mission mission = missionChosen.get();
+		Mission newMission = new Mission(mission.getMissionName(), mission.getMissionDescription(),
+				mission.getPeriod(), mission.getSnooze(), "", "", true, 0);
+		newMission.assignUsers(mission.getUsers());
+		missionRepo.save(newMission);
+	}
 }
