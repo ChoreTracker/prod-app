@@ -94,6 +94,12 @@ public class MissionController {
 		model.addAttribute("missions", unassignedMissions);
 		return "missions";
 	}
+	
+	@RequestMapping("/show-bonus-missions")
+	public Collection<Mission> showAllUnassignedMissions() {
+		Collection<Mission> unassignedMissions = missionRepo.findAllByUsersIsNullAndRecurringIsFalse();
+		return unassignedMissions;
+	}
 
 	// pass in the mission id, sets the completion date to current date
 	@RequestMapping("/mission-complete-button")
@@ -206,11 +212,25 @@ public class MissionController {
 	}
 
 	public String sortUserIncompleteMissionsByDueDate(Model model) {
-		Object activeUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User loggedInUser = User.class.cast(activeUser);
+		User loggedInUser = findLoggedInUser();
 
-		Collection<Mission> foundMissions = missionRepo.findAllByUsersAndCompletionDateOrderByDueDate(loggedInUser, "");
+		Collection<Mission> foundMissions = missionRepo.findAllByUsersAndCompletionDateAndRecurringIsFalseOrderByDueDate(loggedInUser, "");
 		model.addAttribute("missions", foundMissions);
 		return "missions";
 	}
+
+	private User findLoggedInUser() {
+		Object activeUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User loggedInUser = User.class.cast(activeUser);
+		return loggedInUser;
+	}
+	
+	public void claimUnassignedMission(long missionId, User user) {
+		User activeUser = findLoggedInUser();
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.setUser(activeUser);
+		missionRepo.save(mission);
+	}
+
 }
