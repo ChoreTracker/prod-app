@@ -2,7 +2,7 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
 	<title>Invidual Sector</title>
-	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="./css/layout.css">
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
@@ -14,15 +14,42 @@
 		<div class="grid-container">
 			<h2 th:text="${sector.sectorName}"></h2>
 		
-			<ul id="sector-list">		
-				<li th:each="mission: ${sector.missions}">
-					<a th:href="@{/mission(id=${mission.id})}" th:text="${mission.missionName}"></a>
-				</li>
-			</ul>
+			<button id="myBtn">
+			<article th:each="mission: ${sector.missions}">
+				<img src="./images/sector1.jpg">
+				<div class="mission-intro">
+					<h4 th:text="${mission.missionName}"></h4>
+					<p th:text="${mission.dueDate}"></p>
+					<p th:text="${mission.users}"></p>
+					
+				</div>
+			</article>
+		</button>
+			
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+		  <span class="close">&times;</span>
+<!-- <p>Some text in modal</p> -->
+<section th:each="mission: ${sector.missions}">
+		<p>Mission Decription: </p><p th:text = "${mission.missionDescription}"></p>
+		<p>Mission Users: </p><p th:text = "${mission.users}"></p>	
+		<p>Mission Period: </p><p th:text = "${mission.period}"></p>	
+		<p>Mission Snoozable (# of days): </p><p th:text = "${mission.snooze}"></p>	
+		<p>Mission Due Date: </p><p th:text = "${mission.dueDate}"></p>
+		<p>Mission Recurring: </p><p th:text = "${mission.recurring}"></p>
+</section>
+  
+	  </div>
+
 			<!--need to be able to add a new mission here-->
-			<h4>Add new mission</h4>
-			<form action="/action_page.php">
-	
+			<div class="add-sector">
+			<h4>Add new mission to this sector</h4>
+			<form sec:authorize="hasRole('ROLE_ADMIN')" action="/action_page.php">
+	<!-- on this page, need to maybe make it easy for user to add mission directly to this sector w/o having to specify? -->
+
 				<label for="newMissionName"><b>Mission Name</b></label>
 				<input type="text" placeholder="Enter Mission Name" name="newMissionName" required>
 				
@@ -42,10 +69,11 @@
 				<input type="text" placeholder="Yes or No" name="recurring" required>
 	
 				<button type="submit" class="registerbtn">Add mission</button>	
-
+			</form>
 				
-				<!-- <img th:src ="${sector.image}"> -->
+			</div>	
 			</div> 
+
 
 	</main>
 	<footer>
@@ -55,6 +83,6 @@
 				<li> <a href="http://localhost:8080/show-users">All Users</a></li>
 			</ul>
 	</footer>		
-
+	<script src = "./js/sector-requests.js"></script>
 </body>
 </html>
