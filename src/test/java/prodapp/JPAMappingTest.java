@@ -41,7 +41,7 @@ public class JPAMappingTest {
 	Mission mission3 = new Mission("MissionName3", "description3", 7, 0, "dueDate3", "completionDate3", false,
 			user, user2);
 
-	@Test
+	//@Test
 	public void shouldSaveAndLoadNewMission() {
 		userRepo.save(user);
 		missionRepo.save(mission);
@@ -57,7 +57,7 @@ public class JPAMappingTest {
 
 	}
 
-	@Test
+	//@Test
 	public void shouldBeAbleToAddAUser() {
 		userRepo.save(user);
 		missionRepo.save(mission);
@@ -71,7 +71,7 @@ public class JPAMappingTest {
 		assertThat(userResult.getUserName(), is("Name"));
 	}
 
-	@Test
+	//@Test
 	public void shouldAddMissionToSector() {
 		userRepo.save(user);
 		missionRepo.save(mission);
@@ -88,7 +88,7 @@ public class JPAMappingTest {
 		assertThat(mission.getMissionName(), is("MissionName"));
 	}
 
-	@Test
+	//@Test
 	public void shouldFindMissionsByUser() {
 		userRepo.save(user);
 		missionRepo.save(mission);
@@ -102,7 +102,7 @@ public class JPAMappingTest {
 		assertThat(result, containsInAnyOrder(mission, mission3));
 	}
 
-	@Test
+	//@Test
 	public void shouldFindUsersByMission() {
 		userRepo.save(user);
 		userRepo.save(user2);
@@ -119,7 +119,7 @@ public class JPAMappingTest {
 		assertThat(result, containsInAnyOrder(user, user2));
 	}
 
-	@Test
+	//@Test
 	public void shouldFindMissionsBySector() {
 		userRepo.save(user);
 		missionRepo.save(mission);
@@ -134,5 +134,50 @@ public class JPAMappingTest {
 
 		assertThat(result, containsInAnyOrder(mission, mission2));
 	}
-
+	@Test
+	public void shouldFindAllMissionsAndSortByDueDate () {
+		System.out.println("hello");
+		userRepo.save(user);
+		userRepo.save(user2);
+		Mission mission = new Mission("MissionName", "description", 3, 0, "2018-1-3", "completionDate", true, user);
+		Mission mission2 = new Mission("MissionName2", "description2", 4, 0, "2018-1-1", "completionDate2", true,
+				user);
+		Mission mission3 = new Mission("MissionName3", "description3", 0, 0, "2018-1-15", "completionDate3", false,
+				user2);
+		missionRepo.save(mission);
+		missionRepo.save(mission2);
+		missionRepo.save(mission3);
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Collection<Mission> sortedMissions = missionRepo.findAllByUsersOrderByDueDate(user);
+		System.out.println(sortedMissions);
+		
+		assertThat(sortedMissions, contains(mission2, mission));
+		
+	}
+	@Test
+	public void shouldFindAllIncompleteMissionsAndSortByDueDate () {
+		System.out.println("hello");
+		userRepo.save(user);
+		userRepo.save(user2);
+		Mission mission = new Mission("MissionName", "description", 3, 0, "2018-1-3", "", true, user);
+		Mission mission2 = new Mission("MissionName2", "description2", 4, 0, "2018-1-1", "", true,
+				user);
+		Mission mission3 = new Mission("MissionName3", "description3", 0, 0, "2018-1-15", "completionDate3", false,
+				user2);
+		missionRepo.save(mission);
+		missionRepo.save(mission2);
+		missionRepo.save(mission3);
+		
+		entityManager.flush();
+		entityManager.clear();
+		
+		Collection<Mission> sortedMissions = missionRepo.findAllByUsersAndCompletionDateOrderByDueDate(user, "");
+		System.out.println(sortedMissions);
+		
+		assertThat(sortedMissions, contains(mission2, mission));
+		
+	}
 }

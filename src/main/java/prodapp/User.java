@@ -1,11 +1,14 @@
 package prodapp;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
@@ -53,6 +56,15 @@ public class User {
 
 	public Collection<Mission> getMissions() {
 		return missions;
+	}
+	
+	public static Optional<User> getCurrentUser(Authentication auth) {
+	    if (auth != null) {
+	        Object principal = auth.getPrincipal();
+	        if (principal instanceof User)
+	            return Optional.of((User) principal);
+	    }
+	    return Optional.empty();
 	}
 
 	public User(String userName, String password, String contact, String...roles) {

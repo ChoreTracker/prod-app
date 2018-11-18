@@ -10,6 +10,12 @@ public interface MissionRepository extends CrudRepository<Mission, Long> {
 
 	void deleteBySector(Long sectorId);
 
+	Collection<Mission> findAllByUsersOrderByDueDate(User user);
+
+	Collection<Mission> findAllByUsersAndCompletionDateOrderByDueDate(User user, String completionDate);
+	
+	
+
 
 
 }
