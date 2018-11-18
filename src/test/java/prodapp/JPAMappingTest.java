@@ -140,9 +140,9 @@ public class JPAMappingTest {
 	public void shouldFindAllMissionsAndSortByDueDate() {
 		userRepo.save(user);
 		userRepo.save(user2);
-		Mission mission = new Mission("MissionName", "description", 3, 0, "2018-1-3", "completionDate", false, user);
-		Mission mission2 = new Mission("MissionName2", "description2", 4, 0, "2018-1-1", "completionDate2", false, user);
-		Mission mission3 = new Mission("MissionName3", "description3", 0, 0, "2018-1-15", "completionDate3", false,
+		Mission mission = new Mission("MissionName", "description", 3, 0, "2018-1-3", "completionDate", false, 0, user);
+		Mission mission2 = new Mission("MissionName2", "description2", 4, 0, "2018-1-1", "completionDate2", false, 0, user);
+		Mission mission3 = new Mission("MissionName3", "description3", 0, 0, "2018-1-15", "completionDate3", false, 0,
 				user2);
 		missionRepo.save(mission);
 		missionRepo.save(mission2);
@@ -160,9 +160,9 @@ public class JPAMappingTest {
 	public void shouldFindAllIncompleteMissionsAndSortByDueDate() {
 		userRepo.save(user);
 		userRepo.save(user2);
-		Mission mission = new Mission("MissionName", "description", 3, 0, "2018-1-3", "", false, user);
-		Mission mission2 = new Mission("MissionName2", "description2", 4, 0, "2018-1-1", "", false, user);
-		Mission mission3 = new Mission("MissionName3", "description3", 0, 0, "2018-1-15", "completionDate3", false,
+		Mission mission = new Mission("MissionName", "description", 3, 0, "2018-1-3", "", false, 0, user);
+		Mission mission2 = new Mission("MissionName2", "description2", 4, 0, "2018-1-1", "", false, 0, user);
+		Mission mission3 = new Mission("MissionName3", "description3", 0, 0, "2018-1-15", "completionDate3", false, 0,
 				user2);
 		missionRepo.save(mission);
 		missionRepo.save(mission2);
@@ -179,9 +179,9 @@ public class JPAMappingTest {
 	@Test
 	public void shouldClaimUnassignedMission() {
 		userRepo.save(user);
-		Mission mission = new Mission("MissionName", "description", 3, 0, "2018-1-3", "", false);
+		Mission mission = new Mission("MissionName", "description", 3, 0, "2018-1-3", "", false, 0);
 		missionRepo.save(mission);
-		Mission mission2 = new Mission("MissionName", "description", 3, 0, "2018-1-3", "", false, user);
+		Mission mission2 = new Mission("MissionName", "description", 3, 0, "2018-1-3", "", false,0, user);
 		missionRepo.save(mission2);
 		
 		entityManager.flush();
