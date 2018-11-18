@@ -1,5 +1,7 @@
 package prodapp;
 
+import static org.hamcrest.Matchers.contains;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -15,10 +17,12 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.ui.Model;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.test.context.junit4.SpringRunner;
+
 
 @SpringBootTest(classes = User.class)
 @RunWith(SpringRunner.class)
@@ -30,6 +34,9 @@ public class UserControllerTest {
 
 	@Mock
 	private UserRepository userRepo;
+	
+	@Mock
+	private MissionRepository missionRepo;
 
 	@Mock
 	private User user;
@@ -65,5 +72,5 @@ public class UserControllerTest {
 		underTest.findAllUsers(model);
 		verify(model).addAttribute("users", allUsers);
 	}
-	
+
 }
