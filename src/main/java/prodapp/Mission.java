@@ -2,14 +2,13 @@ package prodapp;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-
 import java.util.Collection;
-
 import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -21,6 +20,8 @@ public class Mission {
 	private long id;
 
 	private String missionName;
+	
+	@Lob
 	private String missionDescription;
 
 	@ManyToMany
@@ -34,6 +35,7 @@ public class Mission {
 	private int snooze;
 	private String dueDate;
 	private boolean recurring;
+	private int count;
 
 	public boolean isRecurring() {
 		return recurring;
@@ -114,12 +116,30 @@ public class Mission {
 	}
 
 	public void setPeriod(int periodDays) {
-		this.period = periodDays;
-
+		this.period = periodDays;	
+	}
+	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	
+	public void increaseCount(int i) {
+		this.count ++;
+	}
+	
+	public void assignUsers(Collection<User> usersList) {
+		this.users = usersList;
+	}
+	
+	public void resetCount() {
+		this.count = 0;
 	}
 
 	public Mission(String missionName, String missionDescription, int period, int snooze, String dueDate,
-			String completionDate, boolean recurring, User...users) {
+			String completionDate, boolean recurring, int count, User...users) {
 		this.missionName = missionName;
 		this.missionDescription = missionDescription;
 		this.users = new HashSet<>(Arrays.asList(users));
@@ -128,6 +148,7 @@ public class Mission {
 		this.dueDate = dueDate;
 		this.completionDate = completionDate;
 		this.recurring = recurring;
+		this.setCount(count);
 	}
 
 	public Mission() {
@@ -154,4 +175,5 @@ public class Mission {
 			return false;
 		return true;
 	}
+  
 }

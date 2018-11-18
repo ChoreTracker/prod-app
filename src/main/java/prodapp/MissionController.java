@@ -45,9 +45,8 @@ public class MissionController {
 	// page
 	@RequestMapping("/create-mission-button")
 	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate,
-			String completionDate, boolean recurring, User... users) {
-		missionRepo.save(new Mission(missionName, missionDescription, period, snooze, dueDate, completionDate,
-				recurring, users));
+			String completionDate, boolean recurring, int count, User...users) {
+		missionRepo.save(new Mission(missionName, missionDescription, period, snooze, dueDate, completionDate, recurring, 0, users));
 		return "missions";
 	}
 
@@ -167,7 +166,7 @@ public class MissionController {
 		User user = userResult.get();
 		Collection<Mission> missionsDue = new HashSet<>();
 		for (Mission mission : missionRepo.findAll()) {
-			if (mission.getDueDate().equals(today.toString()) && mission.getUsers().contains(user)) {
+			if(mission.getDueDate().equals(today.toString()) &&  mission.getCompletionDate().equals("") && mission.getUsers().contains(user)) {
 				missionsDue.add(mission);
 			}
 		}
@@ -184,8 +183,10 @@ public class MissionController {
 		User user = userResult.get();
 		Collection<Mission> missionsDue = new HashSet<>();
 		for (Mission mission : missionRepo.findAll()) {
-			if (mission.getUsers().contains(user) && LocalDate.parse(mission.getDueDate()).isBefore(todayPlusEightDays)
-					&& LocalDate.parse(mission.getDueDate()).isAfter(yesterday)) {
+			if(mission.getUsers().contains(user) && 
+					mission.getCompletionDate().equals("") &&
+					LocalDate.parse(mission.getDueDate()).isBefore(todayPlusEightDays) && 
+					LocalDate.parse(mission.getDueDate()).isAfter(yesterday)) {
 				missionsDue.add(mission);
 			}
 		}
@@ -201,9 +202,10 @@ public class MissionController {
 		User user = userResult.get();
 		Collection<Mission> missionsDue = new HashSet<>();
 		for (Mission mission : missionRepo.findAll()) {
-			if (mission.getUsers().contains(user) && mission.getCompletionDate().isEmpty()
-					&& LocalDate.parse(mission.getDueDate()).isBefore(todayPlusEightDays)
-					&& LocalDate.parse(mission.getDueDate()).isAfter(yesterday)) {
+			if(mission.getUsers().contains(user) && 
+					mission.getCompletionDate().equals("") &&
+					LocalDate.parse(mission.getDueDate()).isBefore(todayPlusEightDays) && 
+					LocalDate.parse(mission.getDueDate()).isAfter(yesterday)) {
 				missionsDue.add(mission);
 			}
 		}

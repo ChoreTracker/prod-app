@@ -36,10 +36,11 @@ public class JPAMappingTest {
 
 	User user = new User("Name", "password", "contact", "ADMIN");
 	User user2 = new User("Name2", "password2", "contact2", "USER");
-	Mission mission = new Mission("MissionName", "description", 5, 0, "dueDate", "completionDate", true, user);
-	Mission mission2 = new Mission("MissionName2", "description2", 6, 0, "dueDate2", "completionDate2", true, user);
-	Mission mission3 = new Mission("MissionName3", "description3", 7, 0, "dueDate3", "completionDate3", false, user,
-			user2);
+	Mission mission = new Mission("MissionName", "description", 5, 0, "dueDate", "completionDate",true, 0, user);
+	Mission mission2 = new Mission("MissionName2", "description2", 6, 0, "dueDate2", "completionDate2", true, 0, 
+			user);
+	Mission mission3 = new Mission("MissionName3", "description3", 7, 0, "dueDate3", "completionDate3", false, 0, 
+			user, user2);
 
 	// @Test
 	public void shouldSaveAndLoadNewMission() {
@@ -106,8 +107,8 @@ public class JPAMappingTest {
 	public void shouldFindUsersByMission() {
 		userRepo.save(user);
 		userRepo.save(user2);
-		Mission mission3 = new Mission("MissionName3", "description3", 4, 0, "dueDate3", "completionDate3", true, user,
-				user2);
+		Mission mission3 = new Mission("MissionName3", "description3", 4, 0, "dueDate3",
+				"completionDate3", true, 0, user, user2);
 		missionRepo.save(mission3);
 
 		entityManager.flush();
