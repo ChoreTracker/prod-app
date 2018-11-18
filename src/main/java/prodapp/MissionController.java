@@ -82,22 +82,23 @@ public class MissionController {
 
 	}
 
+//	@RequestMapping("/show-unassigned-missions")
+//	public String findUnassignedMissions(Model model) {
+//		Collection<Mission> unassignedMissions = new HashSet<>();
+//		for (Mission mission : missionRepo.findAll()) {
+//			if (mission.getUsers().size() == 0 || mission.getUsers() == null) {
+//				unassignedMissions.add(mission);
+//			}
+//		}
+//		model.addAttribute("missions", unassignedMissions);
+//		return "missions";
+//	}
+	
 	@RequestMapping("/show-unassigned-missions")
-	public String findUnassignedMissions(Model model) {
-		Collection<Mission> unassignedMissions = new HashSet<>();
-		for (Mission mission : missionRepo.findAll()) {
-			if (mission.getUsers().size() == 0 || mission.getUsers() == null) {
-				unassignedMissions.add(mission);
-			}
-		}
+	public String showAllUnassignedMissions(Model model) {
+		Collection<Mission> unassignedMissions = missionRepo.findAllByUsersIsNullAndRecurringIsFalse();
 		model.addAttribute("missions", unassignedMissions);
 		return "missions";
-	}
-	
-	@RequestMapping("/show-bonus-missions")
-	public Collection<Mission> showAllUnassignedMissions() {
-		Collection<Mission> unassignedMissions = missionRepo.findAllByUsersIsNullAndRecurringIsFalse();
-		return unassignedMissions;
 	}
 
 	// pass in the mission id, sets the completion date to current date
@@ -226,7 +227,7 @@ public class MissionController {
 		User loggedInUser = User.class.cast(activeUser);
 		return loggedInUser;
 	}
-	
+	@RequestMapping("/claim-mission-button")
 	public void claimUnassignedMission(long missionId, User user) {
 		User activeUser = findLoggedInUser();
 		Optional<Mission> result = missionRepo.findById(missionId);

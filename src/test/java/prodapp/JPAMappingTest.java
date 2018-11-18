@@ -42,7 +42,7 @@ public class JPAMappingTest {
 	Mission mission3 = new Mission("MissionName3", "description3", 7, 0, "dueDate3", "completionDate3", false, 0, 
 			user, user2);
 
-	// @Test
+	=@Test
 	public void shouldSaveAndLoadNewMission() {
 		userRepo.save(user);
 		missionRepo.save(mission);
@@ -58,7 +58,7 @@ public class JPAMappingTest {
 
 	}
 
-	// @Test
+	@Test
 	public void shouldBeAbleToAddAUser() {
 		userRepo.save(user);
 		missionRepo.save(mission);
@@ -72,7 +72,7 @@ public class JPAMappingTest {
 		assertThat(userResult.getUserName(), is("Name"));
 	}
 
-	// @Test
+	@Test
 	public void shouldAddMissionToSector() {
 		userRepo.save(user);
 		missionRepo.save(mission);
@@ -89,7 +89,7 @@ public class JPAMappingTest {
 		assertThat(mission.getMissionName(), is("MissionName"));
 	}
 
-	// @Test
+	@Test
 	public void shouldFindMissionsByUser() {
 		userRepo.save(user);
 		missionRepo.save(mission);
@@ -103,7 +103,7 @@ public class JPAMappingTest {
 		assertThat(result, containsInAnyOrder(mission, mission3));
 	}
 
-	// @Test
+	@Test
 	public void shouldFindUsersByMission() {
 		userRepo.save(user);
 		userRepo.save(user2);
@@ -120,7 +120,7 @@ public class JPAMappingTest {
 		assertThat(result, containsInAnyOrder(user, user2));
 	}
 
-	// @Test
+	@Test
 	public void shouldFindMissionsBySector() {
 		userRepo.save(user);
 		missionRepo.save(mission);
