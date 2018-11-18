@@ -42,7 +42,7 @@ public class JPAMappingTest {
 	Mission mission3 = new Mission("MissionName3", "description3", 7, 0, "dueDate3", "completionDate3", false, 0, 
 			user, user2);
 
-	=@Test
+	@Test
 	public void shouldSaveAndLoadNewMission() {
 		userRepo.save(user);
 		missionRepo.save(mission);
