@@ -160,7 +160,7 @@ public class MissionController {
 		User user = userResult.get();
 		Collection<Mission> missionsDue = new HashSet<>();
 		for (Mission mission : missionRepo.findAll()) {
-			if(mission.getDueDate().equals(today.toString()) && mission.getUsers().contains(user)) {
+			if(mission.getDueDate().equals(today.toString()) &&  mission.getCompletionDate().equals("") && mission.getUsers().contains(user)) {
 				missionsDue.add(mission);
 			}
 		}
@@ -179,6 +179,7 @@ public class MissionController {
 		Collection<Mission> missionsDue = new HashSet<>();
 		for (Mission mission : missionRepo.findAll()) {
 			if(mission.getUsers().contains(user) && 
+					mission.getCompletionDate().equals("") &&
 					LocalDate.parse(mission.getDueDate()).isBefore(todayPlusEightDays) && 
 					LocalDate.parse(mission.getDueDate()).isAfter(yesterday)) {
 				missionsDue.add(mission);
@@ -197,7 +198,7 @@ public class MissionController {
 		Collection<Mission> missionsDue = new HashSet<>();
 		for (Mission mission : missionRepo.findAll()) {
 			if(mission.getUsers().contains(user) && 
-					mission.getCompletionDate().isEmpty() &&
+					mission.getCompletionDate().equals("") &&
 					LocalDate.parse(mission.getDueDate()).isBefore(todayPlusEightDays) && 
 					LocalDate.parse(mission.getDueDate()).isAfter(yesterday)) {
 				missionsDue.add(mission);

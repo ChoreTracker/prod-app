@@ -2,19 +2,15 @@ package prodapp;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-
 import java.util.Collection;
-
 import java.util.HashSet;
-
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
-import org.springframework.lang.NonNull;
 
 @Entity
 public class Mission {
@@ -26,6 +22,8 @@ public class Mission {
 	private long id;
 
 	private String missionName;
+	
+	@Lob
 	private String missionDescription;
 
 	@ManyToMany
