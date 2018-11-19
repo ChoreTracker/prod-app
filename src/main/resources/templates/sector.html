@@ -14,8 +14,8 @@
 		<div class="grid-container">
 			<h2 th:text="${sector.sectorName}"></h2>
 		
-			<button id="myBtn">
-			<article th:each="mission: ${sector.missions}">
+			<button id="myBtn" th:each="mission: ${sector.missions}">
+			<article>
 				<img src="./images/sector1.jpg">
 				<div class="mission-intro">
 					<h4 th:text="${mission.missionName}"></h4>

@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
+
 import javax.annotation.Resource;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -220,7 +222,7 @@ public class MissionController {
 		model.addAttribute("missions", missionsDue);
 		return "missions";
 	}
-
+	@RequestMapping("/default-user-missions")
 	public String sortUserIncompleteMissionsByDueDate(Model model) {
 		User loggedInUser = findLoggedInUser();
 
@@ -229,13 +231,13 @@ public class MissionController {
 		return "missions";
 	}
 	
-	public String sortUserMissionsByDueDate(Model model) {
-		User loggedInUser = findLoggedInUser();
-
-		Collection<Mission> foundMissions = missionRepo.findAllByUsersAndRecurringIsFalseOrderByDueDate(loggedInUser, "");
-		model.addAttribute("missions", foundMissions);
-		return "missions";
-	}
+//	public String sortUserMissionsByDueDate(Model model) {
+//		User loggedInUser = findLoggedInUser();
+//
+//		Collection<Mission> foundMissions = missionRepo.findAllByUsersAndRecurringIsFalseOrderByDueDate(loggedInUser, "");
+//		model.addAttribute("missions", foundMissions);
+//		return "missions";
+//	}
 
 	private User findLoggedInUser() {
 		Object activeUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

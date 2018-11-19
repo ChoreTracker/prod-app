@@ -17,14 +17,14 @@
 
 		
 	<div class="tab">
-		<button class="tablinks" onclick="openCity(event, 'myMissions')">My Missions</button>
-		<button class="tablinks" onclick="openCity(event, 'unassignedMissions')">Unassigned Missions</button>
-		<button class="tablinks" onclick="openCity(event, 'allMissions')">All Missions</button>
+		<button class="tablinks" onclick="openMissions(event, 'myMissions')">My Missions</button>
+		<button class="tablinks" onclick="openMissions(event, 'unassignedMissions')">Unassigned Missions</button>
+		<button class="tablinks" onclick="openMissions(event, 'allMissions')">All Missions</button>
 	</div>
 
 <div id="myMissions" class="tabcontent">
 		<button id="myBtn">
-		<article class="missionLists" th:each="mission: ${user.missions}">
+		<article class="missionLists" id="defaultUserMissions" th:each="mission: ${user.missions}">
 			<img src="./images/sector1.jpg">
 			<div class="mission-intro">
 				<h4 th:text="${mission.missionName}"></h4>
@@ -37,7 +37,7 @@
 
 <div id="unassignedMissions" class="tabcontent">
 		<button id="myBtn">
-		<article class="missionLists" th:each="mission: ${user.missions}">
+		<article class="missionLists" id="unassignedUserMissions" th:each="mission: ${user.missions}">
 			<img src="./images/sector1.jpg">
 			<div class="mission-intro">
 				<h4 th:text="${mission.missionName}"></h4>
@@ -50,7 +50,7 @@
 
 <div id="allMissions" class="tabcontent">
 		<button id="myBtn">
-		<article class="missionLists" th:each="mission: ${missions}">
+		<article class="missionLists" id="allUserMissions" th:each="mission: ${missions}">
 			<img src="./images/sector1.jpg">
 			<div class="mission-intro">
 				<h4 th:text="${mission.missionName}"></h4>
