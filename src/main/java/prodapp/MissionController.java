@@ -231,13 +231,13 @@ public class MissionController {
 		return "missions";
 	}
 	
-//	public String sortUserMissionsByDueDate(Model model) {
-//		User loggedInUser = findLoggedInUser();
-//
-//		Collection<Mission> foundMissions = missionRepo.findAllByUsersAndRecurringIsFalseOrderByDueDate(loggedInUser, "");
-//		model.addAttribute("missions", foundMissions);
-//		return "missions";
-//	}
+	public String sortUserMissionsByDueDate(Model model) {
+		User loggedInUser = findLoggedInUser();
+
+	Collection<Mission> foundMissions = missionRepo.findAllByUsersAndRecurringIsFalseOrderByDueDate(loggedInUser);
+		model.addAttribute("missions", foundMissions);
+		return "missions";
+	}
 
 	private User findLoggedInUser() {
 		Object activeUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

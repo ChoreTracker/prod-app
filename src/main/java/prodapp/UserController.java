@@ -31,7 +31,7 @@ public class UserController {
 		if(user.isPresent()) {
 			model.addAttribute("user", user.get());
 			model.addAttribute("unassignedUserMissions", missionRepo.findAllByUsersIsNullAndRecurringIsFalse());
-			model.addAttribute("allUserMissions", missionRepo.findAll());
+			model.addAttribute("allMissions", missionRepo.findAll());
 			return "user";
 			
 		}

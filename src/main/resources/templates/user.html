@@ -23,39 +23,39 @@
 	</div>
 
 <div id="myMissions" class="tabcontent">
-		<button id="myBtn">
-		<article class="missionLists" id="defaultUserMissions" th:each="mission: ${user.missions}">
+		<button id="myBtn" th:each="mission: ${user.missions}">
+		<article class="missionLists" id="defaultUserMissions">
 			<img src="./images/sector1.jpg">
 			<div class="mission-intro">
 				<h4 th:text="${mission.missionName}"></h4>
 				<p th:text="${mission.dueDate}"></p>
-				<p th:text="${mission.users}"></p>	
+				<!-- <p th:text="${mission.users}"></p>	 -->
+				<p th:each="user: ${mission.users}" th:text="${user.userName}"></p>
 </div>
 </article>
 </button>
 </div>
 
 <div id="unassignedMissions" class="tabcontent">
-		<button id="myBtn">
-		<article class="missionLists" id="unassignedUserMissions" th:each="mission: ${user.missions}">
+		<button id="myBtn"th:each="mission: ${unassignedUserMissions}">
+		<article class="missionLists" id="unassignedUserMissions" >
 			<img src="./images/sector1.jpg">
 			<div class="mission-intro">
 				<h4 th:text="${mission.missionName}"></h4>
 				<p th:text="${mission.dueDate}"></p>
-				<p th:text="${mission.users}"></p>	
-</div>
+			</div>
 </article>
 </button>
 </div>
 
 <div id="allMissions" class="tabcontent">
-		<button id="myBtn">
-		<article class="missionLists" id="allUserMissions" th:each="mission: ${missions}">
+		<button id="myBtn"th:each="mission: ${allMissions}">
+		<article class="missionLists" id="allUserMissions" >
 			<img src="./images/sector1.jpg">
 			<div class="mission-intro">
 				<h4 th:text="${mission.missionName}"></h4>
 				<p th:text="${mission.dueDate}"></p>
-				<p th:text="${mission.users}"></p>	
+				<p th:each="user: ${mission.users}" th:text="${user.userName}"></p>
 </div>
 </article>
 </button>

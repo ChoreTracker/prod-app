@@ -14,41 +14,40 @@
 		<div class="grid-container">
 			<h2 th:text="${sector.sectorName}"></h2>
 		
-			<button id="myBtn" th:each="mission: ${sector.missions}">
+			<button class="missionButton" th:each="mission: ${sector.missions}">
 			<article>
 				<img src="./images/sector1.jpg">
 				<div class="mission-intro">
 					<h4 th:text="${mission.missionName}"></h4>
 					<p th:text="${mission.dueDate}"></p>
-					<p th:text="${mission.users}"></p>
+					<p th:each="user: ${mission.users}" th:text="${user.userName}"></p>
 					
 				</div>
+				<!-- The Modal -->
+				<div class="modal">
+				
+						<!-- Modal content -->
+					<div class="modal-content">
+						<span class="close">&times;</span>
+				<!-- <p>Some text in modal</p> -->
+							<section>
+									<p>Mission Decription: </p><p th:text = "${mission.missionDescription}"></p>
+									<p>Mission Users: </p><p th:each="user: ${mission.users}" th:text="${user.userName}"></p>	
+									<p>Mission Period: </p><p th:text = "${mission.period}"></p>	
+									<p>Mission Snoozable (# of days): </p><p th:text = "${mission.snooze}"></p>	
+									<p>Mission Due Date: </p><p th:text = "${mission.dueDate}"></p>
+									<p>Mission Recurring: </p><p th:text = "${mission.recurring}"></p>
+							</section>
+				  
+					</div>
+				</div>
 			</article>
-		</button>
+			</button>
 			
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-		<!-- Modal content -->
-		<div class="modal-content">
-		  <span class="close">&times;</span>
-<!-- <p>Some text in modal</p> -->
-<section th:each="mission: ${sector.missions}">
-		<p>Mission Decription: </p><p th:text = "${mission.missionDescription}"></p>
-		<p>Mission Users: </p><p th:text = "${mission.users}"></p>	
-		<p>Mission Period: </p><p th:text = "${mission.period}"></p>	
-		<p>Mission Snoozable (# of days): </p><p th:text = "${mission.snooze}"></p>	
-		<p>Mission Due Date: </p><p th:text = "${mission.dueDate}"></p>
-		<p>Mission Recurring: </p><p th:text = "${mission.recurring}"></p>
-</section>
-  
-	  </div>
-
-			<!--need to be able to add a new mission here-->
+			
 			<div class="add-sector">
 			<h4>Add new mission to this sector</h4>
-			<form sec:authorize="hasRole('ROLE_ADMIN')" action="/action_page.php">
-	<!-- on this page, need to maybe make it easy for user to add mission directly to this sector w/o having to specify? -->
+			<form action="/action_page.php">
 
 				<label for="newMissionName"><b>Mission Name</b></label>
 				<input type="text" placeholder="Enter Mission Name" name="newMissionName" required>
@@ -67,12 +66,14 @@
 
 				<label for="recurring"><b>Recurring?</b></label>
 				<input type="text" placeholder="Yes or No" name="recurring" required>
+
+				<input type="hidden" th:value="${sector.id}" name="sectorId">
 	
-				<button type="submit" class="registerbtn">Add mission</button>	
+				<button th:formaction="@{/make-mission-within-sector}"  type="submit" class="registerbtn">Add mission</button>	
 			</form>
 				
 			</div>	
-			</div> 
+			
 
 
 	</main>
