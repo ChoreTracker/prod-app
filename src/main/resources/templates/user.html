@@ -23,21 +23,37 @@
 	</div>
 
 <div id="myMissions" class="tabcontent">
-		<button id="myBtn" th:each="mission: ${user.missions}">
+		<button class="missionButton" th:each="mission: ${user.missions}">
 		<article class="missionLists" id="defaultUserMissions">
 			<img src="./images/sector1.jpg">
 			<div class="mission-intro">
 				<h4 th:text="${mission.missionName}"></h4>
 				<p th:text="${mission.dueDate}"></p>
-				<!-- <p th:text="${mission.users}"></p>	 -->
 				<p th:each="user: ${mission.users}" th:text="${user.userName}"></p>
 </div>
+<!-- The Modal -->
+<div class="modal">
+				
+		<!-- Modal content -->
+	<div class="modal-content">
+		<span class="close">&times;</span>
+<!-- <p>Some text in modal</p> -->
+			<section>
+					<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+					<p>Mission Users: <span th:each="user: ${mission.users}" th:text="${user.userName}"></span></p>	
+					<p>Mission Period: <span th:text = "${mission.period}"></span></p>	
+					<p>Mission Snoozable (# of days): <span th:text = "${mission.snooze}"></span></p>	
+					<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
+					<p>Mission Recurring: <span th:text = "${mission.recurring}"></span></p>
+			</section>
+  	</div>
+	</div>
 </article>
 </button>
 </div>
 
 <div id="unassignedMissions" class="tabcontent">
-		<button id="myBtn"th:each="mission: ${unassignedUserMissions}">
+		<button class="missionButton" th:each="mission: ${unassignedUserMissions}">
 		<article class="missionLists" id="unassignedUserMissions" >
 			<img src="./images/sector1.jpg">
 			<div class="mission-intro">
@@ -49,7 +65,7 @@
 </div>
 
 <div id="allMissions" class="tabcontent">
-		<button id="myBtn"th:each="mission: ${allMissions}">
+		<button class="missionButton" th:each="mission: ${allMissions}">
 		<article class="missionLists" id="allUserMissions" >
 			<img src="./images/sector1.jpg">
 			<div class="mission-intro">

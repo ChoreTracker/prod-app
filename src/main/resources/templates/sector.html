@@ -31,12 +31,12 @@
 						<span class="close">&times;</span>
 				<!-- <p>Some text in modal</p> -->
 							<section>
-									<p>Mission Decription: </p><p th:text = "${mission.missionDescription}"></p>
-									<p>Mission Users: </p><p th:each="user: ${mission.users}" th:text="${user.userName}"></p>	
-									<p>Mission Period: </p><p th:text = "${mission.period}"></p>	
-									<p>Mission Snoozable (# of days): </p><p th:text = "${mission.snooze}"></p>	
-									<p>Mission Due Date: </p><p th:text = "${mission.dueDate}"></p>
-									<p>Mission Recurring: </p><p th:text = "${mission.recurring}"></p>
+									<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+									<p>Mission Users: <span th:each="user: ${mission.users}" th:text="${user.userName}"></span></p>	
+									<p>Mission Period: <span th:text = "${mission.period}"></span></p>	
+									<p>Mission Snoozable (# of days): <span th:text = "${mission.snooze}"></span></p>	
+									<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
+									<p>Mission Recurring: <span th:text = "${mission.recurring}"></span></p>
 							</section>
 				  
 					</div>
@@ -73,6 +73,7 @@
 			</form>
 				
 			</div>	
+			</div>
 			
 
 
