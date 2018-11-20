@@ -35,36 +35,58 @@ function postSectors(sectorName){
 // 	xhr.send();
 // }
 
-const missions=document.querySelectorAll(".missionButton");
+const missions=document.querySelectorAll(".mission");
 
 for(let i=0; i<missions.length; i++) {
-	let button=missions[i].querySelector("article");
+	let button=missions[i].querySelector(".missionButton");
+	buttonid="button"+ i;
+	button.id = buttonid;
+	console.log(button.id);
+ 
+	var modal = missions[i].getElementsByClassName('modal')[0];
+	modalid = "modal" + i;
+	modal.id = modalid;
+	console.log(modal.id);
 
-	var modal = missions[i].getElementsByClassName('modal');
 	var span = missions[i].getElementsByClassName("close")[0];
+	spanid = "span"+ i;
+	span.id = spanid;
+	console.log(span.id);
+
 	button.addEventListener("click", function(){
-		if(!modal[0].classList.contains("opened")){
-			modal[0].classList.add("opened")
-		} else {
-			modal[0].classList.remove("opened")
+		var currentIndex = i;
+		var modalIndex = "modal" + currentIndex;
+		modal = document.getElementById(modalIndex);
+		if (!modal.classList.contains("opened")){
+			modal.classList.add("opened")
+		}
+		 else {
+			modal.classList.remove("opened")
 		}
 		
 	})
-	// span.addEventListener("click",function() {
-	// 	if(!modal[0].classList.contains("opened")){
-	// 		modal[0].classList.add("opened")
-	// 	} else {
-	// 		modal[0].classList.remove("opened")
-	// 	}
-	// 		// style.display = "none";
-	// 	console.log("Hello")
-	// })
-// 	window.addEventListener("click",function(event) {
-// 		if (event.target == modal[0]) {
-// 		modal[0].style.display = "none";
-// 		}
-// 	})
- }
+
+	span.addEventListener("click",function() {
+		var currentIndex = i;
+		var modalIndex = "modal" + currentIndex;
+		modal = document.getElementById(modalIndex);
+		if(!modal.classList.contains("opened")){
+			modal.classList.add("opened")
+		} else {
+			modal.classList.remove("opened")
+		}
+			// style.display = "none";
+		console.log("Hello")
+	})
+	window.addEventListener("click", function(event) {
+		var currentIndex = i;
+		var modalIndex = "modal" + currentIndex;
+		modal = document.getElementById(modalIndex);
+		if (event.target == modal) {
+		modal.style.display = "none";
+		}
+	})
+}
 
 
 
