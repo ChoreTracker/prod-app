@@ -9,7 +9,6 @@ import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -135,7 +134,7 @@ public class MissionControllerTest {
 		missionRepo.save(mission3);
 		Collection<Mission> allMissions = Arrays.asList(mission1, mission2, mission3);
 		when(missionRepo.findAll()).thenReturn(allMissions);
-		underTest.findUnassignedMissions(model);
+		underTest.showAllUnassignedMissions(model);
 		Collection<Mission> expected = new HashSet<>();
 		expected.add(mission1);
 		verify(model).addAttribute("missions", expected);

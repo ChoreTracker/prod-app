@@ -10,17 +10,26 @@ public interface MissionRepository extends CrudRepository<Mission, Long> {
 
 	void deleteBySector(Long sectorId);
 
-	Collection<Mission> findAllByUsersAndRecurringIsFalseOrderByDueDate(User user);
+//	Collection<Mission> findAllByUsersAndRecurringIsFalseOrderByDueDate(User user);
 
+	//find user's missions for a given completion date, ordered by due date
 	Collection<Mission> findAllByUsersAndCompletionDateAndRecurringIsFalseOrderByDueDate(User user, String completionDate);
 
-	Collection<Mission> findAllByUsersAndRecurringIsFalseOrderByDueDate(User user, String string);
+	//find user's missions ordered by due date
+	Collection<Mission> findAllByUsersAndRecurringIsFalseOrderByDueDate(User user);
 	
+	
+	//find missions with no assigned users
 	Collection<Mission> findAllByUsersIsNullAndRecurringIsFalse();
 
+	//finds missions that are or are not recurring
 	Collection<Mission> findByRecurring(boolean recurring);
 
-	Collection<Mission> findCompletionDateNotNullByUsersIdOrderByDueDate(long id);
+	//user's finished missions, ordered by due date
+	Collection<Mission> findCompletionDateNotNullByUsersIdOrderByDueDate(long userId);
+	
+	//all unfinished missions in a sector, ordered by due date
+	Collection<Mission> findAllBySectorAndCompletionDateNotNullOrderByDueDate(long sectorId);
 
 
 }

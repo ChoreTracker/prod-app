@@ -39,7 +39,7 @@ article p{
     margin: 0;
 }
 
-#myBtn{
+.missionButton{
     border-color: #323232;
     border-radius: 25px;
     border-style: solid;
@@ -85,5 +85,7 @@ article p{
     border: 1px solid #ccc;
     border-top: none;
 }
+
+
 
 /* Collapse  */
