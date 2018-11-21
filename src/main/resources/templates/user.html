@@ -17,12 +17,12 @@
 
 		
 	<div class="tab">
-		<button class="tablinks" onclick="openMissions(event, 'myMissions')">My Missions</button>
+		<button class="tablinks active" onclick="openMissions(event, 'myMissions')">My Missions</button>
 		<button class="tablinks" onclick="openMissions(event, 'unassignedMissions')">Unassigned Missions</button>
 		<button class="tablinks" onclick="openMissions(event, 'allMissions')">All Missions</button>
 	</div>
 
-<div id="myMissions" class="tabcontent">
+<div id="myMissions" class="tabcontent" style="display: block;">
 	<div class ="mission" th:each="mission: ${user.missions}">	
 	<button class="missionButton">
 		<article class="missionLists" id="defaultUserMissions">
