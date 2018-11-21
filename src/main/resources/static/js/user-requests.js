@@ -12,6 +12,7 @@ for(let i=0; i<missions.length; i++) {
 	var doneButton = missions[i].getElementsByClassName("done-button")[0];
 	doneButtonId = "doneButton" + i;
 	doneButton.id = doneButtonId;
+	console.log(doneButton.id);
  
 	var modal = missions[i].getElementsByClassName('modal')[0];
 	modalid = "modal" + i;
@@ -75,7 +76,7 @@ const xhr = new XMLHttpRequest();
 	}
 	
 function missionDone(missionId){
-    xhr.open("POST", "/show-missions/{missionId}/done" + missionId, true);
+    xhr.open("POST", "/missions/{id}/done" + missionId, true);
     xhr.send();
 }
 
