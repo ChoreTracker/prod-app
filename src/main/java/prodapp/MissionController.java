@@ -10,7 +10,9 @@ import javax.annotation.Resource;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -112,11 +114,22 @@ public class MissionController {
 
 	// pass in the mission id, sets the completion date to current date
 	@RequestMapping("/mission-complete-button")
-	public void setAsComplete(long missionId) {
+	public String setAsComplete(long missionId, long userId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.markComplete();
 		missionRepo.save(mission);
+		return "redirect:/user?id=" + userId;
+	}
+	
+	@RequestMapping(path="missions/{missionId}/done", method = RequestMethod.POST)
+	public String markComplete(@PathVariable long missionId, Model model) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.markComplete();
+		missionRepo.save(mission);
+		model.addAttribute("mission", mission);
+		return "partials/mission-complete";
 	}
 
 	public void createDueDate(long missionId, String date) {
@@ -133,11 +146,12 @@ public class MissionController {
 		missionRepo.save(mission);
 
 	}
-
-	public void snoozeMission(long missionId) {
+	@RequestMapping("/snooze-button")
+	public String snoozeMission(long missionId, long userId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.hitSnooze();
+		return "redirect:/user?id=" + userId;
 	}
 
 	public void setMissionPeriod(long missionId, int periodDays) {

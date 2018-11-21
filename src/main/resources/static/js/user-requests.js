@@ -2,11 +2,16 @@
 
 const missions=document.querySelectorAll(".mission");
 
+
 for(let i=0; i<missions.length; i++) {
 	let button=missions[i].querySelector(".missionButton");
 	buttonid="button"+ i;
 	button.id = buttonid;
 	console.log(button.id);
+
+	var doneButton = missions[i].getElementsByClassName("done-button")[0];
+	doneButtonId = "doneButton" + i;
+	doneButton.id = doneButtonId;
  
 	var modal = missions[i].getElementsByClassName('modal')[0];
 	modalid = "modal" + i;
@@ -31,6 +36,13 @@ for(let i=0; i<missions.length; i++) {
 		
 	})
 
+	doneButton.addEventListener("click", function(){
+		var currentIndex = i;
+		var doneButtonId = "#doneButton" + currentIndex;
+		var doneButtonInput = document.querySelector(doneButtonId + " input");
+		missionDone(doneButtonInput.value);
+	})
+
 	span.addEventListener("click",function() {
 		var currentIndex = i;
 		var modalIndex = "modal" + currentIndex;
@@ -50,6 +62,21 @@ for(let i=0; i<missions.length; i++) {
 			modal.classList.remove("opened")
 		}
 	})
+
+	
+}
+var modal = document.getElementsByClassName("modal opened");
+const xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if (xhr.readyState === 4 && xhr.status === 200){
+			const res = xhr.responseText;
+			modal.innerHTML = res;
+		}
+	}
+	
+function missionDone(missionId){
+    xhr.open("POST", "/show-missions/{missionId}/done" + missionId, true);
+    xhr.send();
 }
 
 

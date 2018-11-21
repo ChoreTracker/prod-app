@@ -26,6 +26,9 @@
 			<button class="tablinks" onclick="openMissions(event, 'unassignedMissions')">Unassigned Missions</button>
 			<button class="tablinks" onclick="openMissions(event, 'allMissions')">All Missions</button>
 		</div>
+		<div class="options-row">
+
+		</div>
 
 
 		<div id="myMissions" class="tabcontent">
@@ -51,6 +54,19 @@
 							<p>Mission Snoozable (# of days): <span th:text = "${mission.snooze}"></span></p>	
 							<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
 							<p>Mission Recurring: <span th:text = "${mission.recurring}"></span></p>
+						</section>
+						<section>
+							<form method="POST" class="done-button">
+								<input type="hidden" th:value="${mission.id}" name="missionId"/>
+								
+								<button>Done</button>
+							</form>
+							<form method="POST" class="snooze-button">
+								<input type="hidden" th:value="${mission.id}" name="missionId"/>
+								
+								<button th:formaction= "@{/snooze-button}">Snooze</button>
+							</form>
+
 						</section>
 					</div>
 				</div>
@@ -80,6 +96,19 @@
 							<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
 							<p>Mission Recurring: <span th:text = "${mission.recurring}"></span></p>
 						</section>
+						<section>
+							<form method="POST" class="done-button">
+								<input type="hidden" th:value="${mission.id}" name="missionId"/>
+								
+								<button>Done</button>
+							</form>
+							<form method="POST" class="snooze-button">
+								<input type="hidden" th:value="${mission.id}" name="missionId"/>
+								
+								<button th:formaction= "@{/snooze-button}">Snooze</button>
+							</form>
+
+						</section>
 					</div>
 				</div>
 			</div>
@@ -108,6 +137,18 @@
 							<p>Mission Snoozable (# of days): <span th:text = "${mission.snooze}"></span></p>	
 							<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
 							<p>Mission Recurring: <span th:text = "${mission.recurring}"></span></p>
+						</section>
+						<section>
+							<form method="POST" class="done-button">
+								<input type="hidden" th:value="${mission.id}" name="missionId"/>
+								<button>Done</button>
+							</form>
+							<form method="POST" class="snooze-button">
+								<input type="hidden" th:value="${mission.id}" name="missionId"/>
+								
+								<button th:formaction= "@{/snooze-button}">Snooze</button>
+							</form>
+
 						</section>
 					</div>
 				</div>

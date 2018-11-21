@@ -1,0 +1,13 @@
+<div class="modal-content">
+    <span class="close">&times;</span>
+    <section>
+        <p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+        <p>Mission Users: <span th:each="user: ${mission.users}" th:text="${user.userName}"></span></p>	
+        <p>Mission Period: <span th:text = "${mission.period}"></span></p>	
+        <p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
+        <p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>	
+    </section>
+    <section>
+        <h3>This mission has been completed.</h3>
+    </section>
+</div>

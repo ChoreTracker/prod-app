@@ -12,6 +12,8 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Mission {
 
@@ -24,10 +26,11 @@ public class Mission {
 	@Lob
 	private String missionDescription;
 
+	@JsonIgnore
 	@ManyToMany
 	private Collection<User> users;
 
-	@ManyToOne
+	@ManyToOne 
 	private Sector sector;
 
 	private String completionDate;
