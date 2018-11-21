@@ -1,6 +1,6 @@
 //need to change cityName to something, but where else is affected?
-const missions = document.querySelectorAll('.missionLists');
-console.log(missions);
+// const missions = document.querySelectorAll('.missionLists');
+// console.log(missions);
 
 function openMissions(evt, missionType) {
     var i, tabcontent, tablinks;
