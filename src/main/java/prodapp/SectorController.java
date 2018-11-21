@@ -34,7 +34,7 @@ public class SectorController {
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
 
 		if (sector.isPresent()) {
-			model.addAttribute("sector", sector.get());
+			model.addAttribute("sector", missionRepo.findAllBySectorAndCompletionDateNotNullOrderByDueDate(sectorId));
 			return "sector";
 		} // this will also show all the missions in the sector through the
 			// sector.getMissions();
