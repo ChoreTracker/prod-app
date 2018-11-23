@@ -1,28 +1,35 @@
 
 
 const missions=document.querySelectorAll(".mission");
+var modal = document.getElementsByClassName("modal opened");
+
+const xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if (xhr.readyState === 4 && xhr.status === 200){
+			const res = xhr.responseText;
+			modal.innerHTML = res;
+		}
+	}
 
 
 for(let i=0; i<missions.length; i++) {
 	let button=missions[i].querySelector(".missionButton");
 	buttonid="button"+ i;
 	button.id = buttonid;
-	console.log(button.id);
 
 	var doneButton = missions[i].getElementsByClassName("done-button")[0];
 	doneButtonId = "doneButton" + i;
 	doneButton.id = doneButtonId;
-	console.log(doneButton.id);
  
 	var modal = missions[i].getElementsByClassName('modal')[0];
 	modalid = "modal" + i;
 	modal.id = modalid;
-	console.log(modal.id);
+	
 
 	var span = missions[i].getElementsByClassName("close")[0];
 	spanid = "span"+ i;
 	span.id = spanid;
-	console.log(span.id);
+
 
 	button.addEventListener("click", function(){
 		var currentIndex = i;
@@ -66,17 +73,9 @@ for(let i=0; i<missions.length; i++) {
 
 	
 }
-var modal = document.getElementsByClassName("modal opened");
-const xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function(){
-		if (xhr.readyState === 4 && xhr.status === 200){
-			const res = xhr.responseText;
-			modal.innerHTML = res;
-		}
-	}
 	
 function missionDone(missionId){
-    xhr.open("POST", "/missions/{id}/done" + missionId, true);
+    xhr.open("POST", "/users/{userId}/missions/{missionId}/done" + userId, missionId, true);
     xhr.send();
 }
 

@@ -122,13 +122,15 @@ public class MissionController {
 		return "redirect:/user?id=" + userId;
 	}
 	
-	@RequestMapping(path="/missions/{id}/done", method = RequestMethod.POST)
-	public String markComplete(@PathVariable long missionId, Model model) {
+	@RequestMapping(path="/missions/{missionId}/done", method = RequestMethod.POST)
+	public String markComplete(@PathVariable long missionId, @RequestParam long userId, Model model) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.markComplete();
 		missionRepo.save(mission);
-		model.addAttribute("mission", mission);
+		Optional<User> user = userRepo.findById(userId);
+		
+		model.addAttribute("user", user.get());
 		return "partials/mission-complete";
 	}
 

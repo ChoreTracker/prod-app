@@ -31,7 +31,7 @@
 		</div>
 
 
-		<div id="myMissions" class="tabcontent">
+		<div id="myMissions" class="tabcontent" style= "display: block">
 			<div class ="mission" th:each="mission: ${user.missions}">	
 				<button class="missionButton">
 					<article class="missionLists" id="defaultUserMissions">
@@ -57,12 +57,14 @@
 						</section>
 						<section>
 							<form method="POST" class="done-button">
+								<input type="hidden" th:value="${user.id}" name="userId"/>
 								<input type="hidden" th:value="${mission.id}" name="missionId"/>
-								
+
 								<button>Done</button>
 							</form>
 							<form method="POST" class="snooze-button">
 								<input type="hidden" th:value="${mission.id}" name="missionId"/>
+								
 								
 								<button th:formaction= "@{/snooze-button}">Snooze</button>
 							</form>
@@ -99,6 +101,7 @@
 						<section>
 							<form method="POST" class="done-button">
 								<input type="hidden" th:value="${mission.id}" name="missionId"/>
+								<input type="hidden" th:value="${user.id}" name="userId"/>
 								
 								<button>Done</button>
 							</form>
@@ -141,6 +144,7 @@
 						<section>
 							<form method="POST" class="done-button">
 								<input type="hidden" th:value="${mission.id}" name="missionId"/>
+								<input type="hidden" th:value="${user.id}" name="userId"/>								
 								<button>Done</button>
 							</form>
 							<form method="POST" class="snooze-button">
