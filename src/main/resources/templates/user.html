@@ -20,7 +20,7 @@
 				<button class="tablinks" onclick="openMissions(event, 'allMissions')">All Missions</button>
 			</div>
 
-		<div id="myMissions" class="tabcontent">
+		<div id="myMissions" class="tabcontent" style="display: block">
 			<div class ="mission" th:each="mission: ${user.missions}">	
 				<button class="missionButton">
 					<article class="missionLists" id="defaultUserMissions">
