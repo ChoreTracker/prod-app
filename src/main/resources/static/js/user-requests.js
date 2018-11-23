@@ -6,17 +6,18 @@ for(let i=0; i<missions.length; i++) {
 	let button=missions[i].querySelector(".missionButton");
 	buttonid="button"+ i;
 	button.id = buttonid;
-	console.log(button.id);
+	
  
 	var modal = missions[i].getElementsByClassName('modal')[0];
 	modalid = "modal" + i;
 	modal.id = modalid;
-	console.log(modal.id);
+
 
 	var span = missions[i].getElementsByClassName("close")[0];
 	spanid = "span"+ i;
 	span.id = spanid;
-	console.log(span.id);
+	
+
 
 	button.addEventListener("click", function(){
 		var currentIndex = i;

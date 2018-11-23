@@ -112,7 +112,7 @@ public class MissionController {
 
 	// pass in the mission id, sets the completion date to current date
 	@RequestMapping("/mission-complete-button")
-	public String setAsComplete(long missionId, long userId) {
+	public String setAsComplete(@RequestParam long missionId, long userId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.markComplete();
@@ -121,7 +121,14 @@ public class MissionController {
 		return "redirect:/user?id=" + userId;
 	}
 	
-	
+	@RequestMapping("/snooze-mission")
+	public String snoozeMission(@RequestParam long missionId, long userId) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.hitSnooze();
+		missionRepo.save(mission);
+		return "redirect:/user?id=" + userId;
+	}
 
 	public void createDueDate(long missionId, String date) {
 		Optional<Mission> result = missionRepo.findById(missionId);
@@ -138,11 +145,7 @@ public class MissionController {
 
 	}
 
-	public void snoozeMission(long missionId) {
-		Optional<Mission> result = missionRepo.findById(missionId);
-		Mission mission = result.get();
-		mission.hitSnooze();
-	}
+
 
 	public void setMissionPeriod(long missionId, int periodDays) {
 		Optional<Mission> result = missionRepo.findById(missionId);
@@ -248,14 +251,17 @@ public class MissionController {
 		User loggedInUser = User.class.cast(activeUser);
 		return loggedInUser;
 	}
+	
 	@RequestMapping("/claim-mission-button")
-	public void claimUnassignedMission(long missionId, User user) {
+	public String claimUnassignedMission(long missionId, long userId) {
 		User activeUser = findLoggedInUser();
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.addUser(activeUser);
 		missionRepo.save(mission);
+		return "redirect:/user?id=" + userId;
 	}
+	
 	@RequestMapping("/claim-mission-assigned-button")
 	public void claimAssignedMission(long missionId, User user) {
 		User activeUser = findLoggedInUser();
