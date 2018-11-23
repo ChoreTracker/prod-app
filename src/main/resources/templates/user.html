@@ -1,145 +1,121 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-<head>
-	<title>User Screen</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="./css/layout.css">
-	<link rel="stylesheet" type="text/css" href="./css/style.css">
-</head>
-<body>
-	<main>
-		<header>
-			<h1>Prod/header placeholder</h1>
-		</header>
-		<!-- <div class="grid-container"> -->
-			<h2 th:text="'Hello ' + ${user.userName}"></h2>
-				<!-- <h3>Here are your current missions.</h3> -->
-
-		
-	<div class="tab">
-		<button class="tablinks" onclick="openMissions(event, 'myMissions')">My Missions</button>
-		<button class="tablinks" onclick="openMissions(event, 'unassignedMissions')">Unassigned Missions</button>
-		<button class="tablinks" onclick="openMissions(event, 'allMissions')">All Missions</button>
-	</div>
-
-<div id="myMissions" class="tabcontent">
-	<div class ="mission" th:each="mission: ${user.missions}">	
-	<button class="missionButton">
-		<article class="missionLists" id="defaultUserMissions">
-			<img src="./images/sector1.jpg">
-			<div class="mission-intro">
-				<h4 th:text="${mission.missionName}"></h4>
-				<p th:text="${mission.dueDate}"></p>
-				<p th:each="user: ${mission.users}" th:text="${user.userName}"></p>
+	<head>
+		<title>User Screen</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="./css/layout.css">
+		<link rel="stylesheet" type="text/css" href="./css/style.css">
+	</head>
+	<body>
+		<main>
+			<header>
+				<h1>Prod/header placeholder</h1>
+			</header>
+			
+				<h2 th:text="'Hello ' + ${user.userName}"></h2>
+	
+			<div class="tab">
+				<button class="tablinks" onclick="openMissions(event, 'myMissions')">My Missions</button>
+				<button class="tablinks" onclick="openMissions(event, 'unassignedMissions')">Unassigned Missions</button>
+				<button class="tablinks" onclick="openMissions(event, 'allMissions')">All Missions</button>
 			</div>
-		</article>
-	</button>
-<!-- The Modal -->
-<div class="modal">
-				
-		<!-- Modal content -->
-	<div class="modal-content">
-		<span class="close">&times;</span>
-<!-- <p>Some text in modal</p> -->
-			<section>
-					<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
-					<p>Mission Users: <span th:each="user: ${mission.users}" th:text="${user.userName}"></span></p>	
-					<p>Mission Period: <span th:text = "${mission.period}"></span></p>	
-					<p>Mission Snoozable (# of days): <span th:text = "${mission.snooze}"></span></p>	
-					<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
-					<p>Mission Recurring: <span th:text = "${mission.recurring}"></span></p>
-			</section>
-  		</div>
-	</div>
-</div>
-</div>
 
-<div id="unassignedMissions" class="tabcontent">
-	<div class ="mission" th:each="mission: ${unassignedUserMissions}">
-	<button class="missionButton">
-		<article class="missionLists" id="unassignedUserMissions" >
-			<img src="./images/sector1.jpg">
-			<div class="mission-intro">
-				<h4 th:text="${mission.missionName}"></h4>
-				<p th:text="${mission.dueDate}"></p>
+		<div id="myMissions" class="tabcontent">
+			<div class ="mission" th:each="mission: ${user.missions}">	
+				<button class="missionButton">
+					<article class="missionLists" id="defaultUserMissions">
+						<img src="./images/sector1.jpg">
+						<div class="mission-intro">
+							<h4 th:text="${mission.missionName}"></h4>
+							<p th:text="${mission.dueDate}"></p>
+							<p th:each="user: ${mission.users}" th:text="${user.userName}"></p>
+						</div>
+					</article>
+				</button>
+		<!-- The Modal -->
+			<div class="modal">
+				<div class="modal-content">
+					<span class="close">&times;</span>
+						<section>
+							<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+							<p>Mission Users: <span th:each="user: ${mission.users}" th:text="${user.userName}"></span></p>	
+							<p>Mission Period: <span th:text = "${mission.period}"></span></p>	
+							<p>Mission Snoozable (# of days): <span th:text = "${mission.snooze}"></span></p>	
+							<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
+							<p>Mission Recurring: <span th:text = "${mission.recurring}"></span></p>
+						</section>
+					</div>
+				</div>
 			</div>
-</article>
-</button>
-<!-- The Modal -->
-<div class="modal">
-				
-	<!-- Modal content -->
-<div class="modal-content">
-	<span class="close">&times;</span>
-<!-- <p>Some text in modal</p> -->
-		<section>
-				<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
-				<p>Mission Users: <span th:each="user: ${mission.users}" th:text="${user.userName}"></span></p>	
-				<p>Mission Period: <span th:text = "${mission.period}"></span></p>	
-				<p>Mission Snoozable (# of days): <span th:text = "${mission.snooze}"></span></p>	
-				<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
-				<p>Mission Recurring: <span th:text = "${mission.recurring}"></span></p>
-		</section>
-	  </div>
-</div>
+		</div>
 
-</div>
-</div>
+		<div id="unassignedMissions" class="tabcontent">
+			<div class ="mission" th:each="mission: ${unassignedUserMissions}">
+				<button class="missionButton">
+					<article class="missionLists" id="unassignedUserMissions" >
+						<img src="./images/sector1.jpg">
+						<div class="mission-intro">
+							<h4 th:text="${mission.missionName}"></h4>
+							<p th:text="${mission.dueDate}"></p>
+						</div>
+					</article>
+				</button>
+			<!-- The Modal -->
+				<div class="modal">
+					<div class="modal-content">
+						<span class="close">&times;</span>
+						<section>
+							<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+							<p>Mission Users: <span th:each="user: ${mission.users}" th:text="${user.userName}"></span></p>	
+							<p>Mission Period: <span th:text = "${mission.period}"></span></p>	
+							<p>Mission Snoozable (# of days): <span th:text = "${mission.snooze}"></span></p>	
+							<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
+							<p>Mission Recurring: <span th:text = "${mission.recurring}"></span></p>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
 
-<div id="allMissions" class="tabcontent">
-	<div class ="mission" th:each="mission: ${allMissions}">	
-	<button class="missionButton">
-		<article class="missionLists" id="allUserMissions" >
-			<img src="./images/sector1.jpg">
-			<div class="mission-intro">
-				<h4 th:text="${mission.missionName}"></h4>
-				<p th:text="${mission.dueDate}"></p>
-				<p th:each="user: ${mission.users}" th:text="${user.userName}"></p>
-</div>
-</article>
-</button>
-<!-- The Modal -->
-<div class="modal">
-				
-	<!-- Modal content -->
-<div class="modal-content">
-	<span class="close">&times;</span>
-<!-- <p>Some text in modal</p> -->
-		<section>
-				<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
-				<p>Mission Users: <span th:each="user: ${mission.users}" th:text="${user.userName}"></span></p>	
-				<p>Mission Period: <span th:text = "${mission.period}"></span></p>	
-				<p>Mission Snoozable (# of days): <span th:text = "${mission.snooze}"></span></p>	
-				<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
-				<p>Mission Recurring: <span th:text = "${mission.recurring}"></span></p>
-		</section>
-	  </div>
-</div>
-
-</div>
-</div>
-
-
-
-
-				<!-- <ul	th:each="mission:${user.missions}">
-					<li>
-						<a th:href="@{/mission(id=${mission.id})}" th:text="${mission.missionName}"></a>
-					</li>
-				</ul> -->
+		<div id="allMissions" class="tabcontent">
+			<div class ="mission" th:each="mission: ${allMissions}">	
+				<button class="missionButton">
+					<article class="missionLists" id="allUserMissions" >
+						<img src="./images/sector1.jpg">
+						<div class="mission-intro">
+							<h4 th:text="${mission.missionName}"></h4>
+							<p th:text="${mission.dueDate}"></p>
+							<p th:each="user: ${mission.users}" th:text="${user.userName}"></p>
+						</div>
+					</article>
+				</button>
+				<!-- The Modal -->
+				<div class="modal">
+					<div class="modal-content">
+						<span class="close">&times;</span>
+						<section>
+							<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+							<p>Mission Users: <span th:each="user: ${mission.users}" th:text="${user.userName}"></span></p>	
+							<p>Mission Period: <span th:text = "${mission.period}"></span></p>	
+							<p>Mission Snoozable (# of days): <span th:text = "${mission.snooze}"></span></p>	
+							<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
+							<p>Mission Recurring: <span th:text = "${mission.recurring}"></span></p>
+						</section>
+					</div>
+				</div>
+			</div>
+		</div>
 
 
-<!-- </div> -->
-
-</main>
-<footer>
-		<ul>
-			<li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
-			<li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
-			<li> <a href="http://localhost:8080/show-users">All Users</a></li>
-		</ul>
-</footer>	
-<script src = "./js/user.js"></script>	
-<script src = "./js/user-requests.js"></script>	
-</body>
+		</main>
+		<footer>
+			<ul>
+				<li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
+				<li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
+				<li> <a href="http://localhost:8080/show-users">All Users</a></li>
+			</ul>
+		</footer>	
+		<script src = "./js/user.js"></script>	
+		<script src = "./js/user-requests.js"></script>	
+	</body>
 </html>

@@ -112,12 +112,16 @@ public class MissionController {
 
 	// pass in the mission id, sets the completion date to current date
 	@RequestMapping("/mission-complete-button")
-	public void setAsComplete(long missionId) {
+	public String setAsComplete(long missionId, long userId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.markComplete();
 		missionRepo.save(mission);
+		
+		return "redirect:/user?id=" + userId;
 	}
+	
+	
 
 	public void createDueDate(long missionId, String date) {
 		Optional<Mission> result = missionRepo.findById(missionId);
