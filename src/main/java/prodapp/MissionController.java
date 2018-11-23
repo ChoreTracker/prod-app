@@ -123,14 +123,12 @@ public class MissionController {
 	}
 	
 	@RequestMapping(path="/missions/{missionId}/done", method = RequestMethod.POST)
-	public String markComplete(@PathVariable long missionId, @RequestParam long userId, Model model) {
+	public String markComplete(@RequestParam (value="id")long missionId, Model model) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.markComplete();
 		missionRepo.save(mission);
-		Optional<User> user = userRepo.findById(userId);
-		
-		model.addAttribute("user", user.get());
+		model.addAttribute("mission", mission);
 		return "partials/mission-complete";
 	}
 

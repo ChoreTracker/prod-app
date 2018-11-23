@@ -75,7 +75,7 @@ for(let i=0; i<missions.length; i++) {
 }
 	
 function missionDone(missionId){
-    xhr.open("POST", "/users/{userId}/missions/{missionId}/done" + userId, missionId, true);
+    xhr.open("POST", "/missions/{missionId}/done" +  missionId, true);
     xhr.send();
 }
 

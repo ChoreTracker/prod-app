@@ -42,17 +42,7 @@ public class UserRestController {
 		return missionRepo.findByUsersContains(user);
 	}
 	
-	@RequestMapping(path="/{userId}/missions/{missionId}/done", method = RequestMethod.POST)
-	public String markComplete(@PathVariable long userId, @RequestParam long missionId, Model model) {
-		Optional<Mission> result = missionRepo.findById(missionId);
-		Mission mission = result.get();
-		mission.markComplete();
-		missionRepo.save(mission);
-		Optional<User> user = userRepo.findById(userId);
-		
-		model.addAttribute("user", user.get());
-		return "partials/mission-complete";
-	}
+	
 	
 	
 	
