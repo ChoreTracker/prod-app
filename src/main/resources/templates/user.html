@@ -33,19 +33,19 @@
 								<form>
 									<h3>Add a new mission</h3>
 									<form method="POST">
-										<input type="text" name="missionName" placeholder="Name of the mission"/>
-										<input type="text" name="missionDescription" placeholder="Description of the mission"/>
+										<input type="text" name="missionName" placeholder="Name of the mission" required/>
+										<input type="text" name="missionDescription" placeholder="Description of the mission" required/>
 										<p>When is the mission due?</p>
-										<input type="date" name="dueDate"/>
+										<input type="date" name="dueDate" required/>
 										<p>how many days elapse between mission due dates</p>
-										<input type="number" name="period"  min="1" max="900" placeholder="num"/>
+										<input type="number" name="period"  min="1" max="900" placeholder="num" required/>
 										<p>how many days (1-7) can the mission be snoozed</p>
-										<input type="number" name="snooze" min="1" max="7" placeholder="num"/>
+										<input type="number" name="snooze" min="1" max="7" placeholder="num" required/>
 										<p>Please choose a sector</p>
-										<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${sector.id}" th:text="${sector.sectorName}"> <br>
+										<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${sector.id}" th:text="${sector.sectorName}" required> <br>
 										<p>Does this mission recur?</p>
-										<input type="radio" name="recurring" value="true" checked> mission recurs<br>
-  										<input type="radio" name="recurring" value="false"> mission does not recur<br>
+										<input type="radio" name="recurring" value="true" checked required> mission recurs<br>
+  										<input type="radio" name="recurring" value="false" required> mission does not recur<br>
 										<input type="hidden" th:value="${user.id}" name="userId"/>
 										<button class="newMisson-button" th:formaction= "@{/create-mission-button}">Create This Mission!</button> 
 											
