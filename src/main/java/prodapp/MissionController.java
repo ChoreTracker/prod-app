@@ -21,6 +21,9 @@ public class MissionController {
 
 	@Resource
 	UserRepository userRepo;
+	
+	@Resource
+	SectorRepository sectorRepo;
 
 	// all info on one mission is available; returns the single mission page
 	@RequestMapping("/mission")
@@ -42,14 +45,30 @@ public class MissionController {
 
 	}
 
-	// button to create a mission, doesn't add it to a
-	// sector--("/add-mission-to-sector-button") does that; returns the all missions
-	// page
+	//This button is in use!
 	@RequestMapping("/create-mission-button")
-	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate,
-			String completionDate, boolean recurring, int count, User...users) {
-		missionRepo.save(new Mission(missionName, missionDescription, period, snooze, dueDate, completionDate, recurring, 0, users));
-		return "missions";
+	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate, boolean recurring, @RequestParam long sectorId, @RequestParam long userId) {
+		Optional<User> userResult = userRepo.findById(userId);
+		User user = userResult.get();
+		Mission newMission = new Mission(missionName, missionDescription, period, snooze, dueDate, "", recurring, 0, user);
+		missionRepo.save(newMission);
+		long missionId = newMission.getId();
+		putMissionInSector(sectorId, missionId);
+		return "redirect:/user?id=" + userId;
+	}
+	
+	//this method is in use also!
+	public void putMissionInSector(long sectorId, long missionId) {
+		Optional<Sector> result = sectorRepo.findById(sectorId);
+		if (result.isPresent()) {
+			Sector sector = result.get();
+			Optional<Mission> missionToAdd = missionRepo.findById(missionId);
+			if (missionToAdd.isPresent()) {
+				Mission mission = missionToAdd.get();
+				sector.addMission(mission);
+				sectorRepo.save(sector);
+			}
+		}
 	}
 
 	// button to delete a mission, using the id; returns the user to the mi
@@ -112,11 +131,22 @@ public class MissionController {
 
 	// pass in the mission id, sets the completion date to current date
 	@RequestMapping("/mission-complete-button")
-	public void setAsComplete(long missionId) {
+	public String setAsComplete(@RequestParam long missionId, long userId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.markComplete();
 		missionRepo.save(mission);
+		
+		return "redirect:/user?id=" + userId;
+	}
+	
+	@RequestMapping("/snooze-mission")
+	public String snoozeMission(@RequestParam long missionId, long userId) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.hitSnooze();
+		missionRepo.save(mission);
+		return "redirect:/user?id=" + userId;
 	}
 
 	public void createDueDate(long missionId, String date) {
@@ -134,11 +164,7 @@ public class MissionController {
 
 	}
 
-	public void snoozeMission(long missionId) {
-		Optional<Mission> result = missionRepo.findById(missionId);
-		Mission mission = result.get();
-		mission.hitSnooze();
-	}
+
 
 	public void setMissionPeriod(long missionId, int periodDays) {
 		Optional<Mission> result = missionRepo.findById(missionId);
@@ -244,14 +270,17 @@ public class MissionController {
 		User loggedInUser = User.class.cast(activeUser);
 		return loggedInUser;
 	}
+	
 	@RequestMapping("/claim-mission-button")
-	public void claimUnassignedMission(long missionId, User user) {
+	public String claimUnassignedMission(long missionId, long userId) {
 		User activeUser = findLoggedInUser();
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.addUser(activeUser);
 		missionRepo.save(mission);
+		return "redirect:/user?id=" + userId;
 	}
+	
 	@RequestMapping("/claim-mission-assigned-button")
 	public void claimAssignedMission(long missionId, User user) {
 		User activeUser = findLoggedInUser();

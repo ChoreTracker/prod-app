@@ -18,6 +18,9 @@ public class UserController {
 	@Resource
 	MissionRepository missionRepo;
 	
+	@Resource
+	SectorRepository sectorRepo;
+	
 	@RequestMapping("/show-users")
 	public String findAllUsers(Model model) {
 		model.addAttribute("users", userRepo.findAll());
@@ -32,6 +35,7 @@ public class UserController {
 			model.addAttribute("user", user.get());
 			model.addAttribute("unassignedUserMissions", missionRepo.findAllByUsersIsNullAndRecurringIsFalse());
 			model.addAttribute("allMissions", missionRepo.findAll());
+			model.addAttribute("sectors", sectorRepo.findAll());
 			return "user";
 			
 		}
