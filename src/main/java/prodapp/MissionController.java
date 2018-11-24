@@ -43,13 +43,13 @@ public class MissionController {
 	}
 
 	// button to create a mission, doesn't add it to a
-	// sector--("/add-mission-to-sector-button") does that; returns the all missions
-	// page
+	// sector--("/add-mission-to-sector-button") does that
 	@RequestMapping("/create-mission-button")
-	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate,
-			String completionDate, boolean recurring, int count, User...users) {
-		missionRepo.save(new Mission(missionName, missionDescription, period, snooze, dueDate, completionDate, recurring, 0, users));
-		return "missions";
+	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate, boolean recurring, long userId) {
+		Optional<User> userResult = userRepo.findById(userId);
+		User user = userResult.get();
+		missionRepo.save(new Mission(missionName, missionDescription, period, snooze, dueDate, "", recurring, 0, user));
+		return "redirect:/user?id=" + userId;
 	}
 
 	// button to delete a mission, using the id; returns the user to the mi

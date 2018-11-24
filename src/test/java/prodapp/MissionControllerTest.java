@@ -76,8 +76,7 @@ public class MissionControllerTest {
 
 	@Test
 	public void shouldCreateNewMission() {
-		underTest.createMission("MissionName3", "description3", 4, 0, "dueDate3", null, false, 0, user,
-				user2);
+		underTest.createMission("MissionName3", "description3", 4, 0, "dueDate3", false, userId);
 		ArgumentCaptor<Mission> missionArgument = ArgumentCaptor.forClass(Mission.class);
 		verify(missionRepo).save(missionArgument.capture());
 		assertEquals("MissionName3", missionArgument.getValue().getMissionName());
