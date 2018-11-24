@@ -15,6 +15,9 @@ public class UserController {
 	@Resource
 	UserRepository userRepo;
 	
+	@Resource
+	MissionRepository missionRepo;
+	
 	@RequestMapping("/show-users")
 	public String findAllUsers(Model model) {
 		model.addAttribute("users", userRepo.findAll());
@@ -27,7 +30,10 @@ public class UserController {
 		
 		if(user.isPresent()) {
 			model.addAttribute("user", user.get());
+			model.addAttribute("unassignedUserMissions", missionRepo.findAllByUsersIsNullAndRecurringIsFalse());
+			model.addAttribute("allMissions", missionRepo.findAll());
 			return "user";
+			
 		}
 		throw new userNotFoundException();
 	}

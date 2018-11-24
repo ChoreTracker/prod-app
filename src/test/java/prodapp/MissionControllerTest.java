@@ -9,7 +9,6 @@ import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -77,7 +76,7 @@ public class MissionControllerTest {
 
 	@Test
 	public void shouldCreateNewMission() {
-		underTest.createMission("MissionName3", "description3", 4, 0, "dueDate3", null, false, user,
+		underTest.createMission("MissionName3", "description3", 4, 0, "dueDate3", null, false, 0, user,
 				user2);
 		ArgumentCaptor<Mission> missionArgument = ArgumentCaptor.forClass(Mission.class);
 		verify(missionRepo).save(missionArgument.capture());
@@ -126,17 +125,16 @@ public class MissionControllerTest {
 	public void shouldShowAllUnassignedMissions() {
 		userRepo.save(user);
 		userRepo.save(user2);
-		Mission mission1 = new Mission("MissionName", "description", 3, 0, "dueDate", null, true);
-		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "dueDate2", null, true,
+		Mission mission1 = new Mission("MissionName", "description", 3, 0, "dueDate", null, true,0);
+		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "dueDate2", null, true,0,
 				user);
-		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "dueDate3", null, false,
-				user, user2);
+		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "dueDate3", null, false, 0, user, user2);
 		missionRepo.save(mission1);
 		missionRepo.save(mission2);
 		missionRepo.save(mission3);
 		Collection<Mission> allMissions = Arrays.asList(mission1, mission2, mission3);
 		when(missionRepo.findAll()).thenReturn(allMissions);
-		underTest.findUnassignedMissions(model);
+		underTest.showAllUnassignedMissions(model);
 		Collection<Mission> expected = new HashSet<>();
 		expected.add(mission1);
 		verify(model).addAttribute("missions", expected);
@@ -144,7 +142,7 @@ public class MissionControllerTest {
 
 	@Test
 	public void shouldSetCompletionDateAsToday() {
-		Mission mission1 = new Mission("MissionName", "description", 3, 0, "dueDate", null, true);
+		Mission mission1 = new Mission("MissionName", "description", 3, 0, "dueDate", null, true, 0);
 		missionRepo.save(mission1);
 		missionId = 1;
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
@@ -164,7 +162,7 @@ public class MissionControllerTest {
 	
 	@Test
 	public void shouldSetDueDateFromString() {
-		Mission mission1 = new Mission("MissionName", "description", 4, 1, "dueDate", null, true);
+		Mission mission1 = new Mission("MissionName", "description", 4, 1, "dueDate", null, true, 0);
 		missionRepo.save(mission1);
 		missionId = 1;
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
@@ -174,7 +172,7 @@ public class MissionControllerTest {
 
 	@Test
 	public void shouldSetSnoozeDelayToOne_Day() {
-		Mission mission1 = new Mission("MissionName", "description", 3, 0, "2018-11-28", null, true);
+		Mission mission1 = new Mission("MissionName", "description", 3, 0, "2018-11-28", null, true, 0);
 		missionRepo.save(mission1);
 		missionId = 1;
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
@@ -184,7 +182,7 @@ public class MissionControllerTest {
 	
 	@Test
 	public void snoozeShouldAddOneDayToDueDate() {
-		Mission mission1 = new Mission("MissionName", "description", 3, 1, "2018-11-15", null, true);
+		Mission mission1 = new Mission("MissionName", "description", 3, 1, "2018-11-15", null, true, 0);
 		missionRepo.save(mission1);
 		missionId = 1;
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
@@ -194,7 +192,7 @@ public class MissionControllerTest {
 
 	@Test
 	public void shouldSetPeriodTo7Days() {
-		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-15", null, true);
+		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-15", null, true, 0);
 		missionRepo.save(mission1);
 		missionId = 1;
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
@@ -205,13 +203,13 @@ public class MissionControllerTest {
 	@Test
 	public void shouldFindMissionsWithDueDateOfNov132018() {
 		String dateString = "2018-11-13";
-		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-13", null, true);
+		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-13", null, true, 0);
 		missionRepo.save(mission1);
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
-		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "dueDate2", null, true,
+		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "dueDate2", null, true, 0,
 				user);
 		missionRepo.save(mission2);
-		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "dueDate3", null, false,
+		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "dueDate3", null, false, 0,
 				user, user2);
 		missionRepo.save(mission3);
 		Collection<Mission> allMissions = Arrays.asList(mission1, mission2, mission3);
@@ -224,13 +222,13 @@ public class MissionControllerTest {
 	
 	@Test
 	public void shouldFindMissionsWithDueDateOfToday() {
-		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-16", null, true);
+		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-16", null, true, 0);
 		missionRepo.save(mission1);
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
-		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "2018-11-13", null, true,
+		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "2018-11-13", null, true, 0,
 				user);
 		missionRepo.save(mission2);
-		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "2018-12-5", null, false,
+		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "2018-12-5", null, false, 0,
 				user, user2);
 		missionRepo.save(mission3);
 		Collection<Mission> allMissions = Arrays.asList(mission1, mission2, mission3);
@@ -244,13 +242,13 @@ public class MissionControllerTest {
 	
 	@Test
 	public void shouldFindMissionsWithDueDateOfTodayForUser() {
-		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-16", null, true, user);
+		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-16", null, true, 0, user);
 		missionRepo.save(mission1);
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
-		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "2018-11-16", null, true,
+		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "2018-11-16", null, true, 0,
 				user2);
 		missionRepo.save(mission2);
-		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "2018-12-1", null, false,
+		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "2018-12-1", null, false, 0,
 				user, user2);
 		missionRepo.save(mission3);
 		userId = 2;
@@ -265,41 +263,43 @@ public class MissionControllerTest {
 	
 	@Test
 	public void shouldFindUsersMissionsDueInNextWeek() {
-		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-18", null, true, user);
+		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-18", null, true, 0, user);
 		missionRepo.save(mission1);
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
-		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "2018-11-21", null, true,
+		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "2018-11-21", null, true, 0,
 				user2);
 		missionRepo.save(mission2);
-		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "2018-11-20", null, false,
+		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "2018-11-20", null, false, 0,
 				user, user2);
 		missionRepo.save(mission3);
-		Mission mission4 = new Mission("MissionName3", "description3", 3, 0, "2018-12-20", null, false,
+		Mission mission4 = new Mission("MissionName3", "description3", 3, 0, "2018-12-20", null, false, 0,
 				user, user2);
 		missionRepo.save(mission4);
 		userId = 2;
 		when(userRepo.findById(userId)).thenReturn(Optional.of(user));
 		Collection<Mission> allMissions = Arrays.asList(mission1, mission2, mission3, mission4);
-		when(missionRepo.findAll()).thenReturn(allMissions);
 		underTest.findMissionsDueThisWeekForUser(model, userId);
 		Collection<Mission> expected = new HashSet<>();
-		expected.add(mission1);
-		expected.add(mission3);
+		expected.add(mission1);	
+		expected.add(mission3);	
+		when(missionRepo.findAll()).thenReturn(allMissions);
+
+		
 		verify(model).addAttribute("missions", expected);
 	}
 	
 	@Test
 	public void shouldFindUsersIncompleteMissionsDueInNextWeek() {
-		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-18", "", true, user);
+		Mission mission1 = new Mission("MissionName", "description", 0, 1, "2018-11-18", "", true, 0, user);
 		missionRepo.save(mission1);
 		when(missionRepo.findById(missionId)).thenReturn(Optional.of(mission1));
-		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "2018-11-21", "", true,
+		Mission mission2 = new Mission("MissionName2", "description2", 3, 0, "2018-11-21", "", true, 0,
 				user2);
 		missionRepo.save(mission2);
-		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "2018-11-20", "2018-11-1", false,
+		Mission mission3 = new Mission("MissionName3", "description3", 3, 0, "2018-11-20", "2018-11-1", false, 0, 
 				user, user2);
 		missionRepo.save(mission3);
-		Mission mission4 = new Mission("MissionName3", "description3", 3, 0, "2018-12-20", "", false,
+		Mission mission4 = new Mission("MissionName3", "description3", 3, 0, "2018-12-20", "", false, 0,
 				user, user2);
 		missionRepo.save(mission4);
 		userId = 2;
