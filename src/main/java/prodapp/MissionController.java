@@ -21,6 +21,9 @@ public class MissionController {
 
 	@Resource
 	UserRepository userRepo;
+	
+	@Resource
+	SectorRepository sectorRepo;
 
 	// all info on one mission is available; returns the single mission page
 	@RequestMapping("/mission")
@@ -42,14 +45,30 @@ public class MissionController {
 
 	}
 
-	// button to create a mission, doesn't add it to a
-	// sector--("/add-mission-to-sector-button") does that
+	//This button is in use!
 	@RequestMapping("/create-mission-button")
-	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate, boolean recurring, long userId) {
+	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate, boolean recurring, @RequestParam long sectorId, @RequestParam long userId) {
 		Optional<User> userResult = userRepo.findById(userId);
 		User user = userResult.get();
-		missionRepo.save(new Mission(missionName, missionDescription, period, snooze, dueDate, "", recurring, 0, user));
+		Mission newMission = new Mission(missionName, missionDescription, period, snooze, dueDate, "", recurring, 0, user);
+		missionRepo.save(newMission);
+		long missionId = newMission.getId();
+		putMissionInSector(sectorId, missionId);
 		return "redirect:/user?id=" + userId;
+	}
+	
+	//this method is in use also!
+	public void putMissionInSector(long sectorId, long missionId) {
+		Optional<Sector> result = sectorRepo.findById(sectorId);
+		if (result.isPresent()) {
+			Sector sector = result.get();
+			Optional<Mission> missionToAdd = missionRepo.findById(missionId);
+			if (missionToAdd.isPresent()) {
+				Mission mission = missionToAdd.get();
+				sector.addMission(mission);
+				sectorRepo.save(sector);
+			}
+		}
 	}
 
 	// button to delete a mission, using the id; returns the user to the mi

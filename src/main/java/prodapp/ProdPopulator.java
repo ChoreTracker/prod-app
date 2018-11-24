@@ -37,7 +37,7 @@ public class ProdPopulator implements CommandLineRunner {
 	missionRepo.save(mission3);
 	missionRepo.save(mission4);
 	
-	Sector sector = new Sector("sectorName", mission, mission2);
+	Sector sector = new Sector("sectorName1", mission, mission2);
 	Sector sector2 = new Sector("sectorName2", mission3);
 	sectorRepo.save(sector2);
 	sectorRepo.save(sector);
