@@ -1,11 +1,12 @@
 package prodapp;
 
 import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 
@@ -53,6 +54,12 @@ public class User {
 
 	public Collection<Mission> getMissions() {
 		return missions;
+	}
+	
+	private User findLoggedInUser() {
+		Object activeUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User loggedInUser = User.class.cast(activeUser);
+		return loggedInUser;
 	}
 
 	public User(String userName, String password, String contact, String...roles) {

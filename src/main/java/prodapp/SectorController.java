@@ -1,6 +1,5 @@
 package prodapp;
 
-
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -17,32 +16,33 @@ public class SectorController {
 
 	@Resource
 	SectorRepository sectorRepo;
-	
-	@Resource 
+
+	@Resource
 	MissionRepository missionRepo;
-	
+
 	@Resource
 	UserRepository userRepo;
 
 	@RequestMapping("/show-sectors")
 	public String findAllSectors(Model model) {
 		model.addAttribute("sectors", sectorRepo.findAll());
-		return "sectors";	
+		return "sectors";
 	}
-	
+
 	@RequestMapping("/sector")
-	public String findOneSector (@RequestParam(value="id") long sectorId, Model model) throws sectorNotFoundException{
+	public String findOneSector(@RequestParam(value = "id") long sectorId, Model model) throws sectorNotFoundException {
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
-		
-		if(sector.isPresent()) {
+
+		if (sector.isPresent()) {
 			model.addAttribute("sector", sector.get());
+//			model.addAttribute("sector", missionRepo.findAllBySectorAndCompletionDateNotNullOrderByDueDate(sectorId));
 			return "sector";
-		} //this will also show all the missions in the sector through the sector.getMissions();
+		} // this will also show all the missions in the sector through the
+			// sector.getMissions();
 		throw new sectorNotFoundException();
-		
+
 	}
-	
-		
+
 	@RequestMapping(path = "/admin/sectors/add/{sectorName}", method = RequestMethod.POST)
 	public String addSector(@PathVariable String sectorName, Model model) {
 		Sector sector = sectorRepo.findBySectorName(sectorName);
@@ -52,10 +52,9 @@ public class SectorController {
 		}
 		model.addAttribute("sectors", sectorRepo.findAll());
 		return "redirect:/show-sectors";
-		
 
 	}
-	//Mission...missions after sectorName
+	// Mission...missions after sectorName
 //	@RequestMapping(path = "/sectors/remove/{sectorName}", method = RequestMethod.POST)
 //	public String removeSector(@PathVariable String sectorName, Model model) {
 //		Sector sector = sectorRepo.findBySectorName(sectorName);
@@ -68,8 +67,8 @@ public class SectorController {
 //		
 //
 //	}
-	
-	//deletes a sector and also all the missions in the sector
+
+	// deletes a sector and also all the missions in the sector
 	@RequestMapping("/admin/remove-sector")
 	public String deleteSectorById(Long sectorId) {
 		if (sectorRepo.findById(sectorId) != null) {
@@ -78,17 +77,18 @@ public class SectorController {
 		}
 		return "redirect:/show-sectors";
 	}
-	
+
 	@RequestMapping("/sector-missions")
 	public String findMissionsBySectorId(long sectorId, Model model) {
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
 		Sector sectorResult = sector.get();
 		model.addAttribute("sector", sectorResult);
-		model.addAttribute("missions", sectorResult.getMissions());	
+		model.addAttribute("missions", sectorResult.getMissions());
 		return "sector";
 	}
-	
-	//button that assigns all the missions in a sector to one user, using the ids of both
+
+	// button that assigns all the missions in a sector to one user, using the ids
+	// of both
 	@RequestMapping("/admin/assign-all-missions-button")
 	public String assignAllMissionsInSectorToUserById(long sectorId, long userId) {
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
@@ -100,9 +100,11 @@ public class SectorController {
 			missionRepo.save(mission);
 		}
 		return "redirect:/sector?id=" + sectorId;
-		
+
 	}
-	//button to add a mission to a sector, using the ids of both, say from a view of the sector
+
+	// button to add a mission to a sector, using the ids of both, say from a view
+	// of the sector
 	@RequestMapping("/add-mission-to-sector-button")
 	public String addMissionToSector(long sectorId, long missionId) {
 		Optional<Sector> result = sectorRepo.findById(sectorId);
@@ -115,18 +117,25 @@ public class SectorController {
 				sectorRepo.save(sector);
 				return "redirect:/sector?id=" + sectorId;
 			}
-			
+
 		}
 		return null;
 	}
-	
-	
 
-	
 	@RequestMapping("/setup-sectors")
-	public String showAllSectors (Model model) {
-	
+	public String showAllSectors(Model model) {
+
 		return "setup-sectors";
 	}
-}
 
+	@RequestMapping("/make-mission-within-sector")
+	public String createMissionInSector(long sectorId, String missionName, String missionDescription, int period,
+			int snooze, String dueDate, String completionDate, boolean recurring, int count, User... users) {
+		Mission newMission = new Mission(missionName, missionDescription, period, snooze, dueDate, completionDate,
+				recurring, count, users);
+		missionRepo.save(newMission);
+		long missionId = newMission.getId();
+		addMissionToSector(sectorId, missionId);
+		return "redirect:/sector?id=" + sectorId;
+	}
+}
