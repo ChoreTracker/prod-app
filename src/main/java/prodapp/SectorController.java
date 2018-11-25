@@ -47,7 +47,7 @@ public class SectorController {
 	public String addSector(@PathVariable String sectorName, Model model) {
 		Sector sector = sectorRepo.findBySectorName(sectorName);
 		if (sector == null) {
-			sector = new Sector(sectorName);
+			sector = new Sector(sectorName, "");
 			sectorRepo.save(sector);
 		}
 		model.addAttribute("sectors", sectorRepo.findAll());

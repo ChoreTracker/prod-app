@@ -4,7 +4,8 @@
 		<title>User Screen</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="./css/layout.css">
-		<link rel="stylesheet" type="text/css" href="./css/style.css">
+		<link rel="stylesheet" type="text/css" href="./css/reset.css">
+		<link rel="stylesheet" type="text/css" href="./css/style-sheet.css">
 	</head>
 	<body>
 		<main>
@@ -14,12 +15,12 @@
 			
 				<h2 th:text="'Hello ' + ${user.userName}"></h2>
 				<nav class="topNav">
-					<ul>
-						<li><button class="navLinks" onclick="openSubNav(event, 'admin')">Admin</button></li>
-						<li><button class="navLinks" onclick="openSubNav(event, 'add')">Add</button></li>
-						<li><button class="navLinks" onclick="openSubNav(event, 'navigation')">Navigation</button></li>
-						<li><button class="navLinks" onclick="openSubNav(event, 'logout')">Logout</button></li>
-					</ul>
+					
+						<button class="navLinks" onclick="openSubNav(event, 'admin')">Admin</button>
+						<button class="navLinks" onclick="openSubNav(event, 'add')">Add</button>
+						<button class="navLinks" onclick="openSubNav(event, 'navigation')">Navigation</button>
+						<button class="navLinks" onclick="openSubNav(event, 'logout')">Logout</button>
+					
 				</nav>
 				<div id="subnav">
 					<div id="admin" class="navContent">
@@ -47,7 +48,7 @@
 										<input type="radio" name="recurring" value="true" checked required> mission recurs<br>
   										<input type="radio" name="recurring" value="false" required> mission does not recur<br>
 										<input type="hidden" th:value="${user.id}" name="userId"/>
-										<button class="newMisson-button" th:formaction= "@{/create-mission-button}">Create This Mission!</button> 
+										<button class="newMisson-button button-primary" th:formaction= "@{/create-mission-button}">Add Mission</button> 
 											
 									</form>
 								</form>
@@ -75,16 +76,19 @@
 
 			<div id="myMissions" class="tabcontent active" style="display: block">
 				<div class ="mission" th:each="mission: ${user.missions}">	
-					<button class="missionButton">
-						<article class="missionLists" id="defaultUserMissions">
-							<img src="./images/sector1.jpg">
-							<div class="mission-intro">
-								<h4 th:text="${mission.missionName}"></h4>
-								<p th:text="${mission.dueDate}"></p>
-								<p th:each="user: ${mission.users}" th:text="${user.userName}"></p>
-							</div>
+					
+						<article class="missionLists" >
+							<!-- <img th:href="@{/sector(id=${sector.id})}" th:src="${sector.imageUrl}"> -->
+							
+							<button >
+								<div class="mission-intro missionButton">
+									<h4 th:text="${mission.missionName}"></h4>
+									<p><span th:text="${mission.dueDate}"></span><span> | </span>
+									<span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>
+								</div>
+							</button>
 						</article>
-					</button>
+					
 					<!-- The Modal -->
 					<div class="modal">
 						<div class="modal-content">
@@ -101,8 +105,8 @@
 							<form>
 								<input type="hidden" th:value="${mission.id}" name="missionId"/>
 								<input type="hidden" th:value="${user.id}" name="userId"/>
-								<button class="doneButton" th:formaction= "@{/mission-complete-button}">Done</button>
-								<button class="snoozeButton" th:formaction= "@{/snooze-mission}">Snooze</button>
+								<button class="doneButton button-primary" th:formaction= "@{/mission-complete-button}">Done</button>
+								<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission}">Snooze</button>
 							</form>				
 						</div>
 					</div>
@@ -111,15 +115,17 @@
 
 			<div id="unassignedMissions" class="tabcontent">
 				<div class ="mission" th:each="mission: ${unassignedUserMissions}">
-					<button class="missionButton">
-						<article class="missionLists" id="unassignedUserMissions" >
-							<img src="./images/sector1.jpg">
+					
+					<article class="missionLists" id="unassignedUserMissions" >
+						<img src="./images/sector1.jpg">
+						<button class="missionButton">
 							<div class="mission-intro">
 								<h4 th:text="${mission.missionName}"></h4>
-								<p th:text="${mission.dueDate}"></p>
+								<p><span th:text="${mission.dueDate}"></span></p>
 							</div>
-						</article>
-					</button>
+						</button>
+					</article>
+					
 					<!-- The Modal -->
 					<div class="modal">
 						<div class="modal-content">
@@ -136,9 +142,9 @@
 							<form>
 								<input type="hidden" th:value="${mission.id}" name="missionId"/>
 								<input type="hidden" th:value="${user.id}" name="userId"/>
-								<button class="doneButton" th:formaction= "@{/mission-complete-button}">Done</button>
-								<button class="snoozeButton" th:formaction= "@{/snooze-mission}">Snooze</button>
-								<button class="claimButton" th:formaction= "@{/claim-mission-button}">Claim</button>
+								<button class="doneButton button-primary" th:formaction= "@{/mission-complete-button}">Done</button>
+								<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission}">Snooze</button>
+								<button class="claimButton button-primary" th:formaction= "@{/claim-mission-button}">Claim</button>
 							</form>
 						</div>
 					</div>
@@ -147,16 +153,17 @@
 
 			<div id="allMissions" class="tabcontent">
 				<div class ="mission" th:each="mission: ${allMissions}">	
-					<button class="missionButton">
-						<article class="missionLists" id="allUserMissions" >
-							<img src="./images/sector1.jpg">
+					<article class="missionLists" id="allUserMissions" >
+						<img src="./images/sector1.jpg">
+						<button class="missionButton">
 							<div class="mission-intro">
 								<h4 th:text="${mission.missionName}"></h4>
-								<p th:text="${mission.dueDate}"></p>
-								<p th:each="user: ${mission.users}" th:text="${user.userName}"></p>
+								<p><span th:text="${mission.dueDate}"></span><span> | </span>
+								<span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>
 							</div>
-						</article>
-					</button>
+						</button>
+					</article>
+					
 					<!-- The Modal -->
 					<div class="modal">
 						<div class="modal-content">
@@ -173,8 +180,8 @@
 							<form >
 								<input type="hidden" th:value="${mission.id}" name="missionId"/>
 								<input type="hidden" th:value="${user.id}" name="userId"/>
-								<button class="doneButton" th:formaction= "@{/mission-complete-button}">Done</button>
-								<button class="snoozeButton" th:formaction= "@{/snooze-mission}">Snooze</button>
+								<button class="doneButton button-primary" th:formaction= "@{/mission-complete-button}">Done</button>
+								<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission}">Snooze</button>
 							</form>
 						</div>
 					</div>
