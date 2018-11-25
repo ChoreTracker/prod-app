@@ -118,6 +118,8 @@ button {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	padding-bottom: 1em;
+	
 }
 
 .button-primary {
@@ -271,6 +273,7 @@ nav #sub-nav li a {
 nav #sub-nav li a:hover {
 	text-decoration: none;
 	color: #323232;
+	
 	}
 
 
@@ -365,7 +368,7 @@ main #title h1 {
   display: flex;
   justify-content: space-between;
   margin: auto;
-  padding-left: 0;
+  /*padding-left: 0;*/
   width: 63%;
 }
 
@@ -464,6 +467,7 @@ nav #prod-mascot img {
 	transform: rotate(-5deg);
 	width: 175px;
 	height: auto;
+
 }
 	
 nav #first-nav ul {
@@ -510,7 +514,7 @@ nav #sub-nav {
 	top: 10em;
 	left: 20%;
 	width: 60%;
-	z-index: 2;
+	/*z-index: 2;*/
 	}
 
 nav #sub-nav ul {
