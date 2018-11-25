@@ -22,6 +22,8 @@ public class Sector {
 	
 	@OneToMany
 	private Collection<Mission> missions;
+
+	private String imageUrl;
 	
 	public Collection<Mission> getMissions() {
 		return missions;
@@ -39,11 +41,20 @@ public class Sector {
 		this.missions.add(mission);
 	}
 	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	
 	public Sector() {
 		
 	}
-	public Sector(String sectorName, Mission...missions) {
+	public Sector(String sectorName, String imageUrl, Mission...missions) {
 		this.sectorName = sectorName;
+		this.setImageUrl(imageUrl);
 		this.missions = new HashSet<>(Arrays.asList(missions));
 	}
 
@@ -68,4 +79,5 @@ public class Sector {
 			return false;
 		return true;
 	}
+
 }

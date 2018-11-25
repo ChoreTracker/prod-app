@@ -76,7 +76,7 @@ public class JPAMappingTest {
 	public void shouldAddMissionToSector() {
 		userRepo.save(user);
 		missionRepo.save(mission);
-		Sector sector = new Sector("sectorName", mission);
+		Sector sector = new Sector("sectorName", "", mission);
 		sectorRepo.save(sector);
 		long sectorId = sector.getId();
 
@@ -125,7 +125,7 @@ public class JPAMappingTest {
 		userRepo.save(user);
 		missionRepo.save(mission);
 		missionRepo.save(mission2);
-		Sector sector = new Sector("sectorName", mission, mission2);
+		Sector sector = new Sector("sectorName", "", mission, mission2);
 		sectorRepo.save(sector);
 
 		entityManager.flush();
