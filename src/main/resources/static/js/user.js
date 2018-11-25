@@ -1,5 +1,3 @@
-
-
 function openMissions(evt, missionType) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");

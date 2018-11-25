@@ -49,6 +49,26 @@ article p{
     width: 350px;
 }
 
+.userButton{
+    border-color: #323232;
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 10px;
+    height: 85px;
+    width: 350px;
+}
+
+.userButton a{
+    text-decoration: none;
+    color: black;
+    font-size: 2rem;
+}
+
+.userButton a:hover{
+    color: red;
+}
+
 /* Styling for the tab */
 .tab {
     overflow: hidden;

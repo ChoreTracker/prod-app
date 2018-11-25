@@ -17,18 +17,25 @@
 
 	<div class="grid-container">
 		<h2>Here are the current sectors for your home.</h2>
-		<ul id="sector-list">
+		<div id="sector-list"th:each="sector: ${sectors}">
+				<button class="userButton">
+						<a th:href="@{/sector(id=${sector.id})}" th:text="${sector.sectorName}"></a>
+				</button>
+				</div>
+		
+		<!-- <ul id="sector-list">
 			<li th:each="sector: ${sectors}">
 					<a th:href="@{/sector(id=${sector.id})}" th:text="${sector.sectorName}"></a>
 			</li>
-		</ul>
+		</ul> -->
 	</div>
 	
 	<!-- still showing for user -->
-	<section sec:authorize="hasRole('ROLE_ADMIN')" class="add-sector">
+	<!-- <section sec:authorize="hasRole('ROLE_ADMIN')" class="add-sector">
 		<input type="text"/>
 		<button>Add Sector</button>
-	</section>
+	</section> -->
+
 
 	<!-- <section class="remove-sector">
 		<input type="text"/>
@@ -53,6 +60,6 @@
 			</ul>
 	</footer>		
 
-	<script src = "./js/sector-requests.js"></script>
+	<!-- <script src = "./js/sector-requests.js"></script> -->
 </body>
 </html>

@@ -13,12 +13,14 @@
 		</header>
 
 <div class="grid-container">
-	<ul id="missions-list">
-		<li th:each="mission: ${missions}"> 
+	<h2>Here are all the missions</h2>
+	<div id="missions-list" th:each="mission: ${missions}">
+		<button class="userButton">
 			<a th:href="@{/mission(id=${mission.id})}" th:text="${mission.missionName}"></a>
-		</li> 
-	</ul>
-       
+		</button>
+	</div>
+	
+</div>  
 </main>
 <footer>
 		<ul>
