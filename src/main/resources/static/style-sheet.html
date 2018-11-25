@@ -4,21 +4,30 @@
 	<title>Prod Styles</title>
 	<link rel="stylesheet" type="text/css" href="./CSS/reset.css">
 	<link rel="stylesheet" type="text/css" href="./CSS/style-sheet.css">
+
 	<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 </head>
-<body>
-	<p style="text-align: center;"><img src="./images/prod-logo.svg" alt=image depicting PROD chore tracking application" height="auto" width="250"></p>
-	<H1 style="text-align: center;">PROD</H1>
 
+<body>
+
+<main>
+	<div id="title">
+		<h1>Changed Title</h1>
+	</div>
 	<h3 class="header-text">Colors</h3>
-	<p class="color-box">#323232</p>
-	<p class="color-box" style="background: #8559a5;">#8559a5</p>
-	<p class="color-box" style="background: #48b782;">#48b782 </p>
-	<p class="color-box" style="background: #ffa258;">#ffa258</p>
-	<p class="color-box" style="background: #f2ecc2; color: #323232; border: 1px solid #323232;">#f2ecc2</p>
+	<div class="flex-grid">
+		<div class="col"><p class="color-box">#323232</p>
+			<p class="color-box" style="background: #8559a5;">#8559a5</p>
+			<p class="color-box" style="background: #48b782;">#48b782 </p>
+		</div>
+		<div class="col">
+			<p class="color-box" style="background: #ffa258;">#ffa258</p>
+			<p class="color-box" style="background: #f2ecc2; color: #323232; border: 1px solid #323232;">#f2ecc2</p>
+		</div>
+	</div>
 
 	<h3 class="header-text">Typography</h3>
-	<H1>A Visit by St. Nicolas</H1>
+	<h1>A Visit by St. Nicolas</h1>
 	<h2>'Twas the night before Christmas</h2>
 	<h3>and all through the house. Not a </h3>
 	<h4>creature was stirring...</h4>
@@ -31,9 +40,11 @@
 
 	<h3 class="header-text">Buttons</h3>
 	<p>The default vaulue of button has no styling on it.</p>
+
 	<p>This is .button-primary: <button class="button-primary" href="">Primary</button></p>
 	
 	
+
 
 	<h3 class="header-text">Mission Card</h3>
 	<button>
@@ -64,6 +75,105 @@
 		</div>
 	</nav>
 
+	<h3 class="header-text">Mission Card</h3>
+	<div class="flex-grid">
+		<div class="col">
+			<button>
+				<article>
+					<img src="./images/sector1.jpg">
+					<div class="mission-intro">
+						<h4>Sweep the floor.</h4>
+						<p>Deadline: Monday, 11/19</p>
+					</div>
+				</article>
+			</button>
+			<button>
+				<article>
+					<img src="./images/sector1.jpg">
+					<div class="mission-intro">
+						<h4>Sweep the floor.</h4>
+						<p>Deadline: Monday, 11/19</p>
+					</div>
+				</article>
+			</button>
+		</div>
+		<div class="col">
+			<button>
+				<article>
+					<img src="./images/sector1.jpg">
+					<div class="mission-intro">
+						<h4>Sweep the floor.</h4>
+						<p>Deadline: Monday, 11/19</p>
+					</div>
+				</article>
+			</button>
+		</div>
+	</div>
+
+	<h3 class="header-text">Basic Form</h3>
+	<form>
+		<input type="text" name="firstName" placeholder="First Name">
+		<input type="text" name="lastName" placeholder="Last Name">
+		<button class="button-primary" href="">Submit</button>
+	</form>
+	<br>
+	<div class="flex-grid" >
+		<div class="col">
+			<form >
+				<input type="text" name="firstName" placeholder="First Name"  style="width: 90%;">
+				<input type="text" name="lastName" placeholder="Last Name"  style="width: 90%;">
+			</form>
+		</div>
+		<div class="col">
+			<form >
+				<input type="text" name="firstName" placeholder="Banana"  style="width: 90%;">
+				<input type="text" name="lastName" placeholder="Strawberry"  style="width: 90%;">
+			</form>
+		</div>
+	</div>
+	<button class="button-primary" href="">Submit</button>
+
+
+	<h3 class="header-text">Modal Box with Form</h3>
+	<!-- Trigger/Open The Modal -->
+	<button id="myBtn" class="button-primary">Open Modal</button>
+
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+		<!-- Modal content -->
+  		<div class="modal-content">
+    		<span class="close">&times;</span>
+    		<p>Some text in the Modal..</p><br>
+    		<form>
+				<input type="text" name="firstName" placeholder="First Name">
+				<input type="text" name="lastName" placeholder="Last Name">
+				<button class="button-primary" href="">Submit</button>
+			</form>
+  		</div>
+	</div>
+
+</main>
+
+<nav>
+	<div id="prod-mascot"><p><img src="./images/prod-logo.svg" alt=image depicting PROD chore tracking application"></p></div>
+	<div id="first-nav">
+		<ul>
+			<li><a href="#">1</a></li>
+			<li id="selected"><a href="#">2</a></li>
+			<li><a href="#">3</a></li>
+			<li><a href="#">4</a></li>
+		</ul>
+	</div>
+	<div id="sub-nav">
+		<ul>
+			<li><a href="#">Subnav 1</a></li>
+			<li><a href="#">Subnav 2</a></li>
+			<li><a href="#">Subnav 3</a></li>
+		</ul>
+	</div>
+</nav>
+
+	<script src="./js/test.js"></script>
 
 </body>
 </html>

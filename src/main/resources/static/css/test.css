@@ -1,0 +1,155 @@
+body {
+	background: #f2ecc2;
+	}
+
+.header-text {
+	padding-top: 2em;
+	border-bottom: 1px solid #323232;
+	margin-bottom: 1em;
+
+	font-weight: 200;
+	text-transform: uppercase;
+}
+
+.color-box {
+    border-radius: 25px;
+    background: #323232;
+    color: white;
+    height: 75;
+    width: 100%;
+
+    margin-bottom: 1em;
+    padding: 20px; 
+ 	
+
+    text-align: center;
+}
+
+h1 {
+	color: #323232;
+	font-size: 4em;
+	font-family: 'Roboto Slab', serif;
+}
+
+h2 {
+	color: #323232;
+	font-size: 3em;
+	font-family: 'Roboto Slab', serif;
+}
+
+h3 {
+	color: #323232;
+	font-size: 2em;
+	font-family: 'Roboto Slab', serif;
+}
+
+h4 {	
+	color: #323232;
+	font-size: 1.5em;
+	font-family: 'Roboto Slab', serif;
+}
+
+h5 {
+	color: #323232;
+	font-size: 1.15em;
+	font-family: 'Roboto Slab', serif;
+}
+
+h6 {
+	color: #323232;
+	font-size: 1em;
+	font-family: 'Roboto Slab', serif;
+}
+
+p {
+	color: #323232;
+	font-size: 1.15em;
+	font-family: 'Roboto', sans-serif;
+}
+
+.button-primary {
+	background-color: #8559a5;
+	border: solid 1px transparent;
+  	border-radius: 25px;
+	display: inline-block;
+	height: 50px;
+	margin: 2px 0;
+	padding: 0.5em 1em;
+	width: 150px;
+
+  	color: white;
+  	text-align: center;
+  	text-decoration: none;
+}
+
+.button-primary:hover, .button-primary:focus {
+	background-color: #48b782;
+}
+
+article {
+	/*flex-box part*/
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	/*whole article*/
+	border-color: #323232;
+	border-radius: 25px;
+	border-style: solid;
+	border-width: 1px;
+	height: 75px;
+	width: 350px;
+}
+
+article img {
+	object-fit: cover;
+	width: 75px;
+	height: 75px;
+	border-radius: 25% 0% 0% 25%;
+}
+
+article .mission-intro {
+	padding-left: 10px;
+	width: 275px;
+
+}
+
+nav {
+
+}
+
+nav ul {
+	
+	align-items: center;
+	background-color: #8559a5;
+	display: flex;
+	flex-direction: row;
+	/*grid-column-gap: 1em;*/
+	height: 3em;
+	justify-content: flex-end;
+	list-style: none;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+nav ul li {
+  color: white;
+  display: inline-block;
+  text-decoration: none;
+}
+
+#subnav ul {
+	align-items: center;
+	background-color: #323232;
+	display: flex;
+	flex-direction: row;
+	/*grid-column-gap: 1em;*/
+	height: 3em;
+	justify-content: space-between;
+	list-style: none;
+	position: fixed;
+	top: 3em;
+	width: 100%;
+}

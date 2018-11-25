@@ -106,6 +106,30 @@ article p{
     border-top: none;
 }
 
-
-
-/* Collapse  */
+.topNav button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+.navContent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+.topNav button.active {
+    background-color: #ccc;
+}
+.topNav button:hover {
+    background-color: #ddd;
+}
+.topNav {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
