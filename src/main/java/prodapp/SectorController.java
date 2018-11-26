@@ -34,8 +34,11 @@ public class SectorController {
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
 
 		if (sector.isPresent()) {
-			model.addAttribute("sector", sector.get());
-//			model.addAttribute("sector", missionRepo.findAllBySectorAndCompletionDateNotNullOrderByDueDate(sectorId));
+			
+//			model.addAttribute("sector", sector.get());
+			Sector sectorResult = sector.get();
+			model.addAttribute("sector", sectorResult);
+			model.addAttribute("missions", sectorResult.getMissions());
 			return "sector";
 		} 
 		throw new sectorNotFoundException();
@@ -50,6 +53,25 @@ public class SectorController {
 			sectorRepo.save(sector);
 		}
 		return "redirect:/show-sectors";
+	}
+	
+	@RequestMapping("/missionDone-sector-button")
+	public String setAsComplete(@RequestParam long missionId, @RequestParam  long sectorId) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.markComplete();
+		missionRepo.save(mission);
+		
+		return "redirect:/sector?id=" + sectorId;
+	}
+	
+	@RequestMapping("/snooze-mission-sector")
+	public String snoozeMission(@RequestParam long missionId, @RequestParam (value="id") long sectorId) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.hitSnooze();
+		missionRepo.save(mission);
+		return "redirect:/sector?id=" + sectorId;
 	}
 
 	@RequestMapping(path = "/admin/sectors/add/{sectorName}", method = RequestMethod.POST)

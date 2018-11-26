@@ -12,9 +12,9 @@
 		<header>
 			<h1>Single Sector</h1>
 		</header>
-		<div class="grid-container">
+		<div th:object= "${sector}" class="grid-container">
 			<h2 th:text="${sector.sectorName}"></h2>
-			<div class ="mission" th:each="mission: ${sector.missions}">	
+			<div class ="mission" th:each="mission: ${missions}">	
 					<article class="missionLists">
 						<img src="./images/sector1.jpg">
 						
@@ -42,9 +42,9 @@
 						</section>
 						<form >
 							<input type="hidden" th:value="${mission.id}" name="missionId"/>
-							<input type="hidden" th:value="*{id}" name="userId"/>
-							<button class="doneButton button-primary" th:formaction= "@{/mission-complete-button}">Done</button>
-							<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission}">Snooze</button>
+							<input type="hidden" th:value="*{id}" name="sectorId"/>
+							<button class="doneButton button-primary" th:formaction= "@{/missionDone-sector-button}">Done</button>
+							<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission-sector}">Snooze</button>
 						</form>
 					</div>
 				</div>
