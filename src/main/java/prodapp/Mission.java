@@ -80,6 +80,15 @@ public class Mission {
 	public Sector getSector() {
 		return sector;
 	}
+	
+	
+	public long getSectorId() {
+		return this.getSector().getId();
+	}
+	
+	public String getSectorImage() {
+		return this.getSector().getImageUrl();
+	}
 
 	// this method assigns all the users at once, removing any pre-assigned users,
 	// if any
@@ -98,6 +107,7 @@ public class Mission {
 //		
 //	}
 
+	
 	// adds a user to the list of users
 	public void addUser(User user) {
 		this.users.add(user);

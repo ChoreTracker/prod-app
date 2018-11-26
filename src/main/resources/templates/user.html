@@ -78,9 +78,8 @@
 				<div class ="mission" th:each="mission: ${user.missions}">	
 					
 						<article class="missionLists" >
-							<!-- <a th:href="@{/sector(id=${mission.sector.id})}"></a> -->
-								<img th:src= "${mission.sector != null ? mission.sector.imageUrl : 'NOT FOUND'}"/>
-								<!-- <img th:src="${mission.getSector().getImageUrl()}"/> -->
+						
+								<!-- <img th:src="{mission.sector?.imageUrl}"/> -->
 							
 							<button >
 								<div class="mission-intro missionButton">
@@ -106,7 +105,7 @@
 							</section>
 							<form>
 								<input type="hidden" th:value="${mission.id}" name="missionId"/>
-								<input type="hidden" th:value="*{id}" name="userId"/>
+								<!-- <input type="hidden" th:value="*{id}" name="userId"/> -->
 								<button class="doneButton button-primary" th:formaction= "@{/mission-complete-button}">Done</button>
 								<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission}">Snooze</button>
 							</form>				

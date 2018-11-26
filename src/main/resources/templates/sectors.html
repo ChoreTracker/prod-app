@@ -59,6 +59,7 @@
 		<h2>Here are the current sectors for your home.</h2>
 		<div id="sector-list">
 			<article th:each="sector: ${sectors}">
+					<img th:src="${sector.imageUrl}"/>
 					<form th:method="POST" th:action= "@{/sector(id=${sector.id})}">
 						<button  class="mission-intro missionButton"> <h4 th:text="${sector.sectorName}"></h4></button>
 					</form>

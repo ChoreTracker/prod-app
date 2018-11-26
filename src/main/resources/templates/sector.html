@@ -16,8 +16,7 @@
 			<h2 th:text="${sector.sectorName}"></h2>
 			<div class ="mission" th:each="mission: ${missions}">	
 					<article class="missionLists">
-						<img src="./images/sector1.jpg">
-						
+						<img th:src="${sector.imageUrl}"/>
 						<button>
 							<div class="mission-intro missionButton">
 								<h4 th:text="${mission.missionName}"></h4>
