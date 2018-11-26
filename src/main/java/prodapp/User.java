@@ -3,6 +3,7 @@ package prodapp;
 import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
@@ -14,8 +15,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class User {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(
+		    strategy= GenerationType.AUTO, 
+		    generator="native"
+		)
 	private long id;
+	
 	private String userName;
 	private String contact;
 	private String password;

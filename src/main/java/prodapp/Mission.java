@@ -7,6 +7,7 @@ import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
@@ -16,7 +17,10 @@ import javax.persistence.ManyToOne;
 public class Mission {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(
+		    strategy= GenerationType.AUTO, 
+		    generator="native"
+		)
 	private long id;
 
 	private String missionName;
@@ -89,10 +93,10 @@ public class Mission {
 	}
 	
 
-	public void removeUsers(Collection<User> users) {
-		this.users.remove(users);
-		
-	}
+//	public void removeUsers(Collection<User> users) {
+//		this.users.remove(users);
+//		
+//	}
 
 	// adds a user to the list of users
 	public void addUser(User user) {

@@ -29,7 +29,7 @@ public class ProdPopulator implements CommandLineRunner {
 	Mission mission = new Mission("MissionName", "description", 1, 2, "2018-12-25", "", true, 0, user);
 	Mission mission2 = new Mission("MissionName2", "description2", 4, 3, "2018-11-30", "", true, 0,
 			user);
-	Mission mission3 = new Mission("MissionName3", "description3", 21, 4, "2018-12-6", "", false, 0,
+	Mission mission3 = new Mission("MissionName3", "description3", 21, 4, "2018-12-06", "", false, 0,
 			user, user2);
 	Mission mission4 = new Mission("MissionName4", "description4", 14, 4, "2018-12-13", "", false, 0);
 	missionRepo.save(mission);

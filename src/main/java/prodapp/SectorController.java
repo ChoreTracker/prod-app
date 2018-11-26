@@ -30,17 +30,26 @@ public class SectorController {
 	}
 
 	@RequestMapping("/sector")
-	public String findOneSector(@RequestParam(value = "id") long sectorId, Model model) throws sectorNotFoundException {
+	public String findOneSector(@RequestParam(value="id") long sectorId, Model model) throws sectorNotFoundException {
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
 
 		if (sector.isPresent()) {
 			model.addAttribute("sector", sector.get());
 //			model.addAttribute("sector", missionRepo.findAllBySectorAndCompletionDateNotNullOrderByDueDate(sectorId));
 			return "sector";
-		} // this will also show all the missions in the sector through the
-			// sector.getMissions();
+		} 
 		throw new sectorNotFoundException();
 
+	}
+	
+	@RequestMapping("/add-sector-button")
+	public String addNewSector(String sectorName, String imageUrl) {
+		Sector sector = sectorRepo.findBySectorName(sectorName);
+		if (sector == null) {
+			sector = new Sector(sectorName, "");
+			sectorRepo.save(sector);
+		}
+		return "redirect:/show-sectors";
 	}
 
 	@RequestMapping(path = "/admin/sectors/add/{sectorName}", method = RequestMethod.POST)

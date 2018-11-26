@@ -6,21 +6,26 @@ import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import org.springframework.lang.NonNull;
+
 
 @Entity
 public class Sector {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(
+		    strategy= GenerationType.AUTO, 
+		    generator="native"
+		)
+		
 	private long id;
 
 	private String sectorName;
 	
-	@OneToMany
+	@OneToMany(mappedBy="sector")
 	private Collection<Mission> missions;
 
 	private String imageUrl;
@@ -54,7 +59,7 @@ public class Sector {
 	}
 	public Sector(String sectorName, String imageUrl, Mission...missions) {
 		this.sectorName = sectorName;
-		this.setImageUrl(imageUrl);
+		this.imageUrl = imageUrl;
 		this.missions = new HashSet<>(Arrays.asList(missions));
 	}
 

@@ -35,7 +35,7 @@ public class UserController {
 			model.addAttribute("user", user.get());
 			model.addAttribute("unassignedUserMissions", missionRepo.findAllByUsersIsNullAndRecurringIsFalse());
 			model.addAttribute("allMissions", missionRepo.findAll());
-			model.addAttribute("sectors", sectorRepo.findAll());
+//			model.addAttribute("sectors", sectorRepo.findAll());
 			return "user";
 			
 		}

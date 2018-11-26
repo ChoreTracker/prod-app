@@ -131,7 +131,7 @@ public class MissionController {
 
 	// pass in the mission id, sets the completion date to current date
 	@RequestMapping("/mission-complete-button")
-	public String setAsComplete(@RequestParam long missionId, long userId) {
+	public String setAsComplete(@RequestParam long missionId, @RequestParam  long userId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.markComplete();
@@ -141,7 +141,7 @@ public class MissionController {
 	}
 	
 	@RequestMapping("/snooze-mission")
-	public String snoozeMission(@RequestParam long missionId, long userId) {
+	public String snoozeMission(@RequestParam long missionId, @RequestParam (value="id") long userId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.hitSnooze();
@@ -272,7 +272,7 @@ public class MissionController {
 	}
 	
 	@RequestMapping("/claim-mission-button")
-	public String claimUnassignedMission(long missionId, long userId) {
+	public String claimUnassignedMission(@RequestParam long missionId, @RequestParam (value="id") long userId) {
 		User activeUser = findLoggedInUser();
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
@@ -282,12 +282,11 @@ public class MissionController {
 	}
 	
 	@RequestMapping("/claim-mission-assigned-button")
-	public void claimAssignedMission(long missionId, User user) {
+	public void claimAssignedMission(long missionId) {
 		User activeUser = findLoggedInUser();
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
-		mission.removeUsers(mission.getUsers());
-		mission.addUser(activeUser);
+		mission.assignUsers(activeUser);
 		missionRepo.save(mission);
 	}
 
