@@ -43,7 +43,6 @@
 				</div>
 				<div id="navigation" class="navContent">
 					<ul>
-						<li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
 						<li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
 						<li> <a href="http://localhost:8080/show-users">All Users</a></li>
 					</ul>
@@ -64,44 +63,14 @@
 						<button  class="mission-intro missionButton"> <h4 th:text="${sector.sectorName}"></h4></button>
 					</form>
 			</article>
-			
 		</div>
-		
-		<!-- <ul id="sector-list">
-			<li th:each="sector: ${sectors}">
-					<a th:href="@{/sector(id=${sector.id})}" th:text="${sector.sectorName}"></a>
-			</li>
-		</ul> -->
 	</div>
 	
-	<!-- still showing for user -->
-	<!-- <section sec:authorize="hasRole('ROLE_ADMIN')" class="add-sector">
-		<input type="text"/>
-		<button>Add Sector</button>
-	</section> -->
 
-
-	<!-- <section class="remove-sector">
-		<input type="text"/>
-		<button>Remove Sector</button>
-	</section> -->
-
-	<!-- <section class="sectors-list">
-		<h2>Here is a list of your current sectors:</h2>
-		<ul>
-			<li th:if="${sectors.size() ==0}">Currently no sectors...please add one!</li>
-			<li th:if="${sectors.size() !=0}" th:each="sector: ${sectors}">
-			  <a th:href="@{/sector(id=${sector.id})}" th:text="${sector.sectorName}"></a>
-		</ul>
-	</section> -->
 
 	</main>
 	<footer>
-			<ul>
-				<li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
-				<li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
-				<li> <a href="http://localhost:8080/show-users">All Users</a></li>
-			</ul>
+			
 	</footer>		
 
 	<script src = "./js/sectors.js"></script>
