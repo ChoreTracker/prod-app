@@ -7,9 +7,9 @@ import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -18,10 +18,7 @@ import javax.persistence.ManyToOne;
 public class Mission {
 
 	@Id
-	@GeneratedValue(
-		    strategy= GenerationType.AUTO, 
-		    generator="native"
-		)
+	@GeneratedValue
 	private long id;
 
 	private String missionName;
@@ -33,7 +30,6 @@ public class Mission {
 	private Collection<User> users;
 
 	@ManyToOne 
-//	@JoinColumn(name="sector_id")
 	private Sector sector;
 
 	private String completionDate;
@@ -165,17 +161,18 @@ public class Mission {
 		this.count = 0;
 	}
 
-	public Mission(String missionName, String missionDescription, int period, int snooze, String dueDate,
+	public Mission(String missionName, String missionDescription, Sector sector, int period, int snooze, String dueDate,
 			String completionDate, boolean recurring, int count, User...users) {
 		this.missionName = missionName;
 		this.missionDescription = missionDescription;
-		this.users = new HashSet<>(Arrays.asList(users));
+		this.sector = sector;
 		this.period = period;
 		this.snooze = snooze;
 		this.dueDate = dueDate;
 		this.completionDate = completionDate;
 		this.recurring = recurring;
 		this.count = count;
+		this.users = new HashSet<>(Arrays.asList(users));
 	}
 
 	public Mission() {

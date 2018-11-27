@@ -50,26 +50,28 @@ public class MissionController {
 	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate, boolean recurring, @RequestParam long sectorId, @RequestParam long userId) {
 		Optional<User> userResult = userRepo.findById(userId);
 		User user = userResult.get();
-		Mission newMission = new Mission(missionName, missionDescription, period, snooze, dueDate, "", recurring, 0, user);
+		Optional<Sector> sectorResult = sectorRepo.findById(sectorId);
+		Sector sector = sectorResult.get();
+		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, "", recurring, 0, user);
 		missionRepo.save(newMission);
-		long missionId = newMission.getId();
-		putMissionInSector(sectorId, missionId);
+		
+		
 		return "redirect:/user?id=" + userId;
 	}
 	
-	//this method is in use also!
-	public void putMissionInSector(long sectorId, long missionId) {
-		Optional<Sector> result = sectorRepo.findById(sectorId);
-		if (result.isPresent()) {
-			Sector sector = result.get();
-			Optional<Mission> missionToAdd = missionRepo.findById(missionId);
-			if (missionToAdd.isPresent()) {
-				Mission mission = missionToAdd.get();
-				sector.addMission(mission);
-				sectorRepo.save(sector);
-			}
-		}
-	}
+//	//this method is in use also!
+//	public void putMissionInSector(long sectorId, long missionId) {
+//		Optional<Sector> result = sectorRepo.findById(sectorId);
+//		if (result.isPresent()) {
+//			Sector sector = result.get();
+//			Optional<Mission> missionToAdd = missionRepo.findById(missionId);
+//			if (missionToAdd.isPresent()) {
+//				Mission mission = missionToAdd.get();
+//				sector.addMission(mission);
+//				sectorRepo.save(sector);
+//			}
+//		}
+//	}
 
 	// button to delete a mission, using the id; returns the user to the mi
 	@RequestMapping("/admin/delete-mission-button")
@@ -303,7 +305,7 @@ public class MissionController {
 	public void makeMissionRecurring(long missionId) {
 		Optional<Mission> missionChosen = missionRepo.findById(missionId);
 		Mission mission = missionChosen.get();
-		Mission newMission = new Mission(mission.getMissionName(), mission.getMissionDescription(),
+		Mission newMission = new Mission(mission.getMissionName(), mission.getMissionDescription(), mission.getSector(),
 				mission.getPeriod(), mission.getSnooze(), "", "", true, 0);
 		newMission.assignUsers(mission.getUsers());
 		missionRepo.save(newMission);

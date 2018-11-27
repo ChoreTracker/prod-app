@@ -16,16 +16,12 @@ import javax.persistence.OneToMany;
 public class Sector {
 	
 	@Id
-	@GeneratedValue(
-		    strategy= GenerationType.AUTO, 
-		    generator="native"
-		)
-		
+	@GeneratedValue
 	private long id;
 
 	private String sectorName;
 	
-	@OneToMany 
+	@OneToMany (mappedBy="sector")
 	private Collection<Mission> missions;
 
 	private String imageUrl;
@@ -42,9 +38,9 @@ public class Sector {
 		return id;
 	}
 	
-	public void addMission(Mission mission) {
-		this.missions.add(mission);
-	}
+//	public void addMission(Mission mission) {
+//		this.missions.add(mission);
+//	}
 	
 	public String getImageUrl() {
 		return imageUrl;
@@ -57,10 +53,10 @@ public class Sector {
 	public Sector() {
 		
 	}
-	public Sector(String sectorName, String imageUrl, Mission...missions) {
+	public Sector(String sectorName, String imageUrl) {
 		this.sectorName = sectorName;
 		this.imageUrl = imageUrl;
-		this.missions = new HashSet<>(Arrays.asList(missions));
+		
 	}
 
 	@Override
