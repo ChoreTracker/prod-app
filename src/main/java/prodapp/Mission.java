@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -31,7 +32,8 @@ public class Mission {
 	@ManyToMany
 	private Collection<User> users;
 
-	@ManyToOne
+	@ManyToOne 
+//	@JoinColumn(name="sector_id")
 	private Sector sector;
 
 	private String completionDate;

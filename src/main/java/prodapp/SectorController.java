@@ -33,12 +33,9 @@ public class SectorController {
 	public String findOneSector(@RequestParam(value="id") long sectorId, Model model) throws sectorNotFoundException {
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
 
-		if (sector.isPresent()) {
-			
-//			model.addAttribute("sector", sector.get());
+		if (sector.isPresent()) {			
 			Sector sectorResult = sector.get();
 			model.addAttribute("sector", sectorResult);
-			model.addAttribute("missions", sectorResult.getMissions());
 			return "sector";
 		} 
 		throw new sectorNotFoundException();

@@ -35,12 +35,10 @@ public class UserController {
 
 		if(userResult.isPresent()) {
 			User user = userResult.get();
-			
 			Collection<Sector> usersMissionSectors = new HashSet<>();
 			for (Mission mission: user.getMissions()) {
 				usersMissionSectors.add(mission.getSector());
 			}
-
 			model.addAttribute("user", user);
 			model.addAttribute("userSectors", usersMissionSectors);
 			model.addAttribute("unassignedUserMissions", missionRepo.findAllByUsersIsNullAndRecurringIsFalse());

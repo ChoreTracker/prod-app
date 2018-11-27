@@ -75,11 +75,14 @@
 			</div>
 
 			<div id="myMissions" class="tabcontent active" style="display: block">
+				<!-- <div th:each="sector: ${userSectors}"> -->
+
+				
 				<div class ="mission" th:each="mission: ${user.missions}">	
 					
 						<article class="missionLists" >
 						
-								<!-- <img th:src="{mission.sector?.imageUrl}"/> -->
+								<!-- <img th:src="{mission.sector.imageUrl}"/> -->
 							
 							<button >
 								<div class="mission-intro missionButton">
@@ -112,6 +115,7 @@
 						</div>
 					</div>
 				</div>
+				<!-- </div> -->
 			</div>
 
 			<div id="unassignedMissions" class="tabcontent">
