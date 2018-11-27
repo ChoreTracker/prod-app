@@ -32,10 +32,7 @@ public class UserController {
 	@RequestMapping("/user")
 	public String findOneUser(@RequestParam(value="id") long userId, Model model) throws userNotFoundException {
 		Optional<User> userResult = userRepo.findById(userId);
-		
-			
-		
-		
+
 		if(userResult.isPresent()) {
 			User user = userResult.get();
 			
@@ -43,8 +40,7 @@ public class UserController {
 			for (Mission mission: user.getMissions()) {
 				usersMissionSectors.add(mission.getSector());
 			}
-			
-			
+
 			model.addAttribute("user", user);
 			model.addAttribute("userSectors", usersMissionSectors);
 			model.addAttribute("unassignedUserMissions", missionRepo.findAllByUsersIsNullAndRecurringIsFalse());

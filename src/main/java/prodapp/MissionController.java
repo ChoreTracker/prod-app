@@ -122,7 +122,7 @@ public class MissionController {
 //		return "missions";
 //	}
 	
-	@RequestMapping("/show-unassigned-missions")
+
 	public String showAllUnassignedMissions(Model model) {
 		Collection<Mission> unassignedMissions = missionRepo.findAllByUsersIsNullAndRecurringIsFalse();
 		model.addAttribute("missions", unassignedMissions);
@@ -267,19 +267,28 @@ public class MissionController {
 
 	private User findLoggedInUser() {
 		Object activeUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User loggedInUser = User.class.cast(activeUser);
+		User loggedInUser = (User) activeUser;
 		return loggedInUser;
 	}
 	
+	
+	// with activeUser commented out, the method works, assigning the mission to the user whose page you're on. 
 	@RequestMapping("/claim-mission-button")
-	public String claimUnassignedMission(@RequestParam long missionId, @RequestParam (value="id") long userId) {
-		User activeUser = findLoggedInUser();
+	public String claimUnassignedMission(@RequestParam long missionId, @RequestParam long userId) {
+		//User activeUser = findLoggedInUser();
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
-		mission.addUser(activeUser);
+		//mission.addUser(activeUser);
+		Optional<User>userResult = userRepo.findById(userId);
+		User user = userResult.get();
+		mission.addUser(user);
 		missionRepo.save(mission);
 		return "redirect:/user?id=" + userId;
 	}
+	
+	
+	
+	
 	
 	@RequestMapping("/claim-mission-assigned-button")
 	public void claimAssignedMission(long missionId) {
