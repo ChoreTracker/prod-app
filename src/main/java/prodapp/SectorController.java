@@ -30,17 +30,47 @@ public class SectorController {
 	}
 
 	@RequestMapping("/sector")
-	public String findOneSector(@RequestParam(value = "id") long sectorId, Model model) throws sectorNotFoundException {
+	public String findOneSector(@RequestParam(value="id") long sectorId, Model model) throws sectorNotFoundException {
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
 
-		if (sector.isPresent()) {
-			model.addAttribute("sector", sector.get());
-//			model.addAttribute("sector", missionRepo.findAllBySectorAndCompletionDateNotNullOrderByDueDate(sectorId));
+		if (sector.isPresent()) {			
+			Sector sectorResult = sector.get();
+			model.addAttribute("sector", sectorResult);
+			model.addAttribute("missions", missionRepo.findAllBySector(sectorResult));
 			return "sector";
-		} // this will also show all the missions in the sector through the
-			// sector.getMissions();
+		} 
 		throw new sectorNotFoundException();
 
+	}
+	
+	@RequestMapping("/add-sector-button")
+	public String addNewSector(@RequestParam String sectorName, @RequestParam String imageUrl) {
+		Sector sector = sectorRepo.findBySectorName(sectorName);
+		if (sector == null) {
+			imageUrl = "/images/sectors/" + imageUrl;
+			sector = new Sector(sectorName, imageUrl);
+			sectorRepo.save(sector);
+		}
+		return "redirect:/show-sectors";
+	}
+	
+	@RequestMapping("/missionDone-sector-button")
+	public String setAsComplete(@RequestParam long missionId, @RequestParam  long sectorId) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.markComplete();
+		missionRepo.save(mission);
+		
+		return "redirect:/sector?id=" + sectorId;
+	}
+	
+	@RequestMapping("/snooze-mission-sector")
+	public String snoozeMission(@RequestParam long missionId, @RequestParam long sectorId) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.hitSnooze();
+		missionRepo.save(mission);
+		return "redirect:/sector?id=" + sectorId;
 	}
 
 	@RequestMapping(path = "/admin/sectors/add/{sectorName}", method = RequestMethod.POST)
@@ -105,23 +135,23 @@ public class SectorController {
 
 	// button to add a mission to a sector, using the ids of both, say from a view
 	// of the sector
-	@RequestMapping("/add-mission-to-sector-button")
-	public String addMissionToSector(long sectorId, long missionId) {
-		Optional<Sector> result = sectorRepo.findById(sectorId);
-		if (result.isPresent()) {
-			Sector sector = result.get();
-			Optional<Mission> missionToAdd = missionRepo.findById(missionId);
-			if (missionToAdd.isPresent()) {
-				Mission mission = missionToAdd.get();
-				sector.addMission(mission);
-				sectorRepo.save(sector);
-				return "redirect:/sector?id=" + sectorId;
-			}
-
-		}
-		return null;
-	}
-	
+//	@RequestMapping("/add-mission-to-sector-button")
+//	public String addMissionToSector(long sectorId, long missionId) {
+//		Optional<Sector> result = sectorRepo.findById(sectorId);
+//		if (result.isPresent()) {
+//			Sector sector = result.get();
+//			Optional<Mission> missionToAdd = missionRepo.findById(missionId);
+//			if (missionToAdd.isPresent()) {
+//				Mission mission = missionToAdd.get();
+//				sector.addMission(mission);
+//				sectorRepo.save(sector);
+//				return "redirect:/sector?id=" + sectorId;
+//			}
+//
+//		}
+//		return null;
+//	}
+//	
 	
 
 	@RequestMapping("/setup-sectors")
@@ -133,11 +163,14 @@ public class SectorController {
 	@RequestMapping("/make-mission-within-sector")
 	public String createMissionInSector(long sectorId, String missionName, String missionDescription, int period,
 			int snooze, String dueDate, String completionDate, boolean recurring, int count, User... users) {
-		Mission newMission = new Mission(missionName, missionDescription, period, snooze, dueDate, completionDate,
+		Optional<Sector>sectorResult = sectorRepo.findById(sectorId);
+		Sector sector = sectorResult.get();
+		
+		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, completionDate,
 				recurring, count, users);
 		missionRepo.save(newMission);
-		long missionId = newMission.getId();
-		addMissionToSector(sectorId, missionId);
+		
+	
 		return "redirect:/sector?id=" + sectorId;
 	}
 }

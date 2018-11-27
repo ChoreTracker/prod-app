@@ -7,7 +7,9 @@ import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -27,7 +29,8 @@ public class Mission {
 	@ManyToMany
 	private Collection<User> users;
 
-	@ManyToOne
+	@ManyToOne 
+	@JoinColumn(name="sector_id")
 	private Sector sector;
 
 	private String completionDate;
@@ -76,11 +79,18 @@ public class Mission {
 	public Sector getSector() {
 		return sector;
 	}
+	
+	
+	
 
 	// this method assigns all the users at once, removing any pre-assigned users,
 	// if any
 	public void assignUsers(User... users) {
 		this.users = new HashSet<>(Arrays.asList(users));
+	} 
+	
+	public void assignUsers(Collection<User> usersList) {
+		this.users = usersList;
 	}
 
 	// removes a user from the list of users
@@ -89,15 +99,20 @@ public class Mission {
 	}
 	
 
-	public void removeUsers(Collection<User> users) {
-		this.users.remove(users);
-		
-	}
+//	public void removeUsers(Collection<User> users) {
+//		this.users.remove(users);
+//		
+//	}
 
+	
 	// adds a user to the list of users
 	public void addUser(User user) {
 		this.users.add(user);
 	}
+	
+	
+	
+	
 
 	// sets the completion date to today
 	public void markComplete() {
@@ -136,25 +151,23 @@ public class Mission {
 		this.count ++;
 	}
 	
-	public void assignUsers(Collection<User> usersList) {
-		this.users = usersList;
-	}
 	
 	public void resetCount() {
 		this.count = 0;
 	}
 
-	public Mission(String missionName, String missionDescription, int period, int snooze, String dueDate,
+	public Mission(String missionName, String missionDescription, Sector sector, int period, int snooze, String dueDate,
 			String completionDate, boolean recurring, int count, User...users) {
 		this.missionName = missionName;
 		this.missionDescription = missionDescription;
-		this.users = new HashSet<>(Arrays.asList(users));
+		this.sector = sector;
 		this.period = period;
 		this.snooze = snooze;
 		this.dueDate = dueDate;
 		this.completionDate = completionDate;
 		this.recurring = recurring;
-		this.setCount(count);
+		this.count = count;
+		this.users = new HashSet<>(Arrays.asList(users));
 	}
 
 	public Mission() {

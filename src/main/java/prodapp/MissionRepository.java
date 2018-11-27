@@ -31,5 +31,5 @@ public interface MissionRepository extends CrudRepository<Mission, Long> {
 	//all unfinished missions in a sector, ordered by due date
 	Collection<Mission> findAllBySectorAndCompletionDateNotNullOrderByDueDate(long sectorId);
 
-
+	Collection<Mission> findAllBySector(Sector sector);
 }

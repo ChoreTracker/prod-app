@@ -3,23 +3,23 @@
 	<head>
 		<title>User Screen</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="./css/layout.css">
-		<link rel="stylesheet" type="text/css" href="./css/reset.css">
-		<link rel="stylesheet" type="text/css" href="./css/style-sheet.css">
+		<link rel="stylesheet" type="text/css" href="/css/layout.css">
+		<link rel="stylesheet" type="text/css" href="/css/reset.css">
+		<link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
 	</head>
 	<body>
-		<main>
+		<main >
 			<header>
 				<h1>Prod/header placeholder</h1>
 			
 			
 				<h2 th:text="'Hello ' + ${user.userName}"></h2>
 				<nav class="topNav">
-					
-						<button class="navLinks" onclick="openSubNav(event, 'admin')">Admin</button>
-						<button class="navLinks" onclick="openSubNav(event, 'add')">Add</button>
-						<button class="navLinks" onclick="openSubNav(event, 'navigation')">Navigation</button>
-						<button class="navLinks" onclick="openSubNav(event, 'logout')">Logout</button>
+				
+					<button class="navLinks" onclick="openSubNav(event, 'admin')">Admin</button>
+					<button class="navLinks" onclick="openSubNav(event, 'add')">Add</button>
+					<button class="navLinks" onclick="openSubNav(event, 'navigation')">Navigation</button>
+					<button class="navLinks" onclick="openSubNav(event, 'logout')">Logout</button>
 					
 				</nav>
 				<div id="subnav">
@@ -31,26 +31,23 @@
 						<div id="add-mission-modal" class="modal">
 							<div class="modal-content">
 								<span id="close-add-mission" class="close">&times;</span>
-								<form>
-									<h3>Add a new mission</h3>
-									<form method="POST">
-										<input type="text" name="missionName" placeholder="Name of the mission" required/>
-										<input type="text" name="missionDescription" placeholder="Description of the mission" required/>
-										<p>When is the mission due?</p>
-										<input type="date" name="dueDate" required/>
-										<p>how many days elapse between mission due dates</p>
-										<input type="number" name="period"  min="1" max="900" placeholder="num" required/>
-										<p>how many days (1-7) can the mission be snoozed</p>
-										<input type="number" name="snooze" min="1" max="7" placeholder="num" required/>
-										<p>Please choose a sector</p>
-										<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${sector.id}" th:text="${sector.sectorName}" required> <br>
-										<p>Does this mission recur?</p>
-										<input type="radio" name="recurring" value="true" checked required> mission recurs<br>
-  										<input type="radio" name="recurring" value="false" required> mission does not recur<br>
-										<input type="hidden" th:value="${user.id}" name="userId"/>
-										<button class="newMisson-button button-primary" th:formaction= "@{/create-mission-button}">Add Mission</button> 
-											
-									</form>
+								<h3>Add a new mission</h3>
+								<form >
+									<input type="text" name="missionName" placeholder="Name of the mission" required/>
+									<input type="text" name="missionDescription" placeholder="Description of the mission" required/>
+									<p>When is the mission due?</p>
+									<input type="date" name="dueDate" required/>
+									<p>how many days elapse between mission due dates</p>
+									<input type="number" name="period"  min="1" max="900" placeholder="num" required/>
+									<p>how many days (1-7) can the mission be snoozed</p>
+									<input type="number" name="snooze" min="1" max="7" placeholder="num" required/>
+									<p>Please choose a sector</p>
+									<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${sector.id}" th:text="${sector.sectorName}" required> <br>
+									<p>Does this mission recur?</p>
+									<input type="radio" name="recurring" value="true" checked required> mission recurs<br>
+									<input type="radio" name="recurring" value="false" required> mission does not recur<br>
+									<input type="hidden" th:value="${user.id}" name="userId"/>
+									<button class="newMisson-button button-primary" th:formaction= "@{/create-mission-button}">Add Mission</button> 
 								</form>
 							</div>				
 						</div>
@@ -76,10 +73,9 @@
 
 			<div id="myMissions" class="tabcontent active" style="display: block">
 				<div class ="mission" th:each="mission: ${user.missions}">	
-					
 						<article class="missionLists" >
-							<!-- <img th:href="@{/sector(id=${sector.id})}" th:src="${sector.imageUrl}"> -->
-							
+								<a th:href="@{/sector(id=${mission.sector.id})}">
+									<img th:src="${mission.sector.imageUrl}"/></a>
 							<button >
 								<div class="mission-intro missionButton">
 									<h4 th:text="${mission.missionName}"></h4>
@@ -96,7 +92,7 @@
 							<section>
 								<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
 								<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
-								<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName}"></span></p>	
+								<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
 								<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
 								<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
 								<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
@@ -111,13 +107,15 @@
 						</div>
 					</div>
 				</div>
+				
 			</div>
 
 			<div id="unassignedMissions" class="tabcontent">
 				<div class ="mission" th:each="mission: ${unassignedUserMissions}">
 					
 					<article class="missionLists" id="unassignedUserMissions" >
-						<img src="./images/sector1.jpg">
+						<a th:href="@{/sector(id=${mission.sector.id})}">
+						<img th:src="${mission.sector.imageUrl}"/></a>
 						<button class="missionButton">
 							<div class="mission-intro">
 								<h4 th:text="${mission.missionName}"></h4>
@@ -133,7 +131,7 @@
 							<section>
 								<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
 								<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
-								<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName}"></span></p>	
+								<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
 								<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
 								<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
 								<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
@@ -154,7 +152,8 @@
 			<div id="allMissions" class="tabcontent">
 				<div class ="mission" th:each="mission: ${allMissions}">	
 					<article class="missionLists" id="allUserMissions" >
-						<img src="./images/sector1.jpg">
+							<a th:href="@{/sector(id=${mission.sector.id})}">
+								<img th:src="${mission.sector.imageUrl}"/></a>
 						<button class="missionButton">
 							<div class="mission-intro">
 								<h4 th:text="${mission.missionName}"></h4>
@@ -171,7 +170,7 @@
 							<section>
 								<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
 								<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
-								<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName}"></span></p>	
+								<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
 								<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
 								<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
 								<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>

@@ -1,8 +1,11 @@
 package prodapp;
 
 import java.util.Collection;
+import java.util.HashSet;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
@@ -14,8 +17,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class User {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(
+		    strategy= GenerationType.AUTO, 
+		    generator="native"
+		)
 	private long id;
+	
 	private String userName;
 	private String contact;
 	private String password;
@@ -35,6 +42,8 @@ public class User {
 
 	@ManyToMany(mappedBy = "users")
 	private Collection<Mission> missions;
+
+	
 	
 	public User() {
 
@@ -56,6 +65,9 @@ public class User {
 		return missions;
 	}
 	
+
+	
+//	?Is this a method that runs on any user? like user.findLoggedInUser();
 	private User findLoggedInUser() {
 		Object activeUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User loggedInUser = User.class.cast(activeUser);

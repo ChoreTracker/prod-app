@@ -2,64 +2,75 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
 	<title>Sectors in the Home</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="./css/layout.css">
-	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="/css/layout.css">
+	<link rel="stylesheet" type="text/css" href="/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
+	
 </head>
 <body>
 	<main id="container"> 
 		<header>
 			<h1>Prod/header placeholder</h1>
 
-<!-- Need to enter top Nav -->
+			<nav class="topNav">
+				<button class="navLinks" onclick="openSubNav(event, 'admin')">Admin</button>
+				<button class="navLinks" onclick="openSubNav(event, 'add')">Add</button>
+				<button class="navLinks" onclick="openSubNav(event, 'navigation')">Navigation</button>
+				<button class="navLinks" onclick="openSubNav(event, 'logout')">Logout</button>
+			</nav>
+			<div id="subnav">
+				<div id="admin" class="navContent">
+					<p>navigate to admin page</p>
+				</div>
+				<div id="add" class="navContent">
+					<button id="add-sector-button">Add a new sector</button>
+					<div id="add-sector-modal" class="modal">
+						<div class="modal-content">
+							<span id="close-add-sector" class="close">&times;</span>
+							
+							<h3>Add a new sector</h3>
+							<form >
+								<input type="text" name="sectorName" placeholder="Name of the sector" required/>
+								<input type="file" name="imageUrl" placeholder="image URL" required/>
+								<button class="newSector-button button-primary" th:formaction= "@{/add-sector-button}">Add Sector</button> 
+							</form>
+						</div>				
+					</div>
+				</div>
+				<div id="navigation" class="navContent">
+					<ul>
+						<li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
+						<li> <a href="http://localhost:8080/show-users">All Users</a></li>
+					</ul>
+				</div>
+				<div id="logout" class="navContent"> 
+					<p>logout button confirmation</p>
+				</div>
+			</div>
+
 
 		</header>
 
 	<div class="grid-container">
 		<h2>Here are the current sectors for your home.</h2>
-		<div id="sector-list"th:each="sector: ${sectors}">
-				<button class="userButton">
-						<a th:href="@{/sector(id=${sector.id})}" th:text="${sector.sectorName}"></a>
-				</button>
-				</div>
-		
-		<!-- <ul id="sector-list">
-			<li th:each="sector: ${sectors}">
-					<a th:href="@{/sector(id=${sector.id})}" th:text="${sector.sectorName}"></a>
-			</li>
-		</ul> -->
+		<div id="sector-list">
+			<article th:each="sector: ${sectors}">
+					<img th:src="${sector.imageUrl}"/>
+					<form th:method="POST" th:action= "@{/sector(id=${sector.id})}">
+						<button  class="mission-intro missionButton"> <h4 th:text="${sector.sectorName}"></h4></button>
+					</form>
+			</article>
+		</div>
 	</div>
 	
-	<!-- still showing for user -->
-	<!-- <section sec:authorize="hasRole('ROLE_ADMIN')" class="add-sector">
-		<input type="text"/>
-		<button>Add Sector</button>
-	</section> -->
 
-
-	<!-- <section class="remove-sector">
-		<input type="text"/>
-		<button>Remove Sector</button>
-	</section> -->
-
-	<!-- <section class="sectors-list">
-		<h2>Here is a list of your current sectors:</h2>
-		<ul>
-			<li th:if="${sectors.size() ==0}">Currently no sectors...please add one!</li>
-			<li th:if="${sectors.size() !=0}" th:each="sector: ${sectors}">
-			  <a th:href="@{/sector(id=${sector.id})}" th:text="${sector.sectorName}"></a>
-		</ul>
-	</section> -->
 
 	</main>
 	<footer>
-			<ul>
-				<li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
-				<li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
-				<li> <a href="http://localhost:8080/show-users">All Users</a></li>
-			</ul>
+			
 	</footer>		
 
-	<!-- <script src = "./js/sector-requests.js"></script> -->
+	<script src = "./js/sectors.js"></script>
 </body>
 </html>
