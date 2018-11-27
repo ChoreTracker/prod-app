@@ -44,10 +44,10 @@ public class SectorController {
 	}
 	
 	@RequestMapping("/add-sector-button")
-	public String addNewSector(String sectorName, String imageUrl) {
+	public String addNewSector(@RequestParam String sectorName, @RequestParam String imageUrl) {
 		Sector sector = sectorRepo.findBySectorName(sectorName);
 		if (sector == null) {
-			sector = new Sector(sectorName, "");
+			sector = new Sector(sectorName, imageUrl);
 			sectorRepo.save(sector);
 		}
 		return "redirect:/show-sectors";
