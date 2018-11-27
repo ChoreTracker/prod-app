@@ -25,7 +25,7 @@ public class MissionController {
 	@Resource
 	SectorRepository sectorRepo;
 
-	// all info on one mission is available; returns the single mission page
+	// all info on one mission is available; returns the single mission page, if there is one,anyway
 	@RequestMapping("/mission")
 	public String findOneMission(@RequestParam(value = "id") long missionId, Model model)
 			throws missionNotFoundException {
@@ -47,7 +47,7 @@ public class MissionController {
 
 	//This button is in use!
 	@RequestMapping("/create-mission-button")
-	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate, boolean recurring, @RequestParam long sectorId, @RequestParam long userId) {
+	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate, boolean recurring, long sectorId, @RequestParam long userId) {
 		Optional<User> userResult = userRepo.findById(userId);
 		User user = userResult.get();
 		Optional<Sector> sectorResult = sectorRepo.findById(sectorId);
