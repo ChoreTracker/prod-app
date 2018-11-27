@@ -94,6 +94,10 @@ public class Mission {
 	// if any
 	public void assignUsers(User... users) {
 		this.users = new HashSet<>(Arrays.asList(users));
+	} 
+	
+	public void assignUsers(Collection<User> usersList) {
+		this.users = usersList;
 	}
 
 	// removes a user from the list of users
@@ -112,6 +116,10 @@ public class Mission {
 	public void addUser(User user) {
 		this.users.add(user);
 	}
+	
+	
+	
+	
 
 	// sets the completion date to today
 	public void markComplete() {
@@ -150,9 +158,6 @@ public class Mission {
 		this.count ++;
 	}
 	
-	public void assignUsers(Collection<User> usersList) {
-		this.users = usersList;
-	}
 	
 	public void resetCount() {
 		this.count = 0;
@@ -168,7 +173,7 @@ public class Mission {
 		this.dueDate = dueDate;
 		this.completionDate = completionDate;
 		this.recurring = recurring;
-		this.setCount(count);
+		this.count = count;
 	}
 
 	public Mission() {

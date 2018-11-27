@@ -141,7 +141,7 @@ public class MissionController {
 	}
 	
 	@RequestMapping("/snooze-mission")
-	public String snoozeMission(@RequestParam long missionId, @RequestParam (value="id") long userId) {
+	public String snoozeMission(@RequestParam long missionId, @RequestParam long userId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.hitSnooze();

@@ -105,7 +105,7 @@
 							</section>
 							<form>
 								<input type="hidden" th:value="${mission.id}" name="missionId"/>
-								<!-- <input type="hidden" th:value="*{id}" name="userId"/> -->
+								<input type="hidden" th:value="*{id}" name="userId"/>
 								<button class="doneButton button-primary" th:formaction= "@{/mission-complete-button}">Done</button>
 								<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission}">Snooze</button>
 							</form>				

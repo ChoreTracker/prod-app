@@ -1,5 +1,7 @@
 package prodapp;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -31,9 +33,20 @@ public class UserController {
 	public String findOneUser(@RequestParam(value="id") long userId, Model model) throws userNotFoundException {
 		Optional<User> userResult = userRepo.findById(userId);
 		
+			
+		
+		
 		if(userResult.isPresent()) {
 			User user = userResult.get();
+			
+			Collection<Sector> usersMissionSectors = new HashSet<>();
+			for (Mission mission: user.getMissions()) {
+				usersMissionSectors.add(mission.getSector());
+			}
+			
+			
 			model.addAttribute("user", user);
+			model.addAttribute("userSectors", usersMissionSectors);
 			model.addAttribute("unassignedUserMissions", missionRepo.findAllByUsersIsNullAndRecurringIsFalse());
 			model.addAttribute("allMissions", missionRepo.findAll());
 //			model.addAttribute("sectors", sectorRepo.findAll());
