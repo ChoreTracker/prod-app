@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -30,6 +30,7 @@ public class Mission {
 	private Collection<User> users;
 
 	@ManyToOne 
+	@JoinColumn(name="sector_id")
 	private Sector sector;
 
 	private String completionDate;
@@ -80,13 +81,7 @@ public class Mission {
 	}
 	
 	
-	public long getSectorId() {
-		return this.getSector().getId();
-	}
 	
-	public String getSectorImage() {
-		return this.getSector().getImageUrl();
-	}
 
 	// this method assigns all the users at once, removing any pre-assigned users,
 	// if any

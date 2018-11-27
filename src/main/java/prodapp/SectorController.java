@@ -36,6 +36,7 @@ public class SectorController {
 		if (sector.isPresent()) {			
 			Sector sectorResult = sector.get();
 			model.addAttribute("sector", sectorResult);
+			model.addAttribute("missions", missionRepo.findAllBySector(sectorResult));
 			return "sector";
 		} 
 		throw new sectorNotFoundException();
@@ -63,7 +64,7 @@ public class SectorController {
 	}
 	
 	@RequestMapping("/snooze-mission-sector")
-	public String snoozeMission(@RequestParam long missionId, @RequestParam (value="id") long sectorId) {
+	public String snoozeMission(@RequestParam long missionId, @RequestParam long sectorId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.hitSnooze();

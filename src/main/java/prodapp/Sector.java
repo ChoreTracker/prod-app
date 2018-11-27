@@ -21,7 +21,7 @@ public class Sector {
 
 	private String sectorName;
 	
-	@OneToMany (mappedBy="sector")
+	@OneToMany(mappedBy="sector")
 	private Collection<Mission> missions;
 
 	private String imageUrl;

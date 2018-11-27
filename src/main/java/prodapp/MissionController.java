@@ -142,6 +142,7 @@ public class MissionController {
 		return "redirect:/user?id=" + userId;
 	}
 	
+	//use this on the user page
 	@RequestMapping("/snooze-mission")
 	public String snoozeMission(@RequestParam long missionId, @RequestParam long userId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
@@ -150,6 +151,7 @@ public class MissionController {
 		missionRepo.save(mission);
 		return "redirect:/user?id=" + userId;
 	}
+
 
 	public void createDueDate(long missionId, String date) {
 		Optional<Mission> result = missionRepo.findById(missionId);
