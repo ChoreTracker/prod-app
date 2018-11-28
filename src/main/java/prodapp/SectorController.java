@@ -48,12 +48,20 @@ public class SectorController {
 	public String addNewSector(@RequestParam String sectorName, @RequestParam String imageUrl) {
 		Sector sector = sectorRepo.findBySectorName(sectorName);
 		if (sector == null) {
-			imageUrl = "/images/sectors/" + imageUrl;
+			
 			sector = new Sector(sectorName, imageUrl);
 			sectorRepo.save(sector);
 		}
 		return "redirect:/show-sectors";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping("/missionDone-sector-button")
 	public String setAsComplete(@RequestParam long missionId, @RequestParam  long sectorId) {
