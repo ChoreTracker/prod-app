@@ -131,7 +131,7 @@ public class MissionController {
 		return "missions";
 	}
 
-	// pass in the mission id, sets the completion date to current date
+	// pass in the mission id, sets the completion date to current date; use on the user page
 	@RequestMapping("/mission-complete-button")
 	public String setAsComplete(@RequestParam long missionId, @RequestParam  long userId) {
 		Optional<Mission> result = missionRepo.findById(missionId);

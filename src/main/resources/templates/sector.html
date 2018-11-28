@@ -11,6 +11,21 @@
 	<main > 
 		<header>
 			<h1>Single Sector</h1>
+
+			<div id="add" class="navContent">
+				<button id="assign-missions">Add a new mission</button>
+				<div id="assign-mission-modal" class="modal">
+					<div class="modal-content">
+						<span id="close-assign-mission" class="close">&times;</span>
+						<h3>Assign all missions in this sector to one user</h3>
+						<form >
+							<input th:each= "user: ${users}" type="radio" name="userId" th:value="${user.id}" th:text="${user.userName} + '&nbsp&nbsp'" required> <br>
+							<input type="hidden" name="sectorId" th:value="${sector.id}"/>
+							<button class="newMisson-button button-primary" th:formaction= "@{/assign-all-missions-button}">Assign</button> 
+						</form>
+					</div>				
+				</div>
+			</div>
 		</header>
 		<div th:object= "${sector}" class="grid-container">
 			<h2 th:text="${sector.sectorName}"></h2>

@@ -37,6 +37,7 @@ public class SectorController {
 			Sector sectorResult = sector.get();
 			model.addAttribute("sector", sectorResult);
 			model.addAttribute("missions", missionRepo.findAllBySector(sectorResult));
+			model.addAttribute("users", userRepo.findAll());
 			return "sector";
 		} 
 		throw new sectorNotFoundException();
@@ -107,25 +108,25 @@ public class SectorController {
 		}
 		return "redirect:/show-sectors";
 	}
-
-	@RequestMapping("/sector-missions")
-	public String findMissionsBySectorId(long sectorId, Model model) {
-		Optional<Sector> sector = sectorRepo.findById(sectorId);
-		Sector sectorResult = sector.get();
-		model.addAttribute("sector", sectorResult);
-		model.addAttribute("missions", sectorResult.getMissions());
-		return "sector";
-	}
+//
+//	@RequestMapping("/sector-missions")
+//	public String findMissionsBySectorId(long sectorId, Model model) {
+//		Optional<Sector> sector = sectorRepo.findById(sectorId);
+//		Sector sectorResult = sector.get();
+//		model.addAttribute("sector", sectorResult);
+//		model.addAttribute("missions", sectorResult.getMissions());
+//		return "sector";
+//	}
 
 	// button that assigns all the missions in a sector to one user, using the ids
 	// of both
-	@RequestMapping("/admin/assign-all-missions-button")
+	@RequestMapping("/assign-all-missions-button")
 	public String assignAllMissionsInSectorToUserById(long sectorId, long userId) {
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
 		Sector sectorResult = sector.get();
 		Optional<User> user = userRepo.findById(userId);
 		User userResult = user.get();
-		for (Mission mission : sectorResult.getMissions()) {
+		for (Mission mission : missionRepo.findAllBySector(sectorResult)) {
 			mission.assignUsers(userResult);
 			missionRepo.save(mission);
 		}
