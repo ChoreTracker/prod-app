@@ -86,7 +86,7 @@
 			</div>
 
 			<div id="myMissions" class="tabcontent active" style="display: block">
-				<div class ="mission" th:each="mission: ${user.missions}">	
+				<div class ="mission" th:each="mission: ${usersMissions}">	
 						<article class="missionLists" >
 								<a th:href="@{/sector(id=${mission.sector.id})}">
 									<img th:src="${mission.sector.imageUrl}"/></a>
@@ -112,6 +112,7 @@
 								<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
 								<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
 							</section>
+							<h3 th:if="${mission.completionDate != null}">This mission is completed</h3>
 							<form>
 								<input type="hidden" th:value="${mission.id}" name="missionId"/>
 								<input type="hidden" th:value="${user.id}" name="userId"/>
@@ -165,7 +166,7 @@
 
 			<div id="allMissions" class="tabcontent">
 				<div class ="mission" th:each="mission: ${allMissions}">	
-					<article class="missionLists" id="allUserMissions" >
+					<article th:if="${mission.completionDate != null}" class="missionLists missionDone" id="allUserMissions" >
 							<a th:href="@{/sector(id=${mission.sector.id})}">
 								<img th:src="${mission.sector.imageUrl}"/></a>
 						<button class="missionButton">
@@ -176,6 +177,19 @@
 							</div>
 						</button>
 					</article>
+
+					<article th:if="${mission.completionDate == null}" class="missionLists" id="allUserMissions" >
+							<a th:href="@{/sector(id=${mission.sector.id})}">
+								<img th:src="${mission.sector.imageUrl}"/></a>
+						<button class="missionButton">
+							<div class="mission-intro">
+								<h4 th:text="${mission.missionName}"></h4>
+								<p><span th:text="${mission.dueDate}"></span><span> | </span>
+								<span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>
+							</div>
+						</button>
+					</article>
+					
 					
 					<!-- The Modal -->
 					<div class="modal">
@@ -190,7 +204,8 @@
 								<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
 								<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
 							</section>
-							<form >
+							<h3 th:if="${mission.completionDate != null}">This mission is completed</h3>
+							<form th:if="${mission.completionDate == null}">
 								<input type="hidden" th:value="${mission.id}" name="missionId"/>
 								<input type="hidden" th:value="${user.id}" name="userId"/>
 								<button class="doneButton button-primary" th:formaction= "@{/mission-complete-button}">Done</button>

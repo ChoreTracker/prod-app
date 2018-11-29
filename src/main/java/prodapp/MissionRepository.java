@@ -32,4 +32,8 @@ public interface MissionRepository extends CrudRepository<Mission, Long> {
 	Collection<Mission> findAllBySectorAndCompletionDateNotNullOrderByDueDate(long sectorId);
 
 	Collection<Mission> findAllBySector(Sector sector);
+
+	Collection<Mission> findByUsersContainsAndCompletionDateIsNull(User user);
+	
+	Collection<Mission> findAllByUsersIsNullAndCompletionDateIsNullAndRecurringIsFalse();
 }
