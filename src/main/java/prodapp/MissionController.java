@@ -290,6 +290,18 @@ public class MissionController {
 		return "redirect:/user?id=" + userId;
 	}
 	
+	@RequestMapping("/claim-mission-in-sector-button")
+	public String claimUnassignedMissionInSector(@RequestParam long missionId, @RequestParam long userId) {
+		User activeUser = findLoggedInUser();
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.addUser(activeUser);
+		Optional<User>userResult = userRepo.findById(userId);
+		User user = userResult.get();
+		mission.addUser(user);
+		missionRepo.save(mission);
+		return "redirect:/sector?id=" + userId;
+	}
 	
 	
 	

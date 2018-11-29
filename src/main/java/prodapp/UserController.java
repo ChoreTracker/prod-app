@@ -1,7 +1,5 @@
 package prodapp;
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -37,8 +35,9 @@ public class UserController {
 
 			User user = userResult.get();
 			model.addAttribute("user", user);
+			model.addAttribute("usersMissions", missionRepo.findByUsersContainsAndCompletionDateIsNull(user));
 			model.addAttribute("sectors", sectorRepo.findAll());
-			model.addAttribute("unassignedUserMissions", missionRepo.findAllByUsersIsNullAndRecurringIsFalse());
+			model.addAttribute("unassignedUserMissions", missionRepo.findAllByUsersIsNullAndCompletionDateIsNullAndRecurringIsFalse());
 			model.addAttribute("allMissions", missionRepo.findAll());
 
 			return "user";

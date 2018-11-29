@@ -1,0 +1,56 @@
+<header>
+        <h1>Prod/header placeholder</h1>
+<nav class="topNav">
+				
+        <button class="navLinks" onclick="openSubNav(event, 'admin')">Admin</button>
+        <button class="navLinks" onclick="openSubNav(event, 'add')">Add</button>
+        <button class="navLinks" onclick="openSubNav(event, 'navigation')">Navigation</button>
+        <button class="navLinks" onclick="openSubNav(event, 'logout')">Logout</button>
+        
+    </nav>
+    <div id="subnav">
+        <div id="admin" class="navContent">
+            <p>navigate to admin page</p>
+        </div>
+        <div id="add" class="navContent">
+            <button id="add-mission-button">Add a new mission</button>
+            <div id="add-mission-modal" class="modal">
+                <div class="modal-content">
+                    <span id="close-add-mission" class="close">&times;</span>
+                    <h3>Add a new mission</h3>
+                    <form >
+                        <input type="text" name="missionName" placeholder="Name of the mission" required/>
+                        <input type="text" name="missionDescription" placeholder="Description of the mission" required/>
+                        <p>When is the mission due?</p>
+                        <input type="date" name="dueDate" required/>
+                        <p>Does this mission recur?</p>
+                        <input type="radio" name="recurring" value="true" checked required>Yes<br>
+                        <input type="radio" name="recurring" value="false" required>No<br>
+                        <p>how many days elapse between mission due dates</p>
+                        <input type="number" name="period"  min="0" max="900" placeholder="num" required/>
+                        <p>how many days (1-7) can the mission be snoozed</p>
+                        <input type="number" name="snooze" min="1" max="7" placeholder="num" required/>
+                        <!-- not showing radio buttons for sector -->
+                        <p>Please choose a sector</p>
+                        <input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${sector.id}" th:text="${sector.sectorName}" required> <br>
+                        <!-- not showing users or checkboxes yet -->
+                        <p>Assign user(s)</p>
+                        <input type="checkbox" name="userId" th:each= "user: ${users}" th:value="${user.id}" th:text="${user.userName}" required> <br>
+                        
+                        <button class="newMisson-button button-primary" th:formaction= "@{/create-mission-button}">Add Mission</button> 
+                    </form>
+                </div>				
+            </div>
+        </div>
+        <div id="navigation" class="navContent">
+            <ul>
+                <li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
+                <li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
+                <li> <a href="http://localhost:8080/show-users">All Users</a></li>
+            </ul>
+        </div>
+        <div id="logout" class="navContent"> 
+            <p>logout button confirmation</p>
+        </div>
+    </div>
+</header>

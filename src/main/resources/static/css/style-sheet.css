@@ -1,5 +1,10 @@
 /*Mobile first queries*/
 
+.missionDone{
+	background-color: gray !important;
+}
+
+
 body {
 	background-color: #f2ecc2;
 	}
@@ -305,7 +310,7 @@ nav #first-nav #selected {
 	}
 	
 nav #sub-nav {
-	background: #323232;
+	background: #ccc;
 	height: 3em;
 	position: fixed;
 	top: 3em;
@@ -405,7 +410,8 @@ input[type="text"], select, textarea {
     color: #8559a5;
     float: right;
     font-size: 28px;
-    font-weight: bold;
+	font-weight: bold;
+}
 
 article img {
 	object-fit: cover;
@@ -556,9 +562,9 @@ p {
 	width: 60%;
 }
 
-button {
+/* button {
 	width: 90%;
-}
+} */
 
 article {
 	margin-bottom: 1em;
@@ -675,6 +681,7 @@ nav #sub-nav li a:hover {
 	text-decoration: none;
 	color: #323232;
 	}
+
 }
 
 
