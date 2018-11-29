@@ -4,21 +4,78 @@
 	<title>Users Screen</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="./css/layout.css">
-	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
 </head>
 <body>
 	<main>
 		<header>
-			<h1>Prod/header placeholder</h1>
+            <h1>Prod/header placeholder</h1>
+            <nav class="topNav">
+				
+                <button class="navLinks" onclick="openSubNav(event, 'admin')">Admin</button>
+                <button class="navLinks" onclick="openSubNav(event, 'add')">Add</button>
+                <button class="navLinks" onclick="openSubNav(event, 'navigation')">Navigation</button>
+                <button class="navLinks" onclick="openSubNav(event, 'logout')">Logout</button>
+                
+            </nav>
+            <div id="subnav">
+                <div id="admin" class="navContent">
+                    <p>navigate to admin page</p>
+                </div>
+                <div id="add" class="navContent">
+                    <button id="add-mission-button">Add a new mission</button>
+                    <div id="add-mission-modal" class="modal">
+                        <div class="modal-content">
+                            <span id="close-add-mission" class="close">&times;</span>
+                            <h3>Add a new mission</h3>
+                            <form >
+                                <input type="text" name="missionName" placeholder="Name of the mission" required/>
+                                <input type="text" name="missionDescription" placeholder="Description of the mission" required/>
+                                <p>When is the mission due?</p>
+                                <input type="date" name="dueDate" required/>
+                                <p>how many days elapse between mission due dates</p>
+                                <input type="number" name="period"  min="1" max="900" placeholder="num" required/>
+                                <p>how many days (1-7) can the mission be snoozed</p>
+                                <input type="number" name="snooze" min="1" max="7" placeholder="num" required/>
+                                <p>Please choose a sector</p>
+                                <input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${sector.id}" th:text="${sector.sectorName}" required> <br>
+                                <p>Does this mission recur?</p>
+                                <input type="radio" name="recurring" value="true" checked required> mission recurs<br>
+                                <input type="radio" name="recurring" value="false" required> mission does not recur<br>
+                                <!-- <input type="hidden" th:value="${user.id}" name="userId"/> -->
+                                <button class="newMisson-button button-primary" th:formaction= "@{/create-mission-button}">Add Mission</button> 
+                            </form>
+                        </div>				
+                    </div>
+                </div>
+                <div id="navigation" class="navContent">
+                    <ul>
+                        <li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
+                        <li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
+                        <li> <a href="http://localhost:8080/show-users">All Users</a></li>
+                    </ul>
+                </div>
+                <div id="logout" class="navContent"> 
+                    <p>logout button confirmation</p>
+                </div>
+            </div>
         </header>
     <div class="grid-container">
             <h2>Here are all users.</h2>  
             
-            <div class="user" th:each="user: ${users}">
+            <div class="user">
+                <article th:each="user: ${users}">
+                    <!-- <img th:src="${user.imageUrl}"/> -->
+                    <form th:method="POST" th:action= "@{/user(id=${user.id})}">
+                    <button class="mission-intro missionButton"> <h4 th:text="${user.userName}"></h4></button>
+                    </form>
+                </article>
+            </div>
             
-            <button class="userButton">
+            <!-- <button class="userButton">
                 <a th:href="@{/user(id=${user.id})}" th:text="${user.userName}"></a>
-        </button>
+        </button> -->
     </div>
            
     <!-- <h4>Add new user</h4>
@@ -34,15 +91,11 @@
                 
         </div>
 
-            <footer>
-                <ul>
-                    <li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
-                    <li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
-                    <li> <a href="http://localhost:8080/show-users">All Users</a></li>
-                </ul>
-        </footer>	
-        </main>
+    </main>
+        <footer></footer>	
 
-            <script src = "./js/users.js"></script>
+        <script src = "./js/user.js"></script>	
+        <script src = "./js/user-requests.js"></script>
+        <script src = "./js/subnav.js"></script>
         </body>
         </html>

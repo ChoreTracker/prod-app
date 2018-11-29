@@ -11,6 +11,76 @@
 	<main > 
 		<header>
 			<h1>Single Sector</h1>
+			<nav class="topNav">
+				
+				<button class="navLinks" onclick="openSubNav(event, 'admin')">Admin</button>
+				<button class="navLinks" onclick="openSubNav(event, 'add')">Add</button>
+				<button class="navLinks" onclick="openSubNav(event, 'navigation')">Navigation</button>
+				<button class="navLinks" onclick="openSubNav(event, 'logout')">Logout</button>
+				
+			</nav>
+			<div id="subnav">
+				<div id="admin" class="navContent">
+					<p>navigate to admin page</p>
+				</div>
+				<div id="add" class="navContent">
+					<div>
+					<button id="add-mission-button">Add a new mission</button>
+					<div id="add-mission-modal" class="modal">
+						<div class="modal-content">
+							<span id="close-add-mission" class="close">&times;</span>
+							<h3>Add a new mission to this sector</h3>
+							<form >
+								<input type="text" name="missionName" placeholder="Name of the mission" required/>
+								<input type="text" name="missionDescription" placeholder="Description of the mission" required/>
+								<p>When is the mission due?</p>
+								<input type="date" name="dueDate" required/>
+								<p>Does this mission recur?</p>
+								<input type="radio" name="recurring" value="true" checked required>Yes<br>
+								<input type="radio" name="recurring" value="false" required>No<br>
+								<p>how many days elapse between mission due dates</p>
+								<input type="number" name="period"  min="0" max="900" placeholder="num" required/>
+								<p>how many days (1-7) can the mission be snoozed</p>
+								<input type="number" name="snooze" min="1" max="7" placeholder="num" required/>						
+								<input type="hidden" name="sectorId" th:value="${sector.id}" > <br>
+								<!-- showing users using radio but not checkboxes yet -->
+								<p>Assign user(s)</p>
+								<input type="radio" name="userId" th:each= "user: ${users}" th:value="${user.id}" th:text="${user.userName}"> <br>
+								<button class="newMisson-button button-primary" th:formaction= "@{/create-mission-button}">Add Mission</button> 
+							</form>
+						</div>				
+					</div>
+
+				</div>
+				<div>
+						<button id="assign-missions">Assign all missions to single user</button>
+						<div id="assign-mission-modal" class="modal">
+							<div class="modal-content">
+								<span id="close-assign-mission" class="close">&times;</span>
+								<h3>Assign all missions in this sector to one user</h3>
+								<form >
+									<input th:each= "user: ${users}" type="radio" name="userId" th:value="${user.id}" th:text="${user.userName} + '&nbsp&nbsp'" required> <br>
+									<input type="hidden" name="sectorId" th:value="${sector.id}"/>
+									<button class="newMisson-button button-primary" th:formaction= "@{/assign-all-missions-button}">Assign</button>
+								</form>
+							</div>                
+						</div>
+					</div>
+
+			</div>
+				<div id="navigation" class="navContent">
+					<ul>
+						<li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
+						<li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
+						<li> <a href="http://localhost:8080/show-users">All Users</a></li>
+					</ul>
+				</div>
+				<div id="logout" class="navContent"> 
+					<p>logout button confirmation</p>
+				</div>
+			</div>
+
+
 		</header>
 		<div th:object= "${sector}" class="grid-container">
 			<h2 th:text="${sector.sectorName}"></h2>
@@ -44,6 +114,8 @@
 							<input type="hidden" th:value="${mission.sector.id}" name="sectorId"/>
 							<button class="doneButton button-primary" th:formaction= "@{/missionDone-sector-button}">Done</button>
 							<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission-sector}">Snooze</button>
+							<!-- claim button not working yet -->
+							<button class="claimButton button-primary" th:formaction= "@{/claim-mission-in-sector-button}">Claim</button>
 						</form>
 					</div>
 				</div>
@@ -55,14 +127,11 @@
 
 
 	</main>
-	<footer>
-			<ul>
-				<li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
-				<li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
-				<li> <a href="http://localhost:8080/show-users">All Users</a></li>
-			</ul>
-	</footer>		
-	<script src = "./js/sector.js"></script>
-	
+	<footer></footer>		
+	<!-- <script src = "./js/sector-requests.js"></script> -->
+	<script src = "./js/subnav.js"></script>	
+	<!-- <script src = "./js/tabs.js"></script> -->
+	<script src = "./js/add-mission.js"></script>
+
 </body>
 </html>

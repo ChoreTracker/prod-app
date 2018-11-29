@@ -305,7 +305,7 @@ nav #first-nav #selected {
 	}
 	
 nav #sub-nav {
-	background: #323232;
+	background: #ccc;
 	height: 3em;
 	position: fixed;
 	top: 3em;

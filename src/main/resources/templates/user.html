@@ -27,6 +27,20 @@
 						<p>navigate to admin page</p>
 					</div>
 					<div id="add" class="navContent">
+							<button id="add-sector-button">Add a new sector</button>
+							<div id="add-sector-modal" class="modal">
+								<div class="modal-content">
+									<span id="close-add-sector" class="close">&times;</span>
+									
+									<h3>Add a new sector</h3>
+									<form >
+										<input type="text" name="sectorName" placeholder="Name of the sector" required/>
+										<input type="file" name="imageUrl" placeholder="image URL" required/>
+										<button class="newSector-button button-primary" th:formaction= "@{/add-sector-button}">Add Sector</button> 
+									</form>
+								</div>				
+							</div>
+						
 						<button id="add-mission-button">Add a new mission</button>
 						<div id="add-mission-modal" class="modal">
 							<div class="modal-content">
@@ -181,7 +195,7 @@
 								<input type="hidden" th:value="${user.id}" name="userId"/>
 								<button class="doneButton button-primary" th:formaction= "@{/mission-complete-button}">Done</button>
 								<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission}">Snooze</button>
-							</form>
+								<button class="claimButton button-primary" th:formaction= "@{/claim-mission-button}">Claim</button>							</form>
 						</div>
 					</div>
 				</div>
@@ -192,5 +206,6 @@
 		</footer>	
 		<script src = "./js/user.js"></script>	
 		<script src = "./js/user-requests.js"></script>	
+		<script src = "./js/sectors.js"></script>
 	</body>
 </html>
