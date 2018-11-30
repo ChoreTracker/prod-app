@@ -36,4 +36,6 @@ public interface MissionRepository extends CrudRepository<Mission, Long> {
 	Collection<Mission> findByUsersContainsAndCompletionDateIsNull(User user);
 	
 	Collection<Mission> findAllByUsersIsNullAndCompletionDateIsNullAndRecurringIsFalse();
+	
+//	Collection<Mission> findAllRecurringIsTrue();
 }

@@ -100,7 +100,7 @@ public class SectorController {
 //	}
 
 	// deletes a sector and also all the missions in the sector
-	@RequestMapping("/admin/remove-sector")
+	@RequestMapping("/admin/remove-sector-button")
 	public String deleteSectorById(Long sectorId) {
 		if (sectorRepo.findById(sectorId) != null) {
 			sectorRepo.deleteById(sectorId);
