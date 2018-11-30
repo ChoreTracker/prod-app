@@ -30,20 +30,20 @@ public class SectorController {
 	}
 
 	@RequestMapping("/sector")
-	public String findOneSector(@RequestParam(value="id") long sectorId, Model model) throws sectorNotFoundException {
+	public String findOneSector(@RequestParam(value = "id") long sectorId, Model model) throws sectorNotFoundException {
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
 
-		if (sector.isPresent()) {			
+		if (sector.isPresent()) {
 			Sector sectorResult = sector.get();
 			model.addAttribute("sector", sectorResult);
 			model.addAttribute("users", userRepo.findAll());
 			model.addAttribute("missions", missionRepo.findAllBySector(sectorResult));
 			return "sector";
-		} 
+		}
 		throw new sectorNotFoundException();
 
 	}
-	
+
 	@RequestMapping("/add-sector-button")
 	public String addNewSector(@RequestParam String sectorName, @RequestParam String imageUrl) {
 		Sector sector = sectorRepo.findBySectorName(sectorName);
@@ -54,17 +54,17 @@ public class SectorController {
 		}
 		return "redirect:/show-sectors";
 	}
-	
+
 	@RequestMapping("/missionDone-sector-button")
-	public String setAsComplete(@RequestParam long missionId, @RequestParam  long sectorId) {
+	public String setAsComplete(@RequestParam long missionId, @RequestParam long sectorId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.markComplete();
 		missionRepo.save(mission);
-		
+
 		return "redirect:/sector?id=" + sectorId;
 	}
-	
+
 	@RequestMapping("/snooze-mission-sector")
 	public String snoozeMission(@RequestParam long missionId, @RequestParam long sectorId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
@@ -154,7 +154,6 @@ public class SectorController {
 //		return null;
 //	}
 //	
-	
 
 	@RequestMapping("/setup-sectors")
 	public String showAllSectors(Model model) {
@@ -164,15 +163,23 @@ public class SectorController {
 
 	@RequestMapping("/make-mission-within-sector")
 	public String createMissionInSector(long sectorId, String missionName, String missionDescription, int period,
-			int snooze, String dueDate, String completionDate, boolean recurring, int count, User... users) {
-		Optional<Sector>sectorResult = sectorRepo.findById(sectorId);
+			int snooze, String dueDate, boolean recurring, @RequestParam(value = "users") long[] users) {
+		Optional<Sector> sectorResult = sectorRepo.findById(sectorId);
 		Sector sector = sectorResult.get();
-		
-		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, completionDate,
-				recurring, count, users);
+		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null,
+				recurring, 0);
 		missionRepo.save(newMission);
-		
-	
+		if (users != null) {
+			for (int i = 0; i < users.length; i++) {
+				Optional<User> userResult = userRepo.findById(users[i]);
+				if (userResult.isPresent()) {
+					User user = userResult.get();
+					newMission.addUser(user);
+				}
+			}
+		}
+		missionRepo.save(newMission);
+
 		return "redirect:/sector?id=" + sectorId;
 	}
 }
