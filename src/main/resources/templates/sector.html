@@ -45,8 +45,15 @@
 								<input type="hidden" name="sectorId" th:value="${sector.id}" > <br>
 								<!-- showing users using radio but not checkboxes yet -->
 								<p>Assign user(s)</p>
-								<input type="radio" name="userId" th:each= "user: ${users}" th:value="${user.id}" th:text="${user.userName}"> <br>
-								<button class="newMisson-button button-primary" th:formaction= "@{/create-mission-button}">Add Mission</button> 
+								
+								<input th:each="user: ${users}" type="checkbox"  name="users" th:text="${user.userName} + '&nbsp&nbsp'" th:value="${user.id}"><br>
+										
+									
+								
+								
+								<!-- <input type="radio" name="userId" th:each= "user: ${users}" th:value="${user.id}" th:text="${user.userName}"> <br> -->
+								<button class="newMisson-button button-primary" th:formaction= "@{/make-mission-within-sector
+								}">Add Mission</button> 
 							</form>
 						</div>				
 					</div>

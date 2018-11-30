@@ -45,14 +45,15 @@ public class MissionController {
 
 	}
 
-	//This button is in use!
+	//This button is in use! //
+	//
 	@RequestMapping("/create-mission-button")
 	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate, boolean recurring, long sectorId, @RequestParam long userId) {
 		Optional<User> userResult = userRepo.findById(userId);
 		User user = userResult.get();
 		Optional<Sector> sectorResult = sectorRepo.findById(sectorId);
 		Sector sector = sectorResult.get();
-		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, "", recurring, 0, user);
+		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null, recurring, 0, user);
 		missionRepo.save(newMission);
 		
 		
