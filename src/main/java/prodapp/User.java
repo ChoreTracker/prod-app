@@ -1,7 +1,6 @@
 package prodapp;
 
 import java.util.Collection;
-import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
