@@ -43,7 +43,7 @@ public class SectorController {
 		throw new sectorNotFoundException();
 
 	}
-
+// use on the sectors page
 	@RequestMapping("/add-sector-button")
 	public String addNewSector(@RequestParam String sectorName, @RequestParam String imageUrl) {
 		Sector sector = sectorRepo.findBySectorName(sectorName);
@@ -53,6 +53,18 @@ public class SectorController {
 			sectorRepo.save(sector);
 		}
 		return "redirect:/show-sectors";
+	}
+	
+	//use on the user page
+	@RequestMapping("/add-sector-button-from-user")
+	public String addNewSectorOnUser(@RequestParam String sectorName, @RequestParam String imageUrl, @RequestParam long userId) {
+		Sector sector = sectorRepo.findBySectorName(sectorName);
+		if (sector == null) {
+			imageUrl = "/images/sectors/" + imageUrl;
+			sector = new Sector(sectorName, imageUrl);
+			sectorRepo.save(sector);
+		}
+		return "redirect:/user?id=" + userId;
 	}
 
 	@RequestMapping("/missionDone-sector-button")

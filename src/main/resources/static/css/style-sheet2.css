@@ -101,7 +101,7 @@ nav #first-nav #selected { /*not used at the moment*/
     /*padding: 0 1em;*/
     }
 
-nav #sub-nav {
+nav .sub-nav {
     background: #dbcde4; /*lavender*/
     border: solid 1px transparent;
   	border-radius: 25px;    
@@ -115,7 +115,7 @@ nav #sub-nav {
     z-index: 3;
     }
 
-nav #sub-nav ul {
+nav .sub-nav ul {
         align-items: center;
         display: flex;
         flex-direction: column;
@@ -125,17 +125,17 @@ nav #sub-nav ul {
         padding: 1em;
     }
 
-nav #sub-nav li {
+nav .sub-nav li {
             line-height: 3em;
             margin: auto;
         }
 
-nav #sub-nav li a {
+nav .sub-nav li a {
                 text-decoration: none;
                 color: #323232;
             }
 
-nav #sub-nav li a:hover {
+nav .sub-nav li a:hover {
     text-decoration: none;
     color: #323232;
 }
@@ -184,10 +184,15 @@ main .tab ul li {
     }
 
 /* Change background color of buttons on hover */
-.tablinks a:hover {
+.tablinks :hover {
     text-decoration: none;
     color: #323232;
     }
+
+.active {
+    background-color: Yellow;
+    color: #323232;
+}
 
 .tablinks a:active {
 
@@ -526,7 +531,7 @@ nav #first-nav #selected {
 	line-height: 3em;
     }
 
-nav #sub-nav {
+nav .sub-nav {
     background: #dbcde4;
     border: solid 1px transparent;
     border-radius: 25px;
@@ -542,7 +547,7 @@ nav #sub-nav {
     z-index: 5;
     }
 
-nav #sub-nav ul {
+nav .sub-nav ul {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -553,16 +558,16 @@ nav #sub-nav ul {
     list-style: none;
     }
 
-nav #sub-nav li {
+nav .sub-nav li {
     line-height: 3em;
     }
 
-nav #sub-nav li a {
+nav .sub-nav li a {
     text-decoration: none;
     color: #323232;
     }
 
- nav #sub-nav li a:hover {
+ nav .sub-nav li a:hover {
     text-decoration: none;
     color: #323232;
     }
@@ -602,7 +607,7 @@ nav #tabbed-nav ul li {
 
 main .tab ul li  {
     /*formerly nav #tabbed-nav ul li button:hover, nav #tabbed-nav ul li button:active, .tablinks-active */
-    background-color: #ffd5b3;
+    /*background-color: #ffd5b3;*/
     color: #323232;
     height: 3em;
     padding-left: .5em;
@@ -613,6 +618,8 @@ main .tab ul li  {
     .tablinks a:hover {
         text-decoration: none;
     }
+
+
 
 .tablinks a:active {
 
