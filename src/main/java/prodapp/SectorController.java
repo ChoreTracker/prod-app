@@ -168,13 +168,14 @@ public class SectorController {
 		Sector sector = sectorResult.get();
 		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null,
 				recurring, 0);
-		missionRepo.save(newMission);
+//		missionRepo.save(newMission);
 		if (users != null) {
 			for (int i = 0; i < users.length; i++) {
 				Optional<User> userResult = userRepo.findById(users[i]);
 				if (userResult.isPresent()) {
 					User user = userResult.get();
 					newMission.addUser(user);
+					missionRepo.save(newMission);
 				}
 			}
 		}
