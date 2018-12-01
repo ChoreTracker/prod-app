@@ -5,28 +5,46 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="/css/layout.css">
 		<link rel="stylesheet" type="text/css" href="/css/reset.css">
-		<link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
+		<link rel="stylesheet" type="text/css" href="/css/style-sheet2.css">
+		<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 	</head>
 	<body>
 		<main >
 			<header>
-				<h1>Prod/header placeholder</h1>
-			
+				<h1>Missions</h1>
 			
 				<h2 th:text="'Hello ' + ${user.userName}"></h2>
+
 				<nav class="topNav">
-				
-					<button class="navLinks" onclick="openSubNav(event, 'admin')">Admin</button>
-					<button class="navLinks" onclick="openSubNav(event, 'add')">Add</button>
-					<button class="navLinks" onclick="openSubNav(event, 'navigation')">Navigation</button>
-					<button class="navLinks" onclick="openSubNav(event, 'logout')">Logout</button>
-					
-				</nav>
-				<div id="subnav">
-					<div id="admin" class="navContent">
+
+					<div id="prod-mascot"><p><!-- It doesn't like the link for this image.<img src="/images/prod-logo.svg" alt=image depicting PROD chore tracking application">--></p></div>
+
+					<div id="first-nav">
+                		<ul>
+                    		<li><button class="navLinks" onclick="openSubNav(event, 'admin')"><a href="#"><img src="./images/goto-icon-white.svg" width="40" height="40" alt="go to icon"></a></button></li>
+                    		<li><button><a href="#"><img src="./images/cog-icon-white.svg" width="40" height="40" alt="settings icon"></a></button></li>
+                    		<!--pop-up for All Missions, All Sectors, All Users-->
+                    		<li><button><a href="#"><img src="./images/logout-icon-white.svg" width="40" height="40" alt="logout icon"></a></button></li>
+                    		<!--Logout button confirmation-->
+                		</ul>
+            		</div> 
+
+            		<div  id="sub-nav" onclick="goToSelectedPopsUp()"> 
+            		<!--The sub-nav is not popping up-->
+                		<ul>
+                        	<li><a href="http://localhost:8080/show-missions">Go To Missions</a></li>
+                        	<li><a href="http://localhost:8080/show-sectors">Go To Sectors</a></li>
+                        	<li><a href="http://localhost:8080/show-users">Go To Users</a></li>
+                		</ul>
+            		</div>
+
+            	</nav>
+				<!--<div id="subnav">-->
+					<!--<div id="admin" class="navContent">
 						<p>navigate to admin page</p>
-					</div>
-					<div id="add" class="navContent">
+					</div>-->
+
+					<!--<div id="add" class="navContent">
 							<button id="add-sector-button">Add a new sector</button>
 							<div id="add-sector-modal" class="modal">
 								<div class="modal-content">
@@ -39,9 +57,9 @@
 										<button class="newSector-button button-primary" th:formaction= "@{/add-sector-button}">Add Sector</button> 
 									</form>
 								</div>				
-							</div>
+							</div>-->
 						
-						<button id="add-mission-button">Add a new mission</button>
+						<!--<button id="add-mission-button">Add a new mission</button>
 						<div id="add-mission-modal" class="modal">
 							<div class="modal-content">
 								<span id="close-add-mission" class="close">&times;</span>
@@ -65,26 +83,43 @@
 								</form>
 							</div>				
 						</div>
-					</div>
-					<div id="navigation" class="navContent">
+					</div>-->
+
+					<!--<div id="navigation" class="navContent">
 						<ul>
 							<li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
 							<li> <a href="http://localhost:8080/show-missions">All Missions</a></li>
 							<li> <a href="http://localhost:8080/show-users">All Users</a></li>
 						</ul>
-					</div>
-					<div id="logout" class="navContent"> 
+					</div>-->
+
+					<!--<div id="logout" class="navContent"> 
 						<p>logout button confirmation</p>
 					</div>
-				</div>
-			</header>
-			<div class="tab">
-				<button class="tablinks active" onclick="openMissions(event, 'myMissions')">My Missions</button>
-				<button class="tablinks" onclick="openMissions(event, 'unassignedMissions')">Unassigned Missions</button>
-				<button class="tablinks" onclick="openMissions(event, 'allMissions')">All Missions</button>
 
+				</div>-->
+
+			</header>
+
+			<!--I have CSS for: #tabbed-nav (blank), 
+			nav #tabbed-nav ul- make this main .tab ul, 
+			nav #tabbed-nav ul li-make this main .tab ul li, 
+			[nav #tabbed-nav ul li button:hover, nav #tabbed-nav ul li button:active, .tablinks-active]-
+			[main #tablinks active ul li button:hover, main #tablinks active ul li button:active, .tablinks-active], .tablinks a:hover, .tablinks a:active (blank),
+			.tablinks-active (blank)-->
+
+			<div class="tab">
+				<ul>
+				<!--I think the class name with the space is a problem for the CSS-->
+				<li><button class="tablinks active" onclick="openMissions(event, 'myMissions')">My Missions</button></li>
+				<li><button class="tablinks" onclick="openMissions(event, 'unassignedMissions')">Unassigned Missions</button></li>
+				<li><button class="tablinks" onclick="openMissions(event, 'allMissions')">All Missions</button></li>
+				</ul>
 			</div>
 
+			<!--Is it possible to add a second class to an item?
+			And what about the space in the class?"
+			Add "flex-grid" and "col"-->
 			<div id="myMissions" class="tabcontent active" style="display: block">
 				<div class ="mission" th:each="mission: ${usersMissions}">	
 						<article class="missionLists" >
@@ -216,11 +251,42 @@
 				</div>
 			</div>
 		</main>
-		<footer>
-			
-		</footer>	
+
+		<br>
+
+		<div id="add" class="navContent">
+			<button id="add-mission-button"><img src="./images/plus-icon.svg" width="50" height="50" alt="settings icon"></button>
+			<div id="add-mission-modal" class="modal">
+				<div class="modal-content">
+					<span id="close-add-mission" class="close">&times;</span>
+					<h3>Add a new mission</h3>
+					<form >
+						<input type="text" name="missionName" placeholder="Name of the mission" required/>
+						<input type="text" name="missionDescription" placeholder="Description of the mission" required/>
+						<p>When is the mission due?</p>
+						<input type="date" name="dueDate" required/>
+						<p>how many days elapse between mission due dates</p>
+						<input type="number" name="period"  min="1" max="900" placeholder="num" required/>
+						<p>how many days (1-7) can the mission be snoozed</p>
+						<input type="number" name="snooze" min="1" max="7" placeholder="num" required/>
+						<p>Please choose a sector</p>
+						<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${sector.id}" th:text="${sector.sectorName}" required> <br>
+						<p>Does this mission recur?</p>
+						<input type="radio" name="recurring" value="true" checked required> mission recurs<br>
+						<input type="radio" name="recurring" value="false" required> mission does not recur<br>
+						<input type="hidden" th:value="${user.id}" name="userId"/>
+						<button class="newMisson-button button-primary" th:formaction= "@{/create-mission-button}">Add Mission</button> 
+						</form>
+				</div>				
+			</div>
+		</div>
+
+		<footer></footer>
+
 		<script src = "./js/user.js"></script>	
 		<script src = "./js/user-requests.js"></script>	
 		<script src = "./js/sectors.js"></script>
+		<script src = "./js/test.js"></script>
+
 	</body>
 </html>
