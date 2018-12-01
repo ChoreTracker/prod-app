@@ -25,3 +25,20 @@ function openSubNav(evt, navType) {
     document.getElementById(navType).style.display = "block";
     evt.currentTarget.className += " active";
 }
+
+// Pop-up sub-nav
+function goToSelectedPopsUp() {
+    var gotoSelected = document.getElementById("sub-nav");
+
+    //get current value of the display property
+    var displaySetting = gotoSelected.style.display;
+
+    if (displaySetting == 'block') {
+        //var is visible. hide it.
+        gotoSelected.style.display = 'none';
+    }
+    else {
+        //var is hidden.show it.
+        gotoSelected.style.display = 'block';
+    }
+}
