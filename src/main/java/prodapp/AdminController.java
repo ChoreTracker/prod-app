@@ -8,6 +8,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 
@@ -21,6 +23,12 @@ public class AdminController {
 	
 	@Resource
 	SectorRepository sectorRepo;
+	
+	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
+	public ModelAndView projectBase() {
+
+	    return new ModelAndView("redirect:/show-users");
+	}
 	
 	@RequestMapping ("/admin")
 	public String admin(Model model) {
