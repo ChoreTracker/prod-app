@@ -21,7 +21,8 @@
 
 					<div id="first-nav">
                 		<ul>
-                    		<li><button class="navLinks" onclick="openSubNav(event, 'admin')"><a href="#"><img src="./images/goto-icon-white.svg" width="40" height="40" alt="go to icon"></a></button></li>
+								
+                    		<li><button class="navLinks" onclick="openSubNav(event, 'sub-nav')"><img src="./images/goto-icon-white.svg" width="40" height="40" alt="go to icon"></button></li>
                     		<li><button><a href="#"><img src="./images/cog-icon-white.svg" width="40" height="40" alt="settings icon"></a></button></li>
                     		<!--pop-up for All Missions, All Sectors, All Users-->
                     		<li><button><a href="#"><img src="./images/logout-icon-white.svg" width="40" height="40" alt="logout icon"></a></button></li>
@@ -32,7 +33,7 @@
             		<div  id="sub-nav" onclick="goToSelectedPopsUp()"> 
             		<!--The sub-nav is not popping up-->
                 		<ul>
-                        	<li><a href="http://localhost:8080/show-missions">Go To Missions</a></li>
+                        	<!-- <li><a href="http://localhost:8080/show-missions">Go To Missions</a></li> -->
                         	<li><a href="http://localhost:8080/show-sectors">Go To Sectors</a></li>
                         	<li><a href="http://localhost:8080/show-users">Go To Users</a></li>
                 		</ul>
@@ -88,7 +89,7 @@
 					<!--<div id="navigation" class="navContent">
 						<ul>
 							<li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
-							<!-- <li> <a href="http://localhost:8080/show-missions">All Missions</a></li> -->
+							 <li> <a href="http://localhost:8080/show-missions">All Missions</a></li> 
 							<li> <a href="http://localhost:8080/show-users">All Users</a></li>
 						</ul>
 					</div>-->
@@ -122,7 +123,7 @@
 			Add "flex-grid" and "col"-->
 			<div id="myMissions" class="tabcontent active" style="display: block">
 				<div class ="mission" th:each="mission: ${usersMissions}">	
-						<article class="missionLists" >
+						<article class="missionLists">
 								<a th:href="@{/sector(id=${mission.sector.id})}">
 									<img th:src="${mission.sector.imageUrl}"/></a>
 							<button >
@@ -285,8 +286,7 @@
 
 		<script src = "./js/user.js"></script>	
 		<script src = "./js/user-requests.js"></script>	
-		<script src = "./js/sectors.js"></script>
-		<script src = "./js/test.js"></script>
+
 
 	</body>
 </html>
