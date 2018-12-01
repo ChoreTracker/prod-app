@@ -14,7 +14,8 @@
             <h1>Prod/header placeholder</h1>
             <nav class="topNav">
 				
-                <button sec:authorize="hasRole('ROLE_ADMIN')" class="navLinks" onclick="openSubNav(event, 'admin')">Admin</button>
+
+                <button class="navLinks" onclick="openSubNav(event, 'admin')" sec:authorize="hasRole('ROLE_ADMIN')">Admin</button>
                 <button class="navLinks" onclick="openSubNav(event, 'add')">Add</button>
                 <button class="navLinks" onclick="openSubNav(event, 'navigation')">Navigation</button>
                 <button class="navLinks" onclick="openSubNav(event, 'logout')">Logout</button>

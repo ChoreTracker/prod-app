@@ -533,11 +533,11 @@ nav #sub-nav {
     display: none;
     height: 11em;
     /*margin: auto;*/
-    /*position: fixed;*/
-    position: relative;
+    position: fixed;
+    /* position: relative; */
     /*padding-left: 22%;*/
     top: 6em;
-    left: 0;
+    left: 40%;
     width: 11em;
     z-index: 5;
     }
