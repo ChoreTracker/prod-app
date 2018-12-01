@@ -1,23 +1,35 @@
 package prodapp;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.Optional;
+
+import javax.annotation.Resource;
+
+import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
-@Service
 public class MyUserDetailsService implements UserDetailsService {
  
-    @Autowired
+    @Resource
     private UserRepository userRepo;
  
-    @Override
-    public UserDetails loadUserByUsername(String userName) {
-        User user = userRepo.findByUserName(userName);
-        if (user == null) {
-            throw new UsernameNotFoundException(userName);
-        }
-        return new MyUserPrincipal(user);
-    }
+	@Override
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+
+		User user;
+		Optional<User> existingUser = userRepo.findByUserName(userName);
+		if (!existingUser.isPresent()) {
+			throw new UsernameNotFoundException("User not found.");
+		}
+		user = existingUser.get();
+		
+		UserBuilder builder;
+		builder = org.springframework.security.core.userdetails.User.withUsername(userName);
+		builder.password(user.getPassword());
+		builder.roles(user.getRoles());
+		
+
+		return builder.build();
+	}
 }

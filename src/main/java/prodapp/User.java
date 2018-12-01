@@ -8,8 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -24,6 +25,8 @@ public class User{
 	
 	private String userName;
 	private String contact;
+	
+	@JsonIgnore
 	private String password;
 	private String[] roles;
 
@@ -67,11 +70,11 @@ public class User{
 
 	
 //	?Is this a method that runs on any user? like user.findLoggedInUser();
-	private User findLoggedInUser() {
-		Object activeUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User loggedInUser = User.class.cast(activeUser);
-		return loggedInUser;
-	}
+//	private User findLoggedInUser() {
+//		Object activeUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		User loggedInUser = User.class.cast(activeUser);
+//		return loggedInUser;
+//	}
 
 	public User(String userName, String password, String contact, String...roles) {
 		this.userName = userName;
