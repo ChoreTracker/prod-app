@@ -45,8 +45,6 @@ public class User{
 	@ManyToMany(mappedBy = "users")
 	private Collection<Mission> missions;
 
-	
-	
 	public User() {
 
 	}
