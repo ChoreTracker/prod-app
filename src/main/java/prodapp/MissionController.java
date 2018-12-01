@@ -78,7 +78,15 @@ public class MissionController {
 	@RequestMapping("/admin/delete-mission-button")
 	public String deleteMissionById(long missionId) {
 		missionRepo.deleteById(missionId);
-		return "missions";
+		return "admin";
+	}
+	
+	@RequestMapping("/admin/save-mission-button")
+	public String saveMissionById(long missionId) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		missionRepo.save(mission);
+		return "admin";
 	}
 
 	// assigns a mission to a user OR adds a user to mission, works the same;
