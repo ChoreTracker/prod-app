@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">>
 <head>
 	<title>Users Screen</title>
 	<meta charset="utf-8">
@@ -13,6 +14,7 @@
             <h1>Prod/header placeholder</h1>
             <nav class="topNav">
 				
+
                 <button class="navLinks" onclick="openSubNav(event, 'admin')" sec:authorize="hasRole('ROLE_ADMIN')">Admin</button>
                 <button class="navLinks" onclick="openSubNav(event, 'add')">Add</button>
                 <button class="navLinks" onclick="openSubNav(event, 'navigation')">Navigation</button>
@@ -21,7 +23,7 @@
             </nav>
             <div id="subnav">
                 <div id="admin" class="navContent">
-                    <p>navigate to admin page</p>
+                    <a href="/admin">Administration Page</a>
                 </div>
                 <div id="add" class="navContent"> 
                     <!-- <button id="add-mission-button">Add a new mission</button>
@@ -57,7 +59,7 @@
                     </ul>
                 </div>
                 <div id="logout" class="navContent"> 
-                    <p>logout button confirmation</p>
+                    <a href="/login?logout">Logout</a>
                 </div>
             </div>
         </header>
