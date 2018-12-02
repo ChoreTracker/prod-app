@@ -5,8 +5,10 @@
 <head>
 <title>Login screen</title>
 <meta charset="utf-8">
+
 <link rel="stylesheet" type="text/css" href="/css/reset.css">
 <link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
+
 <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 </head>
 <body>
@@ -18,7 +20,6 @@
         <h4>Keeping everyone productive!</h4>
     
     <div class="grid-container">
-        <p>
         <form name="frmlogin" th:action="@{/login}" method="post" class="form-signin">
             <h3>Please sign in</h3>
             <div th:if="${param.error}">    
@@ -38,7 +39,7 @@
             </div>
             <button class="button-primary" type="submit">Sign In</button>
         </form>
-    </p>
+   
   </div>
   
   
