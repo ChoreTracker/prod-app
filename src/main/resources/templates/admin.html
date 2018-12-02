@@ -131,8 +131,8 @@
 						<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${mission.sector}" th:text="${sector.sectorName}" th:checked="${mission.sector}" required> <br>
 						<!-- not showing users or checkboxes yet -->
 						<p>Assign user(s)</p>
-						<input type="checkbox" name="userId" th:each= "user: ${users}" th:value="${user.id}" th:text="${user.userName}" required>
-						    <label th:for="${#ids.prev('mission.users')}" th:text="${mission.users}"></label> <br>
+						<input type="checkbox" name="userId" th:each= "user: ${users}" th:checked="${users}" th:value="${user.id}" th:text="${user.userName}" required>
+<!-- 						    <label th:for="${#ids.prev('mission.users')}" th:text="${mission.users}"></label> --> <br>
 						<input type="hidden" name="missionId" th:value="${mission.id}">
 						<p>Change Completion Date<input type="text" name="missioncompletion" th:value="${mission.completionDate}"></p>
 						<button class="saveMisson-button button-primary" th:action= "@{/save-mission-button}">Save Changes</button> 
