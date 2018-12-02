@@ -1,3 +1,6 @@
+.active {
+    background-color: lightpink;
+}
 body {
 	background: #f2ecc2;
 	}

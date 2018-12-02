@@ -7,6 +7,8 @@
 		<link rel="stylesheet" type="text/css" href="/css/reset.css">
 		<link rel="stylesheet" type="text/css" href="/css/style-sheet2.css">
 		<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 	</head>
 	<body>
 		<main >
@@ -40,12 +42,12 @@
             		</div>
 
             	</nav>
-				<!--<div id="subnav">-->
-					<!--<div id="admin" class="navContent">
+				<!-- <div id="subnav">
+					<div id="admin" class="navContent">
 						<p>navigate to admin page</p>
-					</div>-->
+					</div>
 
-					<!--<div id="add" class="navContent">
+					<div id="add" class="navContent">
 							<button id="add-sector-button">Add a new sector</button>
 							<div id="add-sector-modal" class="modal">
 								<div class="modal-content">
@@ -58,9 +60,9 @@
 										<button class="newSector-button button-primary" th:formaction= "@{/add-sector-button}">Add Sector</button> 
 									</form>
 								</div>				
-							</div>-->
+							</div>
 						
-						<!--<button id="add-mission-button">Add a new mission</button>
+						<button id="add-mission-button">Add a new mission</button>
 						<div id="add-mission-modal" class="modal">
 							<div class="modal-content">
 								<span id="close-add-mission" class="close">&times;</span>
@@ -84,21 +86,21 @@
 								</form>
 							</div>				
 						</div>
-					</div>-->
+					</div>
 
-					<!--<div id="navigation" class="navContent">
+					<div id="navigation" class="navContent">
 						<ul>
 							<li> <a href="http://localhost:8080/show-sectors">All Sectors</a></li>
 							 <li> <a href="http://localhost:8080/show-missions">All Missions</a></li> 
 							<li> <a href="http://localhost:8080/show-users">All Users</a></li>
 						</ul>
-					</div>-->
+					</div>
 
-					<!--<div id="logout" class="navContent"> 
+					<div id="logout" class="navContent"> 
 						<p>logout button confirmation</p>
 					</div>
 
-				</div>-->
+				</div> -->
 
 			</header>
 
@@ -111,16 +113,14 @@
 
 			<div class="tab">
 				<ul>
-				<!--I think the class name with the space is a problem for the CSS-->
-				<li><button class="tablinks active" onclick="openMissions(event, 'myMissions')">My Missions</button></li>
-				<li><button class="tablinks" onclick="openMissions(event, 'unassignedMissions')">Unassigned Missions</button></li>
-				<li><button class="tablinks" onclick="openMissions(event, 'allMissions')">All Missions</button></li>
+				
+				<li><button id="myMissionsButton" class="tablinks active" onclick="openMissions('myMissionsButton', 'myMissions')">My Missions</button></li>
+				<li><button id="openMissionsButton" class="tablinks" onclick="openMissions('openMissionsButton', 'unassignedMissions')">Unassigned Missions</button></li>
+				<li><button id="allMissionsButton" class="tablinks" onclick="openMissions('allMissionsButton', 'allMissions')">All Missions</button></li>
 				</ul>
 			</div>
 
-			<!--Is it possible to add a second class to an item?
-			And what about the space in the class?"
-			Add "flex-grid" and "col"-->
+			
 			<div id="myMissions" class="tabcontent active" style="display: block">
 				<div class ="mission" th:each="mission: ${usersMissions}">	
 						<article class="missionLists">
