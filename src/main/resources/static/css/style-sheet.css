@@ -1,6 +1,9 @@
 .missionDone {
     background-color: gray;
 }
+.pageHeader {
+    text-align: center;
+}
 
 body {
 	background: #f2ecc2;
@@ -75,7 +78,7 @@ nav {
     z-index: 1;*/
 }
 
-nav #prod-mascot {
+/* nav #prod-mascot {
     left: -500px;
     margin-left: 0;
     margin-top: 9em;
@@ -84,13 +87,13 @@ nav #prod-mascot {
     top: -1em;
     width: 100%;
     z-index: 0;
-    }
+    } */
 
-nav #prod-mascot img {
+/* nav #prod-mascot img {
     transform: rotate(-5deg);
     width: 175px;
     height: auto;
-    }
+    } */
 
 nav #first-nav ul {
    /* align-items: center;*/
@@ -509,26 +512,24 @@ nav {
 	z-index: 2;*/
 }
 
-nav #prod-mascot {
+ #prod-mascot {
 	margin-left: 10%;
     margin-right: auto;
 	margin-top: 1em;
 	padding-left: 3%;
-	position: fixed;
+	position: relative;
 	text-align: left;
 	width: 100%;
-    z-index: 1; 
-}
-
-nav #prod-mascot p {
-    text-align: center;
-}
-
-nav #prod-mascot img {
+    z-index: 1;    
     transform: rotate(-5deg);
     width: 125px;
     height: auto;
-    }
+}
+
+ #prod-mascot p {
+    text-align: center;
+}
+
 
 nav #first-nav ul {
 	background-color: #8559a5;
