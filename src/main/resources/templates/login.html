@@ -1,87 +1,52 @@
 <!DOCTYPE html>
 <html lang="en"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <title>Login screen</title>
 <meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="./css/layout.css">
-	<link rel="stylesheet" type="text/css" href="./css/style.css">
+<link rel="stylesheet" type="text/css" href="./CSS/reset.css">
+<link rel="stylesheet" type="text/css" href="./CSS/style-sheet.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 </head>
-
 <body>
-                                                                                 
-<div class="grid-container">
-  
-  <div class="grid-item header">
-    <h2 id="logo"> Welcome To Prod </h2>
-  <div class="grid-item form">
-    	<form name="frmlogin" th:action="@{/login}" method="post" class="form-signin">
-		    <h2 class="signIn">Please sign in</h2>
-            <div th:if="${param.error}" class="alert">    
+    <header>
+    </header>
+    <main>
+            <img src="/images/prod-logo.svg" width="200" height="auto" alt="image depicting PROD chore tracking application">
+            <h3>Welcome To PROD</h3>
+        <h4>Keeping everyone productive!</h4>
+    
+    <div class="grid-container">
+        <p>
+        <form name="frmlogin" th:action="@{/login}" method="post" class="form-signin">
+            <h3>Please sign in</h3>
+            <div th:if="${param.error}">    
                 Invalid username and password.
             </div>
-            <div th:if="${param.logout}" class="alert"> 
+            <div th:if="${param.logout}"> 
                 You have been logged out.
-            </div>		    
-		    <label for="username" class="sr-only"></label>
-		    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="true" />
-		    <label for="password" class="sr-only"></label>
-		    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="true" />
-		    <div class="checkbox">
-		        <label class="remember">
-		            <input id="remember-me" name="remember-me" type="checkbox" /> Remember me
-		        </label>
-		    </div>
-		    <button class="submit" type="submit">Sign in</button>
-		</form>
+            </div>            
+            <label for="username"></label>
+            <input type="text" id="username" name="username" placeholder="Username" required="true" />
+            <label for="password"></label>
+            <input type="password" id="password" name="password" placeholder="Password" required="true" />
+            <div>
+                <label>
+                    <input id="remember-me" name="remember-me" type="checkbox" /> Remember me
+                </label>
+            </div>
+            <button class="button-primary" type="submit">Sign In</button>
+        </form>
+    </p>
   </div>
   
-
-  <div class="grid-item footer">
-  	<p>&copy;wcci 2018</p>
-  </div> 
   
    
 </div>
-
-</body>
-</html>
-<!-- <body>
-	<main>
-		<header>
-			<h1>Prod/header placeholder</h1>
-		</header>
-	<form action="/action_page.php">
-		<div class="container">
-			<h2>Register</h2>
-			<p>Please fill in this form to create an account.</p>
-			
-			<div class="container signin">
-				<p>Already have an account? <a href="#">Sign in</a>.</p>
-			</div>
-			<hr>
-		  
-			<label for="username"><b>Username</b></label>
-			<input type="text" placeholder="Enter Username" name="username" required>
-			
-			<label for="email"><b>Email</b></label>
-			<input type="text" placeholder="Enter Email" name="email" required>
-		  
-			<label for="psw"><b>Password</b></label>
-			<input type="password" placeholder="Enter Password" name="psw" required>
-		  
-			<label for="psw-repeat"><b>Repeat Password</b></label>
-			<input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-			<hr>
-			<p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-		  
-			<button type="submit" class="registerbtn">Register</button>
-			</div>
-			
-		  </form>
-
 </main>
-
-</body> -->
+<footer>
+    <p>&copy;Prod-App 2018</p>
+</footer>
+</body>
 </html>
