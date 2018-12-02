@@ -1,4 +1,4 @@
-function openSubNav(evt, navType) {
+function openSubNav(buttonType, navType) {
     var i, navContent, navLinks;
     navContent =  document.getElementsByClassName("navContent");
     for(i = 0; i < navContent.length; i++){
@@ -9,7 +9,7 @@ function openSubNav(evt, navType) {
         navLinks[i].className = navLinks[i].className.replace(" active", "");
     }
     document.getElementById(navType).style.display = "block";
-    evt.currentTarget.className += " active";
+    document.getElementById(buttonType).classList += " active";
 }
 
 // Pop-up sub-nav
