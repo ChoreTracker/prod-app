@@ -67,7 +67,7 @@ header h1 {
  	text-align: center;
 }*/
 
-.topNav {
+nav {
     /*margin-left: auto;
 	margin-right: auto;
 	position: fixed;*/
@@ -75,7 +75,7 @@ header h1 {
     z-index: 1;*/
 }
 
-#prod-mascot {
+nav #prod-mascot {
     left: -500px;
     margin-left: 0;
     margin-top: 9em;
@@ -86,13 +86,13 @@ header h1 {
     z-index: 0;
     }
 
-#prod-mascot img {
+nav #prod-mascot img {
     transform: rotate(-5deg);
     width: 175px;
     height: auto;
     }
 
-.first-nav ul {
+nav #first-nav ul {
    /* align-items: center;*/
     background-color: #8559a5;
     display: flex;
@@ -113,19 +113,19 @@ header h1 {
 
     }
 
-.first-nav li {
+nav #first-nav li {
     /*display: inline-block;
     margin: auto;*/
     text-align: center
     /*width: 25%;*/
     }
 
-.first-nav li a {
+nav #first-nav li a {
     text-decoration: none;
     color: white;
     }
 
-.first-nav li a:hover {
+nav #first-nav li a:hover {
     background: #dbcde4; /*lavender*/
     cursor: pointer;
     padding-top: 1.9em; 
@@ -134,7 +134,7 @@ header h1 {
     padding-bottom: .10em; 
     }
 
-.first-nav #selected { /*not used at the moment*/
+nav #first-nav #selected { /*not used at the moment*/
     background: #dbcde4;
 	line-height: 9em;
    /* margin-left: 0;
@@ -143,7 +143,7 @@ header h1 {
     /*padding: 0 1em;*/
     }
 
-.sub-nav {
+nav .sub-nav {
     background: #dbcde4; /*lavender*/
     border: solid 1px transparent;
   	border-radius: 25px;    
@@ -157,7 +157,7 @@ header h1 {
     z-index: 10;
     }
 
-.sub-nav ul {
+nav .sub-nav ul {
         align-items: center;
         display: flex;
         flex-direction: column;
@@ -167,17 +167,17 @@ header h1 {
         padding: 1em;
     }
 
-.sub-nav li {
+nav .sub-nav li {
             line-height: 3em;
             /*margin: auto;*/
         }
 
-.sub-nav li a {
+nav .sub-nav li a {
                 text-decoration: none;
                 color: #323232;
             }
 
-.sub-nav li a:hover {
+nav .sub-nav li a:hover {
     text-decoration: none;
     color: #323232;
 }
@@ -376,10 +376,8 @@ article .mission-intro {
 	width: 275px;
 }
 
-
-
 /*Forms*/
-input[type="text"], input[type="password"], select, textarea {
+input[type="text"], select, textarea {
     background-color: white;
     border: 1px solid #d9d9d9;
     border-radius: 25px;
@@ -502,7 +500,7 @@ header h1 {
 	text-transform: uppercase;
 }
 
-.topNav {
+nav {
     /*background: #f2ecc2;
 	margin-left: auto;
 	margin-right: auto;
@@ -511,7 +509,7 @@ header h1 {
 	z-index: 2;*/
 }
 
-#prod-mascot {
+nav #prod-mascot {
 	margin-left: 10%;
     margin-right: auto;
 	margin-top: 1em;
@@ -522,17 +520,17 @@ header h1 {
     z-index: 1; 
 }
 
-#prod-mascot p {
+nav #prod-mascot p {
     text-align: center;
 }
 
-#prod-mascot img {
+nav #prod-mascot img {
     transform: rotate(-5deg);
     width: 125px;
     height: auto;
     }
 
-.first-nav ul {
+nav #first-nav ul {
 	background-color: #8559a5;
 	display: flex;
 	flex-direction: row;
@@ -553,7 +551,7 @@ header h1 {
     z-index: 6;    
     }
 
-.first-nav li {
+nav #first-nav li {
 	line-height: 3em;
 	width: 25%;
     /*top: 1em; */
@@ -565,12 +563,12 @@ header h1 {
     transition-duration: 0.5s;
     }
 
-.first-nav li a {
+nav #first-nav li a {
     text-decoration: none;
     color: white;
     }
 
-.first-nav li a:hover {
+nav #first-nav li a:hover {
     background: #dbcde4; /*lavender*/
     cursor: pointer;
     padding-top: 1.8em; 
@@ -579,12 +577,12 @@ header h1 {
     padding-bottom: .10em; 
     }
 
-/*nav .first-nav #selected {
+/*nav #first-nav #selected {
     background: #323232;
 	line-height: 3em;
     }*/
 
-.sub-nav {
+nav .sub-nav {
     /*background: #dbcde4;
     border: solid 1px transparent;
     border-radius: 25px;
@@ -600,7 +598,7 @@ header h1 {
     /*padding-left: 22%;*/
     }
 
-.sub-nav ul {
+nav .sub-nav ul {
    /* align-items: center;
     display: flex;
     flex-direction: column;
@@ -627,18 +625,18 @@ header h1 {
   display: block;
 }
 
-.sub-nav li {
+nav .sub-nav li {
     clear: both;
     width: 100%;
     /*line-height: 3em;*/
     }
 
-.sub-nav li a {
+nav .sub-nav li a {
     text-decoration: none;
     color: #323232;
     }
 
- .sub-nav li a:hover {
+ nav .sub-nav li a:hover {
     text-decoration: none;
     color: #323232;
     }
@@ -760,14 +758,10 @@ article h4, article p {
 }
 
 /*Forms*/
-input[type="text"], input[type="password"], select, textarea {
+input[type="text"], select, textarea {
 	margin-left: auto;
 	margin-right: auto;
 	width: 60%;
-}
-
-input[type="checkbox"] {
-    /*Research checkbox styles and add.*/
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

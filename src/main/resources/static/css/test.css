@@ -1,54 +1,11 @@
 body {
 	background: #f2ecc2;
-    }
-    
-/*main {
-	margin-top: 21em;
-	}may not need this*/
+	}
 
-.flex-grid {
-    display: block;
-}
-
-.sub-nav {
-	display: none;
-}
-
-header h1 {
-    /*called #title h1 in the other style-sheet*/
-    background-color: #f2ecc2;
-    font-size: 1.5em;
-    font-weight: 200;
-    line-height: 2em;
-    padding-left: .5em;
-    padding-top: 0;
-    position: fixed;
-    top: 0;
-    /*left: 0; ?*/
-    width: 50%;
-    z-index: 2;
-}
-
-.header-text  {
-	padding-top: 2em;
-	border-bottom: 1px solid #323232;
-	margin-bottom: 1em;
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-
-	font-weight: 200;
-	text-transform: uppercase;
-}
-
-/*Not in users, will it affect anything?
 .header-text {
 	padding-top: 2em;
 	border-bottom: 1px solid #323232;
 	margin-bottom: 1em;
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
 
 	font-weight: 200;
 	text-transform: uppercase;
@@ -59,288 +16,67 @@ header h1 {
     background: #323232;
     color: white;
     height: 75;
-    width: 90%;
+    width: 100%;
+
     margin-bottom: 1em;
-    margin-left: auto;
-	margin-right: auto;
     padding: 20px; 
- 	text-align: center;
-}*/
+ 	
 
-/*.topNav {
-    margin-left: auto;
-	margin-right: auto;
-	position: fixed;*/
-   /* width: 100%;
-    z-index: 1;
-}*/
-
-#prod-mascot {
-    left: -500px;
-    margin-left: 0;
-    margin-top: 9em;
-    position: absolute;
-    text-align: center;
-    top: -1em;
-    width: 100%;
-    z-index: 0;
-    }
-
-#prod-mascot img {
-    transform: rotate(-5deg);
-    width: 175px;
-    height: auto;
-    }
-
-/*.first-nav ul {*/
-   /* align-items: center;*/
-    /*background-color: #8559a5;
-    display: flex;
-    flex-direction: row;
-    height: 3em;
-    justify-content: space-between;
-    line-height: 3em;
-    list-style: none;*/
-    /*margin: 0;*/
-    /*padding-right: .5em;
-    padding-left: .5em;
-    padding-top: .25em;
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 50%;
-    z-index: 2;
-
-    }
-
-.first-nav li {*/
-    /*display: inline-block;
-    margin: auto;*/
-   /* text-align: center*/
-    /*width: 25%;*//*
-    }
-
-.first-nav li a {
-    text-decoration: none;
-    color: white;
-    }*/
-
-/*.first-nav li a:hover {
-    background: #dbcde4;*/ /*lavender*/
-    /*cursor: pointer;
-    padding-top: 1.9em; 
-    padding-right: .45em; 
-    padding-left: .45em; 
-    padding-bottom: .10em; 
-    }*/
-
-/*.first-nav #selected {*/ /*not used at the moment*/
-    /*background: #dbcde4;
-	line-height: 9em;*/
-   /* margin-left: 0;
-	margin-right: auto;*/
-	/*z-index: 2;*/
-    /*padding: 0 1em;
-    }*/
-
-/*.sub-nav {
-	display: none;*/
-    /*background: #dbcde4;*/ /*lavender*/
-    /*border: solid 1px transparent;
-  	border-radius: 25px;*/    
-    /*background: #ffa258;*/
-    /*display: none;
-    height: 11em;*/
-    /*margin: auto;
-    /*position: relative;
-    top: 1em;*/
-    /*width: 11em;
-    z-index: 10;*/
-    /*}*/
-
-/*.sub-nav ul {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        line-height: 3em;
-        list-style: none;
-        padding: 1em;
-    }*/
-
-/*.sub-nav li {
-            line-height: 3em;
-            /*margin: auto;*/
-        }*/
-
-/*.sub-nav li a {
-                text-decoration: none;
-                color: #323232;
-            }*/
-
-/*.sub-nav li a:hover {
-    text-decoration: none;
-    color: #323232;
-}/*
-
-/*The black bar that acts like a secondary navigation
-/* Styling for the tab */
-#tabbed-nav {
-    
-}
-
-.tab ul {
-    /*was formerly named nav #tabbed-nav ul*/
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: #ffa258;
-    color: white;
-    flex: auto;
-    left: 0;
-    /*margin-left: auto;
-    margin-right: auto;*/
-    top: 3em;
-    list-style: none;
-    position: fixed;
-    height: 3em;
-    width: 100%;
-}
-
-/* Style the buttons inside the tab */
-.tab ul li {
-    /*formerly called nav #tabbed-nav ul li*/
-    z-index: 2;
-    line-height: 1.15;
-    padding-left: .5em;
-    padding-right: .5em;
-}
-
-.tab ul li {
-    /*formerly nav #tabbed-nav ul li button:hover, nav #tabbed-nav ul li button:active, .tablinks-active*/
-    background-color: #ffd5b3;
-    color: #323232;
-    height: 3em;
-    padding-left: .5em;
-    padding-right: .5em;
-    }
-
-/* Change background color of buttons on hover */
-.tablinks :hover {
-    text-decoration: none;
-    color: #323232;
-    }
-
-.active {
-    background-color: Yellow;
-    color: #323232;
-}
-
-.tablinks a:active {
-
-}
-
-/* Create an active/current tablink class */
-.tablinks-active {
-
-}
-
-.color-box {
-    border-radius: 25px;
-    background: #323232;
-    color: white;
-    height: 75px;
-    width: 90%;
-    margin-bottom: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;
     text-align: center;
 }
 
 h1 {
-    color: #323232;
-    font-size: 4em;
-    font-family: 'Roboto Slab', serif;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+	color: #323232;
+	font-size: 4em;
+	font-family: 'Roboto Slab', serif;
 }
 
-main h2 {
-    color: #323232;
-    font-size: 2em;
-    font-family: 'Roboto Slab', serif;
-    margin-top: 4em;
-    padding-bottom: .5em;
-    width: 90%;
+h2 {
+	color: #323232;
+	font-size: 3em;
+	font-family: 'Roboto Slab', serif;
 }
 
 h3 {
-    color: #323232;
-    font-size: 2em;
-    font-family: 'Roboto Slab', serif;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+	color: #323232;
+	font-size: 2em;
+	font-family: 'Roboto Slab', serif;
 }
 
-h4 {
-    color: #323232;
-    font-size: 1.5em;
-    font-family: 'Roboto Slab', serif;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+h4 {	
+	color: #323232;
+	font-size: 1.5em;
+	font-family: 'Roboto Slab', serif;
 }
 
 h5 {
-    color: #323232;
-    font-size: 1.15em;
-    font-family: 'Roboto Slab', serif;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+	color: #323232;
+	font-size: 1.15em;
+	font-family: 'Roboto Slab', serif;
 }
 
 h6 {
-    color: #323232;
-    font-size: 1em;
-    font-family: 'Roboto Slab', serif;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+	color: #323232;
+	font-size: 1em;
+	font-family: 'Roboto Slab', serif;
 }
 
 p {
-    color: #323232;
-    font-size: 1.15em;
-    font-family: 'Roboto', sans-serif;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-button {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 1em;
+	color: #323232;
+	font-size: 1.15em;
+	font-family: 'Roboto', sans-serif;
 }
 
 .button-primary {
 	background-color: #8559a5;
 	border: solid 1px transparent;
   	border-radius: 25px;
-	display: block;
-    height: 50px;
-    left: 0;
-    /*margin: 2px 0;*/
-    margin-left: auto;
-	margin-right: auto;
+	display: inline-block;
+	height: 50px;
+	margin: 2px 0;
 	padding: 0.5em 1em;
 	width: 150px;
+
   	color: white;
   	text-align: center;
   	text-decoration: none;
@@ -358,580 +94,62 @@ article {
 	align-items: center;
 
 	/*whole article*/
-    background: white;
 	border-color: #323232;
 	border-radius: 25px;
 	border-style: solid;
 	border-width: 1px;
-    height: 75px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 350px;
+	height: 75px;
+	width: 350px;
 }
 
 article img {
 	object-fit: cover;
 	width: 75px;
 	height: 75px;
-    border-radius: 25% 0% 0% 25%;
-    margin: 0;
-    padding: 0;
+	border-radius: 25% 0% 0% 25%;
 }
 
 article .mission-intro {
 	padding-left: 10px;
 	width: 275px;
+
 }
 
+nav {
 
-
-/*Forms*/
-input[type="text"], input[type="password"], select, textarea {
-    background-color: white;
-    border: 1px solid #d9d9d9;
-    border-radius: 25px;
-    display: block;
-    margin-bottom: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1em;
-    width: 90%;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #323232;
-    opacity: 1; /* Firefox */
-}
-
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #323232;
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
-    color: #323232;
-}
-
-section p {
-    line-height: 1.15em;
-    padding-bottom: 1em;
-}
-
-/* The Modal (background) */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 10;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: white;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-/* The Close Button */
-.close {
-    color: #8559a5;
-    float: right;
-    font-size: 2em;
-    font-weight: bold;
-}    
-    
-.close:hover, .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.opened {
-    display: block !important;
-}
-
-
-/* Larger than mobile 
-@media (min-width: 400px) {}*/
-
-
-/* Larger than phablet 
-@media (min-width: 550px) {}*/
-
-
-/*Larger than tablet*/
-@media (min-width: 750px) {
-
-body {
-	background: #f2ecc2;
-	}
-
-.flex-grid {
-  display: flex;
-  justify-content: space-between;
-  margin: auto;
-  /*padding-left: 0;*/
-  width: 63%;
-}
-
-.col {
-	flex: 1;
-}
-
-header h1 {
-    background-color: #f2ecc2;
-	font-size: 2.5em;
-	left: 20%;
-	/*margin-left: auto;
-	margin-right: auto;*/
-	margin-top: 5em;
-	padding-left: 0;
-	width: 60%;
-}
-
-
-.header-text  {
-	padding-top: 2em;
-	border-bottom: 1px solid #323232;
-	margin-bottom: 1em;
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
-
-	font-weight: 200;
-	text-transform: uppercase;
-}
-
-/*.topNav {
-    background: #f2ecc2;
-	margin-left: auto;
-	margin-right: auto;
-	position: absolute;	
-	top: 0;
-	z-index: 2;
-}*/
-
-#prod-mascot {
-	margin-left: 10%;
-    margin-right: auto;
-	margin-top: 1em;
-	padding-left: 3%;
-	position: fixed;
-	text-align: left;
-	width: 100%;
-    z-index: 1; 
-}
-
-#prod-mascot p {
-    text-align: center;
-}
-
-#prod-mascot img {
-    transform: rotate(-5deg);
-    width: 125px;
-    height: auto;
-	}
+nav ul {
 	
-.nav ul {
-  list-style: none;
-  background-color: purple;
-  text-align: center;
-  padding: 0;
-  margin: 0;
-}
-
-.nav ul {
-  list-style: none;
-  background-color: fuchsia;
-  color: black;
-  text-align: center;
-  padding: 0;
-  margin: 0;
-}
-
-.nav li {
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.2em;
-  line-height: 40px;
-  text-align: left;
-}
-
-.nav a {
-  text-decoration: none;
-  color: #fff;
-  display: block;
-  padding-left: 15px;
-  border-bottom: 1px solid #888;
-  transition: .3s background-color;
-}
-
-.nav a:hover {
-  background-color: fuchsia;
-  color: black;
-}
-
-.nav a.active {
-  background-color: fuchsia;
-  color: black;
-  cursor: default;
-}
-
-/* Sub Menus */
-.nav li li {
-  
-  font-size: .8em;
-}
-
-/*******************************************
-   Style menu for larger screens
-
-   Using 650px (130px each * 5 items), but ems
-   or other values could be used depending on other factors
-********************************************/
-
-@media screen and (min-width: 650px) {
-  .nav li {
-    width: 130px;
-    border-bottom: none;
-    height: 50px;
-    line-height: 50px;
-    font-size: 1.4em;
-    display: inline-block;
-    margin-right: -4px;
-  }
-
-  .nav a {
-    border-bottom: none;
-  }
-
-  .nav > ul > li {
-    text-align: center;
-  }
-
-  .nav > ul > li > a {
-    padding-left: 0;
-  }
-
-  /* Sub Menus */
-  .nav li ul {
-    position: absolute;
-    display: none;
-    width: inherit;
-  }
-
-  .nav li:hover ul {
-    display: block;
-  }
-
-  .nav li ul li {
-    display: block;
-  }
-}
-
-/*.first-nav ul {
+	align-items: center;
 	background-color: #8559a5;
 	display: flex;
 	flex-direction: row;
+	/*grid-column-gap: 1em;*/
+	height: 3em;
+	justify-content: flex-end;
+	list-style: none;
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+nav ul li {
+  color: white;
+  display: inline-block;
+  text-decoration: none;
+}
+
+#subnav ul {
+	align-items: center;
+	background-color: #323232;
+	display: flex;
+	flex-direction: row;
+	/*grid-column-gap: 1em;*/
 	height: 3em;
 	justify-content: space-between;
-    left: 0;
-	line-height: 3em;
-    list-style: none;
-    margin: 0;
-    padding-left: 0;*/
-    /*margin-left: 35%;*/
-    /*padding-left: 50%;
-	padding-right: 25%;
+	list-style: none;
 	position: fixed;
-	left: 0;
-	top: 7em;
-	width: 100%;
-    z-index: 6;    
-    }*/
-
-/*.first-nav li {
-	line-height: 3em;
-	width: 25%;*/
-    /*top: 1em; */
-   /* display: block;
-    float: left;*/
-    /*padding: 1rem;*/
-    /*position: relative;
-    text-decoration: none;
-    transition-duration: 0.5s;
-    }
-
-.first-nav li a {
-    text-decoration: none;
-    color: white;
-    }*/
-
-/*.first-nav li a:hover {
-    background: #dbcde4; /*lavender*/
-    /*cursor: pointer;
-    padding-top: 1.8em; 
-    padding-right: 1.5em; 
-    padding-left: 1.5em; 
-    padding-bottom: .10em; 
-    }*/
-
-/*nav .first-nav #selected {
-    background: #323232;
-	line-height: 3em;
-    }*/
-
-/*Add :focus to the li in the same style as the :hover*/
-.sub-nav {
-	display: none;
-    /*background: #dbcde4;
-    border: solid 1px transparent;
-    border-radius: 25px;
-    display: none;
-    height: 11em;
-    position: fixed;
-    top: 6em;
-    left: 40%;
-    width: 11em;
-    z-index: 5;*/
-    /*margin: auto;*/
-    /* position: relative; */
-    /*padding-left: 22%;*/
-    }
-/*
-.sub-nav ul {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-left: 1em;
-    padding-right: 1em;
-    line-height: 3em;
-    list-style: none;
-    background: orange;
-    visibility: hidden;
-    opacity: 0;
-    min-width: 5rem;
-    position: absolute;
-    transition: all 0.5s ease;
-    margin-top: 1rem;
-    left: 0;
-    display: none;
-    }*/
-
-/*.sub-nav  ul li:hover > ul,
-.sub-nav ul:hover {
-  visibility: visible;
-  opacity: 1;
-  display: block;
-}*/
-
-/*.sub-nav li {
-    clear: both;
-    width: 100%;
-    /*line-height: 3em;*/
-   /* }
-
-.sub-nav li a {
-    text-decoration: none;
-    color: #323232;
-    }*/
-
- /*.sub-nav li a:hover {
-    text-decoration: none;
-    color: #323232;
-    }*/
-
-/* Styling for the tab */
-#tabbed-nav {
-    
-}
-
-.tab ul {
-    /*formerly nav #tabbed-nav ul*/
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    height: 3em;
-    justify-content: space-around;
-    background-color: #ffa258; /*orange*/
-    color: white;
-    flex: auto;
-    left: 20%;
-    margin-left: auto;
-    margin-right: auto;
-    top: 17em;
-    list-style: none;
-    position: fixed;
-    width: 60%;
-    }
-
-/* Style the buttons inside the tab */
-#tabbed-nav ul li {
-    z-index: 2;
-    /*line-height: 1.15;*/
-    padding-left: .5em;
-    padding-right: .5em;
-}
-
-.tab ul li  {
-    /*formerly nav #tabbed-nav ul li button:hover, nav #tabbed-nav ul li button:active, .tablinks-active */
-    /*background-color: #ffd5b3;*/
-    color: #323232;
-    height: 3em;
-    padding-left: .5em;
-    padding-right: .5em;
-    }
-
-/* Change background color of buttons on hover */
-    .tablinks a:hover {
-        text-decoration: none;
-    }
-
-
-
-.tablinks a:active {
-
-}
-
-/* Create an active/current tablink class */
-.tablinks-active {
-
-}
-
-
-
-.color-box {
-    border-radius: 25px;
-    background: #323232;
-    color: white;
-    height: 75;
-    width: 90%;
-    margin-bottom: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;
-    text-align: center;
-}
-
-main h1, main h3, main h4, main h5, main h6 {
-    width: 60%;
-}
-
-main h2 {
-    width: 60%;
-    color: #323232;
-    font-size: 2em;
-    font-family: 'Roboto Slab', serif;
-    font-weight: 200;
-    left: 20%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 11em;
-    padding-bottom: .5em;
-    top: 0;
-    width: 60%;
-}
-
-p {
-    margin-top: 1em;
-	width: 60%;
-}
-
-
-
-
-
-.button-primary:hover, .button-primary:focus {
-	background-color: #48b782;
-}
-
-article {
-	margin-bottom: 1em;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-article h4, article p {
-	margin-top: 0em;
+	top: 3em;
 	width: 100%;
 }
-
-/*Forms*/
-input[type="text"], input[type="password"], select, textarea {
-	margin-left: auto;
-	margin-right: auto;
-	width: 60%;
-}
-
-input[type="checkbox"] {
-    /*Research checkbox styles and add.*/
-}
-
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #323232;
-    opacity: 1; /* Firefox */
-}
-
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #323232;
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
-    color: #323232;
-}
-
-section p {
-    line-height: 1.15em;
-    padding-bottom: 1em;
-}
-
-/* The Modal (background) */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 10;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: white;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-/* The Close Button */
-.close {
-    color: #8559a5;
-    float: right;
-    font-size: 2em;
-    font-weight: bold;
-}    
-    
-.close:hover, .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.opened {
-    display: block !important;
-}}
-
-
-

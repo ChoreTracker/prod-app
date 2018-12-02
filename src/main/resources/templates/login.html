@@ -5,56 +5,45 @@
 <head>
 <title>Login screen</title>
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="./CSS/reset.css">
-<link rel="stylesheet" type="text/css" href="./CSS/style-sheet.css">
-<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
-
+	<link rel="stylesheet" type="text/css" href="./css/layout.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 
 <body>
-	<header>
-
-	</header>
-	<main>
-			<img src="/images/prod-logo.svg" width="200" height="auto" alt="image depicting PROD chore tracking application">
-			<h3>Welcome To PROD</h3>
-		<h4>Keeping everyone productive!</h4>
-	
-	<div class="grid-container">
-		<p>
+                                                                                 
+<div class="grid-container">
+  
+  <div class="grid-item header">
+    <h2 id="logo"> Welcome To Prod </h2>
+  <div class="grid-item form">
     	<form name="frmlogin" th:action="@{/login}" method="post" class="form-signin">
-		    <h3>Please sign in</h3>
-            <div th:if="${param.error}">    
+		    <h2 class="signIn">Please sign in</h2>
+            <div th:if="${param.error}" class="alert">    
                 Invalid username and password.
             </div>
-            <div th:if="${param.logout}"> 
+            <div th:if="${param.logout}" class="alert"> 
                 You have been logged out.
             </div>		    
-		    <label for="username"></label>
-		    <input type="text" id="username" name="username" placeholder="Username" required="true" />
-		    <label for="password"></label>
-		    <input type="password" id="password" name="password" placeholder="Password" required="true" />
-		    <div>
-		        <label>
+		    <label for="username" class="sr-only"></label>
+		    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="true" />
+		    <label for="password" class="sr-only"></label>
+		    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="true" />
+		    <div class="checkbox">
+		        <label class="remember">
 		            <input id="remember-me" name="remember-me" type="checkbox" /> Remember me
 		        </label>
 		    </div>
-		    <button class="button-primary" type="submit">Sign In</button>
+		    <button class="submit" type="submit">Sign in</button>
 		</form>
-	</p>
   </div>
   
 
-
+  <div class="grid-item footer">
+  	<p>&copy;wcci 2018</p>
+  </div> 
   
    
 </div>
-
-</main>
-
-<footer>
-	<p>&copy;Prod-App 2018</p>
-</footer>
 
 </body>
 </html>
