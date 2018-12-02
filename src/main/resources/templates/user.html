@@ -3,25 +3,21 @@
 	<head>
 		<title>User Screen</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="/css/layout.css">
+		<!--<link rel="stylesheet" type="text/css" href="/css/layout.css">-->
 		<link rel="stylesheet" type="text/css" href="/css/reset.css">
-		<link rel="stylesheet" type="text/css" href="/css/style-sheet2.css">
+		<link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
 		<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 	</head>
 	<body>
 		<main >
 			<header>
-				<h1>Missions</h1>
-			
-				<h2 th:text="'Hello ' + ${user.userName}"></h2>
 
 				<nav class="topNav">
 
 					<div id="prod-mascot"><p><!-- It doesn't like the link for this image.<img src="/images/prod-logo.svg" alt=image depicting PROD chore tracking application">--></p></div>
 
 					<div id="first-nav">
-                		<ul>
-								
+                		<ul>		
 							<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-goto')"><img src="./images/goto-icon-white.svg" width="40" height="40" alt="go to icon"></button></li>
 							<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-add')"><img src="./images/plus-icon-white.svg" width="40" height="40" alt="go to icon"></button></li>
                     		<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-settings')"><a href="#"><img src="./images/cog-icon-white.svg" width="40" height="40" alt="settings icon"></a></button></li>
@@ -44,7 +40,6 @@
                         	<!-- <li><a href="http://localhost:8080/show-missions">Go To Missions</a></li> -->
 							<li><button id="add-sector-button">Add A Sector</button></li>
 							<li><button id="add-mission-button">Add A Mission</button></li>
-
                 		</ul>
 					</div>
 					
@@ -57,12 +52,14 @@
 					
 					<div  id="sub-nav-logout" class="sub-nav" onclick="goToSelectedPopsUp()"> 
                 		<ul>
-                        	<!-- <li><a href="http://localhost:8080/show-missions">Go To Missions</a></li> -->
                         	<li><a href="http://localhost:8080/show-sectors">Logout</a></li>
                 		</ul>
             		</div>
-
-            	</nav>
+				</nav>
+				
+				<h1>Missions</h1>
+			
+				<h2 th:text="'Hello ' + ${user.userName}"></h2>
 
 
 			</header>
