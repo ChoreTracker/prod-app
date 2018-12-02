@@ -11,3 +11,25 @@ function openSubNav(evt, navType) {
     document.getElementById(navType).style.display = "block";
     evt.currentTarget.className += " active";
 }
+
+// Pop-up sub-nav
+function goToSelectedPopsUp(navType) {
+    //var gotoSelected = document.getElementById("sub-nav-goto");
+    var gotoSelected = document.getElementById(navType);
+    //var gotoSelected = document.getElementById("sub-nav-settings");
+    //var gotoSelected = document.getElementById("sub-nav-logout");
+
+    //get current value of the display property
+    var displaySetting = gotoSelected.style.display;
+
+    if (displaySetting == 'block') {
+        //var is visible. hide it.
+        gotoSelected.style.display = 'none';
+    }
+    else {
+        //var is hidden.show it.
+        gotoSelected.style.display = 'block';
+    }
+}
+
+

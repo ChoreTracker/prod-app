@@ -3,7 +3,6 @@
 <head>
 	<title>Sectors in the Home</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="/css/layout.css">
 	<link rel="stylesheet" type="text/css" href="/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
 	
@@ -11,49 +10,69 @@
 <body>
 	<main id="container"> 
 		<header>
-			<h1>Prod/header placeholder</h1>
+			    <nav class="topNav">
+				<div id="prod-mascot"><p><img src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application"></p></div>
 
-			<nav class="topNav">
-				<button class="navLinks" onclick="openSubNav(event, 'admin')">Admin</button>
-				<button class="navLinks" onclick="openSubNav(event, 'add')">Add</button>
-				<button class="navLinks" onclick="openSubNav(event, 'navigation')">Navigation</button>
-				<button class="navLinks" onclick="openSubNav(event, 'logout')">Logout</button>
-			</nav>
-			<div id="subnav">
-				<div id="admin" class="navContent">
-					<p>navigate to admin page</p>
-				</div>
-				<div id="add" class="navContent">
-					<button id="add-sector-button">Add a new sector</button>
-					<div id="add-sector-modal" class="modal">
-						<div class="modal-content">
-							<span id="close-add-sector" class="close">&times;</span>
-							
-							<h3>Add a new sector</h3>
-							<form >
-								<input type="text" name="sectorName" placeholder="Name of the sector" required/>
-								<input type="file" name="imageUrl" placeholder="image URL" required/>
-								<button class="newSector-button button-primary" th:formaction= "@{/add-sector-button}">Add Sector</button> 
-							</form>
-						</div>				
-					</div>
-				</div>
-				<div id="navigation" class="navContent">
+				<div id="first-nav">
+					<ul>		
+						<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-goto')"><img src="./images/goto-icon-white.svg" width="40" height="40" alt="go to icon"></button></li>
+						<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-add')"><img src="./images/plus-icon-white.svg" width="40" height="40" alt="go to icon"></button></li>
+						<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-settings')"><img src="./images/cog-icon-white.svg" width="40" height="40" alt="settings icon"></button></li>
+						<!--pop-up for All Missions, All Sectors, All Users-->
+						<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-logout')"><img src="./images/logout-icon-white.svg" width="40" height="40" alt="logout icon"></button></li>
+						<!--Logout button confirmation-->
+					</ul>
+				</div> 
+
+				<div  id="sub-nav-goto" class="sub-nav"> 
+                	<ul>
+                       	<li><a href="http://localhost:8080/show-sectors">Go To Sectors</a></li>
+                       	<li><a href="http://localhost:8080/show-users">Go To Users</a></li>
+                	</ul>
+				</div>	
+
+				<div  id="sub-nav-add" class="sub-nav"> 
+                		<ul>
+							<li><button id="add-sector-button">Add A Sector</button></li>
+						</ul>
+						<div id="add" class="navContent">
+								<div id="add-sector-modal" class="modal">
+									<div class="modal-content">
+										<span id="close-add-sector" class="close">&times;</span>
+										
+										
+										<form >
+											<input type="text" name="sectorName" placeholder="Name of the sector" required/>
+											<input type="file" name="imageUrl" placeholder="image URL" required/>
+											<button class="newSector-button button-primary" th:formaction= "@{/add-sector-button}">Add Sector</button> 
+										</form>
+									</div>				
+								</div>
+							</div>
+
+					</div> 
+			
+				<div  id="sub-nav-settings" class="sub-nav"> 
 					<ul>
-						<!-- <li> <a href="http://localhost:8080/show-missions">All Missions</a></li> -->
-						<li> <a href="http://localhost:8080/show-users">All Users</a></li>
+						<li><a href="http://localhost:8080/admin">Change Your Settings</a></li>
 					</ul>
 				</div>
-				<div id="logout" class="navContent"> 
-					<p>logout button confirmation</p>
+
+				<div  id="sub-nav-logout" class="sub-nav" onclick="goToSelectedPopsUp()"> 
+					<ul>
+						<li><a href="http://localhost:8080/login?logout">Logout</a></li>
+					</ul>
 				</div>
-			</div>
-
-
+				
+				
+				
+				
+				
+		</nav>
 		</header>
 
 	<div class="grid-container">
-		<h2>Here are the current sectors for your home.</h2>
+		<h2>Current Sectors</h2>
 		<div id="sector-list">
 			<article th:each="sector: ${sectors}">
 					<img th:src="${sector.imageUrl}"/>
