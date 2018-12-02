@@ -26,8 +26,10 @@ public class AdminController {
 	
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public ModelAndView projectBase() {
-
+//	    User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//	    long userId = user.getId();
 	    return new ModelAndView("redirect:/show-users");
+//	    return new ModelAndView("redirect:/user?id=" + userId);
 	}
 	
 	@RequestMapping ("/admin")
