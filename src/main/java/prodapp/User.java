@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
@@ -17,10 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class User{
 	
 	@Id
-	@GeneratedValue(
-		    strategy= GenerationType.AUTO, 
-		    generator="native"
-		)
+	@GeneratedValue
 	private long id;
 	
 	private String userName;

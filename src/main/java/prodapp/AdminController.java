@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.annotation.Resource;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +27,9 @@ public class AdminController {
 	
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public ModelAndView projectBase() {
-//	    User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//	    long userId = user.getId();
+//		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//		User user = (User)authentication.getPrincipal();
+//		long userId = user.getId();
 	    return new ModelAndView("redirect:/show-users");
 //	    return new ModelAndView("redirect:/user?id=" + userId);
 	}
