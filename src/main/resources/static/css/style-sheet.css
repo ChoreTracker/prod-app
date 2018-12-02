@@ -67,7 +67,7 @@ header h1 {
  	text-align: center;
 }*/
 
-nav {
+.topNav {
     /*margin-left: auto;
 	margin-right: auto;
 	position: fixed;*/
@@ -75,7 +75,7 @@ nav {
     z-index: 1;*/
 }
 
-nav #prod-mascot {
+#prod-mascot {
     left: -500px;
     margin-left: 0;
     margin-top: 9em;
@@ -86,13 +86,13 @@ nav #prod-mascot {
     z-index: 0;
     }
 
-nav #prod-mascot img {
+#prod-mascot img {
     transform: rotate(-5deg);
     width: 175px;
     height: auto;
     }
 
-nav #first-nav ul {
+.first-nav ul {
    /* align-items: center;*/
     background-color: #8559a5;
     display: flex;
@@ -113,19 +113,19 @@ nav #first-nav ul {
 
     }
 
-nav #first-nav li {
+.first-nav li {
     /*display: inline-block;
     margin: auto;*/
     text-align: center
     /*width: 25%;*/
     }
 
-nav #first-nav li a {
+.first-nav li a {
     text-decoration: none;
     color: white;
     }
 
-nav #first-nav li a:hover {
+.first-nav li a:hover {
     background: #dbcde4; /*lavender*/
     cursor: pointer;
     padding-top: 1.9em; 
@@ -134,7 +134,7 @@ nav #first-nav li a:hover {
     padding-bottom: .10em; 
     }
 
-nav #first-nav #selected { /*not used at the moment*/
+.first-nav #selected { /*not used at the moment*/
     background: #dbcde4;
 	line-height: 9em;
    /* margin-left: 0;
@@ -143,7 +143,7 @@ nav #first-nav #selected { /*not used at the moment*/
     /*padding: 0 1em;*/
     }
 
-nav .sub-nav {
+.sub-nav {
     background: #dbcde4; /*lavender*/
     border: solid 1px transparent;
   	border-radius: 25px;    
@@ -157,7 +157,7 @@ nav .sub-nav {
     z-index: 10;
     }
 
-nav .sub-nav ul {
+.sub-nav ul {
         align-items: center;
         display: flex;
         flex-direction: column;
@@ -167,17 +167,17 @@ nav .sub-nav ul {
         padding: 1em;
     }
 
-nav .sub-nav li {
+.sub-nav li {
             line-height: 3em;
             /*margin: auto;*/
         }
 
-nav .sub-nav li a {
+.sub-nav li a {
                 text-decoration: none;
                 color: #323232;
             }
 
-nav .sub-nav li a:hover {
+.sub-nav li a:hover {
     text-decoration: none;
     color: #323232;
 }
@@ -376,8 +376,10 @@ article .mission-intro {
 	width: 275px;
 }
 
+
+
 /*Forms*/
-input[type="text"], select, textarea {
+input[type="text"], input[type="password"], select, textarea {
     background-color: white;
     border: 1px solid #d9d9d9;
     border-radius: 25px;
@@ -500,7 +502,7 @@ header h1 {
 	text-transform: uppercase;
 }
 
-nav {
+.topNav {
     /*background: #f2ecc2;
 	margin-left: auto;
 	margin-right: auto;
@@ -509,7 +511,7 @@ nav {
 	z-index: 2;*/
 }
 
-nav #prod-mascot {
+#prod-mascot {
 	margin-left: 10%;
     margin-right: auto;
 	margin-top: 1em;
@@ -520,17 +522,17 @@ nav #prod-mascot {
     z-index: 1; 
 }
 
-nav #prod-mascot p {
+#prod-mascot p {
     text-align: center;
 }
 
-nav #prod-mascot img {
+#prod-mascot img {
     transform: rotate(-5deg);
     width: 125px;
     height: auto;
     }
 
-nav #first-nav ul {
+.first-nav ul {
 	background-color: #8559a5;
 	display: flex;
 	flex-direction: row;
@@ -551,7 +553,7 @@ nav #first-nav ul {
     z-index: 6;    
     }
 
-nav #first-nav li {
+.first-nav li {
 	line-height: 3em;
 	width: 25%;
     /*top: 1em; */
@@ -563,12 +565,12 @@ nav #first-nav li {
     transition-duration: 0.5s;
     }
 
-nav #first-nav li a {
+.first-nav li a {
     text-decoration: none;
     color: white;
     }
 
-nav #first-nav li a:hover {
+.first-nav li a:hover {
     background: #dbcde4; /*lavender*/
     cursor: pointer;
     padding-top: 1.8em; 
@@ -577,12 +579,12 @@ nav #first-nav li a:hover {
     padding-bottom: .10em; 
     }
 
-/*nav #first-nav #selected {
+/*nav .first-nav #selected {
     background: #323232;
 	line-height: 3em;
     }*/
 
-nav .sub-nav {
+.sub-nav {
     /*background: #dbcde4;
     border: solid 1px transparent;
     border-radius: 25px;
@@ -598,7 +600,7 @@ nav .sub-nav {
     /*padding-left: 22%;*/
     }
 
-nav .sub-nav ul {
+.sub-nav ul {
    /* align-items: center;
     display: flex;
     flex-direction: column;
@@ -625,18 +627,18 @@ nav .sub-nav ul {
   display: block;
 }
 
-nav .sub-nav li {
+.sub-nav li {
     clear: both;
     width: 100%;
     /*line-height: 3em;*/
     }
 
-nav .sub-nav li a {
+.sub-nav li a {
     text-decoration: none;
     color: #323232;
     }
 
- nav .sub-nav li a:hover {
+ .sub-nav li a:hover {
     text-decoration: none;
     color: #323232;
     }
@@ -758,10 +760,14 @@ article h4, article p {
 }
 
 /*Forms*/
-input[type="text"], select, textarea {
+input[type="text"], input[type="password"], select, textarea {
 	margin-left: auto;
 	margin-right: auto;
 	width: 60%;
+}
+
+input[type="checkbox"] {
+    /*Research checkbox styles and add.*/
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */

@@ -1,32 +1,214 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="./CSS/test.css">
+	<title>Prod Styles</title>
+	<link rel="stylesheet" type="text/css" href="./CSS/reset.css">
 	<link rel="stylesheet" type="text/css" href="./CSS/test.css">
 
+	<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 </head>
+
 <body>
-	<nav>
-	<div id="first-nav">
-		<p>Title</p>
-		<ul>
-			<li><a href="#">Nav 1</a></li>
-			<li id="selected"><a href="#">Nav 2</a></li>
-			<li><a href="#">Nav 3</a></li>
-			<li><a href="#">Nav 4</a></li>
-		</ul>
+	<main>
+		<header>
+
+			<nav class="nav">
+						<ul class="first-nav">
+						  <li class="first-nav" ><a href="#"><img src="./images/goto-icon-white.svg" width="40" height="40" alt="go to icon"></button></a>
+							<ul id="sub-nav-goto">
+							  <li class="sub-nav"><a href="#">Sectors</a></li>
+							  <li class="sub-nav"><a href="#">Users</a></li>
+							</ul>
+						  </li>
+						  <li class="first-nav"><a href="#"><img src="./images/plus-icon-white.svg" width="40" height="40" alt="go to icon"></button></a>
+							<ul>
+							  <li class="sub-nav"><a href="#">Sector</a></li>
+							  <li class="sub-nav"><a href="#">Mission</a></li>
+							</ul>
+						  </li>
+						  <li class="first-nav"><a href="#"><img src="./images/cog-icon-white.svg" width="40" height="40" alt="go to icon"></button></a>
+							<ul>
+							  <li class="sub-nav"><a href="#">Settings</a></li>
+							</ul>
+						  </li>
+						  <li class="first-nav"><a href="#"><img src="./images/logout-icon-white.svg" width="40" height="40" alt="go to icon"></button></a>
+							<ul>
+							  <li class="sub-nav"><a href="#">Logout</a></li>
+							 </ul>
+							</li>
+						</ul>
+					  </nav>
+
+				<!--<nav class="topNav">
+
+					<div id="prod-mascot"><p><img src="/images/prod-logo.svg" alt=image depicting PROD chore tracking application"></p></div>
+
+					<div class="first-nav">
+                		<ul>
+							<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-goto')"><img src="./images/goto-icon-white.svg" width="40" height="40" alt="go to icon"></button></li>
+							<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-add')"><img src="./images/plus-icon-white.svg" width="40" height="40" alt="go to icon"></button></li>
+                    		<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-settings')"><a href="#"><img src="./images/cog-icon-white.svg" width="40" height="40" alt="settings icon"></a></button></li>-->
+                    		<!--pop-up for All Missions, All Sectors, All Users-->
+                    		<!--<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-logout')"><a href="#"><img src="./images/logout-icon-white.svg" width="40" height="40" alt="logout icon"></a></button></li>-->
+                    		<!--Logout button confirmation-->
+                		<!--</ul>
+            		</div> 
+
+            		<div  id="sub-nav-goto" class="sub-nav" onclick="goToSelectedPopsUp()"> 
+                		<ul>-->
+                        	<!-- <li><a href="http://localhost:8080/show-missions">Go To Missions</a></li> -->
+                        	<!--<li><a href="http://localhost:8080/show-sectors">Go To Sectors</a></li>
+                        	<li><a href="http://localhost:8080/show-users">Go To Users</a></li>
+                		</ul>
+					</div>
+					
+					<div  id="sub-nav-add" class="sub-nav" onclick="goToSelectedPopsUp()"> 
+                		<ul>-->
+                        	<!-- <li><a href="http://localhost:8080/show-missions">Go To Missions</a></li> -->
+							<!--<li><button id="add-sector-button">Add A Sector</button></li>
+							<li><button id="add-mission-button">Add A Mission</button></li>
+                		</ul>
+					</div>
+					
+					<div  id="sub-nav-settings" class="sub-nav" onclick="goToSelectedPopsUp()"> 
+                		<ul>-->
+                        	<!-- <li><a href="http://localhost:8080/show-missions">Go To Missions</a></li> -->
+                        	<!--<li><a href="http://localhost:8080/show-sectors">Change Your Settings</a></li>
+                		</ul>
+					</div>
+					
+					<div  id="sub-nav-logout" class="sub-nav" onclick="goToSelectedPopsUp()"> 
+                		<ul>
+                        	<li><a href="http://localhost:8080/show-sectors">Logout</a></li>
+                		</ul>
+            		</div>
+				</nav>-->
+				
+				<h1>Prod Style Sheet</h1>
+			
+				<h2>Welcome to our style sheet.</h2>
+
+			</header>
+
+	<h3 class="header-text">Colors</h3>
+	<div class="flex-grid">
+		<div class="col"><p class="color-box">#323232</p>
+			<p class="color-box" style="background: #8559a5;">#8559a5</p>
+			<p class="color-box" style="background: #48b782;">#48b782 </p>
+		</div>
+		<div class="col">
+			<p class="color-box" style="background: #ffa258;">#ffa258</p>
+			<p class="color-box" style="background: #f2ecc2; color: #323232; border: 1px solid #323232;">#f2ecc2</p>
+		</div>
 	</div>
 
+	<h3 class="header-text">Typography</h3>
+	<h1>A Visit by St. Nicolas</h1>
+	<h2>'Twas the night before Christmas</h2>
+	<h3>and all through the house. Not a </h3>
+	<h4>creature was stirring...</h4>
+	<h5>not even a mouse.</h5>
+	<h6>!</h6>
+	<p>The stockings were hung by the chimney with care, In hopes that St. Nicholas soon would be there; The children were nestled all snug in their beds; While visions of sugar-plums danced in their heads; And mamma in her 'kerchief, and I in my cap, Had just settled our brains for a long winter's nap,</p>
+	<p>When out on the lawn there arose such a clatter, I sprang from my bed to see what was the matter. Away to the window I flew like a flash, Tore open the shutters and threw up the sash. The moon on the breast of the new-fallen snow,
+	Gave a lustre of midday to objects below, </p>
+	<p>When what to my wondering eyes did appear, But a miniature sleigh and eight tiny rein-deer,</p>
 
-	<div id="sub-nav">
-		<ul>
-			<li><a href="#">Subnav 1</a></li>
-			<li><a href="#">Subnav 2</a></li>
-			<li><a href="#">Strawberry</a></li>
-		</ul>
+	<h3 class="header-text">Buttons</h3>
+	<p>The default vaulue of button has no styling on it.</p>
+
+	<p>This is .button-primary: <button class="button-primary" href="">Primary</button></p>
+	
+
+
+	<h3 class="header-text">Mission Card</h3>
+	<div id="myMissions" class="flex-grid">
+		<div class="col mission">
+			
+				<article class="missionLists">
+					<img src="./images/sector1.jpg">
+					<button>
+						<div class="mission-intro">
+							<h4>Sweep the floor.</h4>
+							<p>Deadline: Monday, 11/19</p>
+						</div>
+					</button>
+				</article>
+
+			
+				<article class="missionLists">
+						<img src="./images/sector1.jpg">
+						<button>
+							<div class="mission-intro">
+								<h4>Sweep the floor.</h4>
+								<p>Deadline: Monday, 11/19</p>
+							</div>
+						</button>
+					</article>
+			
+		</div>
+		<div class="col">
+				<article class="missionLists">
+						<img src="./images/sector1.jpg">
+						<button>
+							<div class="mission-intro">
+								<h4>Sweep the floor.</h4>
+								<p>Deadline: Monday, 11/19</p>
+							</div>
+						</button>
+					</article>
+		</div>
 	</div>
-	</nav>
+
+	<h3 class="header-text">Basic Form</h3>
+	<form>
+		<input type="text" name="firstName" placeholder="First Name">
+		<input type="text" name="lastName" placeholder="Last Name">
+		<button class="button-primary" href="">Submit</button>
+	</form>
+	<br>
+	<div class="flex-grid" >
+		<div class="col">
+			<form >
+				<input type="text" name="firstName" placeholder="First Name"  style="width: 90%;">
+				<input type="text" name="lastName" placeholder="Last Name"  style="width: 90%;">
+			</form>
+		</div>
+		<div class="col">
+			<form >
+				<input type="text" name="firstName" placeholder="Banana"  style="width: 90%;">
+				<input type="text" name="lastName" placeholder="Strawberry"  style="width: 90%;">
+			</form>
+		</div>
+	</div>
+	<button class="button-primary">Submit</button>
+
+
+	<h3 class="header-text">Modal Box with Form</h3>
+	<!-- Trigger/Open The Modal -->
+	<button id="myBtn" class="button-primary">Open Modal</button>
+
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+		<!-- Modal content -->
+  		<div class="modal-content">
+    		<span class="close">&times;</span>
+    		<p>Some text in the Modal..</p><br>
+    		<form>
+				<input type="text" name="firstName" placeholder="First Name">
+				<input type="text" name="lastName" placeholder="Last Name">
+				<button class="button-primary" href="">Submit</button>
+			</form>
+  		</div>
+	</div>
+
+</main>
+
+
+
+	<script src = "./js/user.js"></script>	
+	<script src = "./js/user-requests.js"></script>	
+	<script src = "./js/sectors.js"></script>	
 
 </body>
 </html>
