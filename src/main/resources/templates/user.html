@@ -73,16 +73,14 @@
 
 			<div class="tab">
 				<ul>
-				<!--I think the class name with the space is a problem for the CSS-->
-				<li><button class="tablinks active" onclick="openMissions(event, 'myMissions')">My Missions</button></li>
-				<li><button class="tablinks" onclick="openMissions(event, 'unassignedMissions')">Unassigned Missions</button></li>
-				<li><button class="tablinks" onclick="openMissions(event, 'allMissions')">All Missions</button></li>
+
+				<li><button id="myMissionsButton" class="tablinks active" onclick="openMissions('myMissionsButton', 'myMissions')">My Missions</button></li>
+				<li><button id="unAssignedMissionsButton" class="tablinks" onclick="openMissions('unAssignedMissionsButton', 'unassignedMissions')">Unassigned Missions</button></li>
+				<li><button id="allMissionsButton" class="tablinks" onclick="openMissions('allMissionsButton', 'allMissions')">All Missions</button></li>
 				</ul>
 			</div>
 
-			<!--Is it possible to add a second class to an item?
-			And what about the space in the class?"
-			Add "flex-grid" and "col"-->
+			
 			<div id="myMissions" class="tabcontent active" style="display: block">
 				<div class ="mission" th:each="mission: ${usersMissions}">	
 						<article class="missionLists">

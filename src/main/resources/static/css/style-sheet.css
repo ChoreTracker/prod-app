@@ -232,14 +232,8 @@ main .tab ul li {
     color: #323232;
 }
 
-.tablinks a:active {
 
-}
 
-/* Create an active/current tablink class */
-.tablinks-active {
-
-}
 
 .color-box {
     border-radius: 25px;
