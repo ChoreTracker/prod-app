@@ -1,10 +1,9 @@
 package prodapp;
 
+import java.security.Principal;
 import java.util.Collection;
-
+import java.util.Optional;
 import javax.annotation.Resource;
-
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,11 +24,11 @@ public class AdminController {
 	SectorRepository sectorRepo;
 	
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
-	public ModelAndView projectBase() {
-//	    User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//	    long userId = user.getId();
-	    return new ModelAndView("redirect:/show-users");
-//	    return new ModelAndView("redirect:/user?id=" + userId);
+	public ModelAndView projectBase(Model model, Principal principal) {
+		String loggedUser = principal.getName().toString();
+		Optional<User> user = userRepo.findByUserName(loggedUser);
+		long userId = user.get().getId();
+	    return new ModelAndView("redirect:/user?id=" + userId);
 	}
 	
 	@RequestMapping ("/admin")
@@ -51,17 +50,18 @@ public class AdminController {
 		return "missions";
 	}
 	
-	public String sortUserIncompleteMissionsByDueDate(Model model) {
-		User loggedInUser = findLoggedInUser();
+	public String sortUserIncompleteMissionsByDueDate(Model model,Principal principal) {
+		String loggedInUser = principal.getName().toString();
+		Optional<User> user = userRepo.findByUserName(loggedInUser);
 
-		Collection<Mission> foundMissions = missionRepo.findAllByUsersAndCompletionDateAndRecurringIsFalseOrderByDueDate(loggedInUser, "");
+		Collection<Mission> foundMissions = missionRepo.findAllByUsersAndCompletionDateAndRecurringIsFalseOrderByDueDate(user, "");
 		model.addAttribute("missions", foundMissions);
 		return "missions";
 	}
-	private User findLoggedInUser() {
-		Object activeUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User loggedInUser = (User) activeUser;
-		return loggedInUser;
+	private Optional<User> findLoggedInUser(Model model, Principal principal) {
+		String loggedInUser = principal.getName().toString();
+		Optional<User> user = userRepo.findByUserName(loggedInUser);
+		return user;
 	}
 
 }

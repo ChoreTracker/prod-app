@@ -1,6 +1,7 @@
 package prodapp;
 
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 
@@ -38,6 +39,9 @@ public interface MissionRepository extends CrudRepository<Mission, Long> {
 	Collection<Mission> findAllByUsersIsNullAndCompletionDateIsNullAndRecurringIsFalse();
 	
 	Collection<Mission> findByUsersContainsAndCompletionDateIsNullOrderByDueDate(User user);
+
+	Collection<Mission> findAllByUsersAndCompletionDateAndRecurringIsFalseOrderByDueDate(Optional<User> user,
+			String completionDate);
 	
 //	Collection<Mission> findAllRecurringIsTrue();
 }
