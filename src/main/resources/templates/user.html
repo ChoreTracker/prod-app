@@ -7,6 +7,8 @@
 		<link rel="stylesheet" type="text/css" href="/css/reset.css">
 		<link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
 		<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 	</head>
 	<body>
 		<main >
@@ -74,14 +76,14 @@
 			<div class="tab">
 				<ul>
 
-				<li><button id="myMissionsButton" class="tablinks active" onclick="openMissions('myMissionsButton', 'myMissions')">My Missions</button></li>
+				<li><button id="myMissionsButton" class="tablinks" onclick="openMissions('myMissionsButton', 'myMissions')">My Missions</button></li>
 				<li><button id="unAssignedMissionsButton" class="tablinks" onclick="openMissions('unAssignedMissionsButton', 'unassignedMissions')">Unassigned Missions</button></li>
 				<li><button id="allMissionsButton" class="tablinks" onclick="openMissions('allMissionsButton', 'allMissions')">All Missions</button></li>
 				</ul>
 			</div>
 
 			
-			<div id="myMissions" class="tabcontent active" style="display: block">
+			<div id="myMissions" class="tabcontent">
 				<div class ="mission" th:each="mission: ${usersMissions}">	
 						<article class="missionLists">
 								<a th:href="@{/sector(id=${mission.sector.id})}">
