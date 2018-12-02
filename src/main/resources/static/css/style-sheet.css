@@ -733,6 +733,10 @@ main h2 {
     width: 60%;
 }
 
+.pageHeading{
+    justify-content: center;
+}
+
 p {
     margin-top: 1em;
 	width: 60%;
