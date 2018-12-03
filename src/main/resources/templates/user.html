@@ -6,59 +6,52 @@
 		<!--<link rel="stylesheet" type="text/css" href="/css/layout.css">-->
 		<link rel="stylesheet" type="text/css" href="/css/reset.css">
 		<link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
+		<link rel="stylesheet" type="text/css" href="/css/sepStyles.css">
 		<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 	</head>
 	<body>
 		<main >
-			<header>
-
-				<nav class="topNav">
-
-					<div>
-						<!-- <img id="prod-mascot" src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application"> -->
-					</div>
-
-					<div id="first-nav">
-                		<ul>		
-							<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-goto')"><img src="./images/goto-icon-white.svg" width="40" height="40" alt="go to icon"></button></li>
-							<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-add')"><img src="./images/plus-icon-white.svg" width="40" height="40" alt="go to icon"></button></li>
-                    		<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-settings')"><img src="./images/cog-icon-white.svg" width="40" height="40" alt="settings icon"></button></li>
-                    		<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-logout')"><img src="./images/logout-icon-white.svg" width="40" height="40" alt="logout icon"></button></li>
-                		</ul>
-            		</div> 
-
-            		<div  id="sub-nav-goto" class="sub-nav" onclick="goToSelectedPopsUp()"> 
-                		<ul>
-                        	<li><a href="http://localhost:8080/show-sectors">Go To Sectors</a></li>
-                        	<li><a href="http://localhost:8080/show-users">Go To Users</a></li>
-                		</ul>
-					</div>
-					
-					<div  id="sub-nav-add" class="sub-nav" onclick="goToSelectedPopsUp()"> 
-                		<ul>
-							<li><button id="add-sector-button">Add A Sector</button></li>
-							<li><button id="add-mission-button">Add A Mission</button></li>
-                		</ul>
-					</div>
-					
-					<div  id="sub-nav-settings" class="sub-nav" onclick="goToSelectedPopsUp()"> 
-                		<ul>
-                        	<li><a href="http://localhost:8080/show-sectors">Change Your Settings</a></li>
-                		</ul>
-					</div>
-					
-					<div  id="sub-nav-logout" class="sub-nav" onclick="goToSelectedPopsUp()"> 
-                		<ul>
-                        	<li><a href="http://localhost:8080/show-sectors">Logout</a></li>
-                		</ul>
-            		</div>
-				</nav>
 				
-				<h1>Missions</h1>
+			<header>
 			
-				<h2 th:text="'Hello ' + ${user.userName}"></h2>
+				
+					<h1 th:text=" ${user.userName} + '  Missions'"></h1>
+					<!-- <img id="tinyProd"  src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application"> -->
+				
+			
+			<nav class="topNav">
+					<ul class="first-nav">
+							<li class="first-nav" ><a><img src="./images/goto-icon-white.svg" width="40" height="40" alt="go to icon"></a>
+								<ul>
+									<li class="sub-nav"><a href="http://localhost:8080/show-sectors">Sectors</a></li>
+									<li class="sub-nav"><a href="http://localhost:8080/show-users">Users</a></li>
+								</ul>
+							</li>
+							<li class="first-nav"><a><img src="./images/plus-icon-white.svg" width="40" height="40" alt="add icon"></a>
+								<ul>
+									<li class="sub-nav"><a><button id="add-mission-button">Add A Mission</button></a></li>									
+								</ul>
+							</li>
+							<li class="first-nav"><a><img src="./images/cog-icon-white.svg" width="40" height="40" alt="settings icon"></a>
+								<ul>
+									<li class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
+								</ul>
+							</li>
+							<li class="first-nav"><a><img src="./images/logout-icon-white.svg" width="40" height="40" alt="logout icon"></a>
+								<ul>
+									<li class="sub-nav"><a href="http://localhost:8080/login?logout">Logout</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+						
+					
+				
+				
+			
+				
 
 
 			</header>
@@ -69,7 +62,7 @@
 			[nav #tabbed-nav ul li button:hover, nav #tabbed-nav ul li button:active, .tablinks-active]-
 			[main #tablinks active ul li button:hover, main #tablinks active ul li button:active, .tablinks-active], .tablinks a:hover, .tablinks a:active (blank),
 			.tablinks-active (blank)-->
-
+				<div>
 			<div class="tab">
 				<ul>
 
@@ -78,6 +71,8 @@
 				<li><button id="allMissionsButton" class="tablinks" onclick="openMissions('allMissionsButton', 'allMissions')">All Missions</button></li>
 				</ul>
 			</div>
+
+			<div id="missionWrapper">
 
 			
 			<div id="myMissions" class="tabcontent">
@@ -210,9 +205,11 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		</div>
 		</main>
 
-		<br>
+		
 
 		<div id="add" class="navContent">
 			<!--That's where the button code was.-->

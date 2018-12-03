@@ -1,3 +1,18 @@
+
+ #prod-mascot {
+	margin-left: 10%;
+    margin-right: auto;
+	margin-top: 1em;
+	padding-left: 3%;
+	position: relative;
+	text-align: left;
+	width: 100%;
+    z-index: 1;    
+    transform: rotate(-5deg);
+    width: 125px;
+    height: auto;
+}
+
 .missionDone {
     background-color: gray;
 }
@@ -95,7 +110,7 @@ nav {
     height: auto;
     } */
 
-nav #first-nav ul {
+ #first-nav ul {
    /* align-items: center;*/
     background-color: #8559a5;
     display: flex;
@@ -116,14 +131,14 @@ nav #first-nav ul {
 
     }
 
-nav #first-nav li {
+ #first-nav li {
     /*display: inline-block;
     margin: auto;*/
     text-align: center
     /*width: 25%;*/
     }
 
-nav #first-nav li a {
+ #first-nav li a {
     text-decoration: none;
     color: white;
     }
@@ -203,7 +218,7 @@ main .tab ul {
     left: 0;
     /*margin-left: auto;
     margin-right: auto;*/
-    top: 3em;
+    top: 3.1em;
     list-style: none;
     position: fixed;
     height: 3em;
