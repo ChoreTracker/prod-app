@@ -1,7 +1,3 @@
-.missionDone {
-    background-color: gray;
-}
-
 body {
 	background: #f2ecc2;
     }
@@ -13,6 +9,10 @@ body {
 .flex-grid {
     display: block;
 }
+
+/*.sub-nav {
+	display: none;
+}*/
 
 header h1 {
     /*called #title h1 in the other style-sheet*/
@@ -41,7 +41,7 @@ header h1 {
 	text-transform: uppercase;
 }
 
-/*Not in users, will it affect anything?*/
+/*Not in users, will it affect anything?
 .header-text {
 	padding-top: 2em;
 	border-bottom: 1px solid #323232;
@@ -67,13 +67,13 @@ header h1 {
  	text-align: center;
 }*/
 
-.topNav {
-    /*margin-left: auto;
+/*.topNav {
+    margin-left: auto;
 	margin-right: auto;
 	position: fixed;*/
    /* width: 100%;
-    z-index: 1;*/
-}
+    z-index: 1;
+}*/
 
 #prod-mascot {
     left: -500px;
@@ -92,17 +92,17 @@ header h1 {
     height: auto;
     }
 
-.first-nav ul {
+/*.first-nav ul {*/
    /* align-items: center;*/
-    background-color: #8559a5;
+    /*background-color: #8559a5;
     display: flex;
     flex-direction: row;
     height: 3em;
     justify-content: space-between;
     line-height: 3em;
-    list-style: none;
+    list-style: none;*/
     /*margin: 0;*/
-    padding-right: .5em;
+    /*padding-right: .5em;
     padding-left: .5em;
     padding-top: .25em;
     position: fixed;
@@ -113,51 +113,52 @@ header h1 {
 
     }
 
-.first-nav li {
+.first-nav li {*/
     /*display: inline-block;
     margin: auto;*/
-    text-align: center
-    /*width: 25%;*/
+   /* text-align: center*/
+    /*width: 25%;*//*
     }
 
 .first-nav li a {
     text-decoration: none;
     color: white;
-    }
+    }*/
 
-.first-nav li a:hover {
-    background: #dbcde4; /*lavender*/
-    cursor: pointer;
+/*.first-nav li a:hover {
+    background: #dbcde4;*/ /*lavender*/
+    /*cursor: pointer;
     padding-top: 1.9em; 
     padding-right: .45em; 
     padding-left: .45em; 
     padding-bottom: .10em; 
-    }
+    }*/
 
-.first-nav #selected { /*not used at the moment*/
-    background: #dbcde4;
-	line-height: 9em;
+/*.first-nav #selected {*/ /*not used at the moment*/
+    /*background: #dbcde4;
+	line-height: 9em;*/
    /* margin-left: 0;
 	margin-right: auto;*/
-	z-index: 2;
-    /*padding: 0 1em;*/
-    }
+	/*z-index: 2;*/
+    /*padding: 0 1em;
+    }*/
 
-.sub-nav {
-    background: #dbcde4; /*lavender*/
-    border: solid 1px transparent;
-  	border-radius: 25px;    
+/*.sub-nav {
+	display: none;*/
+    /*background: #dbcde4;*/ /*lavender*/
+    /*border: solid 1px transparent;
+  	border-radius: 25px;*/    
     /*background: #ffa258;*/
-    display: none;
-    height: 11em;
+    /*display: none;
+    height: 11em;*/
     /*margin: auto;
-    position: relative;
+    /*position: relative;
     top: 1em;*/
-    width: 11em;
-    z-index: 10;
-    }
+    /*width: 11em;
+    z-index: 10;*/
+    /*}*/
 
-.sub-nav ul {
+/*.sub-nav ul {
         align-items: center;
         display: flex;
         flex-direction: column;
@@ -165,22 +166,22 @@ header h1 {
         line-height: 3em;
         list-style: none;
         padding: 1em;
-    }
+    }*/
 
-.sub-nav li {
+/*.sub-nav li {
             line-height: 3em;
             /*margin: auto;*/
-        }
+        }*/
 
-.sub-nav li a {
+/*.sub-nav li a {
                 text-decoration: none;
                 color: #323232;
-            }
+            }*/
 
-.sub-nav li a:hover {
+/*.sub-nav li a:hover {
     text-decoration: none;
     color: #323232;
-}
+}/*
 
 /*The black bar that acts like a secondary navigation
 /* Styling for the tab */
@@ -188,7 +189,7 @@ header h1 {
     
 }
 
-main .tab ul {
+.tab ul {
     /*was formerly named nav #tabbed-nav ul*/
     align-items: center;
     display: flex;
@@ -208,7 +209,7 @@ main .tab ul {
 }
 
 /* Style the buttons inside the tab */
-main .tab ul li {
+.tab ul li {
     /*formerly called nav #tabbed-nav ul li*/
     z-index: 2;
     line-height: 1.15;
@@ -216,7 +217,7 @@ main .tab ul li {
     padding-right: .5em;
 }
 
-main .tab ul li {
+.tab ul li {
     /*formerly nav #tabbed-nav ul li button:hover, nav #tabbed-nav ul li button:active, .tablinks-active*/
     background-color: #ffd5b3;
     color: #323232;
@@ -236,8 +237,14 @@ main .tab ul li {
     color: #323232;
 }
 
+.tablinks a:active {
 
+}
 
+/* Create an active/current tablink class */
+.tablinks-active {
+
+}
 
 .color-box {
     border-radius: 25px;
@@ -449,9 +456,254 @@ section p {
 .opened {
     display: block !important;
 }
+
+.topNav {
+    background-color: #8559a5; /*purple*/
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 50%;
+    z-index: 2;
+}
+.topNav a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding-left: 15px;
+    border-bottom: 1px solid #888;
+    transition: .3s background-color;
+    border-bottom: none;
+  }
+
+. ul {
+  list-style: none;
+  color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.topNav li {
+    font-size: 1.2em;
+    text-align: left;
+    width: 25%;
+      border-bottom: none;
+      height: 50px;
+      line-height: 50px;
+      font-size: 1.4em;
+      display: inline-block;
+      margin-right: -4px;
+  }
+
+  .topNav li:hover ul {
+    display: block;
+    text-align: center;
+    display: flex;
+    left: 0;
+    width: 100vw;
+    margin-left: -100%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  /* Sub Menus */
+.topNav li li {
+    background: #48b782; /*green*/
+    font-size: .9em;
+    padding-top: .5em;
+    /*white-space:nowrap;
+    width: 200px;*/
+    
+}
+
+/* Sub Menus */
+.topNav li ul {
+    position: absolute;
+    display: none;
+    width: inherit;
+  }
+
+  .topNav li ul li {
+    display: block;
+  }
+
+.topNav ul li a:hover {
+    background: #48b782; /*green*/
+    color: black;
+    
+}
+
+/*How to get is on click?
+.nav ul li a:click {
+    background: #48b782;/* /*green*/
+    /*color: black;
+}*/
+
+.topNav ul li a.active {
+    background: #48b782; /*green*/
+    color: black;
+    cursor: default;
+    
+}
+
+.topNav > ul > li {
+    text-align: center;
+  }
+
+  .topNav > ul > li > a {
+    padding-left: 0;
+  }
+
+.topNav ul li ul {
+    list-style: none;
+    background: #48b782; /*green*/
+    color: black;
+    text-align: center;
+    padding: 0;
+    padding-top: .5em;
+    position: absolute;
+    /*width: inherit;*/
+    z-index: 2;
+    /*margin-left: -200px;
+    white-space:nowrap;*/
+    width: 100vw;
 }
 
 
 
+ 
 
 
+
+
+
+
+
+
+
+
+
+
+
+  
+
+ 
+
+
+/*.first-nav ul {
+	background-color: #8559a5;
+	display: flex;
+	flex-direction: row;
+	height: 3em;
+	justify-content: space-between;
+    left: 0;
+	line-height: 3em;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;*/
+    /*margin-left: 35%;*/
+    /*padding-left: 50%;
+	padding-right: 25%;
+	position: fixed;
+	left: 0;
+	top: 7em;
+	width: 100%;
+    z-index: 6;    
+    }*/
+
+/*.first-nav li {
+	line-height: 3em;
+	width: 25%;*/
+    /*top: 1em; */
+   /* display: block;
+    float: left;*/
+    /*padding: 1rem;*/
+    /*position: relative;
+    text-decoration: none;
+    transition-duration: 0.5s;
+    }
+
+.first-nav li a {
+    text-decoration: none;
+    color: white;
+    }*/
+
+/*.first-nav li a:hover {
+    background: #dbcde4; /*lavender*/
+    /*cursor: pointer;
+    padding-top: 1.8em; 
+    padding-right: 1.5em; 
+    padding-left: 1.5em; 
+    padding-bottom: .10em; 
+    }*/
+
+/*nav .first-nav #selected {
+    background: #323232;
+	line-height: 3em;
+    }*/
+
+/*Add :focus to the li in the same style as the :hover*/
+/*.sub-nav {
+	display: none;
+    background: #dbcde4;
+    border: solid 1px transparent;
+    border-radius: 25px;
+    display: none;
+    height: 11em;
+    position: fixed;
+    top: 6em;
+    left: 40%;
+    width: 11em;
+    z-index: 5;*/
+    /*margin: auto;*/
+    /* position: relative; */
+    /*padding-left: 22%;*/
+    /*}*/
+/*
+.sub-nav ul {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 1em;
+    padding-right: 1em;
+    line-height: 3em;
+    list-style: none;
+    background: orange;
+    visibility: hidden;
+    opacity: 0;
+    min-width: 5rem;
+    position: absolute;
+    transition: all 0.5s ease;
+    margin-top: 1rem;
+    left: 0;
+    display: none;
+    }*/
+
+/*.sub-nav  ul li:hover > ul,
+.sub-nav ul:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}*/
+
+/*.sub-nav li {
+    clear: both;
+    width: 100%;
+    /*line-height: 3em;*/
+   /* }
+
+.sub-nav li a {
+    text-decoration: none;
+    color: #323232;
+    }*/
+
+ /*.sub-nav li a:hover {
+    text-decoration: none;
+    color: #323232;
+    }*/
+
+/* Styling for the tab */

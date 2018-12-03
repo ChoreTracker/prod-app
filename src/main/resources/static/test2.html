@@ -13,7 +13,7 @@
 	<main>
 		<header>
 
-			<nav class="topNav">
+			<!--<nav class="topNav">
 				<ul class="first-nav">
 					<li class="first-nav" ><a href="#"><img src="./images/goto-icon-white.svg" width="40" height="40" alt="go to icon"></button></a>
 						<ul>
@@ -38,52 +38,47 @@
 						</ul>
 					</li>
 				</ul>
-			</nav>
+			</nav>-->
 
-				<!--<nav class="topNav">
+				<nav class="topNav">
 
 					<div id="prod-mascot"><p><img src="/images/prod-logo.svg" alt=image depicting PROD chore tracking application"></p></div>
 
 					<div class="first-nav">
                 		<ul>
-							<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-goto')"><img src="./images/goto-icon-white.svg" width="40" height="40" alt="go to icon"></button></li>
-							<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-add')"><img src="./images/plus-icon-white.svg" width="40" height="40" alt="go to icon"></button></li>
-                    		<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-settings')"><a href="#"><img src="./images/cog-icon-white.svg" width="40" height="40" alt="settings icon"></a></button></li>-->
-                    		<!--pop-up for All Missions, All Sectors, All Users-->
-                    		<!--<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-logout')"><a href="#"><img src="./images/logout-icon-white.svg" width="40" height="40" alt="logout icon"></a></button></li>-->
-                    		<!--Logout button confirmation-->
-                		<!--</ul>
+							<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-goto')"><a href="#"><img src="./images/goto-icon-white.svg" width="40" height="40" alt="go to icon"></a></button></li>
+							<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-add')"><a href="#"><img src="./images/plus-icon-white.svg" width="40" height="40" alt="go to icon"></a></button></li>
+                    		<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-settings')"><a href="#"><img src="./images/cog-icon-white.svg" width="40" height="40" alt="settings icon"></a></button></li>
+                    		<li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-logout')"><a href="#"><img src="./images/logout-icon-white.svg" width="40" height="40" alt="logout icon"></a></button></li>
+                		</ul>
             		</div> 
 
-            		<div  id="sub-nav-goto" class="sub-nav" onclick="goToSelectedPopsUp()"> 
-                		<ul>-->
-                        	<!-- <li><a href="http://localhost:8080/show-missions">Go To Missions</a></li> -->
-                        	<!--<li><a href="http://localhost:8080/show-sectors">Go To Sectors</a></li>
-                        	<li><a href="http://localhost:8080/show-users">Go To Users</a></li>
-                		</ul>
-					</div>
-					
-					<div  id="sub-nav-add" class="sub-nav" onclick="goToSelectedPopsUp()"> 
-                		<ul>-->
-                        	<!-- <li><a href="http://localhost:8080/show-missions">Go To Missions</a></li> -->
-							<!--<li><button id="add-sector-button">Add A Sector</button></li>
-							<li><button id="add-mission-button">Add A Mission</button></li>
-                		</ul>
-					</div>
-					
-					<div  id="sub-nav-settings" class="sub-nav" onclick="goToSelectedPopsUp()"> 
-                		<ul>-->
-                        	<!-- <li><a href="http://localhost:8080/show-missions">Go To Missions</a></li> -->
-                        	<!--<li><a href="http://localhost:8080/show-sectors">Change Your Settings</a></li>
-                		</ul>
-					</div>
-					
-					<div  id="sub-nav-logout" class="sub-nav" onclick="goToSelectedPopsUp()"> 
+            		<div  id="sub-nav-goto" class="sub-nav"> 
                 		<ul>
-                        	<li><a href="http://localhost:8080/show-sectors">Logout</a></li>
+                        	<li><a href="http://localhost:8080/show-sectors">Sectors</a></li>
+                        	<li><a href="http://localhost:8080/show-users">Users</a></li>
+                		</ul>
+					</div>
+					
+					<div  id="sub-nav-add" class="sub-nav"> 
+                		<ul>
+							<li><button id="add-sector-button">Add Sector</button></li>
+							<li><button id="add-mission-button">Add Mission</button></li>
+                		</ul>
+					</div>
+					
+					<div  id="sub-nav-settings" class="sub-nav"> 
+                		<ul>
+                        	<li><a href="#">Change Settings</a></li> 
+                		</ul>
+					</div>
+					
+					<div  id="sub-nav-logout" class="sub-nav"> 
+                		<ul>
+                        	<li><a href="#">Logout</a></li>
                 		</ul>
             		</div>
-				</nav>-->
+				</nav>
 				
 				<h1>Prod Style Sheet</h1>
 			
@@ -127,8 +122,8 @@
 		<div class="col mission">
 			
 				<article class="missionLists">
-					<a href="#"><img src="./images/sector1.jpg"></a>
-					<button class="missionButton">
+					<img src="./images/sector1.jpg">
+					<button>
 						<div class="mission-intro">
 							<h4>Sweep the floor.</h4>
 							<p>Deadline: Monday, 11/19</p>
@@ -138,19 +133,20 @@
 
 			
 				<article class="missionLists">
-					<a href="#"><img src="./images/sector1.jpg"></a>
-						<button class="missionButton">
+						<img src="./images/sector1.jpg">
+						<button>
 							<div class="mission-intro">
 								<h4>Sweep the floor.</h4>
 								<p>Deadline: Monday, 11/19</p>
 							</div>
 						</button>
 					</article>
+			
 		</div>
 		<div class="col">
 				<article class="missionLists">
-					<a href="#"><img src="./images/sector1.jpg"></a>
-						<button class="missionButton">
+						<img src="./images/sector1.jpg">
+						<button>
 							<div class="mission-intro">
 								<h4>Sweep the floor.</h4>
 								<p>Deadline: Monday, 11/19</p>
@@ -189,7 +185,7 @@
 	<button id="myBtn" class="button-primary">Open Modal</button>
 
 	<!-- The Modal -->
-	<div class="modal">
+	<div id="myModal" class="modal">
 		<!-- Modal content -->
   		<div class="modal-content">
     		<span class="close">&times;</span>
