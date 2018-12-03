@@ -102,7 +102,7 @@
 								<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
 								<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
 							</section>
-							<h3 th:if="${mission.completionDate != null}">This mission is completed</h3>
+							<h3 th:if="${mission.completionDate != null}">Mission Accomplished!</h3>
 							<form>
 								<input type="hidden" th:value="${mission.id}" name="missionId"/>
 								<input type="hidden" th:value="${user.id}" name="userId"/>
@@ -162,7 +162,7 @@
 						<button class="missionButton">
 							<div class="mission-intro">
 								<h4 th:text="${mission.missionName}"></h4>
-								<p><span th:text="${mission.dueDate}"></span><span> | </span>
+								<p><span th:text=" '&#10004' + ${mission.completionDate}"></span><span> | </span>
 								<span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>
 							</div>
 						</button>
@@ -194,7 +194,7 @@
 								<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
 								<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
 							</section>
-							<h3 th:if="${mission.completionDate != null}">This mission is completed</h3>
+							<h3 th:if="${mission.completionDate != null}">Mission Accomplished!</h3>
 							<form th:if="${mission.completionDate == null}">
 								<input type="hidden" th:value="${mission.id}" name="missionId"/>
 								<input type="hidden" th:value="${user.id}" name="userId"/>
