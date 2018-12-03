@@ -1,5 +1,6 @@
 package prodapp;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
@@ -278,10 +279,11 @@ public class MissionController {
 		return "missions";
 	}
 
-	private User findLoggedInUser() {
-		Object activeUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User loggedInUser = (User) activeUser;
+	private Optional<User> findLoggedInUser(Model model, Principal principal) {
+		String activeUser = principal.getName().toString();
+		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
 		return loggedInUser;
+		
 	}
 	
 	
