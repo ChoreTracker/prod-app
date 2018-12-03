@@ -241,6 +241,9 @@ main .tab ul li {
     height: 3em;
     padding-left: .5em;
     padding-right: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     }
 
 /* Change background color of buttons on hover */
