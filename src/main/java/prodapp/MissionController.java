@@ -281,7 +281,6 @@ public class MissionController {
 	
 	public String sortUserMissionsByDueDate(Model model, Principal principal) {
 		String loggedInUser = principal.getName();
-
 		Collection<Mission> foundMissions = missionRepo.findAllByUsersAndRecurringIsFalseOrderByDueDate(loggedInUser);
 		model.addAttribute("missions", foundMissions);
 		return "missions";
