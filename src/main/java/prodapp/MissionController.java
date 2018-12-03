@@ -1,5 +1,7 @@
 package prodapp;
 
+import static org.hamcrest.Matchers.stringContainsInOrder;
+
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Collection;
@@ -263,66 +265,80 @@ public class MissionController {
 		return "missions";
 	}
 	@RequestMapping("/default-user-missions")
-	public String sortUserIncompleteMissionsByDueDate(Model model) {
-		User loggedInUser = findLoggedInUser();
-
+	public String sortUserIncompleteMissionsByDueDate(Model model,Principal principal) {
+		String activeUser = principal.getName().toString();
+		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
 		Collection<Mission> foundMissions = missionRepo.findAllByUsersAndCompletionDateAndRecurringIsFalseOrderByDueDate(loggedInUser, "");
 		model.addAttribute("missions", foundMissions);
 		return "missions";
 	}
 	
-	public String sortUserMissionsByDueDate(Model model) {
-		User loggedInUser = findLoggedInUser();
-
-	Collection<Mission> foundMissions = missionRepo.findAllByUsersAndRecurringIsFalseOrderByDueDate(loggedInUser);
-		model.addAttribute("missions", foundMissions);
-		return "missions";
-	}
-
 	private Optional<User> findLoggedInUser(Model model, Principal principal) {
 		String activeUser = principal.getName().toString();
 		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
 		return loggedInUser;
-		
+	}
+	
+	public String sortUserMissionsByDueDate(Model model, Principal principal) {
+		String loggedInUser = principal.getName();
+
+		Collection<Mission> foundMissions = missionRepo.findAllByUsersAndRecurringIsFalseOrderByDueDate(loggedInUser);
+		model.addAttribute("missions", foundMissions);
+		return "missions";
 	}
 	
 	
 	// with activeUser commented out, the method works, assigning the mission to the user whose page you're on. 
 	@RequestMapping("/claim-mission-button")
-	public String claimUnassignedMission(@RequestParam long missionId, @RequestParam long userId) {
-		//User activeUser = findLoggedInUser();
+	public String claimUnassignedMission(@RequestParam long missionId, Principal principal) {
+		String activeUser = principal.getName().toString();
+		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
+		long userId = loggedInUser.get().getId();
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
-		//mission.addUser(activeUser);
 		Optional<User>userResult = userRepo.findById(userId);
 		User user = userResult.get();
+		Collection<User> currentAssigned = mission.getUsers();
+		if (!currentAssigned.contains(user)) {
 		mission.addUser(user);
 		missionRepo.save(mission);
+		}
+		
 		return "redirect:/user?id=" + userId;
 	}
 	
 	@RequestMapping("/claim-mission-in-sector-button")
-	public String claimUnassignedMissionInSector(@RequestParam long missionId, @RequestParam long userId) {
-		User activeUser = findLoggedInUser();
+	public String claimUnassignedMissionInSector(@RequestParam long missionId, @RequestParam long sectorId, Principal principal) {
+		String activeUser = principal.getName().toString();
+		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
+		long userId = loggedInUser.get().getId();
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
-		mission.addUser(activeUser);
 		Optional<User>userResult = userRepo.findById(userId);
 		User user = userResult.get();
+		Collection<User> currentAssigned = mission.getUsers();
+		if (!currentAssigned.contains(user)) {
 		mission.addUser(user);
 		missionRepo.save(mission);
-		return "redirect:/sector?id=" + userId;
+		}
+		return "redirect:/sector?id=" + sectorId;
 	}
 	
 	
 	
 	
 	@RequestMapping("/claim-mission-assigned-button")
-	public void claimAssignedMission(long missionId) {
-		User activeUser = findLoggedInUser();
+	public void claimAssignedMission(long missionId, Principal principal) {
+		String activeUser = principal.getName().toString();
+		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
+		long userId = loggedInUser.get().getId();
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
-		mission.assignUsers(activeUser);
+		Optional<User>userResult = userRepo.findById(userId);
+		User user = userResult.get();
+		Collection<User> currentAssigned = mission.getUsers();
+		mission.removeUsers(currentAssigned);
+		mission.addUser(user);
 		missionRepo.save(mission);
 	}
 
