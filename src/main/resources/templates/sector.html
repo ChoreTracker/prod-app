@@ -73,6 +73,8 @@
 							<input type="hidden" th:value="${mission.sector.id}" name="sectorId"/>
 							<button class="doneButton button-primary" th:formaction= "@{/missionDone-sector-button}">Done</button>
 							<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission-sector}">Snooze</button>
+							<button class="takeMisson-button button-primary" th:formaction= "@{/claim-mission-assigned-button-sector}">Take Mission</button> 
+							<button class="claimMisson-button button-primary" th:formaction= "@{/claim-mission-in-sector-button}">Claim Mission</button> 
 							
 						</form>
 					</div>

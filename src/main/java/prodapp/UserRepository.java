@@ -10,6 +10,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
 	Collection<User> findByMissionsContains(Mission mission);
 
 	Optional<User> findByUserName(String userName);
+
+	Optional<User> findByUserName(Optional<User> loggedInUser);
 	
 
 }

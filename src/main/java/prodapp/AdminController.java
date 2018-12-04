@@ -53,7 +53,6 @@ public class AdminController {
 	public String sortUserIncompleteMissionsByDueDate(Model model,Principal principal) {
 		String loggedInUser = principal.getName().toString();
 		Optional<User> user = userRepo.findByUserName(loggedInUser);
-
 		Collection<Mission> foundMissions = missionRepo.findAllByUsersAndCompletionDateAndRecurringIsFalseOrderByDueDate(user, "");
 		model.addAttribute("missions", foundMissions);
 		return "missions";
