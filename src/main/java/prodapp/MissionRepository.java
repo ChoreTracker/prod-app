@@ -43,7 +43,11 @@ public interface MissionRepository extends CrudRepository<Mission, Long> {
 	Collection<Mission> findAllByUsersAndCompletionDateAndRecurringIsFalseOrderByDueDate(Optional<User> user,
 			String completionDate);
 
+
 	Collection<Mission> findByUsersContainsAndCompletionDateIsNullAndRecurringIsFalseOrderByDueDate(User user);
+
+	Collection<Mission> findAllByUsersAndRecurringIsFalseOrderByDueDate(String loggedInUser);
+
 	
 //	Collection<Mission> findAllRecurringIsTrue();
 }

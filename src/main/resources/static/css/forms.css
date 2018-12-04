@@ -1,0 +1,56 @@
+body {
+	background: #f2ecc2;
+    }
+
+main {
+
+}
+
+footer {
+    text-align: center;
+    padding-top: 1em;
+}
+
+header h1 {
+    /*called #title h1 in the other style-sheet*/
+    background-color: #f2ecc2;
+    font-size: 1.5em;
+    font-weight: 200;
+    line-height: 2em;
+    padding-left: .5em;
+    padding-top: 0;
+    position: fixed;
+    top: 0;
+    /*left: 0; ?*/
+    width: 50%;
+    z-index: 2;
+}
+
+/*Forms*/
+input[type="text"], input[type="password"], select, textarea {
+    background-color: white;
+    border: 1px solid #d9d9d9;
+    border-radius: 25px;
+    display: block;
+    margin-bottom: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    width: 90%;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #323232;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #323232;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #323232;
+}
+
+
+
