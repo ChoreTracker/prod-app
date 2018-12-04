@@ -215,14 +215,14 @@
 		
 
 		<div id="add" class="navContent">
-			<!--That's where the button code was.-->
+			
 			<div id="add-mission-modal" class="modal">
 				<div class="modal-content">
 					<span id="close-add-mission" class="close">&times;</span>
-					<h3>Add a new mission</h3>
+					<h3 th:text="'Add a mission for ' + ${user.userName}"></h3>
 					<form >
 						<input type="text" name="missionName" placeholder="Name of the mission" required/>
-						<input type="text" name="missionDescription" placeholder="Description of the mission" required/>
+						<input type="text" name="missionDescription" placeholder="Description of the mission" />
 						<p>When is the mission due?</p>
 						<input type="date" name="dueDate" required/>
 						<p>Does this mission recur?</p>

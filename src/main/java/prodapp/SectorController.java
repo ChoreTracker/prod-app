@@ -43,6 +43,7 @@ public class SectorController {
 		throw new sectorNotFoundException();
 
 	}
+
 // use on the sectors page
 	@RequestMapping("/add-sector-button")
 	public String addNewSector(@RequestParam String sectorName, @RequestParam String imageUrl) {
@@ -54,10 +55,11 @@ public class SectorController {
 		}
 		return "redirect:/show-sectors";
 	}
-	
-	//use on the user page
+
+	// use on the user page
 	@RequestMapping("/add-sector-button-from-user")
-	public String addNewSectorOnUser(@RequestParam String sectorName, @RequestParam String imageUrl, @RequestParam long userId) {
+	public String addNewSectorOnUser(@RequestParam String sectorName, @RequestParam String imageUrl,
+			@RequestParam long userId) {
 		Sector sector = sectorRepo.findBySectorName(sectorName);
 		if (sector == null) {
 			imageUrl = "/images/sectors/" + imageUrl;
@@ -176,25 +178,40 @@ public class SectorController {
 	@RequestMapping("/make-mission-within-sector")
 	public String createMissionInSector(long sectorId, String missionName, String missionDescription, int period,
 
-			int snooze, String dueDate, boolean recurring, @RequestParam(value = "users", required=false) long[] users) {
+			int snooze, String dueDate, boolean recurring,
+			@RequestParam(value = "users", required = false) long[] users) {
 		Optional<Sector> sectorResult = sectorRepo.findById(sectorId);
 
 		Sector sector = sectorResult.get();
-		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null,
-				recurring, 0);
-//		missionRepo.save(newMission);
+		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null, false,
+				0);
+		missionRepo.save(newMission);
 		if (users != null) {
 			for (int i = 0; i < users.length; i++) {
 				Optional<User> userResult = userRepo.findById(users[i]);
 				if (userResult.isPresent()) {
 					User user = userResult.get();
 					newMission.addUser(user);
-					missionRepo.save(newMission);
 				}
 			}
+			missionRepo.save(newMission);
 		}
-		missionRepo.save(newMission);
 
+		if (recurring) {
+			Mission newRecurring = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null,
+					true, 0);
+			missionRepo.save(newRecurring);
+			if (users != null) {
+				for (int i = 0; i < users.length; i++) {
+					Optional<User> userResult = userRepo.findById(users[i]);
+					if (userResult.isPresent()) {
+						User user = userResult.get();
+						newMission.addUser(user);
+					}
+				}
+			}
+			missionRepo.save(newRecurring);
+		}
 		return "redirect:/sector?id=" + sectorId;
 	}
 }
