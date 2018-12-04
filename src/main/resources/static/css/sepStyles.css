@@ -25,6 +25,33 @@
    width: 50px;
    height: auto;
 }
+
+#loginProd{
+   display: block;
+   margin-right: auto;
+   margin-left: auto;
+   margin-top: 2em;
+   margin-bottom: 1.5em;
+}
+
+#loginH1andTagline{
+   display: block;
+   text-align: center;
+}
+
+#loginForm{
+   margin-top: 1.5em;
+}
+#loginForm div{
+   margin-left: 2.4em;
+   margin-bottom: 0.3em;
+}
+
+#loginForm h4{
+   margin-left: 2.0em;
+   font-size: 1.2em;
+}
+
 .topper {
    display: flex;
    flex-direction: row;
@@ -39,6 +66,7 @@
 }
 .pageHeader {
     text-align: center;
+    padding-bottom: 0.7em;
 }
 
 .topNav {
