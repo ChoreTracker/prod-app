@@ -44,7 +44,18 @@
 		<div th:object= "${sector}" class="grid-container">
 			<h4 class="pageHeader" th:text="${sector.sectorName}"></h4>
 			<div class ="mission" th:each="mission: ${missions}">	
-					<article class="missionLists">
+					<article th:if="${mission.completionDate != null}" class="missionLists missionDone">
+						<img th:src="*{imageUrl}"/>
+						<button>
+							<div class="mission-intro missionButton">
+								<h4 th:text="${mission.missionName}"></h4>
+								<p><span th:text=" '&#10004' + ${mission.completionDate}"></span><span> | </span>
+								<span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>
+							</div>
+						</button>
+					</article>
+					
+					<article th:if="${mission.completionDate == null}" class="missionLists">
 						<img th:src="*{imageUrl}"/>
 						<button>
 							<div class="mission-intro missionButton">
@@ -54,7 +65,7 @@
 							</div>
 						</button>
 					</article>
-					
+
 				<!-- The Modal -->
 				<div class="modal">
 					<div class="modal-content">
@@ -68,7 +79,8 @@
 							<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
 							<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
 						</section>
-						<form >
+						<h3 th:if="${mission.completionDate != null}">Mission Accomplished!</h3>
+						<form th:if="${mission.completionDate == null}">
 							<input type="hidden" th:value="${mission.id}" name="missionId"/>
 							<input type="hidden" th:value="${mission.sector.id}" name="sectorId"/>
 							<button class="doneButton button-primary" th:formaction= "@{/missionDone-sector-button}">Done</button>
