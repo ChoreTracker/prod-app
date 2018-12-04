@@ -53,8 +53,11 @@ public class MissionController {
 		User user = userResult.get();
 		Optional<Sector> sectorResult = sectorRepo.findById(sectorId);
 		Sector sector = sectorResult.get();
-		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null, recurring, 0, user);
+		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null, false, 0, user);
 		missionRepo.save(newMission);
+		if (recurring) {
+			Mission newRecurring = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null, true, 0, user);
+			missionRepo.save(newRecurring);		}
 		
 		
 		return "redirect:/user?id=" + userId;
@@ -261,7 +264,7 @@ public class MissionController {
 		model.addAttribute("missions", missionsDue);
 		return "missions";
 	}
-	@RequestMapping("/default-user-missions")
+	
 	public String sortUserIncompleteMissionsByDueDate(Model model) {
 		User loggedInUser = findLoggedInUser();
 

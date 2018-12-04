@@ -35,10 +35,10 @@ public class UserController {
 
 			User user = userResult.get();
 			model.addAttribute("user", user);
-			model.addAttribute("usersMissions", missionRepo.findByUsersContainsAndCompletionDateIsNullOrderByDueDate(user));
+			model.addAttribute("usersMissions", missionRepo.findByUsersContainsAndCompletionDateIsNullAndRecurringIsFalseOrderByDueDate(user));
 			model.addAttribute("sectors", sectorRepo.findAll());
 			model.addAttribute("unassignedUserMissions", missionRepo.findAllByUsersIsNullAndCompletionDateIsNullAndRecurringIsFalse());
-			model.addAttribute("allMissions", missionRepo.findAll());
+			model.addAttribute("allMissions", missionRepo.findByRecurring(false));
 
 			return "user";
 			
