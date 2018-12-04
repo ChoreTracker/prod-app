@@ -335,9 +335,7 @@ public class MissionController {
 		Mission mission = result.get();
 		Optional<User>userResult = userRepo.findById(userId);
 		User user = userResult.get();
-		Collection<User> currentAssigned = mission.getUsers();
-		mission.removeUsers(currentAssigned);
-		mission.addUser(user);
+		mission.assignUsers(user);
 		missionRepo.save(mission);
 	}
 
