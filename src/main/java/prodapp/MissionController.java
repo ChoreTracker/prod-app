@@ -1,5 +1,8 @@
 package prodapp;
 
+import static org.hamcrest.Matchers.stringContainsInOrder;
+
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
@@ -53,10 +56,12 @@ public class MissionController {
 		User user = userResult.get();
 		Optional<Sector> sectorResult = sectorRepo.findById(sectorId);
 		Sector sector = sectorResult.get();
-		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null, recurring, 0, user);
+		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null, false, 0, user);
 		missionRepo.save(newMission);
-		
-		
+		if (recurring) {
+			Mission newRecurring = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null, true, 0, user);
+			missionRepo.save(newRecurring);
+			}
 		return "redirect:/user?id=" + userId;
 	}
 	
@@ -261,68 +266,104 @@ public class MissionController {
 		model.addAttribute("missions", missionsDue);
 		return "missions";
 	}
+
 	@RequestMapping("/default-user-missions")
-	public String sortUserIncompleteMissionsByDueDate(Model model) {
-		User loggedInUser = findLoggedInUser();
+	public String sortUserIncompleteMissionsByDueDate(Model model,Principal principal) {
+		String activeUser = principal.getName().toString();
+		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
 
 		Collection<Mission> foundMissions = missionRepo.findAllByUsersAndCompletionDateAndRecurringIsFalseOrderByDueDate(loggedInUser, "");
 		model.addAttribute("missions", foundMissions);
 		return "missions";
 	}
 	
-	public String sortUserMissionsByDueDate(Model model) {
-		User loggedInUser = findLoggedInUser();
-
-	Collection<Mission> foundMissions = missionRepo.findAllByUsersAndRecurringIsFalseOrderByDueDate(loggedInUser);
+	private Optional<User> findLoggedInUser(Model model, Principal principal) {
+		String activeUser = principal.getName().toString();
+		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
+		return loggedInUser;
+	}
+	
+	public String sortUserMissionsByDueDate(Model model, Principal principal) {
+		String loggedInUser = principal.getName();
+		Collection<Mission> foundMissions = missionRepo.findAllByUsersAndRecurringIsFalseOrderByDueDate(loggedInUser);
 		model.addAttribute("missions", foundMissions);
 		return "missions";
-	}
-
-	private User findLoggedInUser() {
-		Object activeUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		User loggedInUser = (User) activeUser;
-		return loggedInUser;
 	}
 	
 	
 	// with activeUser commented out, the method works, assigning the mission to the user whose page you're on. 
 	@RequestMapping("/claim-mission-button")
-	public String claimUnassignedMission(@RequestParam long missionId, @RequestParam long userId) {
-		//User activeUser = findLoggedInUser();
+	public String claimUnassignedMission(@RequestParam long missionId, Principal principal) {
+		String activeUser = principal.getName().toString();
+		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
+		long userId = loggedInUser.get().getId();
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
-		//mission.addUser(activeUser);
 		Optional<User>userResult = userRepo.findById(userId);
 		User user = userResult.get();
+		Collection<User> currentAssigned = mission.getUsers();
+		if (!currentAssigned.contains(user)) {
 		mission.addUser(user);
 		missionRepo.save(mission);
+		}
+		
 		return "redirect:/user?id=" + userId;
 	}
 	
 	@RequestMapping("/claim-mission-in-sector-button")
-	public String claimUnassignedMissionInSector(@RequestParam long missionId, @RequestParam long userId) {
-		User activeUser = findLoggedInUser();
+	public String claimUnassignedMissionInSector(@RequestParam long missionId, @RequestParam long sectorId, Principal principal) {
+		String activeUser = principal.getName().toString();
+		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
+		long userId = loggedInUser.get().getId();
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
-		mission.addUser(activeUser);
 		Optional<User>userResult = userRepo.findById(userId);
 		User user = userResult.get();
+		Collection<User> currentAssigned = mission.getUsers();
+		if (!currentAssigned.contains(user)) {
 		mission.addUser(user);
 		missionRepo.save(mission);
-		return "redirect:/sector?id=" + userId;
+		}
+		return "redirect:/sector?id=" + sectorId;
 	}
 	
 	
 	
 	
 	@RequestMapping("/claim-mission-assigned-button")
-	public void claimAssignedMission(long missionId) {
-		User activeUser = findLoggedInUser();
+	public  String claimAssignedMission(long missionId, Principal principal) {
+		String activeUser = principal.getName().toString();
+		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
+		long userId = loggedInUser.get().getId();
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
-		mission.assignUsers(activeUser);
 		missionRepo.save(mission);
+		Optional<User>userResult = userRepo.findById(userId);
+		User user = userResult.get();
+		mission.assignUsers(user);
+		missionRepo.save(mission);
+//		if (sectorId == null) {
+//			return "redirect:/sector?id=" + sectorId;
+//		}
+		
+		return "redirect:/user?id=" + userId;
 	}
+	
+	@RequestMapping("/claim-mission-assigned-button-sector")
+	public  String claimAssignedMission(long missionId, Long sectorId, Principal principal) {
+		String activeUser = principal.getName().toString();
+		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
+		long userId = loggedInUser.get().getId();
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		missionRepo.save(mission);
+		Optional<User>userResult = userRepo.findById(userId);
+		User user = userResult.get();
+		mission.assignUsers(user);
+		missionRepo.save(mission);
+			return "redirect:/sector?id=" + sectorId;
+	}
+
 
 	@RequestMapping("/make-recurring")
 	public void makeMissionRecurring(long missionId) {

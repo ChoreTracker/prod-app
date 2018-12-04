@@ -3,16 +3,22 @@
     xmlns:th="http://www.thymeleaf.org"
     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
+
 <title>Login screen</title>
 <meta charset="utf-8">
 
 <link rel="stylesheet" type="text/css" href="/css/reset.css">
 <link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
 <link rel="stylesheet" type="text/css" href="/css/sepStyles.css">
+      <link rel="stylesheet" type="text/css" href="/css/forms.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
+
 </head>
+
 <body>
     <header>
+        <div id="prod-mascot" style="margin-top: 2em; margin-bottom: .25em;"><img src="/images/prod-logo.svg" width="200" height="auto" alt="image depicting PROD chore tracking application">
+        </div>
     </header>
     <main>
         <img id="loginProd"src="/images/prod-logo.svg" width="200" height="auto" alt="image depicting PROD chore tracking application">
@@ -24,6 +30,7 @@
     <div class="grid-container">
         <form id="loginForm" name="frmlogin" th:action="@{/login}" method="post" class="form-signin">
             <h4>Please sign in</h4>
+
             <div th:if="${param.error}">    
                 Invalid username and password.
             </div>
