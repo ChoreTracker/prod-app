@@ -327,7 +327,7 @@ public class MissionController {
 	
 	
 	@RequestMapping("/claim-mission-assigned-button")
-	public  String claimAssignedMission(long missionId, Long sectorId, Principal principal) {
+	public  String claimAssignedMission(long missionId, Principal principal) {
 		String activeUser = principal.getName().toString();
 		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
 		long userId = loggedInUser.get().getId();
@@ -343,6 +343,21 @@ public class MissionController {
 //		}
 		
 		return "redirect:/user?id=" + userId;
+	}
+	
+	@RequestMapping("/claim-mission-assigned-button-sector")
+	public  String claimAssignedMission(long missionId, Long sectorId, Principal principal) {
+		String activeUser = principal.getName().toString();
+		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
+		long userId = loggedInUser.get().getId();
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		missionRepo.save(mission);
+		Optional<User>userResult = userRepo.findById(userId);
+		User user = userResult.get();
+		mission.assignUsers(user);
+		missionRepo.save(mission);
+			return "redirect:/sector?id=" + sectorId;
 	}
 
 
