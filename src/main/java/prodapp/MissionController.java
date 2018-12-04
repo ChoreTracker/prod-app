@@ -57,9 +57,8 @@ public class MissionController {
 		missionRepo.save(newMission);
 		if (recurring) {
 			Mission newRecurring = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null, true, 0, user);
-			missionRepo.save(newRecurring);		}
-		
-		
+			missionRepo.save(newRecurring);
+			}
 		return "redirect:/user?id=" + userId;
 	}
 	
