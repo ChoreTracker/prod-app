@@ -1,18 +1,4 @@
 
- #prod-mascot {
-	margin-left: 10%;
-    margin-right: auto;
-	margin-top: 1em;
-	padding-left: 3%;
-	position: relative;
-	text-align: left;
-	width: 100%;
-    z-index: 1;    
-    transform: rotate(-5deg);
-    width: 125px;
-    height: auto;
-}
-
 .missionDone {
     background-color: gray;
 }
@@ -30,6 +16,17 @@ body {
 
 .flex-grid {
     display: block;
+}
+
+#prod-mascot {
+	margin-left: auto;
+    margin-right: auto;
+	margin-top: 5em;
+	text-align: center;
+	width: 100%;
+    z-index: 1;    
+    transform: rotate(-5deg);
+    
 }
 
 header h1 {
@@ -246,18 +243,53 @@ main .tab ul li {
     justify-content: center;
     }
 
+/* Style the buttons inside the tab */
+nav #tabbed-nav ul li {
+    z-index: 2;
+    /*line-height: 1.15;*/
+    padding-left: .5em;
+    padding-right: .5em;
+}
+
 /* Change background color of buttons on hover */
 .tablinks :hover {
     text-decoration: none;
     color: #323232;
     }
 
+/* Change background color of buttons on hover */
+.tablinks a:hover {
+    text-decoration: none;
+}
+
+.tablinks a:active {
+
+}
+
+/* Create an active/current tablink class */
+.tablinks-active {
+
+}
+
+main .tab ul li  {
+    /*formerly nav #tabbed-nav ul li button:hover, nav #tabbed-nav ul li button:active, .tablinks-active */
+    /*background-color: #ffd5b3;*/
+    color: #323232;
+    height: 3em;
+    padding-left: .5em;
+    padding-right: .5em;
+    }
+
+
+
 .active {
     background-color: Yellow;
     color: #323232;
 }
 
-
+.pageHeading{
+    justify-content: center;
+}
 
 
 .color-box {
@@ -275,56 +307,74 @@ main .tab ul li {
 
 h1 {
     color: #323232;
+    display: block;
     font-size: 4em;
+    /*font-size: 2em;*/
     font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    line-height: 1.5em;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    /*margin-top: 0.67em;
+    margin-bottom: 0.67em;*/
 }
 
-main h2 {
+h2 {
     color: #323232;
-    font-size: 2em;
+    display: block;
+    font-size: 3em;
+    /*font-size: 1.5em;*/
     font-family: 'Roboto Slab', serif;
-    margin-top: 4em;
-    padding-bottom: .5em;
+    font-weight: 400;
+    line-height: 1.5em;
+    margin-left: auto;
+    margin-right: auto;
+    /*margin-top: 0.83em;
+    margin-bottom: 0.83em;*/
     width: 90%;
 }
 
 h3 {
     color: #323232;
+    display: block;
     font-size: 2em;
     font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    line-height: 2em;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    /*margin-top: 1em;
+    margin-bottom: 1em;*/
 }
 
 h4 {
     color: #323232;
+    display: block;
     font-size: 1.5em;
     font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    line-height: 1.75em;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    /*margin-top: 1.33em;
+    margin-bottom: 1.33em;*/
 }
 
 h5 {
     color: #323232;
+    display: block;
     font-size: 1.15em;
     font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    line-height: 1.55em;
     width: 90%;
     margin-left: auto;
     margin-right: auto;
-}
-
-h6 {
-    color: #323232;
-    font-size: 1em;
-    font-family: 'Roboto Slab', serif;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    /*margin-top: 1.67em;
+    margin-bottom: 1.67em;*/
 }
 
 p {
@@ -334,6 +384,9 @@ p {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: .5em;
+    margin-top: .5em;
+
 }
 
 button {
@@ -397,31 +450,7 @@ article .mission-intro {
 	width: 275px;
 }
 
-/*Forms*/
-input[type="text"], input[type="password"], select, textarea {
-    background-color: white;
-    border: 1px solid #d9d9d9;
-    border-radius: 25px;
-    display: block;
-    margin-bottom: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1em;
-    width: 90%;
-}
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #323232;
-    opacity: 1; /* Firefox */
-}
-
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #323232;
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
-    color: #323232;
-}
 
 section p {
     line-height: 1.15em;
@@ -479,202 +508,25 @@ section p {
 
 
 /*Larger than tablet*/
-@media (min-width: 750px) {
+/*@media (min-width: 750px) {}*/
 
-body {
-	background: #f2ecc2;
-	}
-
-.flex-grid {
-  display: flex;
-  justify-content: space-between;
-  margin: auto;
-  /*padding-left: 0;*/
-  width: 63%;
-}
-
-.col {
-	flex: 1;
-}
-
-header h1 {
-    background-color: #f2ecc2;
-	font-size: 2.5em;
-	left: 20%;
-	/*margin-left: auto;
-	margin-right: auto;*/
-	margin-top: 5em;
-	padding-left: 0;
-	width: 60%;
-}
-
-
-.header-text  {
-	padding-top: 2em;
-	border-bottom: 1px solid #323232;
-	margin-bottom: 1em;
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
-
-	font-weight: 200;
-	text-transform: uppercase;
-}
-
-nav {
-    /*background: #f2ecc2;
-	margin-left: auto;
-	margin-right: auto;
-	position: absolute;	
-	top: 0;
-	z-index: 2;*/
-}
-
- #prod-mascot {
-	margin-left: 10%;
-    margin-right: auto;
-	margin-top: 1em;
-	padding-left: 3%;
-	position: relative;
-	text-align: left;
-	width: 100%;
-    z-index: 1;    
-    transform: rotate(-5deg);
-    width: 125px;
-    height: auto;
-}
-
- #prod-mascot p {
-    text-align: center;
-}
-
-
-nav #first-nav ul {
-	background-color: #8559a5;
-	display: flex;
-	flex-direction: row;
-	height: 3em;
-	justify-content: space-between;
-    left: 0;
-	line-height: 3em;
-    list-style: none;
-    margin: 0;
-    padding-left: 0;
-    /*margin-left: 35%;*/
-    padding-left: 50%;
-	padding-right: 25%;
-	position: fixed;
-	left: 0;
-	top: 7em;
-	width: 100%;
-    z-index: 6;    
-    }
-
-nav #first-nav li {
-	line-height: 3em;
-	width: 25%;
-    /*top: 1em; */
-    display: block;
-    float: left;
-    /*padding: 1rem;*/
-    position: relative;
-    text-decoration: none;
-    transition-duration: 0.5s;
-    }
-
-nav #first-nav li a {
-    text-decoration: none;
-    color: white;
-    }
-
-nav #first-nav li a:hover {
-    background: #dbcde4; /*lavender*/
-    cursor: pointer;
-    padding-top: 1.8em; 
-    padding-right: 1.5em; 
-    padding-left: 1.5em; 
-    padding-bottom: .10em; 
-    }
-
-/*nav #first-nav #selected {
-    background: #323232;
-	line-height: 3em;
-    }*/
-
-nav .sub-nav {
-    /*background: #dbcde4;
-    border: solid 1px transparent;
-    border-radius: 25px;
-    display: none;
-    height: 11em;
-    position: fixed;
-    top: 6em;
-    left: 40%;
-    width: 11em;
-    z-index: 5;*/
-    /*margin: auto;*/
-    /* position: relative; */
-    /*padding-left: 22%;*/
-    }
-
-nav .sub-nav ul {
-   /* align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-left: 1em;
-    padding-right: 1em;
-    line-height: 3em;
-    list-style: none;*/
-    background: orange;
-    visibility: hidden;
-    opacity: 0;
-    min-width: 5rem;
-    position: absolute;
-    transition: all 0.5s ease;
-    margin-top: 1rem;
-    left: 0;
-    display: none;
-    }
-
-.sub-nav  ul li:hover > ul,
-.sub-nav ul:hover {
-  visibility: visible;
-  opacity: 1;
-  display: block;
-}
-
-nav .sub-nav li {
-    clear: both;
-    width: 100%;
-    /*line-height: 3em;*/
-    }
-
-nav .sub-nav li a {
-    text-decoration: none;
-    color: #323232;
-    }
-
- nav .sub-nav li a:hover {
-    text-decoration: none;
-    color: #323232;
-    }
 
 /*The black bar that acts like a secondary navigation
-/* Styling for the tab */
-#tabbed-nav {
-    
-}
+/* Styling for the tab BIG*/
 
-main .tab ul {
+/*#tabbed-nav {
+    
+}*/
+
+/*main .tab ul {
     /*formerly nav #tabbed-nav ul*/
-    align-items: center;
+    /*align-items: center;
     display: flex;
     flex-direction: row;
     height: 3em;
     justify-content: space-around;
-    background-color: #ffa258; /*orange*/
-    color: white;
+    background-color: #ffa258; *//*orange*/
+    /*color: white;
     flex: auto;
     left: 20%;
     margin-left: auto;
@@ -683,168 +535,50 @@ main .tab ul {
     list-style: none;
     position: fixed;
     width: 60%;
-    }
+    }*/
 
 /* Style the buttons inside the tab */
-nav #tabbed-nav ul li {
-    z-index: 2;
+/*nav #tabbed-nav ul li {
+    z-index: 2;*/
     /*line-height: 1.15;*/
-    padding-left: .5em;
+   /* padding-left: .5em;
     padding-right: .5em;
-}
+}*/
 
-main .tab ul li  {
+/*main .tab ul li  {*/
     /*formerly nav #tabbed-nav ul li button:hover, nav #tabbed-nav ul li button:active, .tablinks-active */
     /*background-color: #ffd5b3;*/
-    color: #323232;
+   /* color: #323232;
     height: 3em;
     padding-left: .5em;
     padding-right: .5em;
-    }
+    }*/
 
 /* Change background color of buttons on hover */
-    .tablinks a:hover {
+ /*   .tablinks a:hover {
         text-decoration: none;
-    }
+    }*/
 
 
 
-.tablinks a:active {
+/*.tablinks a:active {
 
-}
+}*/
 
 /* Create an active/current tablink class */
-.tablinks-active {
+/*.tablinks-active {
 
-}
-
-
-
-.color-box {
-    border-radius: 25px;
-    background: #323232;
-    color: white;
-    height: 75;
-    width: 90%;
-    margin-bottom: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 20px;
-    text-align: center;
-}
-
-main h1, main h3, main h4, main h5, main h6 {
-    width: 60%;
-}
-
-main h2 {
-    width: 60%;
-    color: #323232;
-    font-size: 2em;
-    font-family: 'Roboto Slab', serif;
-    font-weight: 200;
-    left: 20%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 11em;
-    padding-bottom: .5em;
-    top: 0;
-    width: 60%;
-}
-
-.pageHeading{
-    justify-content: center;
-}
-
-p {
-    margin-top: 1em;
-	width: 60%;
-}
+}*/
 
 
 
 
 
-.button-primary:hover, .button-primary:focus {
-	background-color: #48b782;
-}
 
-article {
-	margin-bottom: 1em;
-	margin-left: auto;
-	margin-right: auto;
-}
 
-article h4, article p {
-	margin-top: 0em;
-	width: 100%;
-}
 
-/*Forms*/
-input[type="text"], select, textarea {
-	margin-left: auto;
-	margin-right: auto;
-	width: 60%;
-}
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #323232;
-    opacity: 1; /* Firefox */
-}
 
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #323232;
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
-    color: #323232;
-}
-
-section p {
-    line-height: 1.15em;
-    padding-bottom: 1em;
-}
-
-/* The Modal (background) */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 10;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: white;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
-
-/* The Close Button */
-.close {
-    color: #8559a5;
-    float: right;
-    font-size: 2em;
-    font-weight: bold;
-}    
-    
-.close:hover, .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.opened {
-    display: block !important;
-}}
 
 
 
