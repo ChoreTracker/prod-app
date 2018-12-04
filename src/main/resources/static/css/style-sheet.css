@@ -433,7 +433,7 @@ article {
     height: 75px;
     margin-left: auto;
     margin-right: auto;
-    width: 350px;
+    width: 90%;
     margin-bottom: 5px;
 }
 
@@ -448,7 +448,7 @@ article img {
 
 article .mission-intro {
 	padding-left: 10px;
-	width: 275px;
+	width: 400px;
 }
 
 
