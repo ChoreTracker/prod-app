@@ -8,20 +8,22 @@
 
 <link rel="stylesheet" type="text/css" href="/css/reset.css">
 <link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
-
+<link rel="stylesheet" type="text/css" href="/css/sepStyles.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 </head>
 <body>
     <header>
     </header>
     <main>
-            <img src="/images/prod-logo.svg" width="200" height="auto" alt="image depicting PROD chore tracking application">
-            <h3>Welcome To PROD</h3>
+        <img id="loginProd"src="/images/prod-logo.svg" width="200" height="auto" alt="image depicting PROD chore tracking application">
+    <div id="loginH1andTagline"> 
+        <h3>Welcome To PROD</h3>
         <h4>Keeping everyone productive!</h4>
-    
+    </div> 
+
     <div class="grid-container">
-        <form name="frmlogin" th:action="@{/login}" method="post" class="form-signin">
-            <h3>Please sign in</h3>
+        <form id="loginForm" name="frmlogin" th:action="@{/login}" method="post" class="form-signin">
+            <h4>Please sign in</h4>
             <div th:if="${param.error}">    
                 Invalid username and password.
             </div>
