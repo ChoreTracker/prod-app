@@ -57,10 +57,10 @@ public class AdminController {
 		model.addAttribute("missions", foundMissions);
 		return "missions";
 	}
-	private Optional<User> findLoggedInUser(Model model, Principal principal) {
-		String loggedInUser = principal.getName().toString();
-		Optional<User> user = userRepo.findByUserName(loggedInUser);
-		return user;
-	}
+//	private Optional<User> findLoggedInUser(Model model, Principal principal) {
+//		String loggedInUser = principal.getName().toString();
+//		Optional<User> user = userRepo.findByUserName(loggedInUser);
+//		return user;
+//	}
 
 }
