@@ -98,8 +98,8 @@ public class Mission {
 		this.users.remove(user);
 	}
 	
-	public void removeUsers(Collection<User> currentAssigned) {
-		this.users.removeAll(currentAssigned);
+	public void removeUsers(Collection<User> user) {
+		this.users.removeAll(user);
 		
 	}
 

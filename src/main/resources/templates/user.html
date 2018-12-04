@@ -200,7 +200,9 @@
 								<input type="hidden" th:value="${user.id}" name="userId"/>
 								<button class="doneButton button-primary" th:formaction= "@{/mission-complete-button}">Done</button>
 								<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission}">Snooze</button>
-								<button class="claimButton button-primary" th:formaction= "@{/claim-mission-button}">Claim</button>							</form>
+								<button class="claimButton button-primary" th:formaction= "@{/claim-mission-button}">Claim</button>
+								<button class="takeMisson-button button-primary" th:formaction= "@{/claim-mission-assigned-button}">Take Mission</button>							
+							</form>
 						</div>
 					</div>
 				</div>
@@ -232,7 +234,7 @@
 						<p>Please choose a sector</p>
 						<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${sector.id}" th:text="${sector.sectorName}" required> <br>
 						<input type="hidden" th:value="${user.id}" name="userId"/>
-						<button class="newMisson-button button-primary" th:formaction= "@{/create-mission-button}">Add Mission</button> 
+						<button class="newMisson-button button-primary" th:formaction= "@{/create-mission-button}">Add Mission</button>
 						</form>
 				</div>				
 			</div>
