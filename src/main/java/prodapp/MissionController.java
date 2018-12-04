@@ -1,16 +1,11 @@
 package prodapp;
 
-import static org.hamcrest.Matchers.stringContainsInOrder;
-
 import java.security.Principal;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
-
 import javax.annotation.Resource;
-
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -275,12 +270,6 @@ public class MissionController {
 		Collection<Mission> foundMissions = missionRepo.findAllByUsersAndCompletionDateAndRecurringIsFalseOrderByDueDate(loggedInUser, "");
 		model.addAttribute("missions", foundMissions);
 		return "missions";
-	}
-	
-	private Optional<User> findLoggedInUser(Model model, Principal principal) {
-		String activeUser = principal.getName().toString();
-		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
-		return loggedInUser;
 	}
 	
 	public String sortUserMissionsByDueDate(Model model, Principal principal) {
