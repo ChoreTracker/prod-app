@@ -51,5 +51,11 @@ public class UserController {
 	public String addNewUser (Model model) {
 	
 		return "setup-users";
+	}
+	
+	@RequestMapping("/add-user-button")
+	public String addUser (String userName, String password, String contact, String roles) {
+	
+		return "setup-users";
 }
 }

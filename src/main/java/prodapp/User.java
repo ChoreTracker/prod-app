@@ -41,6 +41,8 @@ public class User{
 	@ManyToMany(mappedBy = "users")
 	private Collection<Mission> missions;
 
+	private String theme;
+
 	public User() {
 
 	}
@@ -70,14 +72,19 @@ public class User{
 //		return loggedInUser;
 //	}
 
-	public User(String userName, String password, String contact, String...roles) {
+	public User(String userName, String password, String contact, String theme, String...roles) {
 		this.userName = userName;
 		this.password = new BCryptPasswordEncoder().encode(password);
 		this.contact = contact;
+		this.theme = theme;
 		this.roles = roles;
 		
 	}
 
+
+	public String getTheme() {
+		return theme;
+	}
 
 	@Override
 	public int hashCode() {
