@@ -1,5 +1,10 @@
 
 
+$("document").ready(function () {
+    $('#myMissionsButton').trigger('click'); 
+ 
+});
+
 function openMissions(buttonType, missionType) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -12,14 +17,9 @@ function openMissions(buttonType, missionType) {
     }
     document.getElementById(missionType).style.display = "block";
     document.getElementById(buttonType).classList += " active";
-    document.getElementById(missionType).classList +=" active";
+    document.getElementById(missionType).classList += " active";
 }
 
-$("document").ready(function () {
-    $('#myMissionsButton').trigger('click');
-    
- 
-});
 
 
 
