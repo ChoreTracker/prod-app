@@ -167,6 +167,7 @@
     padding: 0;
     padding-top: .5em;
     position: absolute;
+    height: 65px;
     /*width: inherit;*/
     z-index: 2;
     /*margin-left: -200px;
