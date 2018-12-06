@@ -255,8 +255,8 @@ nav .sub-nav li a:hover {
     display: block;
     padding-top: .5em;
     padding-bottom: .5em;
-    padding-left: 3em;
-    padding-right: 3em;
+    /* padding-left: 3em;
+    padding-right: 3em; */
     margin-left: auto;
     margin-right: auto;
     width: 90%;
@@ -360,7 +360,7 @@ p {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: .5em;
-    margin-top: .5em;
+    margin-top: 0em;
 
 }
 
