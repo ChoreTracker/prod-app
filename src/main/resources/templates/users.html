@@ -28,8 +28,21 @@
                         </li>
                         <li class="first-nav"><a><img src="./images/plus-icon-white.svg" width="40" height="40" alt="add icon"></a>
                             <ul>
-                                <li class="sub-nav"><a href="#">add user placeholder</a></li>
-                                
+                                <li class="sub-nav">Add User</a></li>
+                                    <div id="add-user-modal" class="modal">
+                                        <div class="modal-content">
+                                            <span id="close-add-user" class="close">&times;</span>
+                                        <form >
+                                                <input type="text" name="userName" placeholder="Name of the User" required/>
+                                                <input type="text" name="password" placeholder="Create a password for the user"/>
+                                                <input type="text" name="contact" placeholder="Provide an email adress for the user"/>
+                                                <input type="text" name="theme" placeholder="Default">Theme</input>
+                                                <input type="checkbox" name="roles" placeholder="ADMIN"/>Aministrative User
+                                                <button class="newUser-button button-primary" th:formaction= "@{/add-user-button}">Add User</button>
+                                        </form>
+                                        </div>              
+                                    </div>
+                                </li>
                             </ul>
                         </li>
                         <li class="first-nav"><a><img src="./images/cog-icon-white.svg" width="40" height="40" alt="settings icon"></a>

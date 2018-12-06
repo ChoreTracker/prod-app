@@ -21,8 +21,8 @@ public class ProdPopulator implements CommandLineRunner {
 
 	public void run(String... args) throws Exception {
 
-		User user = new User("Parent", "admin", "contact", "ADMIN", "USER");
-		User user2 = new User("Child", "user", "contact2", "USER");
+		User user = new User("Parent", "admin", "contact", "default", "ADMIN", "USER");
+		User user2 = new User("Child", "user", "contact2", "default", "USER");
 		userRepo.save(user);
 		userRepo.save(user2);
 

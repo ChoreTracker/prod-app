@@ -54,8 +54,8 @@ public class UserController {
 	}
 	
 	@RequestMapping("/add-user-button")
-	public String addUser (String userName, String password, String contact, String roles) {
-	
+	public String addUser (String userName, String password, String contact, String theme, String roles) {
+		User user = new User(userName, password, contact, theme, "USER" + roles);
 		return "setup-users";
 }
 }
