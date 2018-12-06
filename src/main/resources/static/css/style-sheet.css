@@ -183,7 +183,7 @@ nav .sub-nav li a:hover {
     top: 5.3em;
     list-style: none;
     position: absolute;
-    height: 3em;
+    height: 4.0em;
     width: 100%;
 }
 
@@ -241,6 +241,7 @@ nav .sub-nav li a:hover {
     /*background-color: #ffd5b3;*/
     color: #323232;
     height: 3em;
+    width: 215px;
     padding-left: .5em;
     padding-right: .5em;
     }
