@@ -30,7 +30,7 @@
    display: block;
    margin-right: auto;
    margin-left: auto;
-   margin-top: 2em;
+   margin-top: 7em;
    margin-bottom: 1.5em;
 }
 
@@ -43,12 +43,12 @@
    margin-top: 1.5em;
 }
 #loginForm div{
-   margin-left: 2.4em;
+   margin-left: 3.55em;
    margin-bottom: 0.3em;
 }
 
 #loginForm h4{
-   margin-left: 2.0em;
+   margin-left: 3.0em;
    font-size: 1.2em;
 }
 
@@ -58,12 +58,17 @@
 }
 
  #missionWrapper {
-   margin-top: 6.1em;
+   margin-top: 8.3em;
 } 
 
 .missionDone {
     background-color: gray;
 }
+
+.mission {
+   margin-top: 1em;
+}
+
 .pageHeader {
     text-align: center;
     padding-bottom: 0.7em;
@@ -77,12 +82,15 @@
     right: 0;
     top: 0;
     width: 50%;
+    height: 55px;
     z-index: 2;
  }
+
  .topNav a {
     text-decoration: none;
     color: #fff;
     display: block;
+    margin-top: 0.3em;
     padding-left: 15px;
     border-bottom: 1px solid #888;
     transition: .3s background-color;
@@ -114,7 +122,7 @@
  .topNav li li {
     background: #48b782; 
     font-size: .9em;
-    padding-top: .5em;
+    /* padding-top: .5em; */
     /*white-space:nowrap;
     width: 200px;*/
  }
