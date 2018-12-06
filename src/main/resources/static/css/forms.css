@@ -17,6 +17,7 @@ header h1 {
     font-size: 1.5em;
     font-weight: 200;
     line-height: 2em;
+    height: 55px;
     padding-left: .5em;
     padding-top: 0;
     position: fixed;
