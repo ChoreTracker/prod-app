@@ -228,13 +228,8 @@ nav .sub-nav li a:hover {
     text-decoration: none;
 }
 
-.tablinks a:active {
-
-}
-
-/* Create an active/current tablink class */
-.tablinks-active {
-
+.tablinks {
+    font-size: 1em;
 }
 
 .tab ul li  {
@@ -250,9 +245,26 @@ nav .sub-nav li a:hover {
 
 
 .active {
-    background-color: Yellow;
- 
-    border-radius: 25px;
+    background-color: #ffa258;
+    border-radius: 25px 25px 0px 0px;     
+    color: #323232;
+    display: block;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    /* padding-left: 3em;
+    padding-right: 3em; */
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+.tablinks .active {
+    border-radius: 25px 25px 0px 0px;
+}
+
+.tabcontent {
+    /* border-radius: 0px 0px 25px 25px; */
+    background-color: #ffa258;
     color: #323232;
     display: block;
     padding-top: .5em;
@@ -422,9 +434,8 @@ article img {
     margin: 0;
     margin-top: 0.51em;
     padding: 0;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #323232;
+    /* border-width: 1px;
+    border-color: #323232; */
 
 }
 
@@ -433,7 +444,11 @@ article .mission-intro {
 	width: 500px;
 }
 
-
+footer {
+    display: block;
+   text-align: center;
+   margin-top: 2em;
+}
 
 section p {
     line-height: 1.15em;

@@ -1,58 +1,46 @@
-// const users=document.querySelectorAll(".user");
+// Pop-up sub-nav
+function goToSelectedPopsUp(navType) {
+    //var gotoSelected = document.getElementById("sub-nav-goto");
+    var gotoSelected = document.getElementById(navType);
+    //var gotoSelected = document.getElementById("sub-nav-settings");
+    //var gotoSelected = document.getElementById("sub-nav-logout");
 
-// for(let i=0; i<missions.length; i++) {
-// 	let button=users[i].querySelector(".userButton");
-// 	buttonid="button"+ i;
-// 	button.id = buttonid;
-// 	console.log(button.id);
+    //get current value of the display property
+    var displaySetting = gotoSelected.style.display;
 
+    if (displaySetting == 'block') {
+        //var is visible. hide it.
+        gotoSelected.style.display = 'none';
+    }
+    else {
+        //var is hidden.show it.
+        gotoSelected.style.display = 'block';
+    }
+}
 
+const newUserButton = document.getElementById("add-user-button");
+const closeNewUserSpan = document.getElementById("close-add-user");
+const addUserModal = document.getElementById("add-user-modal");
 
-// const userButton = document.querySelector('.userButton');
+newUserButton.addEventListener("click", function(){
+	if (!addUserModal.classList.contains("opened")){
+		addUserModal.classList.add("opened")
+	}
+	 else {
+		addUserModal.classList.remove("opened")
+	}
+})
 
-// 	userButton.addEventListener('click', function(){
-// 		window.open("@{/user(id=${user.id})}");
-// 	})
+closeNewUserSpan.addEventListener("click",function() {
+	if(!addUserModal.classList.contains("opened")){
+		addUserModal.classList.add("opened")
+	} else {
+		addUserModal.classList.remove("opened")
+	}
+})
 
-// function myFunction(){
-// 	window.open("@{/user(id=${user.id})}");
-// }
-
-
-
-// const userAddButton = document.querySelector('.add-user button');
-// const userAddInput = document.querySelector('.add-user input');
-// const usersList = document.querySelector('.users-list ul');
-// const userRemoveButton = document.querySelector('.remove-user button');
-// const userrRemoveInput = document.querySelector('.remove-user input');
-
-// const xhr = new XMLHttpRequest()
-// xhr.onreadystatechange = function(){
-// 	if(xhr.readyState===4 && xhr.status ===200){
-// 		const res = xhr.responseText;
-// 		usersList.innerHTML = res;
-// 	}
-// }
-
-// userAddButton.addEventListener('click', function(){
-// 	postUsers(userAddInput.value);
-// 	userAddInput.value = "";
-// })
-
-// userRemoveButton.addEventListener('click', function(){
-// 	var ask = confirm('Are you sure?');
-// 	if(ask == true){
-// 		removeUsers(sectorRemoveInput.value);
-// 		userRemoveInput.value = "";
-// 	}
-// })
-
-// function postUsers(userName){
-// 	xhr.open('POST', 'users/' + userName, true);
-// 	xhr.send();
-// }
-
-// function removeUsers(userName){
-// 	xhr.open('POST', 'users/remove/' + userName, true);
-// 	xhr.send();
-// }
+window.addEventListener("click", function(event) {
+	if (event.target == addUserModal) {
+		addUserModal.classList.remove("opened")
+	}
+})

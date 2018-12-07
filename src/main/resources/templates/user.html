@@ -200,7 +200,6 @@
 		
 
 		<div id="add" class="navContent">
-			
 			<div id="add-mission-modal" class="modal">
 				<div class="modal-content">
 					<span id="close-add-mission" class="close">&times;</span>
@@ -221,7 +220,7 @@
 						<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${sector.id}" th:text="${sector.sectorName}" required> <br>
 						<input type="hidden" th:value="${user.id}" name="userId"/>
 						<button class="newMisson-button button-primary" th:formaction= "@{/create-mission-button}">Add Mission</button>
-						</form>
+					</form>
 				</div>				
 			</div>
 
@@ -245,7 +244,7 @@
 
 		<script src = "./js/user.js"></script>	
 		<script src = "./js/user-requests.js"></script>	
-		<script src = "./js/sectors.js"></script>	
+		<!-- <script src = "./js/sectors.js"></script>	 -->
 
 
 

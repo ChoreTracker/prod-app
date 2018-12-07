@@ -17,7 +17,7 @@ function openMissions(buttonType, missionType) {
     }
     document.getElementById(missionType).style.display = "block";
     document.getElementById(buttonType).classList += " active";
-    document.getElementById(missionType).classList += " active";
+    // document.getElementById(missionType).classList += " active";
 }
 
 
