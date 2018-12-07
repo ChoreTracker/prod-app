@@ -12,8 +12,9 @@
 <body>
 	<main> 
 		<header>
-				<div>
-					<img id="prod-mascot" src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application">
+			<div id="headerAndTinyProd">
+				<h1 th:text="${sector.sectorName}"></h1>
+					<img id="tinyProd" src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application">
 				</div>
 				
 				<nav class="topNav">
@@ -44,7 +45,7 @@
 				</nav>
 		</header>
 		<div th:object= "${sector}" class="grid-container">
-			<h4 class="pageHeader" th:text="${sector.sectorName}"></h4>
+			<!-- <h4 class="pageHeader" th:text="${sector.sectorName}"></h4> -->
 			<div class ="mission" th:each="mission: ${missions}">	
 					<article th:if="${mission.completionDate != null}" class="missionLists missionDone">
 						<img th:src="*{imageUrl}"/>
