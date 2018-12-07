@@ -19,196 +19,181 @@
 			
 				
 					<h1 th:text=" ${user.userName} + '  Missions'"></h1>
-					<!-- <img id="tinyProd"  src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application"> -->
+					<!-- <img id="tinyProd"  src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application">  -->
 				
 			
 			<nav class="topNav">
 					<ul class="first-nav">
-							<li class="first-nav" ><a><img src="./images/goto-icon-white.svg" width="40" height="40" alt="go to icon"></a>
+							<li class="first-nav" ><a><img src="./images/goto-icon-white.svg" alt="go to icon"></a>
 								<ul>
 									<li class="sub-nav"><a href="http://localhost:8080/show-sectors">Sectors</a></li>
 									<li class="sub-nav"><a href="http://localhost:8080/show-users">Users</a></li>
 								</ul>
 							</li>
-							<li class="first-nav"><a><img src="./images/plus-icon-white.svg" width="40" height="40" alt="add icon"></a>
+							<li class="first-nav"><a><img src="./images/plus-icon-white.svg"  alt="add icon"></a>
 								<ul>
 									<li class="sub-nav"><a><button id="add-mission-button">Add A Mission</button></a></li>									
 								</ul>
 							</li>
-							<li class="first-nav"><a><img src="./images/cog-icon-white.svg" width="40" height="40" alt="settings icon"></a>
+							<li class="first-nav"><a><img src="./images/cog-icon-white.svg"  alt="settings icon"></a>
 								<ul>
 									<li class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
 								</ul>
 							</li>
-							<li class="first-nav"><a><img src="./images/logout-icon-white.svg" width="40" height="40" alt="logout icon"></a>
+							<li class="first-nav"><a><img src="./images/logout-icon-white.svg"  alt="logout icon"></a>
 								<ul>
 									<li class="sub-nav"><a href="http://localhost:8080/login?logout">Logout</a></li>
 								</ul>
 							</li>
 						</ul>
 					</nav>
-						
-					
-				
-				
-			
-				
-
 
 			</header>
 
-			<!--I have CSS for: #tabbed-nav (blank), 
-			nav #tabbed-nav ul- make this main .tab ul, 
-			nav #tabbed-nav ul li-make this main .tab ul li, 
-			[nav #tabbed-nav ul li button:hover, nav #tabbed-nav ul li button:active, .tablinks-active]-
-			[main #tablinks active ul li button:hover, main #tablinks active ul li button:active, .tablinks-active], .tablinks a:hover, .tablinks a:active (blank),
-			.tablinks-active (blank)-->
-				<div>
-			<div class="tab">
-				<ul>
+			<div>
+				<div class="tab">
+					<ul>
 
-				<li><button id="myMissionsButton" class="tablinks" onclick="openMissions('myMissionsButton', 'myMissions')">My Missions</button></li>
-				<li><button id="unAssignedMissionsButton" class="tablinks" onclick="openMissions('unAssignedMissionsButton', 'unassignedMissions')">Unassigned Missions</button></li>
-				<li><button id="allMissionsButton" class="tablinks" onclick="openMissions('allMissionsButton', 'allMissions')">All Missions</button></li>
-				</ul>
-			</div>
+					<li><button id="myMissionsButton" class="tablinks" onclick="openMissions('myMissionsButton', 'myMissions')">My Missions</button></li>
+					<li><button id="unAssignedMissionsButton" class="tablinks" onclick="openMissions('unAssignedMissionsButton', 'unassignedMissions')">Unassigned Missions</button></li>
+					<li><button id="allMissionsButton" class="tablinks" onclick="openMissions('allMissionsButton', 'allMissions')">All Missions</button></li>
+					</ul>
+				</div>
 
-			<div id="missionWrapper">
+				<div id="missionWrapper">
+					<div id="myMissions" class="tabcontent" style="display: none;">
+						<div class ="mission" th:each="mission: ${usersMissions}">	
+								<article class="missionLists">
+									<a th:href="@{/sector(id=${mission.sector.id})}">
+										<img th:src="${mission.sector.imageUrl}"/></a>
+									<button >
+										<div class="mission-intro missionButton">
+											<h4 th:text="${mission.missionName}"></h4>
+											<p><span th:text="${mission.dueDate}"></span><span> | </span>
+											<span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>
+										</div>
+									</button>
+								</article>
 
-			
-			<div id="myMissions" class="tabcontent">
-				<div class ="mission" th:each="mission: ${usersMissions}">	
-						<article class="missionLists">
+							<!-- The Modal -->
+							<div class="modal">
+								<div class="modal-content">
+									<span class="close">&times;</span>
+									<section>
+										<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
+										<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+										<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
+										<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
+										<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
+										<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
+										<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
+									</section>
+									<h3 th:if="${mission.completionDate != null}">Mission Accomplished!</h3>
+									<form>
+										<input type="hidden" th:value="${mission.id}" name="missionId"/>
+										<input type="hidden" th:value="${user.id}" name="userId"/>
+										<button class="doneButton button-primary" th:formaction= "@{/mission-complete-button}">Done</button>
+										<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission}">Snooze</button>
+									</form>				
+								</div>
+							</div>
+						</div>
+						
+					</div>
+
+					<div id="unassignedMissions" class="tabcontent" style="display: none;">
+						<div class ="mission" th:each="mission: ${unassignedUserMissions}">
+							
+							<article class="missionLists" id="unassignedUserMissions" >
+								<a th:href="@{/sector(id=${mission.sector.id})}">
+								<img th:src="${mission.sector.imageUrl}"/></a>
+								<button class="missionButton">
+									<div class="mission-intro">
+										<h4 th:text="${mission.missionName}"></h4>
+										<p><span th:text="${mission.dueDate}"></span></p>
+									</div>
+								</button>
+							</article>
+							
+							<!-- The Modal -->
+							<div class="modal">
+								<div class="modal-content">
+									<span class="close">&times;</span>
+									<section>
+										<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
+										<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+										<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
+										<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
+										<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
+										<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
+										<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
+									</section>
+									<form>
+										<input type="hidden" th:value="${mission.id}" name="missionId"/>
+										<input type="hidden" th:value="${user.id}" name="userId"/>
+										<button class="doneButton button-primary" th:formaction= "@{/mission-complete-button}">Done</button>
+										<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission}">Snooze</button>
+										<button class="claimButton button-primary" th:formaction= "@{/claim-mission-button}">Claim</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="allMissions" class="tabcontent" style="display: none;">
+						<div class ="mission" th:each="mission: ${allMissions}">	
+							<article th:if="${mission.completionDate != null}" class="missionLists missionDone" id="allUserMissions" >
 								<a th:href="@{/sector(id=${mission.sector.id})}">
 									<img th:src="${mission.sector.imageUrl}"/></a>
-							<button >
-								<div class="mission-intro missionButton">
-									<h4 th:text="${mission.missionName}"></h4>
-									<p><span th:text="${mission.dueDate}"></span><span> | </span>
-									<span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>
+								<button class="missionButton">
+									<div class="mission-intro">
+										<h4 th:text="${mission.missionName}"></h4>
+										<p><span th:text=" '&#10004' + ${mission.completionDate}"></span><span> | </span>
+										<span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>
+									</div>
+								</button>
+							</article>
+
+							<article th:if="${mission.completionDate == null}" class="missionLists" id="allUserMissions" >
+								<a th:href="@{/sector(id=${mission.sector.id})}">
+									<img th:src="${mission.sector.imageUrl}"/></a>
+								<button class="missionButton">
+									<div class="mission-intro">
+										<h4 th:text="${mission.missionName}"></h4>
+										<p><span th:text="${mission.dueDate}"></span><span> | </span>
+										<span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>
+									</div>
+								</button>
+							</article>
+							
+							
+							<!-- The Modal -->
+							<div class="modal">
+								<div class="modal-content">
+									<span class="close">&times;</span>
+									<section>
+										<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
+										<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+										<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
+										<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
+										<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
+										<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
+										<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
+									</section>
+									<h3 th:if="${mission.completionDate != null}">Mission Accomplished!</h3>
+									<form th:if="${mission.completionDate == null}">
+										<input type="hidden" th:value="${mission.id}" name="missionId"/>
+										<input type="hidden" th:value="${user.id}" name="userId"/>
+										<button class="doneButton button-primary" th:formaction= "@{/mission-complete-button}">Done</button>
+										<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission}">Snooze</button>
+										<button class="claimButton button-primary" th:formaction= "@{/claim-mission-button}">Join Mission</button>
+										<button class="takeMisson-button button-primary" th:formaction= "@{/claim-mission-assigned-button}">Take Mission</button>							
+									</form>
 								</div>
-							</button>
-						</article>
-					
-					<!-- The Modal -->
-					<div class="modal">
-						<div class="modal-content">
-							<span class="close">&times;</span>
-							<section>
-								<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
-								<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
-								<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
-								<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
-								<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
-								<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
-								<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
-							</section>
-							<h3 th:if="${mission.completionDate != null}">Mission Accomplished!</h3>
-							<form>
-								<input type="hidden" th:value="${mission.id}" name="missionId"/>
-								<input type="hidden" th:value="${user.id}" name="userId"/>
-								<button class="doneButton button-primary" th:formaction= "@{/mission-complete-button}">Done</button>
-								<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission}">Snooze</button>
-							</form>				
+							</div>
 						</div>
 					</div>
-				</div>
-				
 			</div>
-
-			<div id="unassignedMissions" class="tabcontent">
-				<div class ="mission" th:each="mission: ${unassignedUserMissions}">
-					
-					<article class="missionLists" id="unassignedUserMissions" >
-						<a th:href="@{/sector(id=${mission.sector.id})}">
-						<img th:src="${mission.sector.imageUrl}"/></a>
-						<button class="missionButton">
-							<div class="mission-intro">
-								<h4 th:text="${mission.missionName}"></h4>
-								<p><span th:text="${mission.dueDate}"></span></p>
-							</div>
-						</button>
-					</article>
-					
-					<!-- The Modal -->
-					<div class="modal">
-						<div class="modal-content">
-							<span class="close">&times;</span>
-							<section>
-								<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
-								<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
-								<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
-								<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
-								<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
-								<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
-								<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
-							</section>
-							<form>
-								<input type="hidden" th:value="${mission.id}" name="missionId"/>
-								<input type="hidden" th:value="${user.id}" name="userId"/>
-								<button class="doneButton button-primary" th:formaction= "@{/mission-complete-button}">Done</button>
-								<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission}">Snooze</button>
-								<button class="claimButton button-primary" th:formaction= "@{/claim-mission-button}">Claim</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div id="allMissions" class="tabcontent">
-				<div class ="mission" th:each="mission: ${allMissions}">	
-					<article th:if="${mission.completionDate != null}" class="missionLists missionDone" id="allUserMissions" >
-							<a th:href="@{/sector(id=${mission.sector.id})}">
-								<img th:src="${mission.sector.imageUrl}"/></a>
-						<button class="missionButton">
-							<div class="mission-intro">
-								<h4 th:text="${mission.missionName}"></h4>
-								<p><span th:text=" '&#10004' + ${mission.completionDate}"></span><span> | </span>
-								<span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>
-							</div>
-						</button>
-					</article>
-
-					<article th:if="${mission.completionDate == null}" class="missionLists" id="allUserMissions" >
-							<a th:href="@{/sector(id=${mission.sector.id})}">
-								<img th:src="${mission.sector.imageUrl}"/></a>
-						<button class="missionButton">
-							<div class="mission-intro">
-								<h4 th:text="${mission.missionName}"></h4>
-								<p><span th:text="${mission.dueDate}"></span><span> | </span>
-								<span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>
-							</div>
-						</button>
-					</article>
-					
-					
-					<!-- The Modal -->
-					<div class="modal">
-						<div class="modal-content">
-							<span class="close">&times;</span>
-							<section>
-								<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
-								<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
-								<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
-								<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
-								<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
-								<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
-								<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
-							</section>
-							<h3 th:if="${mission.completionDate != null}">Mission Accomplished!</h3>
-							<form th:if="${mission.completionDate == null}">
-								<input type="hidden" th:value="${mission.id}" name="missionId"/>
-								<input type="hidden" th:value="${user.id}" name="userId"/>
-								<button class="doneButton button-primary" th:formaction= "@{/mission-complete-button}">Done</button>
-								<button class="snoozeButton button-primary" th:formaction= "@{/snooze-mission}">Snooze</button>
-								<button class="claimButton button-primary" th:formaction= "@{/claim-mission-button}">Claim</button>
-								<button class="takeMisson-button button-primary" th:formaction= "@{/claim-mission-assigned-button}">Take Mission</button>							
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 		</div>
 		</main>
 
@@ -243,7 +228,6 @@
 			<div id="add-sector-modal" class="modal">
 				<div class="modal-content">
 					<span id="close-add-sector" class="close">&times;</span>
-					
 					<h3>Add a new sector</h3>
 					<form >
 						<input type="text" name="sectorName" placeholder="Name of the sector" required/>

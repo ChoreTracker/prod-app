@@ -1,5 +1,8 @@
 package prodapp;
 
+import java.time.LocalDate;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -38,12 +41,31 @@ public class UserController {
 			model.addAttribute("usersMissions", missionRepo.findByUsersContainsAndCompletionDateIsNullAndRecurringIsFalseOrderByDueDate(user));
 			model.addAttribute("sectors", sectorRepo.findAll());
 			model.addAttribute("unassignedUserMissions", missionRepo.findAllByUsersIsNullAndCompletionDateIsNullAndRecurringIsFalse());
-			model.addAttribute("allMissions", missionRepo.findByRecurring(false));
+			model.addAttribute("allMissions", showAllRecentMissions());
 
 			return "user";
 			
 		}
 		throw new userNotFoundException();
+	}
+	
+	
+	
+	public Collection<Mission> showAllRecentMissions(){
+		Collection<Mission> allMissions = missionRepo.findByRecurring(false);
+		Collection<Mission> allRecentMissions = new HashSet<>();
+		for (Mission mission : allMissions) {
+			if (mission.getCompletionDate() != null) {
+				LocalDate doneDate = LocalDate.parse(mission.getCompletionDate());
+				if (doneDate.isAfter(LocalDate.now().minusMonths(1))) {
+					allRecentMissions.add(mission);
+				}
+			}
+			else {
+				allRecentMissions.add(mission);
+			}
+		}
+		return allRecentMissions;
 	}
 
 	

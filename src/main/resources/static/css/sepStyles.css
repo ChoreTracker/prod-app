@@ -30,7 +30,7 @@
    display: block;
    margin-right: auto;
    margin-left: auto;
-   margin-top: 2em;
+   margin-top: 7em;
    margin-bottom: 1.5em;
 }
 
@@ -43,12 +43,12 @@
    margin-top: 1.5em;
 }
 #loginForm div{
-   margin-left: 2.4em;
+   margin-left: 3.55em;
    margin-bottom: 0.3em;
 }
 
 #loginForm h4{
-   margin-left: 2.0em;
+   margin-left: 3.0em;
    font-size: 1.2em;
 }
 
@@ -58,15 +58,26 @@
 }
 
  #missionWrapper {
-   margin-top: 6.1em;
+   margin-top: 8.3em;
 } 
 
 .missionDone {
     background-color: gray;
 }
+
+.mission {
+   margin-top: 1em;
+}
+
 .pageHeader {
     text-align: center;
     padding-bottom: 0.7em;
+}
+
+.first-nav img {
+   margin-top: 0.3em;
+   width: 40px;
+   height: 40px;
 }
 
 .topNav {
@@ -77,12 +88,16 @@
     right: 0;
     top: 0;
     width: 50%;
+    height: 55px;
     z-index: 2;
  }
+
  .topNav a {
     text-decoration: none;
     color: #fff;
     display: block;
+    height: 52px;
+    /* margin-top: 0.3em; */
     padding-left: 15px;
     border-bottom: 1px solid #888;
     transition: .3s background-color;
@@ -114,7 +129,10 @@
  .topNav li li {
     background: #48b782; 
     font-size: .9em;
-    padding-top: .5em;
+    text-align: center;
+    height: 52px;
+    /* margin-top: auto; */
+    /* padding-top: .5em; */
     /*white-space:nowrap;
     width: 200px;*/
  }
@@ -152,6 +170,7 @@
     padding: 0;
     padding-top: .5em;
     position: absolute;
+    height: 65px;
     /*width: inherit;*/
     z-index: 2;
     /*margin-left: -200px;
@@ -166,6 +185,6 @@
     display: flex;
     flex-direction: row;
  }
- /* .tab {
-    margin-top: 4em;
- } */
+
+
+ 
