@@ -30,25 +30,10 @@
                         </li>
                         <li class="first-nav"><a><img src="./images/plus-icon-white.svg" alt="add icon"></a>
                             <ul>
-
-                                <li class="sub-nav">Add User</a></li>
-                                    <div id="add-user-modal" class="modal">
-                                        <div class="modal-content">
-                                            <span id="close-add-user" class="close">&times;</span>
-                                        <form >
-                                                <input type="text" name="userName" placeholder="Name of the User" required/>
-                                                <input type="text" name="password" placeholder="Create a password for the user"/>
-                                                <input type="text" name="contact" placeholder="Provide an email adress for the user"/>
-                                                <input type="text" name="theme" placeholder="Default">Theme</input>
-                                                <input type="checkbox" name="roles" placeholder="ADMIN"/>Aministrative User
-                                                <button class="newUser-button button-primary" th:formaction= "@{/add-user-button}">Add User</button>
-                                        </form>
-                                        </div>              
-                                    </div>
-                                </li>
-
-                            </ul>
-                        </li>
+                                <li class="sub-nav"><a><button id="add-user-button">Add User</button></a></li>
+                            </ul>        
+                         </li>        
+                                
                         <li class="first-nav"><a><img src="./images/cog-icon-white.svg" alt="settings icon"></a>
                             <ul>
                                 <li class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
@@ -62,6 +47,22 @@
                     </ul>
                 </nav>
 
+                <div id="add" class="navContent">
+                    <div id="add-user-modal" class="modal">
+                        <div class="modal-content">
+                            <span id="close-add-user" class="close">&times;</span>
+                            <h3>Add a new user</h3>
+                            <form >
+                                <input type="text" name="userName" placeholder="Name of the User" required/>
+                                <input type="text" name="password" placeholder="Create a password for the user"/>
+                                <input type="text" name="contact" placeholder="Provide an email adress for the user"/>
+                                <input type="text" name="theme" placeholder="Default">Theme</input>
+                                <input type="checkbox" name="roles" placeholder="ADMIN"/>Aministrative User
+                                <button class="newUser-button button-primary" th:formaction= "@{/add-user-button}">Add User</button>
+                            </form>
+                        </div>              
+                    </div>
+                </div>    
         </header>
              
         <div class="grid-container">
@@ -79,13 +80,15 @@
 
     </main>
 
+    
+
 
 <footer>
     <p>&copy;Prod-App 2018</p>
 </footer>	
 
-<script src = "./js/user.js"></script>	
-<script src = "./js/user-requests.js"></script>
-<script src = "./js/subnav.js"></script>
+<script src = "./js/users.js"></script>	
+<!-- <script src = "./js/user-requests.js"></script> -->
+<!-- <script src = "./js/subnav.js"></script> -->
 </body>
 </html>

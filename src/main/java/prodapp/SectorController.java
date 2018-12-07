@@ -37,7 +37,7 @@ public class SectorController {
 			Sector sectorResult = sector.get();
 			model.addAttribute("sector", sectorResult);
 			model.addAttribute("users", userRepo.findAll());
-			model.addAttribute("missions", missionRepo.findAllBySector(sectorResult));
+			model.addAttribute("missions", missionRepo.findAllBySectorAndRecurringIsFalse(sectorResult));
 			return "sector";
 		}
 		throw new sectorNotFoundException();
@@ -206,7 +206,7 @@ public class SectorController {
 					Optional<User> userResult = userRepo.findById(users[i]);
 					if (userResult.isPresent()) {
 						User user = userResult.get();
-						newMission.addUser(user);
+						newRecurring.addUser(user);
 					}
 				}
 			}

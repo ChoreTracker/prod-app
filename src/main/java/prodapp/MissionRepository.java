@@ -48,6 +48,8 @@ public interface MissionRepository extends CrudRepository<Mission, Long> {
 
 	Collection<Mission> findAllByUsersAndRecurringIsFalseOrderByDueDate(String loggedInUser);
 
+	Collection<Mission> findAllBySectorAndRecurringIsFalse(Sector sectorResult);
+
 	
 //	Collection<Mission> findAllRecurringIsTrue();
 }
