@@ -11,8 +11,9 @@
 <body>
 	<main > 
 		<header>
-			    <div>
-						<img id="prod-mascot" src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application">
+			    <div id="headerAndTinyProd">
+						<h1>All Sectors</h1>
+						<img id="tinyProd" src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application">
 					</div>
 				
 				<nav class="topNav">
@@ -60,7 +61,7 @@
 		</header>
 
 	<div class="grid-container">
-		<h4 class="pageHeader">Current Sectors</h4>
+		<!-- <h4 class="pageHeader">Current Sectors</h4> -->
 		<div id="sector-list">
 			<article th:each="sector: ${sectors}">
 					<img th:src="${sector.imageUrl}"/>

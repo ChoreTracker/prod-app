@@ -13,8 +13,9 @@
 <body>
 	<main>
 		<header>
-            <div >
-                <img id="prod-mascot"src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application">
+            <div id="headerAndTinyProd">
+                <h1>All Users</h1>
+                <img id="tinyProd"src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application">
             </div>
 
                 <nav class="topNav">
@@ -45,51 +46,10 @@
                     </ul>
                 </nav>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-                <div id="first-nav">
-                    <ul>		
-                        <li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-goto')"><img src="./images/goto-icon-white.svg" width="40" height="40" alt="go to icon"></button></li>
-                        <li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-add')"><img src="./images/plus-icon-white.svg" width="40" height="40" alt="go to icon"></button></li>
-                        <li><button class="navLinks" onclick="goToSelectedPopsUp('subnav')"><a href="#"><img src="./images/cog-icon-white.svg" width="40" height="40" alt="settings icon"></a></button></li>
-                        <li><button class="navLinks" onclick="goToSelectedPopsUp('sub-nav-logout')"><a href="#"><img src="./images/logout-icon-white.svg" width="40" height="40" alt="logout icon"></a></button></li>
-
-                    
-                    </ul>
-                </div> 
-
-                <div  id="sub-nav-goto" class="sub-nav" > 
-                    <ul>
-                        <li><a href="http://localhost:8080/show-sectors">Go To Sectors</a></li>
-                        <li><a href="http://localhost:8080/show-users">Go To Users</a></li>
-                    </ul>
-                </div>	
-                <div  id="sub-nav-settings" class="sub-nav"> 
-                    <ul>
-                        <li><a href="http://localhost:8080/admin">Change Your Settings</a></li>
-                    </ul>
-                </div>
-                <div  id="sub-nav-logout" class="sub-nav"> 
-                    <ul>
-                        <li><a href="http://localhost:8080/login?logout">Logout</a></li>
-                    </ul>
-                </div>
-            </nav> -->
         </header>
              
         <div class="grid-container">
-                <h4 class="pageHeader">Here are all users.</h4>  
+                <!-- <h4 class="pageHeader">Here are all users.</h4>   -->
                 
                 <div class="user">
                     <article th:each="user: ${users}">
