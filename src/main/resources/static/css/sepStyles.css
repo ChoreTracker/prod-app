@@ -28,28 +28,40 @@
 
 #loginProd{
    display: block;
-   margin-right: auto;
-   margin-left: auto;
-   margin-top: 7em;
-   margin-bottom: 1.5em;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10em;
+    margin-bottom: 1.5em;
+    width: 300px;
+    height: auto;
 }
 
 #loginH1andTagline{
    display: block;
    text-align: center;
+   margin-top: 4em;
 }
 
 #loginForm{
-   margin-top: 1.5em;
+   margin-top: 5.5em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
 }
 #loginForm div{
-   margin-left: 3.55em;
+   margin-left: 3em;
    margin-bottom: 0.3em;
 }
 
 #loginForm h4{
-   margin-left: 3.0em;
+   margin-left: 2.5em;
+   margin-bottom: 0.6em;
    font-size: 1.2em;
+}
+
+#rememLabel {
+   margin-left: -0.7em;
 }
 
 .topper {
