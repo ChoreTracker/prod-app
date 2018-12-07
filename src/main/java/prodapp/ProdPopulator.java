@@ -35,7 +35,7 @@ public class ProdPopulator implements CommandLineRunner {
 	userRepo.save(user5);
 	userRepo.save(user6);
 	
-	Sector sector = new Sector("Bathroom", "/images/sectors/bathroom-1.jpg");
+	Sector sector = new Sector("Bathroom", "/images/icons/bathtub.svg");
 	Sector sector2 = new Sector("Kitchen","/images/sectors/kitchen-1.jpg");
 	Sector sector3 = new Sector("Master Bedroom", "/images/sectors/bedroom-6.jpg");
 	Sector sector4 = new Sector("Girls' Bedroom","/images/sectors/bedroom-3.jpg");

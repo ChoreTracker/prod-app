@@ -13,43 +13,71 @@
     height: auto;
 }
 #tinyProd {
-   margin-left: 10%;
+   margin-left: 67%;
    margin-right: auto;
-  margin-top: 1em;
-  padding-left: 3%;
-  position: relative;
-  text-align: left;
-  width: 100%;
-   z-index: 1;    
-   transform: rotate(-5deg);
+   margin-top: 0.4em;
+   padding-left: 3%;
+   position: relative;
+   text-align: left;
+   width: 100%;
+   z-index: 1;
+   /* transform: rotate(-5deg); */
    width: 50px;
    height: auto;
 }
 
 #loginProd{
    display: block;
-   margin-right: auto;
-   margin-left: auto;
-   margin-top: 7em;
-   margin-bottom: 1.5em;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10em;
+    margin-bottom: 1.5em;
+    width: 300px;
+    height: auto;
 }
 
 #loginH1andTagline{
    display: block;
    text-align: center;
+   margin-top: 4em;
 }
 
+#headerAndTinyProd {
+   width: 50%;
+    background:#f2ecc2;
+    position: fixed;
+    z-index: 2;
+    height: 65px;
+}
+
+.grid-container {
+   margin-top: 8.2em;
+}
+
+/* #headerAndTinyProd h1{
+   height: 65px;
+} */
+
 #loginForm{
-   margin-top: 1.5em;
+   margin-top: 5.5em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
 }
 #loginForm div{
-   margin-left: 3.55em;
+   margin-left: 3em;
    margin-bottom: 0.3em;
 }
 
 #loginForm h4{
-   margin-left: 3.0em;
+   margin-left: 2.5em;
+   margin-bottom: 0.6em;
    font-size: 1.2em;
+}
+
+#rememLabel {
+   margin-left: -0.7em;
 }
 
 .topper {
@@ -75,7 +103,7 @@
 }
 
 .first-nav img {
-   margin-top: 0.3em;
+   margin-top: 0.5em;
    width: 40px;
    height: 40px;
 }
@@ -88,7 +116,7 @@
     right: 0;
     top: 0;
     width: 50%;
-    height: 55px;
+    height: 65px;
     z-index: 2;
  }
 
@@ -96,9 +124,10 @@
     text-decoration: none;
     color: #fff;
     display: block;
-    height: 52px;
+    /* height: 65px; */
     /* margin-top: 0.3em; */
     padding-left: 15px;
+    padding-top: 0.1em;
     border-bottom: 1px solid #888;
     transition: .3s background-color;
     border-bottom: none;

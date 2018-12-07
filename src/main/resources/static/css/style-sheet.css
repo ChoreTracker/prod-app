@@ -35,12 +35,13 @@ header h1 {
     font-size: 1.5em;
     font-weight: 200;
     line-height: 2em;
-    padding-left: .5em;
-    padding-top: 0;
+    padding-left: 2.0em;
+    padding-top: 0.4em;
     position: fixed;
     top: 0;
     /*left: 0; ?*/
-    width: 50%;
+    height: 65px;
+    width: 35%;
     z-index: 2;
 }
 
@@ -414,17 +415,22 @@ article {
 }
 
 article img {
-	object-fit: cover;
+    object-fit: cover;
 	width: 75px;
 	height: 75px;
     border-radius: 25% 0% 0% 25%;
     margin: 0;
+    margin-top: 0.51em;
     padding: 0;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #323232;
+
 }
 
 article .mission-intro {
 	padding-left: 10px;
-	width: 400px;
+	width: 500px;
 }
 
 
