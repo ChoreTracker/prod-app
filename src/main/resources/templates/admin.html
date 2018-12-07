@@ -167,6 +167,20 @@
 		<div class="users"><h1>User Administration</h1>
 		<ul>
 			<li>Add User</li>
+						<div id="add-mission-modal" class="modal">
+				<div class="modal-content">
+					<span id="close-add-mission" class="close">&times;</span>
+					<h3>Add New User</h3>
+					<form >
+						<input type="text" name="userName" placeholder="Name of the User" required/>
+						<input type="text" name="password" placeholder="Create a password for the user"/>
+						<input type="text" name="contact" placeholder="Provide an email adress for the user"/>
+						<input type="text" name="theme" placeholder="Default">Theme</input>
+						<input type="checkbox" name="roles" placeholder="ADMIN">Aministrative User</>
+						<button class="newUser-button button-primary" th:formaction= "@{/add-user-button}">Add User</button>
+						</form>
+				</div>				
+			</div>
 			<li>Edit User</li>
 			<li>Remove User</li>
 			<li>Change User Password</li>
