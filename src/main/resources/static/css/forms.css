@@ -2,34 +2,73 @@ body {
 	background: #f2ecc2;
     }
 
-main {
-
-}
-
-footer {
-    text-align: center;
-    padding-top: 1em;
-}
-
-header h1 {
+/*.missions h1 {*/
     /*called #title h1 in the other style-sheet*/
-    background-color: #f2ecc2;
-    font-size: 1.5em;
+    /*background-color: #f2ecc2;
+    font-family: 'Roboto Slab', serif;
+    font-size: 3em;
     font-weight: 200;
     line-height: 2em;
-    height: 55px;
     padding-left: .5em;
     padding-top: 0;
-    position: fixed;
-    top: 0;
+    width: 90%;*/
+    /*position: fixed;
+    top: 0;*/
     /*left: 0; ?*/
-    width: 50%;
-    z-index: 2;
-}
+    /*width: 50%;*/
+    /*z-index: 2;*/
+/*}*/
 
 /*Forms*/
-input[type="text"], input[type="password"], select, textarea {
-    background-color: white;
+/*h3 {
+    color: #323232;
+    /*display: block;*/
+    /*font-size: 2em;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    line-height: 2em;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;*/
+    /*margin-top: 1em;
+    margin-bottom: 1em;*/
+/*}*/
+
+/*form h4 { 
+    color: #323232;*/
+    /*display: block;*/
+    /*font-size: 1.5em;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    line-height: 1.75em;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}*/
+
+/*p {
+    color: #323232;
+    font-size: 1.15em;
+    font-family: 'Roboto', sans-serif;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: .5em;
+    margin-top: .5em;
+}*/
+
+/*label {
+    float: left;
+	text-align: right;
+	margin-right: 15px;
+	width: 100px;
+}*/
+
+input[type="text"], 
+input[type="password"], 
+input[type="number"],
+select, textarea {
+    background-color:  white;
     border: 1px solid #d9d9d9;
     border-radius: 25px;
     display: block;
@@ -52,6 +91,62 @@ input[type="text"], input[type="password"], select, textarea {
 ::-ms-input-placeholder { /* Microsoft Edge */
     color: #323232;
 }
+
+/*The calendar starts*/
+input[type="date"] {
+    background-color:  white;
+    border: 1px solid #d9d9d9;
+    border-radius: 25px;
+     display: block;
+     font-family: 'Roboto', sans-serif;
+     margin-bottom: 1em;
+     margin-left: auto;
+     margin-right: auto;
+     padding: 1em;
+     width: 90%;
+     -webkit-align-items: center;
+
+     overflow: hidden;
+     /*padding: 0;*/
+     /*-webkit-padding-start: 1px;*/
+}
+
+input::-webkit-datetime-edit {
+    -webkit-flex: 1;
+    -webkit-user-modify: read-only !important;
+    display: inline-block;
+    min-width: 0;
+    overflow: hidden;
+}
+
+input::-webkit-datetime-edit-fields-wrapper {
+    
+    -webkit-user-modify: read-only !important;
+    display: inline-block;
+    padding: 1px 0;
+    white-space: pre;
+}
+/*The calendar ends*/
+
+input[type="radio"] {
+    background-color:  white;
+    border: 1px solid #d9d9d9;
+    border-radius: 25px;
+     font-family: 'Roboto', sans-serif;
+     margin-bottom: 1em;
+     margin-left: auto;
+     margin-right: auto;
+     width: 20%;
+     /* -webkit-align-items: center;
+
+     overflow: hidden;*/
+     /*padding: 0;*/
+     /*-webkit-padding-start: 1px;*/
+}
+
+/*input[type="number"] {
+    
+}*/
 
 
 
