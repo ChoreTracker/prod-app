@@ -365,7 +365,7 @@ p {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: .5em;
-    margin-top: 0em;
+    margin-top: .5em;
 
 }
 
@@ -373,7 +373,6 @@ button {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    /* padding-bottom: 1em; */
 }
 
 .button-primary {
@@ -386,7 +385,7 @@ button {
     /*margin: 2px 0;*/
     margin-left: auto;
 	margin-right: auto;
-	padding: 0.5em 1em;
+	padding-top: 0.5em 1em;
 	width: 150px;
   	color: white;
   	text-align: center;

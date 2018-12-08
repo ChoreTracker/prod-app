@@ -45,20 +45,23 @@
                 </ul>
             </nav>
 
-            <div id="add" class="navContent">
-                <div id="add-user-modal" class="modal">
-                    <div class="modal-content">
-                        <span id="close-add-user" class="close">&times;</span>
-                        <h3>Add a new user</h3>
-                        <form >
-                            <input type="text" name="userName" placeholder="Name of the User" required/>
-                            <input type="text" name="password" placeholder="Create a password for the user"/>
-                            <input type="text" name="contact" placeholder="Provide an email adress for the user"/>
-                            <input type="text" name="theme" placeholder="Default">Theme</input>
-                            <input type="checkbox" name="roles" placeholder="ADMIN"/>Aministrative User
-                            <button class="newUser-button button-primary" th:formaction= "@{/add-user-button}">Add User</button>
-                        </form>
-                    </div>                                  </div>
+
+                <div id="add" class="navContent">
+                    <div id="add-user-modal" class="modal">
+                        <div class="modal-content">
+                            <span id="close-add-user" class="close">&times;</span>
+                            <h3>Add a New User</h3>
+                            <form >
+                                <input type="text" name="userName" placeholder="Name of the user" required/>
+                                <input type="text" name="password" placeholder="Create a password for the user"/>
+                                <input type="text" name="contact" placeholder="Provide an email adress for the user"/>
+                                <!-- <input type="text" name="theme" placeholder="Default">Theme</input> -->
+                                <input type="checkbox" name="roles" value="ADMIN">Administrative User<br>
+                                <button class="newUser-button button-primary" th:formaction= "@{/add-user-button}">Add User</button>
+                            </form>
+                        </div>              
+                    </div>
+
                 </div>    
             </header>
              
