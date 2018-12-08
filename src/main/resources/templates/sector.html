@@ -15,41 +15,41 @@
 		<header>
 			<div id="headerAndTinyProd">
 				<h1 th:text="${sector.sectorName}"></h1>
-					<img id="tinyProd" src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application">
-				</div>
+				<img id="tinyProd" src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application">
+			</div>
 				
-				<nav class="topNav">
-					<ul class="first-nav">
-						<li class="first-nav" ><a><img src="./images/goto-icon-white.svg" alt="go to icon"></a>
-							<ul>
-								<li class="sub-nav"><a href="http://localhost:8080/show-sectors">Sectors</a></li>
-								<li class="sub-nav"><a href="http://localhost:8080/show-users">Users</a></li>
-							</ul>
-						</li>
-						<li class="first-nav"><a><img src="./images/plus-icon-white.svg" alt="add icon"></a>
-							<ul>
-								<li><a><button id="add-mission-button">Add A Mission</button></a></li>
-								<li><a><button id="assign-missions">Assign All Missions</button></a></li>									
-							</ul>
-						</li>
-						<li class="first-nav"><a><img src="./images/cog-icon-white.svg" alt="settings icon"></a>
-							<ul>
-								<li class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
-							</ul>
-						</li>
-						<li class="first-nav"><a><img src="./images/logout-icon-white.svg" alt="logout icon"></a>
-							<ul>
-								<li class="sub-nav"><a href="http://localhost:8080/login?logout">Logout</a></li>
-							</ul>
-						</li>
-					</ul>
-				</nav>
+			<nav class="topNav">
+				<ul class="first-nav">
+					<li class="first-nav" ><a><img src="./images/goto-icon-white.svg" alt="go to icon"></a>
+						<ul>
+							<li class="sub-nav"><a href="http://localhost:8080/show-sectors">Sectors</a></li>
+							<li class="sub-nav"><a href="http://localhost:8080/show-users">Users</a></li>
+						</ul>
+					</li>
+					<li class="first-nav"><a><img src="./images/plus-icon-white.svg" alt="add icon"></a>
+						<ul>
+							<li><a><button id="add-mission-button">Add A Mission</button></a></li>
+							<li><a><button id="assign-missions">Assign All Missions</button></a></li>									
+						</ul>
+					</li>
+					<li class="first-nav"><a><img src="./images/cog-icon-white.svg" alt="settings icon"></a>
+						<ul>
+							<li class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
+						</ul>
+					</li>
+					<li class="first-nav"><a><img src="./images/logout-icon-white.svg" alt="logout icon"></a>
+						<ul>
+							<li class="sub-nav"><a href="http://localhost:8080/login?logout">Logout</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
 		</header>
+
 		<div th:object= "${sector}" class="grid-container">
-			<!-- <h4 class="pageHeader" th:text="${sector.sectorName}"></h4> -->
 			<div class ="mission" th:each="mission: ${missions}">	
-					<article th:if="${mission.completionDate != null}" class="missionLists missionDone">
-						<a><img th:src="*{imageUrl}"/></a>
+				<article th:if="${mission.completionDate != null}" class="missionLists missionDone">
+					<a><img th:src="*{imageUrl}"/></a>
 						<button>
 							<div class="mission-intro missionButton">
 								<h4 th:text="${mission.missionName}"></h4>
@@ -57,10 +57,10 @@
 								<span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>
 							</div>
 						</button>
-					</article>
+				</article>
 					
-					<article th:if="${mission.completionDate == null}" class="missionLists">
-						<img th:src="*{imageUrl}"/>
+				<article th:if="${mission.completionDate == null}" class="missionLists">
+					<a><img th:src="*{imageUrl}"/></a>
 						<button>
 							<div class="mission-intro missionButton">
 								<h4 th:text="${mission.missionName}"></h4>
@@ -142,9 +142,7 @@
 
 	</div>
 
-	<footer>
-		<p>&copy;Prod-App 2018</p>
-	</footer>		
+	<footer><p>&copy;Prod-App 2018</p></footer>		
 	<script src = "./js/subnav.js"></script>	
 	<script src = "./js/add-mission.js"></script>
 

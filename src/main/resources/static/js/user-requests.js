@@ -76,29 +76,3 @@ window.addEventListener("click", function(event) {
 	}
 })
 
-// const newUserButton = document.getElementById("add-user-button");
-// const closeNewUserSpan = document.getElementById("close-add-user");
-// const addUserModal = document.getElementById("add-user-modal");
-
-// newUserButton.addEventListener("click", function(){
-// 	if (!addUserModal.classList.contains("opened")){
-// 		addUserModal.classList.add("opened")
-// 	}
-// 	 else {
-// 		addUserModal.classList.remove("opened")
-// 	}
-// })
-
-// closeNewUserSpan.addEventListener("click",function() {
-// 	if(!addUserModal.classList.contains("opened")){
-// 		addUserModal.classList.add("opened")
-// 	} else {
-// 		addUserModal.classList.remove("opened")
-// 	}
-// })
-
-// window.addEventListener("click", function(event) {
-// 	if (event.target == addUserModal) {
-// 		addUserModal.classList.remove("opened")
-// 	}
-// })
