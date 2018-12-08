@@ -202,6 +202,7 @@
 						<p>When is the mission due?</p>
 						<input type="date" name="dueDate" required/>
 						<p>Does this mission recur?</p>
+
 						<div class="flex-grid-halves">
 							<div class="col-halves">
 								<label class="radio-block">Mission Recurs
@@ -219,6 +220,7 @@
 						<p>How many days elapse between mission due dates?</p>
 						<input type="number" name="period"  min="1" max="900" placeholder="num" required/>
 						<p>How many days (1-7) can the mission be snoozed?</p>
+
 						<input type="number" name="snooze" min="1" max="7" placeholder="num" required/>
 						<p>Please choose a sector:</p>
 						<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${sector.id}" th:text="${sector.sectorName}" required> <br>
