@@ -10,10 +10,6 @@ body {
 	background: #f2ecc2;
     }
     
-/*main {
-	margin-top: 21em;
-	}may not need this*/
-
 .flex-grid {
     display: block;
 }
@@ -30,7 +26,6 @@ body {
 }
 
 header h1 {
-    /*called #title h1 in the other style-sheet*/
     background-color: #f2ecc2;
     font-size: 1.5em;
     font-weight: 200;
@@ -39,7 +34,6 @@ header h1 {
     padding-top: 0.4em;
     position: fixed;
     top: 0;
-    /*left: 0; ?*/
     height: 65px;
     width: 35%;
     z-index: 2;
@@ -52,20 +46,17 @@ header h1 {
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
-
 	font-weight: 200;
 	text-transform: uppercase;
 }
 
-
-
-nav {
-    /*margin-left: auto;
+/* nav { 
+    margin-left: auto;
 	margin-right: auto;
-	position: fixed;*/
-   /* width: 100%;
-    z-index: 1;*/
-}
+	position: fixed;
+    width: 100%;
+    z-index: 1;
+}  */
 
  #first-nav ul {
    /* align-items: center;*/
@@ -433,9 +424,6 @@ article img {
     margin: 0;
     margin-top: 0.51em;
     padding: 0;
-    /* border-width: 1px;
-    border-color: #323232; */
-
 }
 
 article .mission-intro {

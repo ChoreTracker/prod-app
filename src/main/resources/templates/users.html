@@ -19,33 +19,32 @@
                 <img id="tinyProd"src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application">
             </div>
 
-                <nav class="topNav">
-                   
-                    <ul class="first-nav">
-                        <li class="first-nav" ><a><img src="./images/goto-icon-white.svg" alt="go to icon"></a>
-                            <ul>
-                                <li class="sub-nav"><a href="http://localhost:8080/show-sectors">Sectors</a></li>
-                                <li class="sub-nav"><a href="http://localhost:8080/show-users">Users</a></li>
-                            </ul>
-                        </li>
-                        <li class="first-nav"><a><img src="./images/plus-icon-white.svg" alt="add icon"></a>
-                            <ul>
-                                <li class="sub-nav"><a><button id="add-user-button">Add User</button></a></li>
-                            </ul>        
-                         </li>        
-                                
-                        <li class="first-nav"><a><img src="./images/cog-icon-white.svg" alt="settings icon"></a>
-                            <ul>
-                                <li class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
-                            </ul>
-                        </li>
-                        <li class="first-nav"><a><img src="./images/logout-icon-white.svg" alt="logout icon"></a>
-                            <ul>
-                                <li class="sub-nav"><a href="http://localhost:8080/login?logout">Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </nav>
+            <nav class="topNav">
+                <ul class="first-nav">
+                    <li class="first-nav" ><a><img src="./images/goto-icon-white.svg" alt="go to icon"></a>
+                        <ul>
+                            <li class="sub-nav"><a href="http://localhost:8080/show-sectors">Sectors</a></li>
+                            <li class="sub-nav"><a href="http://localhost:8080/show-users">Users</a></li>
+                        </ul>
+                    </li>
+                    <li class="first-nav"><a><img src="./images/plus-icon-white.svg" alt="add icon"></a>
+                        <ul>
+                            <li class="sub-nav"><a><button id="add-user-button">Add User</button></a></li>
+                        </ul>        
+                    </li>        
+                    <li class="first-nav"><a><img src="./images/cog-icon-white.svg" alt="settings icon"></a>
+                        <ul>
+                            <li class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
+                        </ul>
+                    </li>
+                    <li class="first-nav"><a><img src="./images/logout-icon-white.svg" alt="logout icon"></a>
+                        <ul>
+                            <li class="sub-nav"><a href="http://localhost:8080/login?logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
 
                 <div id="add" class="navContent">
                     <div id="add-user-modal" class="modal">
@@ -57,40 +56,30 @@
                                 <input type="text" name="password" placeholder="Create a password for the user"/>
                                 <input type="text" name="contact" placeholder="Provide an email adress for the user"/>
                                 <!-- <input type="text" name="theme" placeholder="Default">Theme</input> -->
-                               
                                 <input type="checkbox" name="roles" value="ADMIN">Administrative User<br>
-                                
                                 <button class="newUser-button button-primary" th:formaction= "@{/add-user-button}">Add User</button>
                             </form>
                         </div>              
                     </div>
+
                 </div>    
-        </header>
+            </header>
              
-        <div class="grid-container">
-                <!-- <h4 class="pageHeader">Here are all users.</h4>   -->
-                
+            <div class="grid-container">
                 <div class="user">
                     <article th:each="user: ${users}">
-                        <!-- <img th:src="${user.imageUrl}"/> -->
+                    <!-- <img th:src="${user.imageUrl}"/> -->
                         <form th:method="POST" th:action= "@{/user(id=${user.id})}">
                             <button class="mission-intro missionButton"> <h4 th:text="${user.userName}"></h4></button>
                         </form>
                     </article>
                 </div>
-        </div>
-
+            </div>
     </main>
 
-    
-
-
-<footer>
-    <p>&copy;Prod-App 2018</p>
-</footer>	
+<footer><p>&copy;Prod-App 2018</p></footer>	
 
 <script src = "./js/users.js"></script>	
-<!-- <script src = "./js/user-requests.js"></script> -->
-<!-- <script src = "./js/subnav.js"></script> -->
+
 </body>
 </html>

@@ -6,55 +6,46 @@
 
 <title>Login screen</title>
 <meta charset="utf-8">
-
 <link rel="stylesheet" type="text/css" href="/css/reset.css">
 <link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
 <link rel="stylesheet" type="text/css" href="/css/sepStyles.css">
-      <link rel="stylesheet" type="text/css" href="/css/forms.css">
+<link rel="stylesheet" type="text/css" href="/css/forms.css">
 <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 
 </head>
 
 <body>
-    <header>
-    </header>
-    <main>
-        <img id="loginProd"src="/images/prod-logo.svg"  alt="image depicting PROD chore tracking application">
-    <div id="loginH1andTagline"> 
-        <h3>Welcome To PROD</h3>
-        <h4>Keeping everyone productive!</h4>
-    </div> 
+    <header></header>
+        <main>
+            <img id="loginProd"src="/images/prod-logo.svg"  alt="image depicting PROD chore tracking application">
+            <div id="loginH1andTagline"> 
+                <h3>Welcome To PROD</h3>
+                <h4>Keeping everyone productive!</h4>
+            </div> 
 
-    <div class="grid-container">
-        <form id="loginForm" name="frmlogin" th:action="@{/login}" method="post" class="form-signin">
-            <h4>Please sign in</h4>
+            <div class="grid-container">
+                <form id="loginForm" name="frmlogin" th:action="@{/login}" method="post" class="form-signin">
+                    <h4>Please sign in</h4>
 
-            <div th:if="${param.error}">    
-                Invalid username and password.
-            </div>
-            <div th:if="${param.logout}"> 
-                You have been logged out.
-            </div>            
-            <label for="username"></label>
-            <input type="text" id="username" name="username" placeholder="Username" required="true" />
-            <label for="password"></label>
-            <input type="password" id="password" name="password" placeholder="Password" required="true" />
-            <div>
-                <label id="rememLabel">
+                <div th:if="${param.error}">
+                    Invalid username and password.
+                </div>
+                <div th:if="${param.logout}"> 
+                    You have been logged out.
+                </div>            
+                <label for="username"></label>
+                    <input type="text" id="username" name="username" placeholder="Username" required="true" />
+                    <label for="password"></label>
+                    <input type="password" id="password" name="password" placeholder="Password" required="true" />
+                <div>
+                    <label id="rememLabel">
                     <input id="remember-me" name="remember-me" type="checkbox" /> Remember me
-                </label>
+                    </label>
+                </div>
+                <button class="button-primary" type="submit">Sign In</button>
+                </form>
             </div>
-            <button class="button-primary" type="submit">Sign In</button>
-        </form>
-   
-  </div>
-  
-  
-   
-</div>
-</main>
-<footer>
-    <p>&copy;Prod-App 2018</p>
-</footer>
+        </main>
+    <footer><p>&copy;Prod-App 2018</p></footer>
 </body>
 </html>
