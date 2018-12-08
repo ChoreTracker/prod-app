@@ -36,6 +36,7 @@ public class AdminController {
 		model.addAttribute("sectors", sectorRepo.findAll());
 		model.addAttribute("missions", missionRepo.findAll());
 		model.addAttribute("users", userRepo.findAll());
+		model.addAttribute("completeMissions", missionRepo.findByCompletionDateIsNotNullOrderByUsers());
 		return "admin";
 	}
 	
