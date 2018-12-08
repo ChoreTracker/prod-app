@@ -2,31 +2,27 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" type="text/css" href="./CSS/test.css">
-	<link rel="stylesheet" type="text/css" href="./CSS/test.css">
+	<link rel="stylesheet" type="text/css" href="./css/forms.css">
 
 </head>
 <body>
-	<nav>
-	<div id="first-nav">
-		<p>Title</p>
-		<ul>
-			<li><a href="#">Nav 1</a></li>
-			<li id="selected"><a href="#">Nav 2</a></li>
-			<li><a href="#">Nav 3</a></li>
-			<li><a href="#">Nav 4</a></li>
-		</ul>
+	<p>Does this mission recur?</p>
+	<div class="flex-grid-halves">
+		<div class="col-halves">
+			<label class="radio-block">Yes
+				<input type="radio" name="recurring" value="true" checked required> 
+					<span class="radio-checkmark"></span>
+			</label>
+		</div>
 	</div>
-
-
-	<div id="sub-nav">
-		<ul>
-			<li><a href="#">Subnav 1</a></li>
-			<li><a href="#">Subnav 2</a></li>
-			<li><a href="#">Strawberry</a></li>
-		</ul>
+	<div class="flex-grid-halves">
+		<div class="col-halves">
+			<label class="radio-block col-halves">No
+				<input type="radio" name="recurring" value="false" required>
+					<span class="radio-checkmark"></span>
+			</label>
+		</div>
 	</div>
-	</nav>
 
 </body>
 </html>
