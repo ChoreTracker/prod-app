@@ -15,41 +15,42 @@
 		<header>
 			<div id="headerAndTinyProd">
 				<h1 th:text="${sector.sectorName}"></h1>
-				<img id="tinyProd" src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application">
-			</div>
+				<a href="http://localhost:8080/"><img id="tinyProd"  src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application"></a>
+				</div>
 				
-			<nav class="topNav">
-				<ul class="first-nav">
-					<li class="first-nav" ><a><img src="./images/goto-icon-white.svg" alt="go to icon"></a>
-						<ul>
-							<li class="sub-nav"><a href="http://localhost:8080/show-sectors">Sectors</a></li>
-							<li class="sub-nav"><a href="http://localhost:8080/show-users">Users</a></li>
-						</ul>
-					</li>
-					<li class="first-nav"><a><img src="./images/plus-icon-white.svg" alt="add icon"></a>
-						<ul>
-							<li><a><button id="add-mission-button">Add A Mission</button></a></li>
-							<li><a><button id="assign-missions">Assign All Missions</button></a></li>									
-						</ul>
-					</li>
-					<li class="first-nav"><a><img src="./images/cog-icon-white.svg" alt="settings icon"></a>
-						<ul>
-							<li class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
-						</ul>
-					</li>
-					<li class="first-nav"><a><img src="./images/logout-icon-white.svg" alt="logout icon"></a>
-						<ul>
-							<li class="sub-nav"><a href="http://localhost:8080/login?logout">Logout</a></li>
-						</ul>
-					</li>
-				</ul>
-			</nav>
+				<nav class="topNav">
+					<ul class="first-nav">
+						<li class="first-nav" ><a><img src="./images/goto-icon-white.svg" alt="go to icon"></a>
+							<ul>
+								<li class="sub-nav"><a href="http://localhost:8080/show-sectors">Sectors</a></li>
+								<li class="sub-nav"><a href="http://localhost:8080/show-users">Users</a></li>
+							</ul>
+						</li>
+						<li class="first-nav"><a><img src="./images/plus-icon-white.svg" alt="add icon"></a>
+							<ul>
+								<li sec:authorize="hasRole('ROLE_ADMIN')"><a><button  id="add-mission-button">Add A Mission</button></a></li>
+								<li sec:authorize="hasRole('ROLE_ADMIN')"><a><button id="assign-missions">Assign All Missions</button></a></li>									
+							</ul>
+						</li>
+						<li class="first-nav"><a><img src="./images/cog-icon-white.svg" alt="settings icon"></a>
+							<ul>
+								<li class="sub-nav"><a><button id="change-theme-button">Change Theme</button></a></li>
+								<li sec:authorize="hasRole('ROLE_ADMIN')" class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
+							</ul>
+						</li>
+						<li class="first-nav"><a><img src="./images/logout-icon-white.svg" alt="logout icon"></a>
+							<ul>
+								<li class="sub-nav"><a href="http://localhost:8080/login?logout">Logout</a></li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
 		</header>
-
 		<div th:object= "${sector}" class="grid-container">
+			<!-- <h4 class="pageHeader" th:text="${sector.sectorName}"></h4> -->
 			<div class ="mission" th:each="mission: ${missions}">	
-				<article th:if="${mission.completionDate != null}" class="missionLists missionDone">
-					<a><img th:src="*{imageUrl}"/></a>
+					<article th:if="${mission.completionDate != null}" class="missionLists missionDone">
+						<a><img th:src="*{imageUrl}"/></a>
 						<button>
 							<div class="mission-intro missionButton">
 								<h4 th:text="${mission.missionName}"></h4>
@@ -57,10 +58,10 @@
 								<span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>
 							</div>
 						</button>
-				</article>
+					</article>
 					
-				<article th:if="${mission.completionDate == null}" class="missionLists">
-					<a><img th:src="*{imageUrl}"/></a>
+					<article th:if="${mission.completionDate == null}" class="missionLists">
+						<img th:src="*{imageUrl}"/>
 						<button>
 							<div class="mission-intro missionButton">
 								<h4 th:text="${mission.missionName}"></h4>
@@ -111,15 +112,14 @@
 						<p>Does this mission recur?</p>
 						<input type="radio" name="recurring" value="true" checked required>Yes<br>
 						<input type="radio" name="recurring" value="false" required>No<br>
-						<p>how many days elapse between mission due dates</p>
+						<p>How many days elapse between mission due dates</p>
 						<input type="number" name="period"  min="0" max="900" placeholder="num" required/>
-						<p>how many days (1-7) can the mission be snoozed</p>
-						<input type="number" name="snooze" min="1" max="7" placeholder="num" required/>						
+						<p>How many days (1-7) can the mission be snoozed</p>
+						<input typ="number" name="snooze" min="1" max="7" placeholder="num" required/>						
 						<input type="hidden" name="sectorId" th:value="${sector.id}" > <br>
-						<p>Assign user(s)</p>
+						<p>Assign user(s):</p>
 						<input th:each="user: ${users}" type="checkbox"  name="users" th:text="${user.userName} + '&nbsp&nbsp'" th:value="${user.id}"><br>
-						<button class="newMisson-button button-primary" th:formaction= "@{/make-mission-within-sector
-						}">Add Mission</button> 
+						<button class="newMisson-button button-primary" th:formaction= "@{/make-mission-within-sector}">Add Mission</button> 
 					</form>
 				</div>				
 			</div>
@@ -138,11 +138,30 @@
 						</form>
 					</div>                
 				</div>
+				<div id="theme-modal" class="modal">
+						<div class="modal-content">
+							<span id="close-theme" class="close">&times;</span>
+							<h3>Change My Theme</h3>
+							<form >
+								<label class="radio-block">Space
+									<input type="radio" name="theme" value="space" required> 
+										<span class="radio-block-checkmark"></span>
+								</label>
+								<label class="radio-block">Magic
+									<input type="radio" name="theme" value="magic" required> 
+										<span class="radio-block-checkmark"></span>
+								</label>
+								<button class="button-primary" th:formaction= "@{/change-theme}">Change Theme</button> 
+							</form>
+						</div>				
+					</div>
 			</div>
 
 	</div>
 
-	<footer><p>&copy;Prod-App 2018</p></footer>		
+	<footer>
+		<p>&copy;Prod-App 2018</p>
+	</footer>		
 	<script src = "./js/subnav.js"></script>	
 	<script src = "./js/add-mission.js"></script>
 

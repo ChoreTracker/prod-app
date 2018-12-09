@@ -31,5 +31,30 @@ function goToSelectedPopsUp(navType) {
         gotoSelected.style.display = 'block';
     }
 }
+const themeButton = document.getElementById("change-theme-button");
+const closeThemeSpan = document.getElementById("close-theme");
+const themeModal = document.getElementById("theme-modal");
 
+themeButton.addEventListener("click", function(){
+	if (!themeModal.classList.contains("opened")){
+		themeModal.classList.add("opened")
+	}
+	 else {
+		themeModal.classList.remove("opened")
+	}
+})
+
+closeThemeSpan.addEventListener("click",function() {
+	if(!themeModal.classList.contains("opened")){
+		themeModal.classList.add("opened")
+	} else {
+		themeModal.classList.remove("opened")
+	}
+})
+
+window.addEventListener("click", function(event) {
+	if (event.target == themeModal) {
+		themeModal.classList.remove("opened")
+	}
+})
 

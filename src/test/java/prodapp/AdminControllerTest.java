@@ -21,7 +21,7 @@ public class AdminControllerTest {
 	
 	@WithMockUser (username="spring", password="password", roles="USER")
 	public long shouldReturnLoggedInUserID() {
-		User user1 = new User ("me", "password", "ADMIN");
+		User user1 = new User ("me", "password","default", "ADMIN");
 		userRepo.save(user1);
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User)authentication.getPrincipal();
