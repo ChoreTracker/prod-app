@@ -44,7 +44,7 @@
 
 #headerAndTinyProd {
    width: 50%;
-    background:#f2ecc2;
+    background:midnightblue;
     position: fixed;
     z-index: 2;
     height: 65px;
@@ -90,7 +90,7 @@
 } 
 
 .missionDone {
-    background-color: gray;
+    background-color: lightslategray;
 }
 
 .mission {
@@ -109,7 +109,7 @@
 }
 
 .topNav {
-    background-color: #8559a5; /*purple*/
+    background-color: #ffffb3; /*purple*/
     padding: 0;
     margin: 0;
     position: fixed;
@@ -122,7 +122,7 @@
 
  .topNav a {
     text-decoration: none;
-    color: #fff;
+    color: midnightblue;
     display: block;
     /* height: 65px; */
     /* margin-top: 0.3em; */
@@ -156,7 +156,7 @@
   }
   /* Sub Menus */
  .topNav li li {
-    background: #48b782; 
+    background: gold; 
     font-size: .9em;
     text-align: center;
     height: 52px;
@@ -175,12 +175,12 @@
     display: block;
   }
  .topNav ul li a:hover {
-    background: #48b782; 
+    background: gold; 
     color: black;
     z-index: 2;
  }
  .topNav ul li a.active {
-    background: #48b782; 
+    background: gold; 
     color: black;
     cursor: default;
     z-index: 2;
@@ -193,8 +193,8 @@
   }
  .topNav ul li ul {
     list-style: none;
-    background: #48b782; 
-    color: black;
+    background: gold; 
+    color: midnightblue;
     text-align: center;
     padding: 0;
     padding-top: .5em;

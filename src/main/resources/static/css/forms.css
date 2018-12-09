@@ -144,21 +144,6 @@ input::-webkit-datetime-edit-fields-wrapper {
       flex: 1;
   }
 
-  /*The radio buttons with floats*/
-.flex-grid-halves-float {
-    display: flex;
-    justify-content: space-around;
-    margin: auto;
-    /*padding-left: 0;*/
-    width: 90%;
-  }
-  
-  .col-halves-float {
-     /* width: 25%;*/
-     flex: 1;
-}
-
-
 /*input[type="radio"] {
     background-color:  white;
     border: 1px solid #d9d9d9;
@@ -174,6 +159,19 @@ input::-webkit-datetime-edit-fields-wrapper {
      /*padding: 0;*/
      /*-webkit-padding-start: 1px;*/
 /*}*/
+
+  /*The radio buttons with floats*/
+  .radio-columns {
+    float: right;
+	width: 25%;
+    margin: auto;
+    /*padding-left: 0;*/
+  }
+  
+/*  .col-halves-float {
+     /* width: 25%;*/
+     /*flex: 1;
+}*/
 
 /* The radio buttons container WITH the float */
 .radio-block-float {
@@ -207,21 +205,21 @@ input::-webkit-datetime-edit-fields-wrapper {
     position: absolute;
     top: 0;
     left: 0;
-    height: 1em;
-    width: 1em;
+    height: 1.5em;
+    width: 1.5em;
     background-color: white;
-    border: 2px solid #323232;
+    border: 2px solid #d9d9d9;
     border-radius: 25px; 
 }
 
 /* On mouse-over, add a grey background color */
 .radio-block-float:hover input ~ .radio-block-checkmark {
-    background-color: orange;
+    background-color: #ffd5b3; /*light orange*/
 }
 
 /* When the checkbox is checked, add a blue background */
 .radio-block-float input:checked ~ .radio-block-checkmark {
-    background-color: orangered;
+    background-color: #ffa258; /*orange*/
 }
 
 /* The radio buttons container WITHOUT the float */
@@ -253,21 +251,21 @@ input::-webkit-datetime-edit-fields-wrapper {
     position: absolute;
     top: 0;
     left: 0;
-    height: 1em;
-    width: 1em;
+    height: 1.5em;
+    width: 1.5em;
     background-color: white;
-    border: 2px solid #323232;
+    border: 1px solid #d9d9d9;
     border-radius: 25px; 
 }
 
 /* On mouse-over, add a grey background color */
 .radio-block:hover input ~ .radio-block-checkmark {
-    background-color: orange;
+    background-color: #ffd5b3; /*light orange*/
 }
 
 /* When the checkbox is checked, add a blue background */
 .radio-block input:checked ~ .radio-block-checkmark {
-    background-color: orangered;
+    background-color: #ffa258; /*orange*/
 }
 
 
