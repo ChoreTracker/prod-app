@@ -372,4 +372,13 @@ public class MissionController {
 		missionRepo.save(mission);
 		return "redirect:/user?id=" + userId;
 	}
+	
+	@RequestMapping("/reopen-mission-button-sector")
+	public String reopenClosedMissionSectorPage (@RequestParam long missionId, long sectorId) {
+		Optional<Mission> result = missionRepo.findById(missionId);
+		Mission mission = result.get();
+		mission.reopenMission();
+		missionRepo.save(mission);
+		return "redirect:/sector?id=" + sectorId;
+	}
 }
