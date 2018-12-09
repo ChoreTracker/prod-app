@@ -44,7 +44,6 @@ public class User{
 	private String theme;
 
 	public User() {
-
 	}
 
 	public long getId() {
@@ -63,14 +62,16 @@ public class User{
 		return missions;
 	}
 	
+	public void setTheme(String theme) {
+		this.theme = theme;
+	}
+	
+	public String getTheme() {
+		return theme;
+	}
 
 	
-//	?Is this a method that runs on any user? like user.findLoggedInUser();
-//	private User findLoggedInUser() {
-//		Object activeUser = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		User loggedInUser = User.class.cast(activeUser);
-//		return loggedInUser;
-//	}
+
 
 	public User(String userName, String password, String contact, String theme, String...roles) {
 		this.userName = userName;
@@ -81,10 +82,6 @@ public class User{
 		
 	}
 
-
-	public String getTheme() {
-		return theme;
-	}
 
 	@Override
 	public int hashCode() {
@@ -107,5 +104,6 @@ public class User{
 			return false;
 		return true;
 	}
+
 
 }
