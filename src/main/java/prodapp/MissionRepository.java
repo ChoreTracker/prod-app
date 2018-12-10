@@ -51,6 +51,8 @@ public interface MissionRepository extends CrudRepository<Mission, Long> {
 	Collection<Mission> findAllBySectorAndRecurringIsFalse(Sector sectorResult);
 	
 	Collection<Mission> findByCompletionDateIsNotNullOrderByUsers();
+	
+	Collection<Mission> findAllByOrderByCompletionDateAscDueDateAsc();
 
 	
 //	Collection<Mission> findAllRecurringIsTrue();
