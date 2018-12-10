@@ -5,14 +5,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="/css/reset.css">
 
-		<link rel="stylesheet" type="text/css" href="/css/forms.css">
+		<!--<link rel="stylesheet" type="text/css" href="/css/sepStyles-space.css">
+		<link rel="stylesheet" type="text/css" href="/css/style-sheet-space.css">-->
 		<link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
-
-		<!--<link th:if="${user.theme=='space'}" rel="stylesheet" type="text/css" href="/css/sepStyles-space.css">
-		<link th:if="${user.theme=='space'}" rel="stylesheet" type="text/css" href="/css/style-sheet-space.css">
-		<link rel="stylesheet" type="text/css" href="/css/style-sheet.css">-->
-		
-		<!--<link rel="stylesheet" type="text/css" href="/css/forms.css">-->
+		<link rel="stylesheet" type="text/css" href="/css/forms.css">
 
 		<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Kanit|Russo+One" rel="stylesheet">
@@ -87,6 +83,7 @@
 								<section>
 									<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
 									<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+									<p>Sector: <span th:text= "${mission.sector}"></span></p>
 									<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
 									<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
 									<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
@@ -127,6 +124,7 @@
 									<section>
 										<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
 										<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+										<p>Sector: <span th:text= "${mission.sector}"></span></p>
 										<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
 										<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
 										<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
@@ -179,6 +177,7 @@
 									<section>
 										<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
 										<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+										<p>Sector: <span th:text= "${mission.sector}"></span></p>
 										<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
 										<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
 										<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
@@ -261,6 +260,27 @@
 						<input type="file" name="imageUrl" placeholder="image URL" required/>
 						<input type="hidden" name="userId" th:value="${user.id}">
 						<button class="newSector-button button-primary" th:formaction= "@{/add-sector-button-from-user}">Add Sector</button> 
+					</form>
+				</div>				
+			</div>
+			<div id="theme-modal" class="modal">
+				<div class="modal-content">
+					<span id="close-theme" class="close">&times;</span>
+					<h3>Change My Theme</h3>
+					<form >
+						<label class="radio-block">Space
+							<input type="radio" name="theme" value="space"> 
+								<span class="radio-block-checkmark"></span>
+						</label>
+						<label class="radio-block">Magic
+							<input type="radio" name="theme" value="magic"> 
+								<span class="radio-block-checkmark"></span>
+						</label>
+						<label class="radio-block">Default
+								<input type="radio" name="theme" value="default"> 
+									<span class="radio-block-checkmark"></span>
+							</label>
+						<button class="button-primary" th:formaction= "@{/change-theme}">Change Theme</button> 
 					</form>
 				</div>				
 			</div>
