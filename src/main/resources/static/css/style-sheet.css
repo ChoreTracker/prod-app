@@ -1,4 +1,3 @@
-
 .missionDone {
     background-color: gray;
 }
@@ -547,11 +546,12 @@ article {
 
 article img {
     object-fit: cover;
-	width: 75px;
-	height: 75px;
+	width: 65px;
+	height: 65px;
     border-radius: 25% 0% 0% 25%;
     margin: 0;
     margin-top: 0.51em;
+    margin-left: 1em;
     padding: 0;
 }
 

@@ -4,13 +4,23 @@
 	<title>Administration tasks</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="./css/reset.css">
-	<link rel="stylesheet" type="text/css" href="./css/style-sheet.css">
-	<link rel="stylesheet" type="text/css" href="./css/forms.css">
+	<!-- <link rel="stylesheet" type="text/css" href="./css/style-sheet.css"> -->
+	<link rel="stylesheet" type="text/css" href="./css/admin-only.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 </head>
 <body>
-	<main id="container"> 
-	<div class="missions"><h1>Mission Administration</h1>
+	<main id="adminContainer"> 
+	
+	<header>
+			<div id="headerAndTinyProd">
+					<h1>Administrative</h1>
+					<a href="http://localhost:8080/"><img id="tinyProd"  src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application"></a>
+				</div>
+	</header>
+
+<section id="collapsibleItems">	
+	<button class="collapsible">Add Mission</button>
+		<div class="content">
 		<ul>
 			<li><h3>Add a new mission</h3></li>
 					<form>
