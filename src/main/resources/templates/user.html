@@ -177,7 +177,7 @@
 									<h3 th:if="${mission.completionDate != null}">Mission Accomplished!</h3>
 									<form>
 									<input type="hidden" th:value="${mission.id}" name="missionId"/>
-									<button class="reopenButton button-primary" th:formaction= "@{/reopen-mission-button}">Re-open Mission</button>
+									<button sec:authorize="hasRole('ROLE_ADMIN')" class="reopenButton button-primary" th:formaction= "@{/reopen-mission-button}">Re-open Mission</button>
 									</form>
 									<form th:if="${mission.completionDate == null}">
 										<input type="hidden" th:value="${mission.id}" name="missionId"/>
