@@ -77,6 +77,7 @@
 						<section>
 							<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
 							<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+							<p>Sector: <span th:text= "${mission.sector}"></span></p>
 							<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
 							<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
 							<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
