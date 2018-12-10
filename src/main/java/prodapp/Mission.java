@@ -40,6 +40,8 @@ public class Mission {
 	private boolean recurring;
 	private int count;
 
+	private int rewardValue;
+
 	public boolean isRecurring() {
 		return recurring;
 	}
@@ -80,9 +82,6 @@ public class Mission {
 		return sector;
 	}
 	
-	
-	
-
 	// this method assigns all the users at once, removing any pre-assigned users,
 	// if any
 	public void assignUsers(User... users) {
@@ -113,10 +112,6 @@ public class Mission {
 	public void addUser(User user) {
 		this.users.add(user);
 	}
-	
-	
-	
-	
 
 	// sets the completion date to today
 	public void markComplete() {
@@ -164,9 +159,17 @@ public class Mission {
 		this.completionDate = null;
 		
 	}
+	
+	public int getRewardValue() {
+		return rewardValue;
+	}
+
+	public void setRewardValue(int rewardValue) {
+		this.rewardValue = rewardValue;
+	}
 
 	public Mission(String missionName, String missionDescription, Sector sector, int period, int snooze, String dueDate,
-			String completionDate, boolean recurring, int count, User...users) {
+			String completionDate, boolean recurring, int count, int rewardValue, User...users) {
 		this.missionName = missionName;
 		this.missionDescription = missionDescription;
 		this.sector = sector;
@@ -176,6 +179,7 @@ public class Mission {
 		this.completionDate = completionDate;
 		this.recurring = recurring;
 		this.count = count;
+		this.rewardValue = rewardValue;
 		this.users = new HashSet<>(Arrays.asList(users));
 	}
 

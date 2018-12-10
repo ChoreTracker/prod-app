@@ -46,15 +46,15 @@ public class MissionController {
 	//This button is in use! //
 	//
 	@RequestMapping("/create-mission-button")
-	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate, boolean recurring, long sectorId, @RequestParam long userId) {
+	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate, boolean recurring, long sectorId, int rewardValue, @RequestParam long userId) {
 		Optional<User> userResult = userRepo.findById(userId);
 		User user = userResult.get();
 		Optional<Sector> sectorResult = sectorRepo.findById(sectorId);
 		Sector sector = sectorResult.get();
-		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null, false, 0, user);
+		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null, false, 0, rewardValue, user);
 		missionRepo.save(newMission);
 		if (recurring) {
-			Mission newRecurring = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null, true, 0, user);
+			Mission newRecurring = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null, true, 0, rewardValue, user);
 			missionRepo.save(newRecurring);
 			}
 		return "redirect:/user?id=" + userId;
@@ -359,7 +359,7 @@ public class MissionController {
 		Optional<Mission> missionChosen = missionRepo.findById(missionId);
 		Mission mission = missionChosen.get();
 		Mission newMission = new Mission(mission.getMissionName(), mission.getMissionDescription(), mission.getSector(),
-				mission.getPeriod(), mission.getSnooze(), "", "", true, 0);
+				mission.getPeriod(), mission.getSnooze(), "", "", true, 0, mission.getRewardValue());
 		newMission.assignUsers(mission.getUsers());
 		missionRepo.save(newMission);
 	}
