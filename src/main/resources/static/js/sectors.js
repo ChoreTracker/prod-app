@@ -40,32 +40,7 @@ function openSubNav(evt, navType) {
     evt.currentTarget.className += " active";
 }
 
-const newMissionButton = document.getElementById("add-mission-button");
-const closeNewMissionSpan = document.getElementById("close-add-mission");
-const addMissionModal = document.getElementById("add-mission-modal");
 
-newMissionButton.addEventListener("click", function(){
-	if (!addMissionModal.classList.contains("opened")){
-		addMissionModal.classList.add("opened")
-	}
-	 else {
-		addMissionModal.classList.remove("opened")
-	}
-})
-
-closeNewMissionSpan.addEventListener("click",function() {
-	if(!addMissionModal.classList.contains("opened")){
-		addMissionModal.classList.add("opened")
-	} else {
-		addMissionModal.classList.remove("opened")
-	}
-})
-
-window.addEventListener("click", function(event) {
-	if (event.target == addMissionModal) {
-		addMissionModal.classList.remove("opened")
-	}
-})
 
 const themeButton = document.getElementById("change-theme-button");
 const closeThemeSpan = document.getElementById("close-theme");

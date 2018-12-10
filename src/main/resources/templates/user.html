@@ -7,10 +7,11 @@
 		<link rel="stylesheet" type="text/css" href="/css/reset.css">
 		<!--<link rel="stylesheet" type="text/css" href="/css/sepStyles-space.css">
 		<link rel="stylesheet" type="text/css" href="/css/style-sheet-space.css">-->
-		<link rel="stylesheet" type="text/css" href="/css/sepStyles.css">
 		<link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
+		<link th:if="${user.theme == 'space'}" rel="stylesheet" type="text/css" href="/css/space.css">
+
 		
-		<!--<link rel="stylesheet" type="text/css" href="/css/forms.css">-->
+		<link rel="stylesheet" type="text/css" href="/css/forms.css">
 
 		<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet">
@@ -256,13 +257,17 @@
 					<h3>Change My Theme</h3>
 					<form >
 						<label class="radio-block">Space
-							<input type="radio" name="theme" value="space" required> 
+							<input type="radio" name="theme" value="space"> 
 								<span class="radio-block-checkmark"></span>
 						</label>
 						<label class="radio-block">Magic
-							<input type="radio" name="theme" value="magic" required> 
+							<input type="radio" name="theme" value="magic"> 
 								<span class="radio-block-checkmark"></span>
 						</label>
+						<label class="radio-block">Default
+								<input type="radio" name="theme" value="default"> 
+									<span class="radio-block-checkmark"></span>
+							</label>
 						<button class="button-primary" th:formaction= "@{/change-theme}">Change Theme</button> 
 					</form>
 				</div>				

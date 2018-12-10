@@ -76,14 +76,14 @@ public class UserController {
 
 	@RequestMapping("/add-user-button")
 	public String addUser(String userName, String password, String contact, String roles) {
-		User user = new User(userName, password, contact, "default", "USER" + roles);
+		User user = new User(userName, password, contact, "default", "USER", roles);
 		userRepo.save(user);
 		return "redirect:/show-users";
 	}
 	
 	@RequestMapping("/change-theme")
 	public String changeTheme(String theme, Principal principal) {
-		String activeUser = principal.getName().toString();
+		String activeUser = principal.getName();
 		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
 		User user = loggedInUser.get();
 		user.setTheme(theme);
