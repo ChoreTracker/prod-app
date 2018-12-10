@@ -3,8 +3,8 @@
 	<head>
 		<title>User Screen</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
-		<!--<link rel= "icon" type=image/ico" href="./images/prod.ico">-->
 		<link rel="stylesheet" type="text/css" href="/css/reset.css">
+
 		<link rel="stylesheet" type="text/css" href="/css/forms.css">
 		<link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
 
@@ -16,14 +16,17 @@
 
 		<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Kanit|Russo+One" rel="stylesheet">
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<main >
 			<header>
 				<div id="headerAndTinyProd">
+
 					<a href="http://localhost:8080/"><img id="tinyProd"  src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application"></a>
 					<h1 th:text=" ${user.userName} + '  Missions'"></h1>
+
 				</div>
 			
 			<nav class="topNav">
@@ -41,8 +44,7 @@
 					</li>
 					<li class="first-nav"><a><img src="./images/cog-icon-white.svg"  alt="settings icon"></a>
 						<ul>
-							<li class="sub-nav"><a><button id="change-theme-button">Change Theme</button></a></li>
-							<li sec:authorize="hasRole('ROLE_ADMIN')" class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
+							<li class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
 						</ul>
 					</li>
 					<li class="first-nav"><a><img src="./images/logout-icon-white.svg"  alt="logout icon"></a>
@@ -184,6 +186,10 @@
 										<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
 									</section>
 									<h3 th:if="${mission.completionDate != null}">Mission Accomplished!</h3>
+									<form>
+									<input type="hidden" th:value="${mission.id}" name="missionId"/>
+									<button sec:authorize="hasRole('ROLE_ADMIN')" class="reopenButton button-primary" th:formaction= "@{/reopen-mission-button}">Re-open Mission</button>
+									</form>
 									<form th:if="${mission.completionDate == null}">
 										<input type="hidden" th:value="${mission.id}" name="missionId"/>
 										<input type="hidden" th:value="${user.id}" name="userId"/>
@@ -255,23 +261,6 @@
 						<input type="file" name="imageUrl" placeholder="image URL" required/>
 						<input type="hidden" name="userId" th:value="${user.id}">
 						<button class="newSector-button button-primary" th:formaction= "@{/add-sector-button-from-user}">Add Sector</button> 
-					</form>
-				</div>				
-			</div>
-			<div id="theme-modal" class="modal">
-				<div class="modal-content">
-					<span id="close-theme" class="close">&times;</span>
-					<h3>Change My Theme</h3>
-					<form >
-						<label class="radio-block">Space
-							<input type="radio" name="theme" value="space" required> 
-								<span class="radio-block-checkmark"></span>
-						</label>
-						<label class="radio-block">Magic
-							<input type="radio" name="theme" value="magic" required> 
-								<span class="radio-block-checkmark"></span>
-						</label>
-						<button class="button-primary" th:formaction= "@{/change-theme}">Change Theme</button> 
 					</form>
 				</div>				
 			</div>

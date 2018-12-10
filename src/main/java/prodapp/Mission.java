@@ -159,6 +159,11 @@ public class Mission {
 	public void resetCount() {
 		this.count = 0;
 	}
+	
+	public void reopenMission() {
+		this.completionDate = null;
+		
+	}
 
 	public Mission(String missionName, String missionDescription, Sector sector, int period, int snooze, String dueDate,
 			String completionDate, boolean recurring, int count, User...users) {
