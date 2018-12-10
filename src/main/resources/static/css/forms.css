@@ -144,83 +144,64 @@ input::-webkit-datetime-edit-fields-wrapper {
       flex: 1;
   }
 
-/*input[type="radio"] {
-    background-color:  white;
-    border: 1px solid #d9d9d9;
-    border-radius: 25px;
-     font-family: 'Roboto', sans-serif;
-     margin-bottom: 1em;
-     margin-left: auto;
-     margin-right: auto;
-     width: 20%;*/
-     /* -webkit-align-items: center;
-
-     overflow: hidden;*/
-     /*padding: 0;*/
-     /*-webkit-padding-start: 1px;*/
-/*}*/
-
-  /*The radio buttons with floats*/
+.radio-columns-container {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+  }
+      
+    
+/*The radio buttons with floats*/
+  /* The radio buttons container WITH the float */
   .radio-columns {
-    float: right;
+    float: left;
 	width: 25%;
     margin: auto;
-    /*padding-left: 0;*/
-  }
-  
-/*  .col-halves-float {
-     /* width: 25%;*/
-     /*flex: 1;
-}*/
-
-/* The radio buttons container WITH the float */
-.radio-block-float {
     display: block;
     /*float: right;*/
     position: relative;
-    padding-left: 35px;
+    padding-left: 25px;
     margin-bottom: 12px;
-
-        
+    /*padding-left: 0;*/
     cursor: pointer;
     font-family: 'Roboto', sans-serif;
+    font-size: .80em;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-/* Hide the browser's default checkbox */
-.radio-block-float input[type="radio"] {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-   
-}
+  }
 
 /* Create a custom checkbox */
-.radio-block-float-checkmark {
+.radio-columns input[type="radio"] {
     position: absolute;
+    /*opacity: 0;*/
+    cursor: pointer;
+    /*height: 0;
+    width: 0;
+    position: absolute;*/
     top: 0;
     left: 0;
     height: 1.5em;
     width: 1.5em;
     background-color: white;
     border: 2px solid #d9d9d9;
-    border-radius: 25px; 
+    border-radius: 25px;   
 }
 
+/*These hovers and such are not working.
+/*.radio-columns input[type="radio"]:hover {
+    background-color: #ffd5b3; /*light orange
+}*/
 /* On mouse-over, add a grey background color */
-.radio-block-float:hover input ~ .radio-block-checkmark {
-    background-color: #ffd5b3; /*light orange*/
-}
-
+/*.radio-columns input[type="radio"]:hover   {
+    background-color: #ffd5b3; /*light orange
+}*/
 /* When the checkbox is checked, add a blue background */
-.radio-block-float input:checked ~ .radio-block-checkmark {
-    background-color: #ffa258; /*orange*/
-}
+/*.radio-block-float input:checked ~ .radio-block-checkmark {
+    background-color: #ffa258; /*orange
+}*/
+
 
 /* The radio buttons container WITHOUT the float */
 .radio-block {
