@@ -110,7 +110,7 @@ public class ProdPopulator implements CommandLineRunner {
     Reward reward2 = new Reward("Dessert", "Special Dessert", 10, false);
     Reward reward3 = new Reward("Video Game Time", "2 hours of extra video game time", 10, false);
     Reward reward4 = new Reward("Pass Mission", "Give one of your missions to someone else", 15, false);
-    Reward reward5 = new Reward("Pick the Movie", "get to pick the movie to watch for movie night", 10, false);
+    Reward reward5 = new Reward("Pick the Movie", "Get to pick the movie to watch for movie night", 10, false);
     Reward reward6 = new Reward("Date Night", "Take your lovely spouse out on a date night", 40, false);
     rewardRepo.save(reward1);
     rewardRepo.save(reward2);
