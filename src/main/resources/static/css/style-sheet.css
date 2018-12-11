@@ -204,7 +204,7 @@ nav .sub-nav li a:hover {
   }
 
   .topNav a:hover {
-    text-decoration: underline;
+    /* text-decoration: underline; */
   }
 
   .topNav li {
