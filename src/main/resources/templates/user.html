@@ -4,9 +4,6 @@
 		<title>User Screen</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="/css/reset.css">
-
-		<!--<link rel="stylesheet" type="text/css" href="/css/sepStyles-space.css">
-		<link rel="stylesheet" type="text/css" href="/css/style-sheet-space.css">-->
 		<link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
 		<link rel="stylesheet" type="text/css" href="/css/forms.css">
 
@@ -156,7 +153,6 @@
 									</div>
 								</button>
 							</article>
-
 							<article th:if="${mission.completionDate == null}" class="missionLists" id="allUserMissions" >
 								<a th:href="@{/sector(id=${mission.sector.id})}">
 									<img th:src="${mission.sector.imageUrl}"/></a>
@@ -204,7 +200,6 @@
 			</div>
 		</div>
 		</main>
-
 		<div id="add" class="navContent">
 			<div id="add-mission-modal" class="modal">
 				<div class="modal-content">
@@ -216,7 +211,6 @@
 						<p>When is the mission due?</p>
 						<input type="date" name="dueDate" required/>
 						<p>Does this mission recur?</p>
-
 						<div class="flex-grid-halves">
 							<div class="col-halves">
 								<label class="radio-block">Mission Recurs
@@ -234,10 +228,8 @@
 						<p>How many days elapse between mission due dates?</p>
 						<input type="number" name="period"  min="1" max="900" placeholder="num" required/>
 						<p>How many days (1-7) can the mission be snoozed?</p>
-
 						<input type="number" name="snooze" min="1" max="7" placeholder="num" required/>
 						<p>Please choose a sector:</p>
-
 						<div class="radio-columns-container">
 								<div class="radio-columns" th:each="sector: ${sectors}">
 									<input type="radio" name="sectorId"	th:value="${sector.id}" />
@@ -250,7 +242,6 @@
 					</form>
 				</div>				
 			</div>
-
 			<div id="add-sector-modal" class="modal">
 				<div class="modal-content">
 					<span id="close-add-sector" class="close">&times;</span>
@@ -285,11 +276,9 @@
 				</div>				
 			</div>
 		</div>
-
 		<footer>
 			<p>&copy;Prod-App 2018</p>
 		</footer>
-
 		<script src = "./js/user.js"></script>	
 		<script src = "./js/user-requests.js"></script>	
 	</body>
