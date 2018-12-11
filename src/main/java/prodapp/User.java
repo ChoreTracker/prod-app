@@ -43,6 +43,8 @@ public class User{
 
 	private String theme;
 
+	private String avatar;
+
 	public User() {
 	}
 
@@ -69,17 +71,26 @@ public class User{
 	public String getTheme() {
 		return theme;
 	}
+	
+	public String getAvatar() {
+		return avatar;
+	}
+	
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+	
 
 	
 
 
-	public User(String userName, String password, String contact, String theme, String...roles) {
+	public User(String userName, String password, String avatar, String contact, String theme, String...roles) {
 		this.userName = userName;
 		this.password = new BCryptPasswordEncoder().encode(password);
+		this.avatar = avatar;
 		this.contact = contact;
 		this.theme = theme;
-		this.roles = roles;
-		
+		this.roles = roles;	
 	}
 
 
@@ -104,6 +115,7 @@ public class User{
 			return false;
 		return true;
 	}
+
 
 
 }

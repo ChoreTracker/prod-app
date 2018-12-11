@@ -7,6 +7,8 @@
 	<link rel="stylesheet" type="text/css" href="/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
     <link rel="stylesheet" type="text/css" href="/css/forms.css">
+    <link th:if="${loggedInUser.theme == 'space'}" rel="stylesheet" type="text/css" href="/css/space.css">
+
 
     <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 </head>
@@ -55,6 +57,7 @@
                                 <input type="text" name="userName" placeholder="Name of the user" required/>
                                 <input type="text" name="password" placeholder="Create a password for the user"/>
                                 <input type="text" name="contact" placeholder="Provide an email adress for the user"/>
+                                <input type="file" name="avatar" placeholder="avatar URL" required/>
                                 <!-- <input type="text" name="theme" placeholder="Default">Theme</input> -->
                                 <input type="checkbox" name="roles" value="ADMIN">Administrative User<br>
                                 <button class="newUser-button button-primary" th:formaction= "@{/add-user-button}">Add User</button>
@@ -85,8 +88,8 @@
             <div class="grid-container">
                 <div class="user">
                     <article th:each="user: ${users}">
-                    <!-- <img th:src="${user.imageUrl}"/> -->
-                        <form th:method="POST" th:action= "@{/user(id=${user.id})}">
+                    <img th:src="${user.avatar}"/>
+                        <form style="width: 100%" th:method="POST" th:action= "@{/user(id=${user.id})}">
                             <button class="mission-intro missionButton"> <h4 th:text="${user.userName}"></h4></button>
                         </form>
                     </article>

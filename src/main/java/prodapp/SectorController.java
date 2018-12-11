@@ -1,5 +1,6 @@
 package prodapp;
 
+import java.security.Principal;
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -24,17 +25,28 @@ public class SectorController {
 	UserRepository userRepo;
 
 	@RequestMapping("/show-sectors")
-	public String findAllSectors(Model model) {
+	public String findAllSectors(Model model, Principal principal) {
+		String activeUser = principal.getName();
+		Optional<User> userTheme = userRepo.findByUserName(activeUser);
+		User loggedInUser = userTheme.get();
+		model.addAttribute("loggedInUser", loggedInUser);
+		
 		model.addAttribute("sectors", sectorRepo.findAll());
+		
 		return "sectors";
 	}
 
 	@RequestMapping("/sector")
-	public String findOneSector(@RequestParam(value = "id") long sectorId, Model model) throws sectorNotFoundException {
+	public String findOneSector(@RequestParam(value = "id") long sectorId, Model model, Principal principal) throws sectorNotFoundException {
 		Optional<Sector> sector = sectorRepo.findById(sectorId);
 
 		if (sector.isPresent()) {
 			Sector sectorResult = sector.get();
+			String activeUser = principal.getName();
+			Optional<User> userTheme = userRepo.findByUserName(activeUser);
+			User loggedInUser = userTheme.get();
+			model.addAttribute("loggedInUser", loggedInUser);
+			
 			model.addAttribute("sector", sectorResult);
 			model.addAttribute("users", userRepo.findAll());
 			model.addAttribute("missions", missionRepo.findAllBySectorAndRecurringIsFalse(sectorResult));

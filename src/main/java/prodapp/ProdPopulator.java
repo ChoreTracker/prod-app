@@ -22,12 +22,12 @@ public class ProdPopulator implements CommandLineRunner {
 
 	public void run(String...args) throws Exception {
 		
-	User user = new User("Mom", "admin", "contact", "default", "ADMIN", "USER");
-	User user2 = new User("Dad", "admin", "contact2", "default", "ADMIN", "USER");
-	User user3 = new User("Emma", "user", "contact2", "default", "USER");
-	User user4 = new User("Lucy", "user", "contact2", "default", "USER");
-	User user5 = new User("Sophie", "user", "contact2", "default", "USER");
-	User user6 = new User("Jackson", "user", "contact2", "default", "USER");
+	User user = new User("Mom", "admin", "/images/avatars/woman-doctor.svg", "contact", "default", "ADMIN", "USER");
+	User user2 = new User("Dad", "admin", "/images/avatars/minotaur.svg", "contact2", "default", "ADMIN", "USER");
+	User user3 = new User("Emma", "user", "/images/avatars/girl5.svg", "contact2", "default", "USER");
+	User user4 = new User("Lucy", "user", "/images/avatars/girl1.svg", "contact2", "default", "USER");
+	User user5 = new User("Sophie", "user", "/images/avatars/girl4.svg", "contact2", "default", "USER");
+	User user6 = new User("Jackson", "user", "/images/avatars/boy1.svg", "contact2", "default", "USER");
 	userRepo.save(user);
 	userRepo.save(user2);
 	userRepo.save(user3);
