@@ -56,20 +56,20 @@ public class ProdPopulator implements CommandLineRunner {
 	sectorRepo.save(sector9);
 	sectorRepo.save(sector10);
 	
-	Mission mission = new Mission("Clean Toilet", "scrub the toilet", sector, 1, 2, "2018-12-25", null, true, 0, user);
-	Mission mission2 = new Mission("Scrub Tub", "clean the tub", sector, 4, 3, "2018-11-30", null, true, 0,
+	Mission mission = new Mission("Clean Toilet", "scrub the toilet", sector, 1, 2, "2018-12-25", null, false, 0, user);
+	Mission mission2 = new Mission("Scrub Tub", "clean the tub", sector, 4, 3, "2018-11-30", null, false, 0,
 			user);
 	Mission mission3 = new Mission("Sweep the Floor", "sweep thoroughly", sector2, 21, 4, "2018-12-06", null, false, 0,
 			user, user2);
 	Mission mission4 = new Mission("Make the Bed", "no tuck", sector3, 14, 4, "2018-12-13", null, false, 0);
 	Mission mission5 = new Mission("wash dog", "wash him real good", sector6, 1,3, "2018-12-12", null, false, 0, user2);
     Mission mission6 = new Mission("wash cat", "try it and see", sector, 1,4, "2018-12-13", null, false, 0, user5);
-    Mission mission7 = new Mission("rake leaves", "rake them real good", sector7, 1,3, "2018-12-01", null, true, 0, user);
-    Mission mission8 = new Mission("dishes", "scrub", sector2, 1,3, "2018-12-01", null, true, 0, user2);
-    Mission mission13 = new Mission("take out the trash", "to the curb", sector2, 7, 1, "2018-12-01", null, true, 0);
-    Mission mission14 = new Mission("grocery shopping", "all the things", sector2, 5, 3, "2018-12-01", null, true, 0, user2);
-    Mission mission15 = new Mission("clean the fridge", "throw out the leftovers", sector2, 14, 3, "2018-12-01", null, true, 0, user2);
-    Mission mission9 = new Mission("laundry", "wash dry fold put away", sector10, 5,2, "2018-11-30", null, true, 0, user2);
+    Mission mission7 = new Mission("rake leaves", "rake them real good", sector7, 1,3, "2018-12-01", null, false, 0, user);
+    Mission mission8 = new Mission("dishes", "scrub", sector2, 1,3, "2018-12-01", null, false, 0, user2);
+    Mission mission13 = new Mission("take out the trash", "to the curb", sector2, 7, 1, "2018-12-01", null, false, 0);
+    Mission mission14 = new Mission("grocery shopping", "all the things", sector2, 5, 3, "2018-12-01", null, false, 0, user2);
+    Mission mission15 = new Mission("clean the fridge", "throw out the leftovers", sector2, 14, 3, "2018-12-01", null, false, 0, user2);
+    Mission mission9 = new Mission("laundry", "wash dry fold put away", sector10, 5,2, "2018-11-30", null, false, 0, user2);
     Mission mission10 = new Mission("Put away legos", "in the bin please", sector8, 14, 4, "2018-12-13", null, false, 0, user4);
     Mission mission11 = new Mission("Vacuum", "the whole room, including the corners", sector8, 14, 4, "2018-12-13", null, false, 0, user3);
     Mission mission12 = new Mission("Make the Bed", "for real", sector4, 1, 1, "2018-12-13", null, false, 0, user3, user4, user5);

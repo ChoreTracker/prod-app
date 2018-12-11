@@ -5,7 +5,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="/css/reset.css">
 	<link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
-	<link rel="stylesheet" type="text/css" href="/css/sepStyles.css">
 	<link rel="stylesheet" type="text/css" href="/css/forms.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 
@@ -78,13 +77,20 @@
 						<section>
 							<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
 							<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+							<p>Sector: <span th:text= "${mission.sector}"></span></p>
 							<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
 							<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
 							<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
 							<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
 							<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
 						</section>
-						<h3 th:if="${mission.completionDate != null}">Mission Accomplished!</h3>
+						<div th:if="${mission.completionDate != null}">
+							<h3 >Mission Accomplished!</h3>
+							<form>
+								<input type="hidden" th:value="${mission.id}" name="missionId"/>
+								<button sec:authorize="hasRole('ROLE_ADMIN')" class="reopenButton button-primary" th:formaction= "@{/reopen-mission-button-sector}">Re-open Mission</button>
+							</form>
+						</div>
 						<form th:if="${mission.completionDate == null}">
 							<input type="hidden" th:value="${mission.id}" name="missionId"/>
 							<input type="hidden" th:value="${mission.sector.id}" name="sectorId"/>
@@ -162,8 +168,8 @@
 	<footer>
 		<p>&copy;Prod-App 2018</p>
 	</footer>		
+	<script src= "./js/sector.js"></script>
 	<script src = "./js/subnav.js"></script>	
-	<script src = "./js/add-mission.js"></script>
 
 </body>
 </html>
