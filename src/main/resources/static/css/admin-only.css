@@ -5,6 +5,56 @@ body {
 #adminContainer{
    display: block;
 }
+
+h1 {
+    color: #323232;
+    display: block;
+    font-size: 2em;
+    /*font-size: 2em;*/
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    line-height: 1.25em;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: .25em;
+    /*margin-top: 0.67em;
+    margin-bottom: 0.67em;*/
+}
+
+h2 {
+    color: #323232;
+    display: block;
+    font-size: 2em;
+    /*font-size: 1.5em;*/
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    line-height: 1.15em;
+    text-align: center;
+    /* margin-left: auto;
+    margin-right: auto; */
+    padding-bottom: .25em;
+    /*margin-top: 0.83em;
+    margin-bottom: 0.83em;*/
+    width: 90%;
+}
+
+h3 {
+    color: #323232;
+    display: block;
+    font-size: 1.2em;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    line-height: 1.25em;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: .3em;
+    /*padding-bottom: .5em;*/
+    /*margin-top: 1em;
+    margin-bottom: 1em;*/
+}
+
     
 #loginProd{
     display: block;
@@ -39,6 +89,7 @@ header h1 {
     font-size: 2em;
     font-weight: 200;
     line-height: 2em;
+    font-family: 'Roboto Slab', serif;
     margin-top: auto;
     margin-bottom: auto;
     padding-left: 1em;
@@ -65,12 +116,203 @@ header h1 {
  }
 
 #collapsibleItems{
-    margin-top: 6em;
+    margin-top: 9em;
 }
 
 .collapsible{
+    /* background-color: #8559a5; */
+    background-color: white;
+	border: solid 1px transparent;
+    border-radius: 25px;
+    font-size: 1.5em;
+	display: block;
+    height: 65px;
+    left: 0;
+    /*margin: 2px 0;*/
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+	padding-top: 0.5em 1em;
+    color: black;
+    font-family: 'Roboto Slab', serif;
+  	text-align: center;
+    text-decoration: none;
+    width: 90%;
     /* margin-top: 6em; */
 }
+
+.collapsible:hover, .collapsible:focus {
+	background-color: #48b782;
+}
+
+.topNav {
+    background-color: #8559a5; /*purple*/
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 65px;
+    z-index: 2;
+ }
+
+ .topNav a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    /* height: 65px; */
+    /* margin-top: 0.3em; */
+    padding-left: 15px;
+    padding-top: 0.1em;
+    border-bottom: 1px solid #888;
+    transition: .3s background-color;
+    border-bottom: none;
+  }
+
+  .topNav li {
+    font-size: 1.2em;
+    text-align: left;
+    width: 25%;
+      border-bottom: none;
+      height: 50px;
+      line-height: 50px;
+      font-size: 1.4em;
+      display: inline-block;
+      margin-right: -4px;
+  }
+  .topNav li:hover ul {
+    display: block;
+    text-align: center;
+    display: flex;
+    left: 0;
+    width: 100vw;
+    margin-left: -100%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  /* Sub Menus */
+ .topNav li li {
+    background: #48b782; 
+    font-size: .9em;
+    text-align: center;
+    height: 52px;
+    /* margin-top: auto; */
+    /* padding-top: .5em; */
+    /*white-space:nowrap;
+    width: 200px;*/
+ }
+ /* Sub Menus */
+ .topNav li ul {
+    position: absolute;
+    display: none;
+    width: inherit;
+  }
+  .topNav li ul li {
+    display: block;
+  }
+ .topNav ul li a:hover {
+    background: #48b782; 
+    color: black;
+    z-index: 2;
+ }
+ .topNav ul li a.active {
+    background: #48b782; 
+    color: black;
+    cursor: default;
+    z-index: 2;
+ }
+ .topNav > ul > li {
+    text-align: center;
+  }
+  .topNav > ul > li > a {
+    padding-left: 0;
+  }
+ .topNav ul li ul {
+    list-style: none;
+    background: #48b782; 
+    color: black;
+    text-align: center;
+    padding: 0;
+    padding-top: .5em;
+    position: absolute;
+    height: 65px;
+    /*width: inherit;*/
+    z-index: 2;
+    /*margin-left: -200px;
+    white-space:nowrap;*/
+    width: 100vw;
+ }
+
+ .first-nav img {
+    margin-top: 0.5em;
+    width: 40px;
+    height: 40px;
+ }
+
+ nav .sub-nav {
+    background: #dbcde4; /*lavender*/
+    border: solid 1px transparent;
+  	border-radius: 25px;    
+    /*background: #ffa258;*/
+    display: none;
+    height: 11em;
+    /*margin: auto;
+    position: relative;
+    top: 1em;*/
+    width: 11em;
+    z-index: 10;
+    }
+
+nav .sub-nav ul {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        line-height: 3em;
+        list-style: none;
+        padding: 1em;
+    }
+
+nav .sub-nav li {
+            line-height: 3em;
+            /*margin: auto;*/
+        }
+
+nav .sub-nav li a {
+                text-decoration: none;
+                color: #323232;
+            }
+
+nav .sub-nav li a:hover {
+    text-decoration: none;
+    color: #323232;
+}
+
+.button-primary {
+	background-color: #8559a5;
+	border: solid 1px transparent;
+  	border-radius: 25px;
+	display: block;
+    height: 50px;
+    left: 0;
+    /*margin: 2px 0;*/
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+	padding-top: 0.5em 1em;
+	width: 150px;
+  	color: white;
+  	text-align: center;
+  	text-decoration: none;
+}
+
+.button-primary:hover, .button-primary:focus {
+	background-color: #48b782;
+}
+
 
 /*.missions h1 {*/
     /*called #title h1 in the other style-sheet*/
@@ -135,6 +377,10 @@ header h1 {
 	width: 100px;
 }*/
 
+.content p{
+    margin-left: 3em;
+}
+
 input[type="text"], 
 input[type="password"], 
 input[type="number"],
@@ -149,6 +395,7 @@ select, textarea {
     margin-right: auto;
     padding: 1em;
     width: 90%;
+    height: 25px;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
