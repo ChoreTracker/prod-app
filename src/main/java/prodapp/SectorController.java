@@ -23,10 +23,14 @@ public class SectorController {
 
 	@Resource
 	UserRepository userRepo;
+	
+	@Resource
+	RewardRepository rewardsRepo;
 
 	@RequestMapping("/show-sectors")
 	public String findAllSectors(Model model) {
 		model.addAttribute("sectors", sectorRepo.findAll());
+		model.addAttribute("rewards", rewardsRepo.findAll());
 		return "sectors";
 	}
 
@@ -36,6 +40,7 @@ public class SectorController {
 
 		if (sector.isPresent()) {
 			Sector sectorResult = sector.get();
+			model.addAttribute("rewards", rewardsRepo.findAll());
 			model.addAttribute("sector", sectorResult);
 			model.addAttribute("users", userRepo.findAll());
 			model.addAttribute("missions", missionRepo.findAllBySectorAndRecurringIsFalse(sectorResult));

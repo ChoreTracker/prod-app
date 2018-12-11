@@ -24,10 +24,14 @@ public class UserController {
 
 	@Resource
 	SectorRepository sectorRepo;
+	
+	@Resource
+	RewardRepository rewardsRepo;
 
 	@RequestMapping("/show-users")
 	public String findAllUsers(Model model) {
 		model.addAttribute("users", userRepo.findAll());
+		model.addAttribute("rewards", rewardsRepo.findAll());
 		return "users";
 	}
 
@@ -39,6 +43,7 @@ public class UserController {
 
 			User user = userResult.get();
 			model.addAttribute("user", user);
+			model.addAttribute("rewards", rewardsRepo.findAll());
 			model.addAttribute("usersMissions",
 					missionRepo.findByUsersContainsAndCompletionDateIsNullAndRecurringIsFalseOrderByDueDate(user));
 			model.addAttribute("sectors", sectorRepo.findAll());
