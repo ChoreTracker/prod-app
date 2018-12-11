@@ -88,7 +88,7 @@
                     <article th:each="user: ${users}">
                     <!-- <img th:src="${user.imageUrl}"/> -->
                         <form th:method="POST" th:action= "@{/user(id=${user.id})}">
-                            <button class="mission-intro missionButton"> <h4 th:text="${user.userName}"></h4></button>
+                            <button class="mission-intro missionButton"> <h4 th:text="${user.userName} +' (' + ${user.rewardBalance} + ')'"></h4></button>
                         </form>
                     </article>
                 </div>
