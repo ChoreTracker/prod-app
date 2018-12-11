@@ -147,6 +147,11 @@ public class MissionController {
 		Mission mission = result.get();
 		mission.markComplete();
 		missionRepo.save(mission);
+		Optional<User>userResult = userRepo.findById(userId);
+		User user = userResult.get();
+		int reward = mission.getRewardValue();
+		user.setRewardBalance(user.getRewardBalance() + reward);
+		userRepo.save(user);
 		
 		return "redirect:/user?id=" + userId;
 	}

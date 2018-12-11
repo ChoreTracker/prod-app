@@ -1,5 +1,6 @@
 package prodapp;
 
+import java.security.Principal;
 import java.util.Optional;
 
 import javax.annotation.Resource;
@@ -70,12 +71,19 @@ public class SectorController {
 	}
 
 	@RequestMapping("/missionDone-sector-button")
-	public String setAsComplete(@RequestParam long missionId, @RequestParam long sectorId) {
+	public String setAsComplete(@RequestParam long missionId, @RequestParam long sectorId, Principal principal) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.markComplete();
 		missionRepo.save(mission);
-
+		String activeUser = principal.getName().toString();
+		Optional<User> loggedInUser = userRepo.findByUserName(activeUser);
+		long userId = loggedInUser.get().getId();
+		Optional<User>userResult = userRepo.findById(userId);
+		User user = userResult.get();
+		int reward = mission.getRewardValue();
+		user.setRewardBalance(user.getRewardBalance() + reward);
+		userRepo.save(user);
 		return "redirect:/sector?id=" + sectorId;
 	}
 
