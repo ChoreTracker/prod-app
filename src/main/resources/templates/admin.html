@@ -50,7 +50,7 @@
 
 <section id="collapsibleItems">	
 	<h2>Mission Settings</h2>
-	<button class="collapsible">Add Mission (Click to Expand)</button>
+	<button class="collapsible">Add A Mission</button>
 		<div class="content">
 		<!-- <ul> -->
 			<!-- <li> -->
@@ -173,9 +173,9 @@
 			<!-- <li> -->
 				<h3>Missions by User</h3>
 			<!-- </li> -->
-						<div id="myMissions" class="tabcontent active" style="display: block">
-				<div class ="mission" th:each="mission: ${usersMissions}">	
-						<article class="missionLists" >
+					<div id="myMissions" class="tabcontent active" style="display: block">
+						<div class ="mission" th:each="mission: ${usersMissions}">	
+							<article class="missionLists" >
 								<a th:href="@{/sector(id=${mission.sector.id})}">
 									<img th:src="${mission.sector.imageUrl}"/></a>
 							<button >
