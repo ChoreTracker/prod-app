@@ -4,15 +4,58 @@
 	<title>Administration tasks</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="./css/reset.css">
-	<link rel="stylesheet" type="text/css" href="./css/style-sheet.css">
-	<link rel="stylesheet" type="text/css" href="./css/forms.css">
+	<!-- <link rel="stylesheet" type="text/css" href="./css/style-sheet.css"> -->
+	<link rel="stylesheet" type="text/css" href="./css/admin-only.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 </head>
 <body>
-	<main id="container"> 
-	<div class="missions"><h1>Mission Administration</h1>
-		<ul>
-			<li><h3>Add a new mission</h3></li>
+	<main id="adminContainer"> 
+	
+	<header>
+			<div id="headerAndTinyProd">
+					<h1>Administrative</h1>
+					<a href="http://localhost:8080/"><img id="tinyProd"  src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application"></a>
+				</div>
+
+				<nav class="topNav">
+						<ul class="first-nav">
+							<li class="first-nav" ><a><img src="./images/goto-icon-white.svg" alt="go to icon"></a>
+								<ul>
+									<li class="sub-nav"><a href="http://localhost:8080/show-sectors">Sectors</a></li>
+									<li class="sub-nav"><a href="http://localhost:8080/show-users">Users</a></li>
+								</ul>
+							</li>
+		
+							<li class="first-nav"><a><img src="./images/plus-icon-white.svg" alt="add icon"></a>
+								<ul>
+									<li class="sub-nav"><a><button id="add-sector-button">Add Sector</button></a></li>
+								</ul>
+							</li>		
+								
+							<li class="first-nav"><a><img src="./images/cog-icon-white.svg" alt="settings icon"></a>
+								<ul>
+									<li class="sub-nav"><a><button id="change-theme-button">Change Theme</button></a></li>
+									<li sec:authorize="hasRole('ROLE_ADMIN')" class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
+								</ul>
+							</li>
+		
+							<li class="first-nav"><a><img src="./images/logout-icon-white.svg" alt="logout icon"></a>
+								<ul>
+									<li class="sub-nav"><a href="http://localhost:8080/login?logout">Logout</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+	</header>
+
+<section id="collapsibleItems">	
+	<h2>Mission Settings</h2>
+	<button class="collapsible">Add Mission (Click to Expand)</button>
+		<div class="content">
+		<!-- <ul> -->
+			<!-- <li> -->
+				<h3>Add a new mission</h3>
+			<!-- </li> -->
 					<form>
 					<input type="text" name="missionName" placeholder="Name of the mission" required/>
 					<input type="text" name="missionDescription" placeholder="Description of the mission" required/>
@@ -71,14 +114,20 @@
 								th:text="${checkboxValue}"></label>
 						</li>
 					</ul>-->
-					<p>Please choose a sector:</p>
-					<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${sector.id}" th:text="${sector.sectorName}" required> 	
+					<!-- <p>Please choose a sector:</p>
+					<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${sector.id}" th:text="${sector.sectorName}" required> 	 -->
 						<!-- not showing users or checkboxes yet -->
 					<p>Assign user(s)</p>
 					<input type="checkbox" name="userId" th:each= "user: ${users}" th:value="${user.id}" th:text="${user.userName}" required> <br>
 					<button class="newMisson-button button-primary" th:formaction= "@{/create-mission-button}">Add Mission</button> 
 					</form>
-			<li><h3>Show Unassigned Missions</h3></li>
+				</div>
+				
+		<button class="collapsible">Show Unassigned Missions</button>
+		<div class="content">
+			<!-- <li> -->
+				<h3>Unassigned Missions</h3>
+			<!-- </li> -->
 			<div id="unassignedMissions" class="tabcontent">
 				<div class ="mission" th:each="mission: ${unassignedUserMissions}">
 					
@@ -117,7 +166,13 @@
 					</div>
 				</div>
 			</div>
-			<li><h3>Show Missions by User</h3></li>
+		</div>
+
+		<button class="collapsible">Show Missions by User</button>
+		<div class="content">
+			<!-- <li> -->
+				<h3>Missions by User</h3>
+			<!-- </li> -->
 						<div id="myMissions" class="tabcontent active" style="display: block">
 				<div class ="mission" th:each="mission: ${usersMissions}">	
 						<article class="missionLists" >
@@ -157,14 +212,34 @@
 				</div>
 				
 			</div>
-			<li><h3>Show Recurring Missions</h3></li>
-			<li><h3>Find Complete Missions</h3></li>
-			<li><h3>Edit Recurring Missions</h3></li>
-			<li><h3>Edit Missions</h3></li>
+		</div>
+		<button class="collapsible">Show Recurring Missions</button>
+		<div class="content">
+			<!-- <li> -->
+				<h3>Show Recurring Missions</h3>
+			<!-- </li> -->
+		</div>		
+		<button class="collapsible">Find Completed Missions</button>
+		<div class="content">	
+			<!-- <li> -->
+				<h3>Find Completed Missions</h3>
+			<!-- </li> -->
+		</div>	
+		<button class="collapsible">Edit Recurring Missions</button>
+		<div class="content">
+			<!-- <li> -->
+				<h3>Edit Recurring Missions</h3>
+			<!-- </li> -->
+		</div>
+		<button class="collapsible">Edit Missions</button>
+		<div class="content">
+			<!-- <li> -->
+				<h3>Edit Missions</h3>
+			<!-- </li> -->
 				<article th:each="mission: ${missions}">
 					<form >
 						<p>Name<input type="text" name="missionname" th:value="${mission.missionName}" required/></p>
-						<p>Description<input type="text" name="missionndescirption" th:value="${mission.missionDescription}" required/></p>
+						<p>Description<input type="text" name="missionndescription" th:value="${mission.missionDescription}" required/></p>
 						<p>When is the mission due?</p>
 						<input type="date" name="dueDate" th:value="${mission.dueDate}" required/>
 						<p>Does this mission recur?</p>
@@ -189,18 +264,27 @@
 					<button class="deleteMisson-button button-primary" th:action= "@{/admin/delete-mission-button}">Delete Mission</button>
 					<hr>
 				</article>
-		</ul>
+		<!-- </ul> -->
 	</div>
-		<div class="sectors"><h1>Sector Administration</h1>
-		<ul>
-			<li><h3>Add Sector</h3></li>
+		
+	<h2>Sector Settings</h2>
+	<button class="collapsible">Add Sector</button>
+		<div class="content sectors">
+		<!-- <ul> -->
+			<!-- <li> -->
+				<h3>Add A Sector</h3>
+			<!-- </li> -->
 				<form>
 					<input type="text" name="sectorName" placeholder="Name of the Sector" required/>					
 					<button class="newSector-button button-primary" th:formaction= "@{/add-sector-button}">Add Sector</button> 
 					</form>
-			<li><h3>Edit Sectors</h3></li>
-			<div class="grid-container">
-					<div class="grid-container">
+		</div>
+		<button class="collapsible">Edit A Sector</button>
+		<div class="content">	
+			<!-- <li> -->
+				<h3>Edit Sectors</h3>
+			<!-- </li> -->
+		<div class="grid-container">
 		<div id="sector-list">
 			<article th:each="sector: ${sectors}">
 					<form th:method="POST" th:action= "@{/sector(id=${sector.id})}">
@@ -211,10 +295,16 @@
 			</article>
 		</div>
 		</div>
-		<div class="users"><h1>User Administration</h1>
-		<ul>
-			<li>Add User</li>
-						<div id="add-mission-modal" class="modal">
+	</div>
+
+	<h2>User Settings</h2>
+	<button class="collapsible">Add A User</button>
+		<div class="users content">
+		<!-- <ul> -->
+			<!-- <li> -->
+				<h3>Add User</h3>
+			<!-- </li> -->
+				<div id="add-mission-modal" class="modal">
 				<div class="modal-content">
 					<span id="close-add-mission" class="close">&times;</span>
 					<h3>Add New User</h3>
@@ -228,14 +318,30 @@
 						</form>
 				</div>				
 			</div>
-			<li>Edit User</li>
-			<li>Remove User</li>
-			<li>Change User Password</li>
-		</ul>
-	</div>
-	</div>
-	</ul>
-	</div>
+		</div>
+
+		<button class="collapsible">Edit User</button>
+		<div class="content">
+			<!-- <li> -->
+				<h3>Edit User</h3>
+			<!-- </li> -->
+		</div>
+		<button class="collapsible">Remove User</button>
+		<div class="content">
+			<!-- <li> -->
+				<h3>Remove User</h3>
+			<!-- </li> -->
+		</div>			
+		<button class="collapsible">Change User Password</button>
+		<div class="content">
+			<!-- <li> -->
+				<h3>Change User Password</h3>
+			<!-- </li> -->
+		</div>	
+		<!-- </ul> -->
+	
 	</main>
+	<!-- <script src = "./js/subnav.js"></script> -->
+	<script src = "./js/admin.js"></script>
 </body>
 </html>

@@ -36,15 +36,15 @@ public class ProdPopulator implements CommandLineRunner {
 	userRepo.save(user6);
 	
 	Sector sector = new Sector("Bathroom", "/images/icons/bathtub.svg");
-	Sector sector2 = new Sector("Kitchen","/images/sectors/kitchen-1.jpg");
-	Sector sector3 = new Sector("Master Bedroom", "/images/sectors/bedroom-6.jpg");
-	Sector sector4 = new Sector("Girls' Bedroom","/images/sectors/bedroom-3.jpg");
-	Sector sector5= new Sector("Dining Room", "/images/sectors/dining-rm-1.jpg");
-	Sector sector6 = new Sector("Garage","/images/sectors/garage-1.jpg");
-	Sector sector7 = new Sector("Yard", "/images/sectors/yard-2.jpg");
-	Sector sector8 = new Sector("Playroom", "/images/sectors/play-rm-2.jpg");
-	Sector sector9 = new Sector("Jackson's Bedroom", "/images/sectors/bedroom-5.jpg");
-	Sector sector10 = new Sector("Laundry Room", "/images/sectors/laundry-rm-2.jpg");
+	Sector sector2 = new Sector("Kitchen","/images/icons/fridge.svg");
+	Sector sector3 = new Sector("Master Bedroom", "/images/icons/queen-bed.svg");
+	Sector sector4 = new Sector("Girls' Bedroom","/images/icons/bunk-beds.svg");
+	Sector sector5= new Sector("Dining Room", "/images/icons/set-table.svg");
+	Sector sector6 = new Sector("Garage","/images/icons/garage.svg");
+	Sector sector7 = new Sector("Yard", "/images/icons/yard.svg");
+	Sector sector8 = new Sector("Playroom", "/images/icons/put-away-toys.svg");
+	Sector sector9 = new Sector("Jackson's Bedroom", "/images/icons/crib.svg");
+	Sector sector10 = new Sector("Laundry Room", "/images/icons/washing-machine.svg");
 	sectorRepo.save(sector);
 	sectorRepo.save(sector2);
 	sectorRepo.save(sector3);
