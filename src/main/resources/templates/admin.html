@@ -50,7 +50,7 @@
 
 <section id="collapsibleItems">	
 	<h2>Mission Settings</h2>
-	<button class="collapsible">Add Mission (Click to Expand)</button>
+	<button class="collapsible">Add A Mission</button>
 		<div class="content">
 		<!-- <ul> -->
 			<!-- <li> -->
@@ -117,11 +117,49 @@
 					<!-- <p>Please choose a sector:</p>
 					<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${sector.id}" th:text="${sector.sectorName}" required> 	 -->
 						<!-- not showing users or checkboxes yet -->
-					<p>Assign user(s)</p>
+				<p>Assign user(s)</p>
+				<div id="userCheckbox">
 					<input type="checkbox" name="userId" th:each= "user: ${users}" th:value="${user.id}" th:text="${user.userName}" required> <br>
+				</div>
 					<button class="newMisson-button button-primary" th:formaction= "@{/create-mission-button}">Add Mission</button> 
 					</form>
 				</div>
+				<button class="collapsible">Edit Missions</button>
+				<div class="content">
+					<!-- <li> -->
+						<h3>Edit Missions</h3>
+					<!-- </li> -->
+						<article th:each="mission: ${missions}">
+							<form >
+								<p>Name<input type="text" name="missionname" th:value="${mission.missionName}" required/></p>
+								<p>Description<input type="text" name="missionndescription" th:value="${mission.missionDescription}" required/></p>
+								<p>When is the mission due?</p>
+								<input type="date" name="dueDate" th:value="${mission.dueDate}" required/>
+								<p>Does this mission recur?</p>
+								<div id="userCheckbox">
+								<input type="radio" name="recurring" value="true" checked required>Yes<br>
+								<input type="radio" name="recurring" value="false" required>No<br></div>
+								<p>How many days elapse between mission due dates</p>
+								<input type="number" name="period"  min="0" max="900" th:value="${mission.period}" required/>
+								<p>How many days (1-7) can the mission be snoozed</p>
+								<input type="number" name="snooze" min="1" max="7" th:value="${mission.snooze}" required/>
+								<!-- not showing radio buttons for sector -->
+								<p>Change sector</p>
+								<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${mission.sector}" th:text="${sector.sectorName}" th:checked="${mission.sector}" required> <br>
+								<!-- not showing users or checkboxes yet -->
+								<p>Assign user(s)</p>
+								<input type="checkbox" name="userId" th:each= "user: ${users}" th:checked="${users}" th:value="${user.id}" th:text="${user.userName}" required>
+		<!-- 						    <label th:for="${#ids.prev('mission.users')}" th:text="${mission.users}"></label> --> <br>
+								<input type="hidden" name="missionId" th:value="${mission.id}">
+								<p>Change Completion Date<input type="text" name="missioncompletion" th:value="${mission.completionDate}"></p>
+								<button class="saveMisson-button button-primary" th:action= "@{/save-mission-button}">Save Changes</button> 
+								</form>
+								<input type="hidden" name="missionId" th:value="${mission.id}">
+							<button class="deleteMisson-button button-primary" th:action= "@{/admin/delete-mission-button}">Delete Mission</button>
+							<hr>
+						</article>
+				<!-- </ul> -->
+			</div>
 				
 		<button class="collapsible">Show Unassigned Missions</button>
 		<div class="content">
@@ -173,9 +211,9 @@
 			<!-- <li> -->
 				<h3>Missions by User</h3>
 			<!-- </li> -->
-						<div id="myMissions" class="tabcontent active" style="display: block">
-				<div class ="mission" th:each="mission: ${usersMissions}">	
-						<article class="missionLists" >
+					<div id="myMissions" class="tabcontent active" style="display: block">
+						<div class ="mission" th:each="mission: ${usersMissions}">	
+							<article class="missionLists" >
 								<a th:href="@{/sector(id=${mission.sector.id})}">
 									<img th:src="${mission.sector.imageUrl}"/></a>
 							<button >
@@ -225,47 +263,13 @@
 				<h3>Find Completed Missions</h3>
 			<!-- </li> -->
 		</div>	
-		<button class="collapsible">Edit Recurring Missions</button>
-		<div class="content">
+		<!-- <button class="collapsible">Edit Recurring Missions</button>
+		<div class="content"> -->
 			<!-- <li> -->
-				<h3>Edit Recurring Missions</h3>
+				<!-- <h3>Edit Recurring Missions</h3> -->
 			<!-- </li> -->
-		</div>
-		<button class="collapsible">Edit Missions</button>
-		<div class="content">
-			<!-- <li> -->
-				<h3>Edit Missions</h3>
-			<!-- </li> -->
-				<article th:each="mission: ${missions}">
-					<form >
-						<p>Name<input type="text" name="missionname" th:value="${mission.missionName}" required/></p>
-						<p>Description<input type="text" name="missionndescription" th:value="${mission.missionDescription}" required/></p>
-						<p>When is the mission due?</p>
-						<input type="date" name="dueDate" th:value="${mission.dueDate}" required/>
-						<p>Does this mission recur?</p>
-						<input type="radio" name="recurring" value="true" checked required>Yes<br>
-						<input type="radio" name="recurring" value="false" required>No<br>
-						<p>How many days elapse between mission due dates</p>
-						<input type="number" name="period"  min="0" max="900" th:value="${mission.period}" required/>
-						<p>How many days (1-7) can the mission be snoozed</p>
-						<input type="number" name="snooze" min="1" max="7" th:value="${mission.snooze}" required/>
-						<!-- not showing radio buttons for sector -->
-						<p>Change sector</p>
-						<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${mission.sector}" th:text="${sector.sectorName}" th:checked="${mission.sector}" required> <br>
-						<!-- not showing users or checkboxes yet -->
-						<p>Assign user(s)</p>
-						<input type="checkbox" name="userId" th:each= "user: ${users}" th:checked="${users}" th:value="${user.id}" th:text="${user.userName}" required>
-<!-- 						    <label th:for="${#ids.prev('mission.users')}" th:text="${mission.users}"></label> --> <br>
-						<input type="hidden" name="missionId" th:value="${mission.id}">
-						<p>Change Completion Date<input type="text" name="missioncompletion" th:value="${mission.completionDate}"></p>
-						<button class="saveMisson-button button-primary" th:action= "@{/save-mission-button}">Save Changes</button> 
-						</form>
-						<input type="hidden" name="missionId" th:value="${mission.id}">
-					<button class="deleteMisson-button button-primary" th:action= "@{/admin/delete-mission-button}">Delete Mission</button>
-					<hr>
-				</article>
-		<!-- </ul> -->
-	</div>
+		<!-- </div> -->
+		
 		
 	<h2>Sector Settings</h2>
 	<button class="collapsible">Add Sector</button>
