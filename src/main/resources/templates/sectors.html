@@ -28,7 +28,7 @@
 
 					<li class="first-nav"><a><img src="./images/plus-icon-white.svg" alt="add icon"></a>
                 		<ul>
-							<li class="sub-nav"><a><button id="add-sector-button">Add Sector</button></a></li>
+							<li sec:authorize="hasRole('ROLE_ADMIN')" class="sub-nav"><a><button id="add-sector-button">Add Sector</button></a></li>
 						</ul>
 					</li>		
 						

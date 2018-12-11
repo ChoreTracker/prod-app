@@ -177,14 +177,13 @@ public class SectorController {
 
 	@RequestMapping("/make-mission-within-sector")
 	public String createMissionInSector(long sectorId, String missionName, String missionDescription, int period,
-
-			int snooze, String dueDate, boolean recurring,
+			int snooze, String dueDate, boolean recurring, int rewardValue,
 			@RequestParam(value = "users", required = false) long[] users) {
 		Optional<Sector> sectorResult = sectorRepo.findById(sectorId);
 
 		Sector sector = sectorResult.get();
 		Mission newMission = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null, false,
-				0);
+				0, rewardValue);
 		missionRepo.save(newMission);
 		if (users != null) {
 			for (int i = 0; i < users.length; i++) {
@@ -199,7 +198,7 @@ public class SectorController {
 
 		if (recurring) {
 			Mission newRecurring = new Mission(missionName, missionDescription, sector, period, snooze, dueDate, null,
-					true, 0);
+					true, 0, rewardValue);
 			missionRepo.save(newRecurring);
 			if (users != null) {
 				for (int i = 0; i < users.length; i++) {
