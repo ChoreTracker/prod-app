@@ -1,4 +1,3 @@
-
 .missionDone {
     background-color: gray;
 }
@@ -15,6 +14,16 @@ body {
     display: block;
 }
 
+#prod-mascot {
+	margin-left: auto;
+    margin-right: auto;
+	margin-top: 5em;
+	text-align: center;
+	width: 100%;
+    z-index: 1;    
+    transform: rotate(-5deg);
+   }
+
 #loginProd{
     display: block;
      margin-right: auto;
@@ -26,14 +35,11 @@ body {
  }
 
 #tinyProd {
-   margin-left: 67%;
-   margin-right: auto;
+   margin-left: 0;
    margin-top: 0.4em;
-   padding-left: 3%;
-   position: relative;
-   text-align: left;
-   width: 100%;
-   z-index: 1;
+   padding-left: .5em;
+   position: fixed;
+   z-index: 2;
    /* transform: rotate(-5deg); */
    width: 50px;
    height: auto;
@@ -49,20 +55,21 @@ header h1 {
     font-size: 2em;
     font-weight: 200;
     line-height: 2em;
+    margin-left: 65px;
     margin-top: auto;
     margin-bottom: auto;
-    padding-left: 1em;
-    padding-top: 0em;
+    margin-top: .3em;
     position: fixed;
     top: 0;
     height: 65px;
-    width: 35%;
+    width: 100%;
     z-index: 2;
 }
 
 #headerAndTinyProd {
     width: 50%;
      background:#f2ecc2;
+     left: 0;
      position: fixed;
      z-index: 2;
      height: 65px;
@@ -193,6 +200,11 @@ nav .sub-nav li a:hover {
     border-bottom: 1px solid #888;
     transition: .3s background-color;
     border-bottom: none;
+    text-decoration: none;
+  }
+
+  .topNav a:hover {
+    /* text-decoration: underline; */
   }
 
   .topNav li {
@@ -277,9 +289,9 @@ nav .sub-nav li a:hover {
     margin-top: 4em;
  } */
 
- .tabcontent {
+ /*.tabcontent {
      background: fuschia;
- }
+ }*/
 
 .tab ul {
     /*was formerly named nav #tabbed-nav ul*/
@@ -342,6 +354,8 @@ nav .sub-nav li a:hover {
 
 .tablinks {
     font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: .5em;
 }
 
 .tab ul li  {
@@ -371,7 +385,7 @@ nav .sub-nav li a:hover {
 }
 
 .tablinks .active {
-    border-radius: 25px 25px 0px 0px;
+    border-radius: 20px 20px 0px 0px;
 }
 
 .tabcontent {
@@ -510,7 +524,9 @@ button {
     left: 0;
     /*margin: 2px 0;*/
     margin-left: auto;
-	margin-right: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
 	padding-top: 0.5em 1em;
 	width: 150px;
   	color: white;
@@ -545,11 +561,12 @@ article {
 
 article img {
     object-fit: cover;
-	width: 75px;
-	height: 75px;
+	width: 65px;
+	height: 65px;
     border-radius: 25% 0% 0% 25%;
     margin: 0;
     margin-top: 0.51em;
+    margin-left: 1em;
     padding: 0;
 }
 

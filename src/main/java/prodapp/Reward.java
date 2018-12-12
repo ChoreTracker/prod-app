@@ -10,7 +10,7 @@ public class Reward {
 
 	@Id
 	@GeneratedValue
-	private long id;
+	private long rewardId;
 	private String rewardName;
 	private String rewardDescription;
 	private int rewardValue;
@@ -39,7 +39,7 @@ public class Reward {
 
 
 	public long getId() {
-		return id;
+		return rewardId;
 	}
 
 
@@ -62,7 +62,7 @@ public class Reward {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + (int) (rewardId ^ (rewardId >>> 32));
 		return result;
 	}
 
@@ -76,8 +76,9 @@ public class Reward {
 		if (getClass() != obj.getClass())
 			return false;
 		Reward other = (Reward) obj;
-		if (id != other.id)
+		if (rewardId != other.rewardId)
 			return false;
 		return true;
 	}
+
 }

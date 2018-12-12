@@ -6,8 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
-    <link rel="stylesheet" type="text/css" href="/css/sepStyles.css">
     <link rel="stylesheet" type="text/css" href="/css/forms.css">
+    <link th:if="${loggedInUser.theme == 'space'}" rel="stylesheet" type="text/css" href="/css/space.css">
+    <link th:if="${loggedInUser.theme == 'pink'}" rel="stylesheet" type="text/css" href="/css/pink.css">
+
+
 
     <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 </head>
@@ -57,6 +60,7 @@
                                 <input type="text" name="userName" placeholder="Name of the user" required/>
                                 <input type="text" name="password" placeholder="Create a password for the user"/>
                                 <input type="text" name="contact" placeholder="Provide an email adress for the user"/>
+                                <input type="file" name="avatar" placeholder="avatar URL" required/>
                                 <!-- <input type="text" name="theme" placeholder="Default">Theme</input> -->
                                 <input type="checkbox" name="roles" value="ADMIN">Administrative User<br>
                                 <button class="newUser-button button-primary" th:formaction= "@{/add-user-button}">Add User</button>
@@ -74,8 +78,12 @@
                                     <input type="radio" name="theme" value="space" required> 
                                         <span class="radio-block-checkmark"></span>
                                 </label>
-                                <label class="radio-block">Magic
-                                    <input type="radio" name="theme" value="magic" required> 
+                                <label class="radio-block">Cotton Candy
+                                    <input type="radio" name="theme" value="pink" required> 
+                                        <span class="radio-block-checkmark"></span>
+                                </label>
+                                <label class="radio-block">Default
+                                    <input type="radio" name="theme" value="default" required> 
                                         <span class="radio-block-checkmark"></span>
                                 </label>
                                 <button class="button-primary" th:formaction= "@{/change-theme}">Change Theme</button> 
@@ -98,9 +106,11 @@
             <div class="grid-container">
                 <div class="user">
                     <article th:each="user: ${users}">
-                    <!-- <img th:src="${user.imageUrl}"/> -->
-                        <form th:method="POST" th:action= "@{/user(id=${user.id})}">
-                            <button class="mission-intro missionButton"> <h4 th:text="${user.userName} +' (' + ${user.rewardBalance} + ')'"></h4></button>
+
+                    <img th:src="${user.avatar}"/>
+                        <form style="width: 100%" th:method="POST" th:action= "@{/user(id=${user.id})}">
+                            <button class="mission-intro missionButton"> <h4 th:text="${user.userName} + ' (' + ${user.rewardBalance} + ')'"></h4></button>
+
                         </form>
                     </article>
                 </div>

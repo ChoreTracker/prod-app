@@ -5,17 +5,26 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="/css/reset.css">
 		<link rel="stylesheet" type="text/css" href="/css/style-sheet.css">
-		<link rel="stylesheet" type="text/css" href="/css/sepStyles.css">
 		<link rel="stylesheet" type="text/css" href="/css/forms.css">
+		<link th:if="${loggedInUser.theme == 'space'}" rel="stylesheet" type="text/css" href="/css/space.css">
+		<link th:if="${loggedInUser.theme == 'pink'}" rel="stylesheet" type="text/css" href="/css/pink.css">
+
+
+
+
 		<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Kanit|Russo+One" rel="stylesheet">
+
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	</head>
 	<body>
 		<main >
 			<header>
 				<div id="headerAndTinyProd">
-					<h1 th:text=" ${user.userName} +'(' + ${user.rewardBalance} + ')  Missions'"></h1>
-					<img id="tinyProd"  src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application">
+
+					<a href="http://localhost:8080/"><img id="tinyProd"  src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application"></a>
+					<h1 th:text=" ${user.userName} +'(' + ${user.rewardBalance} + ') Missions'"></h1>
+
 				</div>
 			
 			<nav class="topNav">
@@ -33,8 +42,11 @@
 					</li>
 					<li class="first-nav"><a><img src="./images/cog-icon-white.svg"  alt="settings icon"></a>
 						<ul>
+
 							<li sec:authorize="hasRole('ROLE_ADMIN')" class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
 							<li class="sub-nav"><a><button id="view-rewards-button">Rewards</button></a></li>
+              <li class="sub-nav"><a><button id="change-theme-button">Change Theme</button></a></li>
+
 						</ul>
 					</li>
 					<li class="first-nav"><a><img src="./images/logout-icon-white.svg"  alt="logout icon"></a>
@@ -77,6 +89,7 @@
 								<section>
 									<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
 									<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+									<p>Sector: <span th:text= "${mission.sector.sectorName}"></span></p>
 									<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
 									<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
 									<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
@@ -118,6 +131,7 @@
 									<section>
 										<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
 										<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+										<p>Sector: <span th:text= "${mission.sector.sectorName}"></span></p>
 										<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
 										<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
 										<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
@@ -150,7 +164,6 @@
 									</div>
 								</button>
 							</article>
-
 							<article th:if="${mission.completionDate == null}" class="missionLists" id="allUserMissions" >
 								<a th:href="@{/sector(id=${mission.sector.id})}">
 									<img th:src="${mission.sector.imageUrl}"/></a>
@@ -171,6 +184,7 @@
 									<section>
 										<p>Mission Name: <span th:text = "${mission.missionName}"></span></p>
 										<p>Mission Decription: <span th:text = "${mission.missionDescription}"></span></p>
+										<p>Sector: <span th:text= "${mission.sector.sectorName}"></span></p>
 										<p>Mission's Assigned Users: <span th:each="user: ${mission.users}" th:text="${user.userName} + '&nbsp&nbsp'"></span></p>	
 										<p>Mission repeats every <span th:text = "${mission.period}"></span> days</p>	
 										<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
@@ -198,7 +212,6 @@
 			</div>
 		</div>
 		</main>
-
 		<div id="add" class="navContent">
 			<div id="add-mission-modal" class="modal">
 				<div class="modal-content">
@@ -210,7 +223,6 @@
 						<p>When is the mission due?</p>
 						<input type="date" name="dueDate" required/>
 						<p>Does this mission recur?</p>
-
 						<div class="flex-grid-halves">
 							<div class="col-halves">
 								<label class="radio-block">Mission Recurs
@@ -228,19 +240,23 @@
 						<p>How many days elapse between mission due dates?</p>
 						<input type="number" name="period"  min="1" max="900" placeholder="num" required/>
 						<p>How many days (1-7) can the mission be snoozed?</p>
-
 						<input type="number" name="snooze" min="1" max="7" placeholder="num" required/>
 						<p>How many points do you want to reward for completing this mission?</p>
 
 						<input type="number" name="snooze" min="1" max="20" placeholder="num" required/>
 						<p>Please choose a sector:</p>
-						<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${sector.id}" th:text="${sector.sectorName}" required> <br>
+						<div class="radio-columns-container">
+								<div class="radio-columns" th:each="sector: ${sectors}">
+									<input type="radio" name="sectorId"	th:value="${sector.id}" />
+									<label th:text="${sector.sectorName}"></label>
+								</div>
+						</div>
 						<input type="hidden" th:value="${user.id}" name="userId"/>
-						<button class="newMisson-button button-primary" th:formaction= "@{/create-mission-button}">Add Mission</button>
+						
+						<p style="margin-top: 7em;"><button class="newMisson-button button-primary" th:formaction= "@{/create-mission-button}">Add Mission</button></p>
 					</form>
 				</div>				
 			</div>
-
 			<div id="add-sector-modal" class="modal">
 				<div class="modal-content">
 					<span id="close-add-sector" class="close">&times;</span>
@@ -253,6 +269,7 @@
 					</form>
 				</div>				
 			</div>
+
 			<div id="view-rewards-modal" class="modal">
 				<div class="modal-content">
 					<span id="close-view-rewards" class="close">&times;</span>
@@ -262,14 +279,33 @@
 						<p th:text="${reward.rewardDescription}"></p>
 					</div>
 					
+
+			<div id="theme-modal" class="modal">
+				<div class="modal-content">
+					<span id="close-theme" class="close">&times;</span>
+					<h3>Change My Theme</h3>
+					<form >
+						<label class="radio-block">Space
+							<input type="radio" name="theme" value="space"> 
+								<span class="radio-block-checkmark"></span>
+						</label>
+						<label class="radio-block">Cotton Candy
+							<input type="radio" name="theme" value="pink"> 
+								<span class="radio-block-checkmark"></span>
+						</label>
+						<label class="radio-block">Default
+								<input type="radio" name="theme" value="default"> 
+									<span class="radio-block-checkmark"></span>
+							</label>
+						<button class="button-primary" th:formaction= "@{/change-theme}">Change Theme</button> 
+					</form>
+
 				</div>				
 			</div>
 		</div>
-
 		<footer>
 			<p>&copy;Prod-App 2018</p>
 		</footer>
-
 		<script src = "./js/user.js"></script>	
 		<script src = "./js/user-requests.js"></script>	
 		<script src = "./js/reward.js"></script>

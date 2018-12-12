@@ -1,0 +1,23 @@
+body, #headerAndTinyProd{
+    background-color: #EFABFF;
+}
+.tabcontent, .active {
+    background-color: #DC6BAD;
+}
+header h1 {
+    color: #714FA8;
+    background-color: #EFABFF;
+}
+.topNav li li{
+    background-color: #7192BE;
+}
+.topNav ul li a:hover {
+    background-color: #7192BE;
+}
+
+.topNav ul li a.active {
+    background-color: #7192BE;
+}
+.topNav ul li ul{
+    background-color: #7192BE;
+}
