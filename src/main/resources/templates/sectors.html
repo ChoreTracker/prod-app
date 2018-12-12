@@ -65,27 +65,27 @@
 				</div>
 			</div>
 			<div id="theme-modal" class="modal">
-					<div class="modal-content">
-						<span id="close-theme" class="close">&times;</span>
-						<h3>Change My Theme</h3>
-						<form >
-							<label class="radio-block">Space
-								<input type="radio" name="theme" value="space" required> 
-									<span class="radio-block-checkmark"></span>
-							</label>
-							<label class="radio-block">Cotton Candy
-								<input type="radio" name="theme" value="pink" required> 
-									<span class="radio-block-checkmark"></span>
-							</label>
-							<label class="radio-block">Default
-								<input type="radio" name="theme" value="default" required> 
-									<span class="radio-block-checkmark"></span>
-							</label>
-							<button class="button-primary" th:formaction= "@{/change-theme}">Change Theme</button> 
-						</form>
-					</div>				
-				</div>
-				<div id="view-rewards-modal" class="modal">
+				<div class="modal-content">
+					<span id="close-theme" class="close">&times;</span>
+					<h3>Change My Theme</h3>
+					<form >
+						<label class="radio-block">Space
+							<input type="radio" name="theme" value="space" required> 
+								<span class="radio-block-checkmark"></span>
+						</label>
+						<label class="radio-block">Cotton Candy
+							<input type="radio" name="theme" value="pink" required> 
+								<span class="radio-block-checkmark"></span>
+						</label>
+						<label class="radio-block">Default
+							<input type="radio" name="theme" value="default" required> 
+								<span class="radio-block-checkmark"></span>
+						</label>
+						<button class="button-primary" th:formaction= "@{/change-theme}">Change Theme</button> 
+					</form>
+				</div>				
+			</div>
+			<div id="view-rewards-modal" class="modal">
 				<div class="modal-content">
 					<span id="close-view-rewards" class="close">&times;</span>
 					<h3>View Rewards</h3>
@@ -93,7 +93,6 @@
 						<p th:text="${reward.rewardName} + ': ' + ${reward.rewardValue}"></p>
 						<p th:text="${reward.rewardDescription}"></p>
 					</div>
-					
 				</div>				
 			</div>
 
