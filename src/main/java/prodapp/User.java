@@ -43,7 +43,11 @@ public class User{
 
 	private String theme;
 
+
+	private int rewardBalance;
+
 	private String avatar;
+
 
 	public User() {
 	}
@@ -81,18 +85,25 @@ public class User{
 	}
 	
 
-	
+	public int getRewardBalance() {
+		return rewardBalance;
+	}
+
+	public void setRewardBalance(int rewardBalance) {
+		this.rewardBalance = rewardBalance;
+	}
 
 
-	public User(String userName, String password, String avatar, String contact, String theme, String...roles) {
+	public User(String userName, String password, String avatar, String contact, String theme, int rewardBalance, String...roles) {
+
 		this.userName = userName;
 		this.password = new BCryptPasswordEncoder().encode(password);
 		this.avatar = avatar;
 		this.contact = contact;
 		this.theme = theme;
-		this.roles = roles;	
+		this.rewardBalance = rewardBalance;
+		this.roles = roles;
 	}
-
 
 	@Override
 	public int hashCode() {

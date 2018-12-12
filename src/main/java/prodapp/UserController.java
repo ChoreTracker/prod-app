@@ -87,7 +87,7 @@ public class UserController {
 	@RequestMapping("/add-user-button")
 	public String addUser(String userName, String password, String avatar, String contact, @RequestParam (required=false) String roles) {
 		avatar = "/images/avatars/" + avatar;
-		User user = new User(userName, password, avatar, contact, "default", "USER", roles);
+		User user = new User(userName, password, avatar, contact, "default", 0, "USER", roles);
 		userRepo.save(user);
 		return "redirect:/show-users";
 	}

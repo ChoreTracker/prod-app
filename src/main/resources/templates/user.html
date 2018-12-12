@@ -23,7 +23,7 @@
 				<div id="headerAndTinyProd">
 
 					<a href="http://localhost:8080/"><img id="tinyProd"  src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application"></a>
-					<h1 th:text=" ${user.userName} + '  Missions'"></h1>
+					<h1 th:text=" ${user.userName} +'(' + ${user.rewardBalance} + ') Missions'"></h1>
 
 				</div>
 			
@@ -42,8 +42,11 @@
 					</li>
 					<li class="first-nav"><a><img src="./images/cog-icon-white.svg"  alt="settings icon"></a>
 						<ul>
-							<li class="sub-nav"><a><button id="change-theme-button">Change Theme</button></a></li>
+
 							<li sec:authorize="hasRole('ROLE_ADMIN')" class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
+							<li class="sub-nav"><a><button id="view-rewards-button">Rewards</button></a></li>
+              <li class="sub-nav"><a><button id="change-theme-button">Change Theme</button></a></li>
+
 						</ul>
 					</li>
 					<li class="first-nav"><a><img src="./images/logout-icon-white.svg"  alt="logout icon"></a>
@@ -92,6 +95,7 @@
 									<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
 									<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
 									<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
+									<p>Reward Points: <span th:text = "${mission.rewardValue}"></span></p>
 								</section>
 								<h3 th:if="${mission.completionDate != null}">Mission Accomplished!</h3>
 									<form>
@@ -133,6 +137,7 @@
 										<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
 										<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
 										<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
+										<p>Reward Points: <span th:text = "${mission.rewardValue}"></span></p>
 									</section>
 									<form>
 										<input type="hidden" th:value="${mission.id}" name="missionId"/>
@@ -185,6 +190,7 @@
 										<p>Mission can be snoozed for <span th:text = "${mission.snooze}"></span> days</p>	
 										<p>Mission Due Date: <span th:text = "${mission.dueDate}"></span></p>
 										<p>Mission Completed: <span th:text = "${mission.completionDate}"></span></p>
+										<p>Reward Points: <span th:text = "${mission.rewardValue}"></span></p>
 									</section>
 									<h3 th:if="${mission.completionDate != null}">Mission Accomplished!</h3>
 									<form>
@@ -235,6 +241,9 @@
 						<input type="number" name="period"  min="1" max="900" placeholder="num" required/>
 						<p>How many days (1-7) can the mission be snoozed?</p>
 						<input type="number" name="snooze" min="1" max="7" placeholder="num" required/>
+						<p>How many points do you want to reward for completing this mission?</p>
+
+						<input type="number" name="snooze" min="1" max="20" placeholder="num" required/>
 						<p>Please choose a sector:</p>
 						<div class="radio-columns-container">
 								<div class="radio-columns" th:each="sector: ${sectors}">
