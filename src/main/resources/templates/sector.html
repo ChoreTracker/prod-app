@@ -167,7 +167,7 @@
 							<div class="modal-content">
 								<span id="close-view-rewards" class="close">&times;</span>
 								<h3>View Rewards</h3>
-								<div th:each="${reward : rewards}">
+								<div th:each="reward : ${rewards}">									
 									<p th:text="${reward.rewardName} + ': ' + ${reward.rewardValue}"></p>
 									<p th:text="${reward.rewardDescription}"></p>
 								</div>
