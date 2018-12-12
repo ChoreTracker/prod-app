@@ -43,6 +43,7 @@ header {
 
 header h1 {
     color: floralwhite;
+    background-image: url("/images/stardust.png");
     font-size: 2em;
     font-weight: 200;
     line-height: 2em;

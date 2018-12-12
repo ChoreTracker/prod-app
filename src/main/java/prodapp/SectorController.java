@@ -68,7 +68,7 @@ public class SectorController {
 	public String addNewSector(@RequestParam String sectorName, @RequestParam String imageUrl) {
 		Sector sector = sectorRepo.findBySectorName(sectorName);
 		if (sector == null) {
-			imageUrl = "/images/sectors/" + imageUrl;
+			imageUrl = "/images/icons/" + imageUrl;
 			sector = new Sector(sectorName, imageUrl);
 			sectorRepo.save(sector);
 		}
