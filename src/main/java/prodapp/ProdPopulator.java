@@ -63,7 +63,7 @@ public class ProdPopulator implements CommandLineRunner {
 	sectorRepo.save(sector10);
 	
 
-	Mission mission = new Mission("Clean Toilet", "scrub the toilet", sector, 1, 2, "2018-12-25", null, false, 0, 3 user);
+	Mission mission = new Mission("Clean Toilet", "scrub the toilet", sector, 1, 2, "2018-12-25", null, false, 0, 3, user);
 	Mission mission2 = new Mission("Scrub Tub", "clean the tub", sector, 4, 3, "2018-11-30", null, false, 0, 1, user);
 	Mission mission3 = new Mission("Sweep the Floor", "sweep thoroughly", sector2, 21, 4, "2018-12-14", null, false, 0, 1,
 			user, user2);
