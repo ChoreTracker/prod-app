@@ -95,6 +95,7 @@
 							<h3 >Mission Accomplished!</h3>
 							<form>
 								<input type="hidden" th:value="${mission.id}" name="missionId"/>
+								<input type="hidden" th:value="${mission.sector.id}" name="sectorId"/>
 								<button sec:authorize="hasRole('ROLE_ADMIN')" class="reopenButton button-primary" th:formaction= "@{/reopen-mission-button-sector}">Re-open Mission</button>
 							</form>
 						</div>
@@ -182,7 +183,6 @@
 									<p th:text="${reward.rewardName} + ': ' + ${reward.rewardValue}"></p>
 									<p th:text="${reward.rewardDescription}"></p>
 								</div>
-								
 							</div>				
 						</div>
 			</div>
