@@ -29,14 +29,19 @@ public class AdminController {
 		Optional<User> user = userRepo.findByUserName(loggedUser);
 		long userId = user.get().getId();
 	    return new ModelAndView("redirect:/user?id=" + userId);
+	
 	}
 	
 	@RequestMapping ("/admin")
-	public String admin(Model model) {
+	public String admin(Model model, Principal principal) {
 		model.addAttribute("sectors", sectorRepo.findAll());
 		model.addAttribute("missions", missionRepo.findAll());
 		model.addAttribute("users", userRepo.findAll());
 		model.addAttribute("completeMissions", missionRepo.findByCompletionDateIsNotNullOrderByUsers());
+		String activeUser = principal.getName();
+		Optional<User> userTheme = userRepo.findByUserName(activeUser);
+		User loggedInUser = userTheme.get();
+		model.addAttribute("loggedInUser", loggedInUser);
 		return "admin";
 	}
 	
