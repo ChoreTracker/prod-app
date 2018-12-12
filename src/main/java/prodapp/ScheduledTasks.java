@@ -23,7 +23,7 @@ public class ScheduledTasks {
 				String newDueDate = localDueDate.toString();
 				Mission newMission = new Mission(mission.getMissionName(), mission.getMissionDescription(), mission.getSector(),
 						mission.getPeriod(), mission.getSnooze(),
-						newDueDate, "", false, 0);
+						newDueDate, "", false, mission.getRewardValue(), 0);
 				newMission.assignUsers(mission.getUsers());
 				missionRepo.save(newMission);
 				mission.resetCount();
