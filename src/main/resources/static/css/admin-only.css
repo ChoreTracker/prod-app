@@ -73,7 +73,6 @@ h3 {
     padding-left: .5em;
     position: fixed;
     z-index: 2;
-    /* transform: rotate(-5deg); */
     width: 50px;
     height: auto;
 }
@@ -88,6 +87,19 @@ header h1 {
     font-size: 2em;
     font-weight: 200;
     line-height: 2em;
+    margin-left: 65px;
+    margin-top: auto;
+    margin-bottom: auto;
+    position: fixed;
+    top: 0;
+    height: 65px;
+    width: 100%;
+    z-index: 2;
+
+    /* background-color: #f2ecc2;
+    font-size: 2em;
+    font-weight: 200;
+    line-height: 2em;
     font-family: 'Roboto Slab', serif;
     margin-top: auto;
     margin-bottom: auto;
@@ -97,7 +109,7 @@ header h1 {
     top: 0;
     height: 65px;
     width: 35%;
-    z-index: 2;
+    z-index: 2; */
 }
 
 #headerAndTinyProd {
@@ -116,7 +128,7 @@ header h1 {
  }
 
 #collapsibleItems{
-    margin-top: 9em;
+    margin-top: 6.5em;
 }
 
 .collapsible{
@@ -142,9 +154,9 @@ header h1 {
     /* margin-top: 6em; */
 }
 
-.collapsible:hover, .collapsible:focus {
+/* .collapsible:hover, .collapsible:focus {
 	background-color: #48b782;
-}
+} */
 
 .topNav {
     background-color: #8559a5; /*purple*/
@@ -393,6 +405,7 @@ input[type="text"],
 input[type="password"], 
 input[type="number"],
 input[type="file"],
+input[type="date"],
 select, textarea {
     background-color:  white;
     border: 1px solid #d9d9d9;
@@ -401,6 +414,7 @@ select, textarea {
     margin-bottom: 1em;
     margin-left: auto;
     margin-right: auto;
+    margin: 0;
     padding: 1em;
     width: 90%;
     height: 25px;

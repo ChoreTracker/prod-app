@@ -29,10 +29,10 @@ public class ProdPopulator implements CommandLineRunner {
 
 	User user = new User("Mom", "admin", "/images/avatars/woman-doctor.svg", "contact", "default", 5, "ADMIN", "USER");
 	User user2 = new User("Dad", "admin", "/images/avatars/minotaur.svg", "contact2", "default", 5, "ADMIN", "USER");
-	User user3 = new User("Emma", "user", "/images/avatars/girl5.svg", "contact2", "default", 5, "USER");
+	User user3 = new User("Emma", "user", "/images/avatars/girl6.svg", "contact2", "default", 5, "USER");
 	User user4 = new User("Lucy", "user", "/images/avatars/girl1.svg", "contact2", "default", 15, "USER");
 	User user5 = new User("Sophie", "user", "/images/avatars/girl4.svg", "contact2", "default", 2, "USER");
-	User user6 = new User("Jackson", "user", "/images/avatars/boy1.svg", "contact2", "default", 0, "USER");
+	User user6 = new User("Jackson", "user", "/images/avatars/boy3.svg", "contact2", "default", 0, "USER");
 
 	userRepo.save(user);
 	userRepo.save(user2);
