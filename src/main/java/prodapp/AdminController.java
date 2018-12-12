@@ -3,7 +3,9 @@ package prodapp;
 import java.security.Principal;
 import java.util.Collection;
 import java.util.Optional;
+
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,13 +34,17 @@ public class AdminController {
 	}
 	
 	@RequestMapping ("/admin")
-	public String admin(Model model) {
-		model.addAttribute("sectors", sectorRepo.findAll());
-		model.addAttribute("missions", missionRepo.findAll());
-		model.addAttribute("users", userRepo.findAll());
-		model.addAttribute("completeMissions", missionRepo.findByCompletionDateIsNotNullOrderByUsers());
-		return "admin";
-	}
+    public String admin(Model model, Principal principal) {
+        model.addAttribute("sectors", sectorRepo.findAll());
+        model.addAttribute("missions", missionRepo.findAll());
+        model.addAttribute("users", userRepo.findAll());
+        model.addAttribute("completeMissions", missionRepo.findByCompletionDateIsNotNullOrderByUsers());
+        String activeUser = principal.getName();
+        Optional<User> userTheme = userRepo.findByUserName(activeUser);
+        User loggedInUser = userTheme.get();
+        model.addAttribute("loggedInUser", loggedInUser);
+        return "admin";
+    }
 	
 	@RequestMapping("/login")
     public String login() {
