@@ -46,7 +46,7 @@ public class MissionController {
 	//This button is in use! //
 	//
 	@RequestMapping("/create-mission-button")
-	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate, boolean recurring, long sectorId, int rewardValue, @RequestParam long userId) {
+	public String createMission(String missionName, String missionDescription, int period, int snooze, String dueDate, boolean recurring, long sectorId, @RequestParam int rewardValue, @RequestParam long userId) {
 		Optional<User> userResult = userRepo.findById(userId);
 		User user = userResult.get();
 		Optional<Sector> sectorResult = sectorRepo.findById(sectorId);
@@ -379,7 +379,7 @@ public class MissionController {
 	}
 	
 	@RequestMapping("/reopen-mission-button-sector")
-	public String reopenClosedMissionSectorPage (@RequestParam long missionId, long sectorId) {
+	public String reopenClosedMissionSectorPage (@RequestParam long missionId, @RequestParam long sectorId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.reopenMission();

@@ -95,6 +95,7 @@
 							<h3 >Mission Accomplished!</h3>
 							<form>
 								<input type="hidden" th:value="${mission.id}" name="missionId"/>
+								<input type="hidden" th:value="${mission.sector.id}" name="sectorId"/>
 								<button sec:authorize="hasRole('ROLE_ADMIN')" class="reopenButton button-primary" th:formaction= "@{/reopen-mission-button-sector}">Re-open Mission</button>
 							</form>
 						</div>
@@ -131,7 +132,7 @@
 						<input typ="number" name="snooze" min="0" max="7" placeholder="num" required/>						
 						<input type="hidden" name="sectorId" th:value="${sector.id}" > <br>
 						<p>How many points do you want to reward for completing this mission?</p>
-						<input type="number" name="snooze" min="1" max="20" placeholder="num" required/>
+						<input type="number" name="rewardValue" min="0" max="20" placeholder="num" required/>
 						<p>Assign user(s):</p>
 						<input th:each="user: ${users}" type="checkbox"  name="users" th:text="${user.userName} + '&nbsp&nbsp'" th:value="${user.id}"><br>
 						<button class="newMisson-button button-primary" th:formaction= "@{/make-mission-within-sector}">Add Mission</button> 
@@ -182,7 +183,6 @@
 									<p th:text="${reward.rewardName} + ': ' + ${reward.rewardValue}"></p>
 									<p th:text="${reward.rewardDescription}"></p>
 								</div>
-								
 							</div>				
 						</div>
 			</div>
