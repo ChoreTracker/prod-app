@@ -23,6 +23,9 @@ public class SectorController {
 
 	@Resource
 	UserRepository userRepo;
+	
+	@Resource
+	RewardRepository rewardsRepo;
 
 	@RequestMapping("/show-sectors")
 	public String findAllSectors(Model model, Principal principal) {
@@ -32,7 +35,9 @@ public class SectorController {
 		model.addAttribute("loggedInUser", loggedInUser);
 		
 		model.addAttribute("sectors", sectorRepo.findAll());
-		
+
+		model.addAttribute("rewards", rewardsRepo.findAll());
+
 		return "sectors";
 	}
 
@@ -42,11 +47,13 @@ public class SectorController {
 
 		if (sector.isPresent()) {
 			Sector sectorResult = sector.get();
+
+			model.addAttribute("rewards", rewardsRepo.findAll());
+
 			String activeUser = principal.getName();
 			Optional<User> userTheme = userRepo.findByUserName(activeUser);
 			User loggedInUser = userTheme.get();
 			model.addAttribute("loggedInUser", loggedInUser);
-			
 			model.addAttribute("sector", sectorResult);
 			model.addAttribute("users", userRepo.findAll());
 			model.addAttribute("missions", missionRepo.findAllBySectorAndRecurringIsFalse(sectorResult));

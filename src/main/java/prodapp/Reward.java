@@ -16,6 +16,9 @@ public class Reward {
 	private int rewardValue;
 	private boolean earned;
 		
+	public Reward() {
+		
+	}
 	
 	public Reward(String rewardName, String rewardDescription, int rewardValue, boolean earned) {
 		this.rewardName = rewardName;

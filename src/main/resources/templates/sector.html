@@ -38,6 +38,7 @@
 						</li>
 						<li class="first-nav"><a><img src="./images/cog-icon-white.svg" alt="settings icon"></a>
 							<ul>
+								<li class="sub-nav"><a><button id="view-rewards-button">Rewards</button></a></li>
 								<li class="sub-nav"><a><button id="change-theme-button">Change Theme</button></a></li>
 								<li sec:authorize="hasRole('ROLE_ADMIN')" class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
 							</ul>
@@ -173,6 +174,17 @@
 							</form>
 						</div>				
 					</div>
+					<div id="view-rewards-modal" class="modal">
+							<div class="modal-content">
+								<span id="close-view-rewards" class="close">&times;</span>
+								<h3>View Rewards</h3>
+								<div th:each="reward : ${rewards}">									
+									<p th:text="${reward.rewardName} + ': ' + ${reward.rewardValue}"></p>
+									<p th:text="${reward.rewardDescription}"></p>
+								</div>
+								
+							</div>				
+						</div>
 			</div>
 
 	</div>
@@ -182,6 +194,9 @@
 	</footer>		
 	<script src= "./js/sector.js"></script>
 	<script src = "./js/subnav.js"></script>	
+
+	<script src = "./js/add-mission.js"></script>
+	<script src = "./js/reward.js"></script>
 
 </body>
 </html>
