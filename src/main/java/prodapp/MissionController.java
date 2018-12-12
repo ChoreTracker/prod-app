@@ -370,12 +370,12 @@ public class MissionController {
 	}
 	
 	@RequestMapping("/reopen-mission-button")
-	public String reopenClosedMission (@RequestParam long missionId, long userId) {
+	public String reopenClosedMission (@RequestParam long missionId) {
 		Optional<Mission> result = missionRepo.findById(missionId);
 		Mission mission = result.get();
 		mission.reopenMission();
 		missionRepo.save(mission);
-		return "redirect:/user?id=" + userId;
+		return "redirect:/";
 	}
 	
 	@RequestMapping("/reopen-mission-button-sector")
