@@ -4,9 +4,9 @@
 	<title>Administration tasks</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="./css/reset.css">
+	<!-- <link rel="stylesheet" type="text/css" href="./css/forms.css"> -->
 	<!-- <link rel="stylesheet" type="text/css" href="./css/style-sheet.css"> -->
 	<link rel="stylesheet" type="text/css" href="./css/admin-only.css">
-	<link rel="stylesheet" type="text/css" href="./css/forms.css">
 	<link th:if="${loggedInUser.theme == 'space'}" rel="stylesheet" type="text/css" href="/css/space.css">
     <link th:if="${loggedInUser.theme == 'pink'}" rel="stylesheet" type="text/css" href="/css/pink.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
@@ -134,10 +134,10 @@
 					<!-- <li> -->
 						<h3>Edit Missions</h3>
 					<!-- </li> -->
-						<article th:each="mission: ${missions}">
+						<div th:each="mission: ${missions}">
 							<form >
-								<p>Name<input type="text" name="missionname" th:value="${mission.missionName}" required/></p>
-								<p>Description<input type="text" name="missionndescription" th:value="${mission.missionDescription}" required/></p>
+								<p>Name<input type="text" class="textbox1" name="missionname" th:value="${mission.missionName}" required/></p>
+								<p>Description<input type="text" class="textbox1" name="missionndescription" th:value="${mission.missionDescription}" required/></p>
 								<p>When is the mission due?</p>
 								<input type="date" name="dueDate" th:value="${mission.dueDate}" required/>
 								<p>Does this mission recur?</p>
@@ -150,19 +150,27 @@
 								<input type="number" name="snooze" min="1" max="7" th:value="${mission.snooze}" required/>
 								<!-- not showing radio buttons for sector -->
 								<p>Change sector</p>
-								<input th:each= "sector: ${sectors}" type="radio" name="sectorId" th:value="${mission.sector}" th:text="${sector.sectorName}" th:checked="${mission.sector}" required> <br>
+								<div class="radio-columns-container">
+										<div class="radio-columns" th:each="sector: ${sectors}">
+								<input type="radio" name="sectorId" th:value="${mission.sector}" th:text="${sector.sectorName}" th:checked="${mission.sector}" required> <br>
+								</div>
+							</div>
 								<!-- not showing users or checkboxes yet -->
-								<p>Assign user(s)</p>
-								<input type="checkbox" name="userId" th:each= "user: ${users}" th:checked="${users}" th:value="${user.id}" th:text="${user.userName}" required>
+								<div id="userCheckbox2">
+									<div id="assignUsers">Assign user(s)</div>
+									<input type="checkbox" name="userId" th:each= "user: ${users}" th:value="${user.id}" th:text="${user.userName}" required> <br>
+									<input type="hidden" name="missionId" th:value="${mission.id}">
+								</div>
+								<!-- <p>Assign user(s)</p>
+								<input type="checkbox" name="userId" th:each= "user: ${users}" th:checked="${users}" th:value="${user.id}" th:text="${user.userName}" required> -->
 		<!-- 						    <label th:for="${#ids.prev('mission.users')}" th:text="${mission.users}"></label> --> <br>
-								<input type="hidden" name="missionId" th:value="${mission.id}">
 								<p>Change Completion Date<input type="text" name="missioncompletion" th:value="${mission.completionDate}"></p>
 								<button class="saveMisson-button button-primary" th:action= "@{/save-mission-button}">Save Changes</button> 
 								</form>
 								<input type="hidden" name="missionId" th:value="${mission.id}">
 							<button class="deleteMisson-button button-primary" th:action= "@{/admin/delete-mission-button}">Delete Mission</button>
 							<hr>
-						</article>
+							</div>
 				<!-- </ul> -->
 			</div>
 				

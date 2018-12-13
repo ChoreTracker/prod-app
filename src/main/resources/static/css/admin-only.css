@@ -33,7 +33,7 @@ h2 {
     text-align: center;
     margin-left: auto;
     margin-right: auto; 
-    padding-bottom: .25em;
+    padding-bottom: .5em;
     padding-top: 1em;
     /*margin-top: 0.83em;
     margin-bottom: 0.83em;*/
@@ -136,15 +136,17 @@ header h1 {
     background-color: white;
 	border: solid 1px transparent;
     border-radius: 25px;
-    font-size: 1.5em;
+    font-size: 1.75em;
+    border-color: #323232;
+    border-radius: 25px;
+    border-style: solid;
+    border-width: 1px;
 	display: block;
-    height: 65px;
+    height: 75px;
     left: 0;
-    /*margin: 2px 0;*/
     margin-left: auto;
     margin-right: auto;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin-bottom: 0.5em;
 	padding-top: 0.5em 1em;
     color: black;
     font-family: 'Roboto Slab', serif;
@@ -490,8 +492,23 @@ input::-webkit-datetime-edit-fields-wrapper {
   }
 
 #userCheckbox{
-    margin-left: 4em;
+    margin-left: 3em;
 }  
+
+#userCheckbox2{
+    margin-left: 2em;
+    display: inline;
+}
+
+#assignUsers{
+    margin-left: 48px;
+    padding-top: 1em;
+    width: 150px;
+}
+
+input #assignUsers {
+margin-left: 3em;
+}
     
 /*The radio buttons with floats*/
   /* The radio buttons container WITH the float */
@@ -544,6 +561,37 @@ input::-webkit-datetime-edit-fields-wrapper {
     background-color: #ffa258; /*orange
 }*/
 
+input[type="text"], 
+input[type="password"], 
+input[type="number"],
+input[type="file"],
+select, textarea {
+    background-color:  white;
+    border: 1px solid #d9d9d9;
+    border-radius: 25px;
+    display: block;
+    margin-bottom: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    width: 90%;
+}
+
+.textbox1 [type="text"], 
+/* input.textbox1 [type="password"], 
+input.textbox1 [type="number"],
+input.textbox1 [type="file"], */
+select, textarea {
+    background-color:  white;
+    border: 1px solid #d9d9d9;
+    border-radius: 25px;
+    display: block;
+    margin-bottom: 1em;
+    /* margin-left: auto; */
+    margin-right: auto;
+    padding: 1em;
+    width: 90%;
+}
 
 /* The radio buttons container WITHOUT the float */
 .radio-block {
