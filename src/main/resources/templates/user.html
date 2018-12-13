@@ -38,9 +38,9 @@
 					</li>
 					<li class="first-nav"><a><img src="./images/cog-icon-white.svg"  alt="settings icon"></a>
 						<ul>
-							<li sec:authorize="hasRole('ROLE_ADMIN')" class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
 							<li class="sub-nav"><a><button id="view-rewards-button">Rewards</button></a></li>
-             	<li class="sub-nav"><a><button id="change-theme-button">Change Theme</button></a></li>
+							<li class="sub-nav"><a><button id="change-theme-button">Change Theme</button></a></li>
+							<li sec:authorize="hasRole('ROLE_ADMIN')" class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
 						</ul>
 					</li>
 					<li class="first-nav"><a><img src="./images/logout-icon-white.svg"  alt="logout icon"></a>
@@ -268,8 +268,9 @@
 					<span id="close-view-rewards" class="close">&times;</span>
 					<h3>View Rewards</h3>
 					<div th:each="reward : ${rewards}">
-						<p th:text="${reward.rewardName} + ': ' + ${reward.rewardValue}"></p>
+						<h4 th:text="${reward.rewardName} + ': ' + ${reward.rewardValue}"></h4>
 						<p th:text="${reward.rewardDescription}"></p>
+						<br>
 					</div>
 				</div>
 			</div>
@@ -280,15 +281,15 @@
 					<span id="close-theme" class="close">&times;</span>
 					<h3>Change My Theme</h3>
 					<form >
-						<label class="radio-block">Space
+						<label style="margin-left: 5%;" class="radio-block">Space
 							<input type="radio" name="theme" value="space"> 
 								<span class="radio-block-checkmark"></span>
 						</label>
-						<label class="radio-block">Cotton Candy
+						<label style="margin-left: 5%;" class="radio-block">Cotton Candy
 							<input type="radio" name="theme" value="pink"> 
 								<span class="radio-block-checkmark"></span>
 						</label>
-						<label class="radio-block">Default
+						<label style="margin-left: 5%;" class="radio-block">Default
 								<input type="radio" name="theme" value="default"> 
 									<span class="radio-block-checkmark"></span>
 							</label>
