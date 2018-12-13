@@ -3,9 +3,7 @@ package prodapp;
 import java.security.Principal;
 import java.util.Collection;
 import java.util.Optional;
-
 import javax.annotation.Resource;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +33,6 @@ public class AdminController {
 	}
 	
 	@RequestMapping ("/admin")
-
 	public String admin(Model model, Principal principal) {
 		model.addAttribute("sectors", sectorRepo.findAll());
 		model.addAttribute("missions", missionRepo.findAll());
