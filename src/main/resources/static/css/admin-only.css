@@ -33,7 +33,7 @@ h2 {
     text-align: center;
     margin-left: auto;
     margin-right: auto; 
-    padding-bottom: .5em;
+    padding-bottom: .25em;
     padding-top: 1em;
     /*margin-top: 0.83em;
     margin-bottom: 0.83em;*/
@@ -73,6 +73,7 @@ h3 {
     padding-left: .5em;
     position: fixed;
     z-index: 2;
+    /* transform: rotate(-5deg); */
     width: 50px;
     height: auto;
 }
@@ -87,22 +88,7 @@ header h1 {
     font-size: 2em;
     font-weight: 200;
     line-height: 2em;
-
-    margin-left: 65px;
-    margin-top: auto;
-    margin-bottom: auto;
-    position: fixed;
-    top: 0;
-    height: 65px;
-    width: 100%;
-    z-index: 2;
-
-    /* background-color: #f2ecc2;
-    font-size: 2em;
-    font-weight: 200;
-    line-height: 2em;
-    font-family: 'Roboto Slab', serif;
-
+    /*font-family: 'Roboto Slab', serif;*/
     margin-top: auto;
     margin-bottom: auto;
     padding-left: 65px;
@@ -110,10 +96,8 @@ header h1 {
     position: fixed;
     top: 0;
     height: 65px;
-
-    width: 35%;
-    z-index: 2; */
-
+    width: 100%;
+    z-index: 2;
 }
 
 #headerAndTinyProd {
@@ -132,7 +116,7 @@ header h1 {
  }
 
 #collapsibleItems{
-    margin-top: 6.5em;
+    margin-top: 9em;
 }
 
 .collapsible{
@@ -140,17 +124,15 @@ header h1 {
     background-color: white;
 	border: solid 1px transparent;
     border-radius: 25px;
-    font-size: 1.75em;
-    border-color: #323232;
-    border-radius: 25px;
-    border-style: solid;
-    border-width: 1px;
+    font-size: 1.5em;
 	display: block;
-    height: 75px;
+    height: 65px;
     left: 0;
+    /*margin: 2px 0;*/
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 0.5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
 	padding-top: 0.5em 1em;
     color: black;
     font-family: 'Roboto Slab', serif;
@@ -160,9 +142,9 @@ header h1 {
     /* margin-top: 6em; */
 }
 
-/* .collapsible:hover, .collapsible:focus {
+.collapsible:hover, .collapsible:focus {
 	background-color: #48b782;
-} */
+}
 
 .topNav {
     background-color: #8559a5; /*purple*/
@@ -411,7 +393,6 @@ input[type="text"],
 input[type="password"], 
 input[type="number"],
 input[type="file"],
-input[type="date"],
 select, textarea {
     background-color:  white;
     border: 1px solid #d9d9d9;
@@ -420,7 +401,6 @@ select, textarea {
     margin-bottom: 1em;
     margin-left: auto;
     margin-right: auto;
-    margin: 0;
     padding: 1em;
     width: 90%;
     height: 25px;
@@ -496,23 +476,8 @@ input::-webkit-datetime-edit-fields-wrapper {
   }
 
 #userCheckbox{
-    margin-left: 3em;
+    margin-left: 4em;
 }  
-
-#userCheckbox2{
-    margin-left: 2em;
-    display: inline;
-}
-
-#assignUsers{
-    margin-left: 48px;
-    padding-top: 1em;
-    width: 150px;
-}
-
-input #assignUsers {
-margin-left: 3em;
-}
     
 /*The radio buttons with floats*/
   /* The radio buttons container WITH the float */
@@ -565,37 +530,6 @@ margin-left: 3em;
     background-color: #ffa258; /*orange
 }*/
 
-input[type="text"], 
-input[type="password"], 
-input[type="number"],
-input[type="file"],
-select, textarea {
-    background-color:  white;
-    border: 1px solid #d9d9d9;
-    border-radius: 25px;
-    display: block;
-    margin-bottom: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1em;
-    width: 90%;
-}
-
-.textbox1 [type="text"], 
-/* input.textbox1 [type="password"], 
-input.textbox1 [type="number"],
-input.textbox1 [type="file"], */
-select, textarea {
-    background-color:  white;
-    border: 1px solid #d9d9d9;
-    border-radius: 25px;
-    display: block;
-    margin-bottom: 1em;
-    /* margin-left: auto; */
-    margin-right: auto;
-    padding: 1em;
-    width: 90%;
-}
 
 /* The radio buttons container WITHOUT the float */
 .radio-block {
