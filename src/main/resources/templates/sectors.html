@@ -9,6 +9,7 @@
 	<link th:if="${loggedInUser.theme == 'pink'}" rel="stylesheet" type="text/css" href="/css/pink.css">
 
 	<link th:if="${loggedInUser.theme == 'space'}" rel="stylesheet" type="text/css" href="/css/space.css">
+	<link href="https://fonts.googleapis.com/css?family=Kanit|Russo+One" rel="stylesheet">
 
 	<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 </head>
@@ -69,15 +70,15 @@
 						<span id="close-theme" class="close">&times;</span>
 						<h3>Change My Theme</h3>
 						<form >
-							<label class="radio-block">Space
+							<label style="margin-left: 5%;" class="radio-block">Space
 								<input type="radio" name="theme" value="space" required> 
 									<span class="radio-block-checkmark"></span>
 							</label>
-							<label class="radio-block">Cotton Candy
+							<label style="margin-left: 5%;" class="radio-block">Cotton Candy
 								<input type="radio" name="theme" value="pink" required> 
 									<span class="radio-block-checkmark"></span>
 							</label>
-							<label class="radio-block">Default
+							<label style="margin-left: 5%;" class="radio-block">Default
 								<input type="radio" name="theme" value="default" required> 
 									<span class="radio-block-checkmark"></span>
 							</label>
