@@ -21,6 +21,7 @@
                 <h1>All Users</h1>
 				<a href="http://localhost:8080/"><img id="tinyProd"  src="/images/prod-logo.svg" alt="image depicting PROD chore tracking application"></a>
             </div>
+
             <nav class="topNav">
                 <ul class="first-nav">
                     <li class="first-nav" ><a><img src="./images/goto-icon-white.svg" alt="go to icon"></a>
@@ -50,57 +51,47 @@
             </nav>
 
 
-            <div id="add" class="navContent">
-                <div id="add-user-modal" class="modal">
-                    <div class="modal-content">
-                        <span id="close-add-user" class="close">&times;</span>
-                        <h3>Add a New User</h3>
-                        <form >
-                            <input type="text" name="userName" placeholder="Name of the user" required/>
-                            <input type="text" name="password" placeholder="Create a password for the user"/>
-                            <input type="text" name="contact" placeholder="Provide an email adress for the user"/>
-                            <input type="file" name="avatar" placeholder="avatar URL" required/>
-                            <!-- <input type="text" name="theme" placeholder="Default">Theme</input> -->
-                            <input type="checkbox" name="roles" value="ADMIN">Administrative User<br>
-                            <button class="newUser-button button-primary" th:formaction= "@{/add-user-button}">Add User</button>
-                        </form>
-                    </div>              
-                </div>
+                <div id="add" class="navContent">
+                    <div id="add-user-modal" class="modal">
+                        <div class="modal-content">
+                            <span id="close-add-user" class="close">&times;</span>
+                            <h3>Add a New User</h3>
+                            <form >
+                                <input type="text" name="userName" placeholder="Name of the user" required/>
+                                <input type="text" name="password" placeholder="Create a password for the user"/>
+                                <input type="text" name="contact" placeholder="Provide an email adress for the user"/>
+                                <input type="file" name="avatar" placeholder="avatar URL" required/>
+                                <!-- <input type="text" name="theme" placeholder="Default">Theme</input> -->
+                                <input type="checkbox" name="roles" value="ADMIN">Administrative User<br>
+                                <button class="newUser-button button-primary" th:formaction= "@{/add-user-button}">Add User</button>
+                            </form>
+                        </div>              
+                    </div>
 
-            </div>    
-            <div id="theme-modal" class="modal">
-                    <div class="modal-content">
-                        <span id="close-theme" class="close">&times;</span>
-                        <h3>Change My Theme</h3>
-                        <form >
-                            <label class="radio-block">Space
-                                <input type="radio" name="theme" value="space" required> 
-                                    <span class="radio-block-checkmark"></span>
-                            </label>
-                            <label class="radio-block">Cotton Candy
-                                
-                                <input type="radio" name="theme" value="pink" required> 
-                                    <span class="radio-block-checkmark"></span>
-                            </label>
-                            <label class="radio-block">Default
-                                <input type="radio" name="theme" value="default" required> 
-                                    <span class="radio-block-checkmark"></span>
-                            </label>
-                            <button class="button-primary" th:formaction= "@{/change-theme}">Change Theme</button> 
-                        </form>
-                    </div>				
-                </div>
+                </div>    
+                <div id="theme-modal" class="modal">
+                        <div class="modal-content">
+                            <span id="close-theme" class="close">&times;</span>
+                            <h3>Change My Theme</h3>
+                            <form >
+                                <label class="radio-block">Space
+                                    <input type="radio" name="theme" value="space" required> 
+                                        <span class="radio-block-checkmark"></span>
+                                </label>
+                                <label class="radio-block">Cotton Candy
+                                    
+                                    <input type="radio" name="theme" value="pink" required> 
+                                        <span class="radio-block-checkmark"></span>
+                                </label>
+                                <label class="radio-block">Default
+                                    <input type="radio" name="theme" value="default" required> 
+                                        <span class="radio-block-checkmark"></span>
+                                </label>
+                                <button class="button-primary" th:formaction= "@{/change-theme}">Change Theme</button> 
+                            </form>
+                        </div>				
+                    </div>
             </header>
-            <div id="view-rewards-modal" class="modal">
-				<div class="modal-content">
-					<span id="close-view-rewards" class="close">&times;</span>
-					<h3>View Rewards</h3>
-					<div th:each="reward : ${rewards}">
-						<p th:text="${reward.rewardName} + ': ' + ${reward.rewardValue}"></p>
-						<p th:text="${reward.rewardDescription}"></p>
-					</div>
-				</div>
-			</div>
              
             <div class="grid-container">
                 <div class="user">
