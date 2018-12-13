@@ -89,9 +89,9 @@
 				<div class="modal-content">
 					<span id="close-view-rewards" class="close">&times;</span>
 					<h3>View Rewards</h3>
-					<div th:each="reward : ${rewards}">
-						<p th:text="${reward.rewardName} + ': ' + ${reward.rewardValue}"></p>
-						<p th:text="${reward.rewardDescription}"></p>
+					<div class="reward" th:each="reward : ${rewards}">
+						<p>Reward: <span th:text = "${reward.rewardName}"></span> &emsp; Points: <span th:text = "${reward.rewardValue}"></span> </p>
+						<p th:text="'&emsp;' + ${reward.rewardDescription}"></p>
 					</div>
 					
 				</div>				
