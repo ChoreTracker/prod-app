@@ -142,7 +142,7 @@
 						<p>How many days elapse between mission due dates</p>
 						<input type="number" name="period"  min="0" max="900" placeholder="num" required/>
 						<p>How many days (0-7) can the mission be snoozed</p>
-						<input typ="number" name="snooze" min="0" max="7" placeholder="num" required/>						
+						<input type="number" name="snooze" min="0" max="7" placeholder="num" required/>						
 						<input type="hidden" name="sectorId" th:value="${sector.id}" > <br>
 						<p>How many points do you want to reward for completing this mission?</p>
 						<input type="number" name="rewardValue" min="0" max="20" placeholder="num" required/>
@@ -192,15 +192,15 @@
 						</div>				
 					</div>
 					<div id="view-rewards-modal" class="modal">
-							<div class="modal-content">
-								<span id="close-view-rewards" class="close">&times;</span>
-								<h3>View Rewards</h3>
-								<div th:each="reward : ${rewards}">									
-									<p th:text="${reward.rewardName} + ': ' + ${reward.rewardValue}"></p>
-									<p th:text="${reward.rewardDescription}"></p>
-								</div>
-							</div>				
-						</div>
+						<div class="modal-content">
+							<span id="close-view-rewards" class="close">&times;</span>
+							<h3>View Rewards</h3>
+							<div class="reward" th:each="reward : ${rewards}">									
+								<p>Reward: <span th:text = "${reward.rewardName}"></span> &emsp; Points: <span th:text = "${reward.rewardValue}"></span> </p>
+								<p th:text="'&emsp;' + ${reward.rewardDescription}"></p>
+							</div>
+						</div>				
+					</div>
 			</div>
 
 	</div>
