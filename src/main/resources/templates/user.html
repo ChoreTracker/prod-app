@@ -239,10 +239,10 @@
 						<input type="number" name="rewardValue" min="0" max="20" placeholder="num" required/>
 						<p>Please choose a sector:</p>
 						<div class="radio-columns-container">
-								<div class="radio-columns" th:each="sector: ${sectors}">
-									<input type="radio" name="sectorId"	th:value="${sector.id}" />
-									<label th:text="${sector.sectorName}"></label>
-								</div>
+							<div class="radio-columns" th:each="sector: ${sectors}">
+								<input type="radio" name="sectorId"	th:value="${sector.id}" />
+								<label th:text="${sector.sectorName}"></label>
+							</div>
 						</div>
 						<input type="hidden" th:value="${user.id}" name="userId"/>
 						
