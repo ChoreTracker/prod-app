@@ -104,6 +104,7 @@ window.addEventListener("click", function(event) {
 		themeModal.classList.remove("opened")
 	}
 })
+
 const newMissionButton = document.getElementById("add-mission-button");
 const closeNewMissionSpan = document.getElementById("close-add-mission");
 const addMissionModal = document.getElementById("add-mission-modal");

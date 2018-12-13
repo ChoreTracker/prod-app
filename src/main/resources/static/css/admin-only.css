@@ -83,10 +83,11 @@ header {
 }
     
 header h1 {
-    background-color: #f2ecc2;
+    /*background-color: #f2ecc2;*/
     font-size: 2em;
     font-weight: 200;
     line-height: 2em;
+
     margin-left: 65px;
     margin-top: auto;
     margin-bottom: auto;
@@ -101,15 +102,18 @@ header h1 {
     font-weight: 200;
     line-height: 2em;
     font-family: 'Roboto Slab', serif;
+
     margin-top: auto;
     margin-bottom: auto;
-    padding-left: 1em;
+    padding-left: 65px;
     padding-top: 0em;
     position: fixed;
     top: 0;
     height: 65px;
+
     width: 35%;
     z-index: 2; */
+
 }
 
 #headerAndTinyProd {

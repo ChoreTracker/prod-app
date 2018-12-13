@@ -8,10 +8,6 @@
 		<link rel="stylesheet" type="text/css" href="/css/forms.css">
 		<link th:if="${loggedInUser.theme == 'space'}" rel="stylesheet" type="text/css" href="/css/space.css">
 		<link th:if="${loggedInUser.theme == 'pink'}" rel="stylesheet" type="text/css" href="/css/pink.css">
-
-
-
-
 		<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Kanit|Russo+One" rel="stylesheet">
 
@@ -42,11 +38,9 @@
 					</li>
 					<li class="first-nav"><a><img src="./images/cog-icon-white.svg"  alt="settings icon"></a>
 						<ul>
-
 							<li sec:authorize="hasRole('ROLE_ADMIN')" class="sub-nav"><a href="http://localhost:8080/admin">Settings</a></li>
 							<li class="sub-nav"><a><button id="view-rewards-button">Rewards</button></a></li>
-              				<li class="sub-nav"><a><button id="change-theme-button">Change Theme</button></a></li>
-
+             	<li class="sub-nav"><a><button id="change-theme-button">Change Theme</button></a></li>
 						</ul>
 					</li>
 					<li class="first-nav"><a><img src="./images/logout-icon-white.svg"  alt="logout icon"></a>
@@ -239,11 +233,10 @@
 						</div>
 						<p>How many days elapse between mission due dates?</p>
 						<input type="number" name="period"  min="1" max="900" placeholder="num" required/>
-						<p>How many days (1-7) can the mission be snoozed?</p>
-						<input type="number" name="snooze" min="1" max="7" placeholder="num" required/>
+						<p>How many days (0-7) can the mission be snoozed?</p>
+						<input type="number" name="snooze" min="0" max="7" placeholder="num" required/>
 						<p>How many points do you want to reward for completing this mission?</p>
-
-						<input type="number" name="snooze" min="1" max="20" placeholder="num" required/>
+						<input type="number" name="rewardValue" min="0" max="20" placeholder="num" required/>
 						<p>Please choose a sector:</p>
 						<div class="radio-columns-container">
 								<div class="radio-columns" th:each="sector: ${sectors}">
@@ -278,6 +271,8 @@
 						<p th:text="${reward.rewardName} + ': ' + ${reward.rewardValue}"></p>
 						<p th:text="${reward.rewardDescription}"></p>
 					</div>
+				</div>
+			</div>
 					
 
 			<div id="theme-modal" class="modal">

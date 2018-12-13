@@ -68,7 +68,7 @@ public class SectorControllerTest {
 	public void shouldAddSingleSectorToModel() throws sectorNotFoundException {
 		long arbitrarySectorId = 1;
 		when(sectorRepo.findById(arbitrarySectorId)).thenReturn(Optional.of(sector));
-		underTest.findOneSector(arbitrarySectorId, model);
+		underTest.findOneSector(arbitrarySectorId, model, null);
 		verify(model).addAttribute("sector", sector);
 	}
 	
@@ -76,7 +76,7 @@ public class SectorControllerTest {
 	public void shouldAddAllSectorsToModel() {
 		Collection<Sector> allSectors = Arrays.asList(sector, sector2);
 		when(sectorRepo.findAll()).thenReturn(allSectors);
-		underTest.findAllSectors(model);
+		underTest.findAllSectors(model, null);
 		verify(model).addAttribute("sectors", allSectors);
 	}
 

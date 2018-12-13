@@ -61,7 +61,7 @@ public class UserControllerTest {
 	public void shouldAddSingleUserToModel() throws userNotFoundException {
 		long arbitraryUserId = 1;
 		when(userRepo.findById(arbitraryUserId)).thenReturn(Optional.of(user));
-		underTest.findOneUser(arbitraryUserId, model);
+		underTest.findOneUser(arbitraryUserId, model, null);
 		verify(model).addAttribute("user", user);
 	}
 	
@@ -69,7 +69,7 @@ public class UserControllerTest {
 	public void shouldAddAllSectorsToUser() {
 		Collection<User> allUsers = Arrays.asList(user, user2);
 		when(userRepo.findAll()).thenReturn(allUsers);
-		underTest.findAllUsers(model);
+		underTest.findAllUsers(model, null);
 		verify(model).addAttribute("users", allUsers);
 	}
 
