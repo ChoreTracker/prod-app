@@ -25,9 +25,6 @@ public class AdminController {
 	@Resource
 	SectorRepository sectorRepo;
 	
-	@Resource
-	RewardRepository rewardsRepo;
-	
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public ModelAndView projectBase(Model model, Principal principal) {
 		String loggedUser = principal.getName().toString();
@@ -38,11 +35,11 @@ public class AdminController {
 	}
 	
 	@RequestMapping ("/admin")
+
 	public String admin(Model model, Principal principal) {
 		model.addAttribute("sectors", sectorRepo.findAll());
 		model.addAttribute("missions", missionRepo.findAll());
 		model.addAttribute("users", userRepo.findAll());
-		model.addAttribute("rewards", rewardsRepo.findAll());
 		model.addAttribute("completeMissions", missionRepo.findByCompletionDateIsNotNullOrderByUsers());
 		String activeUser = principal.getName();
 		Optional<User> userTheme = userRepo.findByUserName(activeUser);
