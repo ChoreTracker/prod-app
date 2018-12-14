@@ -31,7 +31,7 @@ public class ProdPopulator implements CommandLineRunner {
 	User user2 = new User("Dad", "admin", "/images/avatars/minotaur.svg", "contact2", "default", 5, "ADMIN", "USER");
 	User user3 = new User("Emma", "user", "/images/avatars/girl6.svg", "contact2", "default", 5, "USER");
 	User user4 = new User("Lucy", "user", "/images/avatars/girl1.svg", "contact2", "default", 15, "USER");
-	User user5 = new User("Sophie", "user", "/images/avatars/girl4.svg", "contact2", "default", 2, "USER");
+	User user5 = new User("Sophie", "user", "/images/avatars/girl4.svg", "contact2", "space", 2, "USER");
 	User user6 = new User("Jackson", "user", "/images/avatars/boy3.svg", "contact2", "default", 0, "USER");
 
 	userRepo.save(user);
@@ -63,7 +63,7 @@ public class ProdPopulator implements CommandLineRunner {
 	sectorRepo.save(sector10);
 	
 
-	Mission mission = new Mission("Clean Toilet", "scrub the toilet", sector, 1, 2, "2018-12-25", null, false, 0, 3, user);
+	Mission mission = new Mission("Clean sink", "scrub the sink", sector, 1, 2, "2018-12-25", null, false, 0, 3, user);
 	Mission mission2 = new Mission("Scrub Tub", "clean the tub", sector, 4, 3, "2018-11-30", null, false, 0, 1, user);
 	Mission mission3 = new Mission("Sweep the Floor", "sweep thoroughly", sector2, 21, 4, "2018-12-14", null, false, 0, 1,
 			user, user2);
@@ -86,6 +86,7 @@ public class ProdPopulator implements CommandLineRunner {
     Mission mission20 = new Mission("Make the Bed", "for real", sector9, 1, 1, "2018-12-14", null, false, 0, 0, user6);
     Mission mission21 = new Mission("Vacuum", "the whole room", sector9, 7, 4, "2018-12-14", null, false, 0, 1, user6);
     Mission mission22 = new Mission("Pick up toys", "pick up and put them away properly", sector9, 3, 1, "2018-12-16", null, false, 0, 1, user6);
+	Mission mission23 = new Mission("Clean Mirror", "use windex", sector, 1, 2, "2018-12-25", null, false, 0, 3, user2);
 
     missionRepo.save(mission);
 	missionRepo.save(mission2);
@@ -109,6 +110,7 @@ public class ProdPopulator implements CommandLineRunner {
     missionRepo.save(mission20);
     missionRepo.save(mission21);
     missionRepo.save(mission22);
+    missionRepo.save(mission23);
    
     Reward reward1 = new Reward("Cash", "$5", 20, false);
     Reward reward2 = new Reward("Dessert", "Special Dessert", 10, false);

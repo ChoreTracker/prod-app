@@ -18,32 +18,7 @@ function goToSelectedPopsUp(navType) {
     }
 }
 
-const newUserButton = document.getElementById("add-user-button");
-const closeNewUserSpan = document.getElementById("close-add-user");
-const addUserModal = document.getElementById("add-user-modal");
 
-newUserButton.addEventListener("click", function(){
-	if (!addUserModal.classList.contains("opened")){
-		addUserModal.classList.add("opened")
-	}
-	 else {
-		addUserModal.classList.remove("opened")
-	}
-})
-
-closeNewUserSpan.addEventListener("click",function() {
-	if(!addUserModal.classList.contains("opened")){
-		addUserModal.classList.add("opened")
-	} else {
-		addUserModal.classList.remove("opened")
-	}
-})
-
-window.addEventListener("click", function(event) {
-	if (event.target == addUserModal) {
-		addUserModal.classList.remove("opened")
-	}
-})
 
 
 const themeButton = document.getElementById("change-theme-button");
@@ -70,5 +45,31 @@ closeThemeSpan.addEventListener("click",function() {
 window.addEventListener("click", function(event) {
 	if (event.target == themeModal) {
 		themeModal.classList.remove("opened")
+	}
+})
+const newUserButton = document.getElementById("add-user-button");
+const closeNewUserSpan = document.getElementById("close-add-user");
+const addUserModal = document.getElementById("add-user-modal");
+
+newUserButton.addEventListener("click", function(){
+	if (!addUserModal.classList.contains("opened")){
+		addUserModal.classList.add("opened")
+	}
+	 else {
+		addUserModal.classList.remove("opened")
+	}
+})
+
+closeNewUserSpan.addEventListener("click",function() {
+	if(!addUserModal.classList.contains("opened")){
+		addUserModal.classList.add("opened")
+	} else {
+		addUserModal.classList.remove("opened")
+	}
+})
+
+window.addEventListener("click", function(event) {
+	if (event.target == addUserModal) {
+		addUserModal.classList.remove("opened")
 	}
 })
