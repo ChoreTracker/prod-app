@@ -38,7 +38,10 @@ test'org.springframework.security:spring-security-test
 	•	Localization
  
 ## Contributors
--Don Miesle - https://github.com/dmiesle
--Hethur McKinley Aluma - https://github.com/hmcka
--Kurt Swinehart - https://github.com/KurtSwinehart
--Lisa Rees - https://github.com/L-Rees
+Don Miesle - https://github.com/dmiesle
+
+Hethur McKinley Aluma - https://github.com/hmcka
+
+Kurt Swinehart - https://github.com/KurtSwinehart
+
+Lisa Rees - https://github.com/L-Rees
